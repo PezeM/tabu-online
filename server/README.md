@@ -8,6 +8,15 @@
 $ npm install
 ```
 
+### Environment Variables 
+
+To set up environment variables on local machine, create `.env.development` file in the server main directory,
+and paste correct variables. Use `.env` file for production.
+
+```
+PORT=
+```
+
 ## Running the app
 
 ```bash
