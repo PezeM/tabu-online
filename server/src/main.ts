@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import * as helmet from 'helmet';
 
 async function bootstrap() {
   const logger = new Logger('main');
@@ -11,6 +12,7 @@ async function bootstrap() {
 
   app.enableCors();
   app.setGlobalPrefix('api');
+  app.use(helmet());
   await app.listen(PORT);
 
   logger.log(`Server started at port ${PORT}`);
