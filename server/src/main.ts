@@ -5,10 +5,10 @@ import { ConfigService } from '@nestjs/config';
 import * as helmet from 'helmet';
 
 async function bootstrap() {
-  const logger = new Logger('main');
+  const logger = new Logger('Main');
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
-  const PORT = configService.get<string>('PORT');
+  const PORT = configService.get<string>('PORT') ?? 3010;
 
   app.enableCors();
   app.setGlobalPrefix('api');
