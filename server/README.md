@@ -15,6 +15,7 @@ and paste correct variables. Use `.env` file for production.
 
 ```
 PORT=
+MONGODB_URI=
 ```
 
 ## Running the app
