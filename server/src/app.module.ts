@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MongooseConfigService } from './config/mongoose-config.service';
+import { LobbyModule } from './models/lobby/lobby.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { MongooseConfigService } from './config/mongoose-config.service';
       inject: [ConfigService],
       useClass: MongooseConfigService,
     }),
+    LobbyModule,
   ],
   controllers: [AppController],
 })
