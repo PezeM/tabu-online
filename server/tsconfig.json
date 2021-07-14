@@ -30,6 +30,10 @@
     "importHelpers": true,
     "removeComments": true,
     "baseUrl": "src",
+    "rootDirs": [
+      "./src",
+      "../shared"
+    ],
     "paths": {
       "@/*": [
         "*"

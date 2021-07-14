@@ -17,3 +17,10 @@ export const isEmpty = (value: string | number | object): boolean => {
     return false;
   }
 };
+
+/**
+ * Waits for given time
+ * @param {number} ms Wait time in milliseconds
+ * @returns {Promise<void>}
+ */
+export const waitFor = (ms: number): Promise<void> => new Promise(res => setTimeout(res, ms));
