@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { SocketAdapter } from './adapter/socket.adapter';
 import * as helmet from 'helmet';
 
 async function bootstrap() {
@@ -11,6 +12,7 @@ async function bootstrap() {
   const PORT = configService.get<string>('PORT') ?? 3010;
 
   app.enableCors();
+  app.useWebSocketAdapter(new SocketAdapter(app));
   app.setGlobalPrefix('api');
   app.use(helmet());
   await app.listen(PORT);
