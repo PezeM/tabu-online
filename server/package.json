@@ -5,6 +5,7 @@
   "author": "PezeM",
   "license": "ISC",
   "scripts": {
+    "clean": "rimraf ./dist",
     "start": "npm run build && cross-env NODE_ENV=production node dist/server.js",
     "dev": "cross-env NODE_ENV=development nodemon",
     "build": "tsc && npx tsc-alias",
@@ -30,6 +31,7 @@
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.2",
     "routing-controllers": "^0.9.0",
     "ts-jest": "^27.0.3",
     "ts-node": "^10.0.0",
