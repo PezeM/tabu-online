@@ -10,8 +10,8 @@ import {
   theme,
 } from "@chakra-ui/react";
 import { Logo } from "./Logo";
-import { ColorModeSwitcher } from "./Components/ColorModeSwitcher";
-import { TestSocket } from "./Components/TestSocket";
+import { ColorModeSwitcher } from "./components/ColorModeSwitcher";
+import { TestSocket } from "./components/TestSocket";
 
 export const App = () => (
   <ChakraProvider theme={theme}>

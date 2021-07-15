@@ -72,6 +72,7 @@ export class App {
 
       socket.on(CLIENT_EVENT_NAME.Test, (msg: string) => {
         logger.info(`Msg from client: ${msg}`, { socketId: socket.id });
+        socket.emit('Dupa siema', ['Eluwa']);
       });
 
       socket.on('disconnect', reason => {
@@ -88,6 +89,7 @@ export class App {
       },
       controllers: controllers,
       defaultErrorHandler: false,
+      routePrefix: '/api',
     });
   }
 
