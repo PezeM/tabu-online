@@ -1,7 +1,5 @@
 import { Controller, Param, Body, Get, Post, Put, Delete, HttpCode, UseBefore } from 'routing-controllers';
-import { CreateUserDto } from '@dtos/users.dto';
 import { User } from '@interfaces/users.interface';
-import { validationMiddleware } from '@middlewares/validation.middleware';
 import { UserService } from '@services/user.service';
 
 @Controller()
@@ -20,20 +18,20 @@ export class UsersController {
     return { data: findOneUserData, message: 'findOne' };
   }
 
-  @Post('/users')
-  @HttpCode(201)
-  @UseBefore(validationMiddleware(CreateUserDto, 'body'))
-  async createUser(@Body() userData: CreateUserDto) {
-    const createUserData: User = await this.userService.createUser(userData);
-    return { data: createUserData, message: 'created' };
-  }
-
-  @Put('/users/:id')
-  @UseBefore(validationMiddleware(CreateUserDto, 'body', true))
-  async updateUser(@Param('id') userId: number, @Body() userData: CreateUserDto) {
-    const updateUserData: User[] = await this.userService.updateUser(userId, userData);
-    return { data: updateUserData, message: 'updated' };
-  }
+  // @Post('/users')
+  // @HttpCode(201)
+  // @UseBefore(validationMiddleware(CreateLobbyUser, 'body'))
+  // async createUser(@Body() userData: CreateLobbyUser) {
+  //   const createUserData: User = await this.userService.createUser(userData);
+  //   return { data: createUserData, message: 'created' };
+  // }
+  //
+  // @Put('/users/:id')
+  // @UseBefore(validationMiddleware(CreateLobbyUser, 'body', true))
+  // async updateUser(@Param('id') userId: number, @Body() userData: CreateLobbyUser) {
+  //   const updateUserData: User[] = await this.userService.updateUser(userId, userData);
+  //   return { data: updateUserData, message: 'updated' };
+  // }
 
   @Delete('/users/:id')
   async deleteUser(@Param('id') userId: number) {

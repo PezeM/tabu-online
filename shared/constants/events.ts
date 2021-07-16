@@ -1,7 +1,9 @@
 export enum SERVER_EVENT_NAME {
-  FromServer = "testEvent",
+  FromServer = "testEvent"
 }
 
 export enum CLIENT_EVENT_NAME {
   Test = "testEventFromClient",
+  CreateLobby = "createLobby",
+  JoinLobby = "joinLobby"
 }

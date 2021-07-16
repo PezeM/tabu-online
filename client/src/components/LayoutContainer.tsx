@@ -17,8 +17,8 @@ export const LayoutContainer = ({ children }: Props) => {
         margin="0 auto"
         direction="column"
         maxW="1250px"
-        px={8}
-        py={12}
+        // px={[4, 8, 16]}
+        py={[8, 16, 32]}
         width={"100%"}
         flex={"1 0 auto"}
       >

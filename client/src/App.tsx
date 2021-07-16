@@ -14,6 +14,7 @@ import { TestSocket } from "./components/TestSocket";
 import { theme } from "./styles/theme";
 import { LayoutContainer } from "./components/LayoutContainer";
 import { Switch, Route } from "react-router-dom";
+import { Home } from "./views/home";
 
 export const App = () => (
   <ChakraProvider theme={theme}>
@@ -45,7 +46,7 @@ export const App = () => (
         </Route>
 
         <Route path="/">
-          <TestSocket />
+          <Home />
         </Route>
       </Switch>
     </LayoutContainer>

@@ -1,3 +1,5 @@
+import { ServerSocket } from '@interfaces/socket.interface';
+
 process.env['NODE_CONFIG_DIR'] = __dirname + '/configs';
 
 import compression from 'compression';
@@ -5,7 +7,6 @@ import cookieParser from 'cookie-parser';
 import config from 'config';
 import express from 'express';
 import { createServer, Server } from 'http';
-import { DefaultEventsMap } from 'socket.io/dist/typed-events';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import morgan from 'morgan';
@@ -13,15 +14,15 @@ import { useExpressServer } from 'routing-controllers';
 import errorMiddleware from '@middlewares/error.middleware';
 import { logger, stream } from '@utils/logger';
 import { Server as SocketServer } from 'socket.io';
-import { EventsFromClient } from '../../shared/socket';
-import { CLIENT_EVENT_NAME } from '../../shared/constants/events';
+import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '../../shared/constants/events';
+import { AuthGateway } from '@/gateways/auth.gateway';
 
 export class App {
   public app: express.Application;
   public httpServer: Server;
   public port: string | number;
   public env: string;
-  private socketServer: SocketServer<EventsFromClient, DefaultEventsMap, DefaultEventsMap>;
+  private socketServer: ServerSocket;
 
   constructor(Controllers: Function[]) {
     this.app = express();
@@ -67,17 +68,27 @@ export class App {
       },
     });
 
+    const gateways = [new AuthGateway()];
+
     this.socketServer.on('connect', socket => {
       logger.info(`Socket client connected with id: ${socket.id}`, { socketId: socket.id });
 
       socket.on(CLIENT_EVENT_NAME.Test, (msg: string) => {
         logger.info(`Msg from client: ${msg}`, { socketId: socket.id });
-        socket.emit('Dupa siema', ['Eluwa']);
+        socket.emit(SERVER_EVENT_NAME.FromServer, ['Eluwa']);
       });
 
       socket.on('disconnect', reason => {
         logger.info(`Socket with id ${socket.id} disconnected. Reason: ${reason}`, { socketId: socket.id, reason });
       });
+
+      for (const gateway of gateways) {
+        gateway.handlers.forEach((value, key) => {
+          socket.on(key, (...args) => {
+            value.apply(gateway, [socket, ...args]);
+          });
+        });
+      }
     });
   }
 
