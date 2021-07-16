@@ -16,6 +16,7 @@ import { logger, stream } from '@utils/logger';
 import { Server as SocketServer } from 'socket.io';
 import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '../../shared/constants/events';
 import { AuthGateway } from '@/gateways/auth.gateway';
+import { socketLogMiddleware } from '@middlewares/socket-log.middleware';
 
 export class App {
   public app: express.Application;
@@ -71,6 +72,10 @@ export class App {
     const gateways = [new AuthGateway()];
 
     this.socketServer.on('connect', socket => {
+      socket.onAny((eventName: string, ...args) => {
+        socketLogMiddleware(socket, eventName, ...args);
+      });
+
       logger.info(`Socket client connected with id: ${socket.id}`, { socketId: socket.id });
 
       socket.on(CLIENT_EVENT_NAME.Test, (msg: string) => {
