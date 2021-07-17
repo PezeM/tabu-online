@@ -5,6 +5,7 @@ export enum SERVER_EVENT_NAME {
   UserJoinLobby = "userJoinLobby",
   UserJoinedLobby = "userJoinedLobby",
   Notification = "notification",
+  UserCouldntCreateLobby = "userCouldntCreateLobby",
 }
 
 export enum CLIENT_EVENT_NAME {

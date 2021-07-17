@@ -36,6 +36,11 @@ export const Home = () => {
     setIsLoading(false);
   });
 
+  useListenServerEvent(SERVER_EVENT_NAME.UserCouldntCreateLobby, () => {
+    console.log("User couldn't create lobby");
+    setIsLoading(false);
+  });
+
   return (
     <Box>
       <LoginComponent onSubmit={onSubmit} isLoading={isLoading} />

@@ -28,12 +28,12 @@ class LobbyManager {
 
   /**
    * Return lobby that the user is in
-   * @param {string} clientId The client id, not socket id
+   * @param {string} socketId The socket id, not client id
    * @returns {Lobby | undefined} Returns lobby if user is in any lobby, undefined if he is not in lobby
    */
-  public getLobbyWithClient(clientId: string): Lobby | undefined {
+  public getLobbyForSocketId(socketId: string): Lobby | undefined {
     for (const lobby of this._lobbies.values()) {
-      if (lobby.members.some(c => c.id === clientId)) {
+      if (lobby.members.some(c => c.socketId === socketId)) {
         return lobby;
       }
     }

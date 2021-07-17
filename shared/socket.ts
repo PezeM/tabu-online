@@ -8,6 +8,7 @@ export interface EventsFromServer {
   [SERVER_EVENT_NAME.UserJoinLobby]: () => void;
   [SERVER_EVENT_NAME.UserJoinedLobby]: (userId: string) => void;
   [SERVER_EVENT_NAME.Notification]: (message: string, variant: NotificationVariation) => void;
+  [SERVER_EVENT_NAME.UserCouldntCreateLobby]: (message: string) => void;
 }
 
 export interface EventsFromClient {

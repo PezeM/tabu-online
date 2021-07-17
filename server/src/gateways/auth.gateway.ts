@@ -2,11 +2,15 @@ import { BaseGateway } from '@/gateways/base.gateway';
 import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '../../../shared/constants/events';
 import { Socket } from 'socket.io';
 import { isEmpty } from '@utils/util';
-import { generateRandomId } from '../../../shared/utils/uuid';
+import { Auth2Service } from '@services/auth2.service';
+import { Client } from '@models/client.model';
 
 export class AuthGateway extends BaseGateway {
+  private readonly authService: Auth2Service;
+
   constructor() {
     super();
+    this.authService = new Auth2Service();
   }
 
   protected testClientEvent(socket: Socket, msg: string) {
@@ -21,13 +25,8 @@ export class AuthGateway extends BaseGateway {
       return;
     }
 
-    const id = generateRandomId();
-    console.log('Random id ${id}', id);
-    socket.emit(SERVER_EVENT_NAME.UserJoinLobby);
-    socket.broadcast.emit(SERVER_EVENT_NAME.UserJoinedLobby, socket.id);
-    // create user
-    // create lobby
-    // add user as owner lobby
+    const client = new Client(socket, username);
+    this.authService.createLobby(client);
   }
 
   protected mapEvents(): void {
