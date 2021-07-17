@@ -15,14 +15,17 @@ import { theme } from "./styles/theme";
 import { LayoutContainer } from "./components/LayoutContainer";
 import { Switch, Route } from "react-router-dom";
 import { Home } from "./views/home";
+import { NotificationContainer } from "./components/NotificationContainer";
 
 export const App = () => (
   <ChakraProvider theme={theme}>
     <LayoutContainer>
+      <NotificationContainer />
+
       <Switch>
         <Route path="/lobby">
-          <Box h={'100%'} textAlign="center" fontSize="xl">
-            <Grid h={'100%'}  p={3}>
+          <Box h={"100%"} textAlign="center" fontSize="xl">
+            <Grid h={"100%"} p={3}>
               <ColorModeSwitcher justifySelf="flex-end" />
               <VStack spacing={8}>
                 <Logo h="40vmin" pointerEvents="none" />

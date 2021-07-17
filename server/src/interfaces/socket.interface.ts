@@ -9,3 +9,4 @@ export interface EventsFromClientOnServer {
 }
 
 export type ServerSocket = Server<EventsFromClient, EventsFromServer>;
+export type ClientSocket = Socket<EventsFromClient, EventsFromServer>;
