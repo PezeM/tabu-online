@@ -1,7 +1,7 @@
 import { ClientSocket } from '@interfaces/socket.interface';
-import { generateRandomId } from '../../../shared/utils/uuid';
-import { ClientPayload } from '../../../shared/interfaces/clientPayload';
-import { ClientCP } from '../../../shared/dto/client.dto';
+import { generateRandomId } from '@shared/utils/uuid';
+import { ClientPayload } from '@shared/interfaces/clientPayload';
+import { ClientCP } from '@shared/dto/client.dto';
 
 export class Client implements ClientPayload<ClientCP> {
   public readonly id: string;

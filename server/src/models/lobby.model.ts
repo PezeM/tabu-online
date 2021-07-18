@@ -1,8 +1,8 @@
 import { Client } from '@models/client.model';
-import { generateRandomId } from '../../../shared/utils/uuid';
-import { SERVER_EVENT_NAME } from '../../../shared/constants/events';
-import { ClientPayload } from '../../../shared/interfaces/clientPayload';
-import { LobbyCP } from '../../../shared/dto/lobby.dto';
+import { generateRandomId } from '@shared/utils/uuid';
+import { SERVER_EVENT_NAME } from '@shared/constants/events';
+import { ClientPayload } from '@shared/interfaces/clientPayload';
+import { LobbyCP } from '@shared/dto/lobby.dto';
 
 export class Lobby implements ClientPayload<LobbyCP> {
   public readonly id = generateRandomId();
@@ -16,6 +16,8 @@ export class Lobby implements ClientPayload<LobbyCP> {
     this._members.push(owner);
     this._ownerId = owner.id;
     owner.socket.join(this.id);
+    owner.socket.emit(SERVER_EVENT_NAME.UserJoinLobby, this.getCP());
+    owner.socket.to(this.id).emit(SERVER_EVENT_NAME.UserJoinedLobby, owner.getCP());
   }
 
   get members() {

@@ -14,7 +14,7 @@ import { useExpressServer } from 'routing-controllers';
 import errorMiddleware from '@middlewares/error.middleware';
 import { logger, stream } from '@utils/logger';
 import { Server as SocketServer } from 'socket.io';
-import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '../../shared/constants/events';
+import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '@shared/constants/events';
 import { AuthGateway } from '@/gateways/auth.gateway';
 import { socketLogMiddleware } from '@middlewares/socket-log.middleware';
 

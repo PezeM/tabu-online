@@ -1,5 +1,5 @@
 import { BaseGateway } from '@/gateways/base.gateway';
-import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '../../../shared/constants/events';
+import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '@shared/constants/events';
 import { Socket } from 'socket.io';
 import { isEmpty } from '@utils/util';
 import { Auth2Service } from '@services/auth2.service';

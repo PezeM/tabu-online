@@ -1,8 +1,6 @@
-import bcrypt from 'bcrypt';
 import { HttpException } from '@exceptions/HttpException';
 import { User } from '@interfaces/users.interface';
 import userModel from '@models/users.model';
-import { isEmpty } from '@utils/util';
 
 export class UserService {
   public users = userModel;

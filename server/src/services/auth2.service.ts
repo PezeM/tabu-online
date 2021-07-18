@@ -1,6 +1,6 @@
 import { Client } from '@models/client.model';
 import { Lobby } from '@models/lobby.model';
-import { SERVER_EVENT_NAME } from '../../../shared/constants/events';
+import { SERVER_EVENT_NAME } from '@shared/constants/events';
 import { lobbyManager } from '@/managers/lobby.manager';
 
 export class Auth2Service {
@@ -12,8 +12,6 @@ export class Auth2Service {
 
     const lobby = new Lobby(owner);
     lobbyManager.addLobby(lobby);
-    owner.socket.emit(SERVER_EVENT_NAME.UserJoinLobby);
-    owner.socket.to(lobby.id).emit(SERVER_EVENT_NAME.UserJoinedLobby, owner.id);
   }
 
   public joinLobby(client: Client, lobbyId: string) {
