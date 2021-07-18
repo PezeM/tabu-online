@@ -14,6 +14,8 @@ export interface EventsFromServer {
     variant: NotificationVariation
   ) => void;
   [SERVER_EVENT_NAME.UserCouldntCreateLobby]: (message: string) => void;
+  [SERVER_EVENT_NAME.UserLeftRoom]: () => void;
+  [SERVER_EVENT_NAME.LobbyUserLeft]: (clientId: string, ownerId: string) => void;
 }
 
 export interface EventsFromClient {
