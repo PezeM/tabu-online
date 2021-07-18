@@ -12,6 +12,8 @@ export const LayoutContainer = ({ children }: Props) => {
       display={"flex"}
       flexDirection={"column"}
       justifyContent={"space-between"}
+      px={[8, 16, 32]}
+      py={[1, 2, 4]}
     >
       <Flex
         margin="0 auto"
