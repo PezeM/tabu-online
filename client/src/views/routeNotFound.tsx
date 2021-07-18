@@ -1,10 +1,11 @@
 import React from "react";
-import { Code, Flex, Text } from "@chakra-ui/react";
-import { useLocation } from "react-router-dom";
-import { WarningIcon } from "@chakra-ui/icons";
+import { Button, Code, Flex, Text } from "@chakra-ui/react";
+import { useHistory, useLocation } from "react-router-dom";
+import { ArrowBackIcon, WarningIcon } from "@chakra-ui/icons";
 
 export const RouteNotFound = () => {
   const location = useLocation();
+  const history = useHistory();
 
   return (
     <Flex
@@ -19,6 +20,16 @@ export const RouteNotFound = () => {
         Route not found for location{" "}
         <Code fontSize={["xl", "2xl", "3xl"]}>{location.pathname}</Code>
       </Text>
+      <Button
+        size={"lg"}
+        leftIcon={<ArrowBackIcon />}
+        mt={12}
+        colorScheme={"blue"}
+        variant={"outline"}
+        onClick={() => history.goBack()}
+      >
+        Go back
+      </Button>
     </Flex>
   );
 };
