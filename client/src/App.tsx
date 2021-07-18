@@ -15,6 +15,7 @@ import { LayoutContainer } from "./components/LayoutContainer";
 import { Switch, Route } from "react-router-dom";
 import { Home } from "./views/home";
 import { NotificationContainer } from "./components/NotificationContainer";
+import { RouteNotFound } from "./views/routeNotFound";
 
 export const App = () => (
   <ChakraProvider theme={theme}>
@@ -22,6 +23,10 @@ export const App = () => (
       <NotificationContainer />
 
       <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+
         <Route path="/lobby">
           <Box h={"100%"} textAlign="center" fontSize="xl">
             <Grid h={"100%"} p={3}>
@@ -46,8 +51,12 @@ export const App = () => (
           </Box>
         </Route>
 
-        <Route path="/">
-          <Home />
+        <Route path={"/invite/:id"}>
+          <Box>Tutaj</Box>
+        </Route>
+
+        <Route path="*">
+          <RouteNotFound />
         </Route>
       </Switch>
     </LayoutContainer>

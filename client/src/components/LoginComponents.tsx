@@ -5,7 +5,6 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Spinner,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
