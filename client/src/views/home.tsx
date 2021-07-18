@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Box } from "@chakra-ui/react";
-import { TestSocket } from "../components/TestSocket";
 import { LoginComponent } from "../components/LoginComponents";
 import { socket } from "../services/socket";
 import {
@@ -44,8 +43,6 @@ export const Home = () => {
   return (
     <Box>
       <LoginComponent onSubmit={onSubmit} isLoading={isLoading} />
-
-      <TestSocket />
     </Box>
   );
 };

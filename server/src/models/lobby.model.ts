@@ -14,8 +14,9 @@ export class Lobby implements ClientPayload<LobbyCP> {
   private _ownerId: string;
 
   constructor(owner: Client) {
-    this._members.push(owner);
     this._ownerId = owner.id;
+    this._members.push(owner);
+
     owner.socket.join(this.id);
     owner.socket.emit(SERVER_EVENT_NAME.UserJoinLobby, this.getCP());
     owner.socket.to(this.id).emit(SERVER_EVENT_NAME.UserJoinedLobby, owner.getCP());

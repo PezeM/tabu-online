@@ -10,7 +10,6 @@ import {
 } from "@chakra-ui/react";
 import { Logo } from "./Logo";
 import { ColorModeSwitcher } from "./components/ColorModeSwitcher";
-import { TestSocket } from "./components/TestSocket";
 import { theme } from "./styles/theme";
 import { LayoutContainer } from "./components/LayoutContainer";
 import { Switch, Route } from "react-router-dom";
@@ -42,7 +41,6 @@ export const App = () => (
                 >
                   Learn Chakra
                 </Link>
-                <TestSocket />
               </VStack>
             </Grid>
           </Box>
