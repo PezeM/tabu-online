@@ -5,8 +5,10 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Spinner,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { ArrowForwardIcon } from "@chakra-ui/icons";
 
 interface Props {
   isLoading?: boolean;
@@ -23,30 +25,29 @@ export const LoginComponent = ({ onSubmit, isLoading }: Props) => {
 
   return (
     <Flex width="full" align="center" justifyContent="center">
-      <Box>
-        <Box p={4} textAlign="left" maxWidth={"30em"}>
-          <form onSubmit={onFormSubmit}>
-            <FormControl id="username" isRequired>
-              <FormLabel htmlFor="username">Username</FormLabel>
-              <Input
-                type="text"
-                id="username"
-                placeholder="Username..."
-                onChange={(e) => setUsername(e.currentTarget.value)}
-              />
+      <Box p={4} textAlign="left" maxWidth={"30em"}>
+        <form onSubmit={onFormSubmit}>
+          <FormControl id="username" isRequired>
+            <FormLabel htmlFor="username">Username</FormLabel>
+            <Input
+              type="text"
+              id="username"
+              placeholder="Username..."
+              onChange={(e) => setUsername(e.currentTarget.value)}
+            />
 
-              <Button
-                mt={4}
-                colorScheme="teal"
-                width={"full"}
-                type="submit"
-                isLoading={isLoading}
-              >
-                Submit
-              </Button>
-            </FormControl>
-          </form>
-        </Box>
+            <Button
+              leftIcon={<ArrowForwardIcon />}
+              mt={4}
+              colorScheme="teal"
+              width={"full"}
+              type="submit"
+              isLoading={isLoading}
+            >
+              Submit
+            </Button>
+          </FormControl>
+        </form>
       </Box>
     </Flex>
   );
