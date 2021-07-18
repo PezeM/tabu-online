@@ -10,9 +10,6 @@ export class Auth2Service {
       return;
     }
 
-    // create lobby
-    // add user as owner lobby
-
     const lobby = new Lobby(owner);
     lobbyManager.addLobby(lobby);
     owner.socket.emit(SERVER_EVENT_NAME.UserJoinLobby);

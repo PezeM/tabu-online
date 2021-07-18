@@ -30,7 +30,6 @@ export class AuthGateway extends BaseGateway {
   }
 
   protected mapEvents(): void {
-    console.log('In mapping events');
     this.eventsMap.set(CLIENT_EVENT_NAME.JoinLobby, this.onJoinLobby);
     this.eventsMap.set(CLIENT_EVENT_NAME.CreateLobby, this.onCreateLobby);
     this.eventsMap.set(CLIENT_EVENT_NAME.Test, this.testClientEvent);
