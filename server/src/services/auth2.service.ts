@@ -15,4 +15,20 @@ export class Auth2Service {
     owner.socket.emit(SERVER_EVENT_NAME.UserJoinLobby);
     owner.socket.to(lobby.id).emit(SERVER_EVENT_NAME.UserJoinedLobby, owner.id);
   }
+
+  public joinLobby(client: Client, lobbyId: string) {
+    const lobby = lobbyManager.getLobby(lobbyId);
+
+    if (!lobby) {
+      client.socket.emit(SERVER_EVENT_NAME.Notification, 'Lobby nie istnieje', 'Error');
+      return;
+    }
+
+    // Add client to lobby
+    try {
+      lobby.addClient(client);
+    } catch (e) {
+      client.socket.emit(SERVER_EVENT_NAME.Notification, e.message, 'Error');
+    }
+  }
 }

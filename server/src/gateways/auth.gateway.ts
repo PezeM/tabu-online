@@ -17,7 +17,15 @@ export class AuthGateway extends BaseGateway {
     console.log('Inside test client event', socket.id, msg);
   }
 
-  protected onJoinLobby(socket: Socket, username: string, lobbyId: string) {}
+  protected onJoinLobby(socket: Socket, username: string, lobbyId: string) {
+    if (isEmpty(username)) {
+      socket.emit(SERVER_EVENT_NAME.UserLobbyInvalidUsername, 'Username is empty');
+      return;
+    }
+
+    const client = new Client(socket, username);
+    this.authService.joinLobby(client, lobbyId);
+  }
 
   protected onCreateLobby(socket: Socket, username: string) {
     if (isEmpty(username)) {
