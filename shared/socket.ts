@@ -1,13 +1,18 @@
 import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from "./constants/events";
 import { NotificationVariation } from "./notification";
+import { ClientCP } from "./dto/client.dto";
+import { LobbyCP } from "./dto/lobby.dto";
 
 export interface EventsFromServer {
   [SERVER_EVENT_NAME.FromServer]: (co: string[]) => void;
   [SERVER_EVENT_NAME.UserLobbyInvalidUsername]: (msg: string) => void;
   [SERVER_EVENT_NAME.UserAlreadyInLobby]: () => void;
-  [SERVER_EVENT_NAME.UserJoinLobby]: () => void;
-  [SERVER_EVENT_NAME.UserJoinedLobby]: (userId: string) => void;
-  [SERVER_EVENT_NAME.Notification]: (message: string, variant: NotificationVariation) => void;
+  [SERVER_EVENT_NAME.UserJoinLobby]: (lobbyCP: LobbyCP) => void;
+  [SERVER_EVENT_NAME.UserJoinedLobby]: (clientCP: ClientCP) => void;
+  [SERVER_EVENT_NAME.Notification]: (
+    message: string,
+    variant: NotificationVariation
+  ) => void;
   [SERVER_EVENT_NAME.UserCouldntCreateLobby]: (message: string) => void;
 }
 
