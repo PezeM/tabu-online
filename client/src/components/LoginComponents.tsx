@@ -42,6 +42,7 @@ export const LoginComponent = ({ onSubmit, isLoading }: Props) => {
               width={"full"}
               type="submit"
               isLoading={isLoading}
+              loadingText={"Loading"}
             >
               Submit
             </Button>
