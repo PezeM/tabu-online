@@ -29,7 +29,7 @@ export class AuthGateway extends BaseGateway {
     this.authService.joinLobby(client, lobbyId);
   }
 
-  protected onCreateLobby(socket: Socket, username: string) {
+  protected onCreateLobby(socket: Socket, username: string, language: string) {
     if (isEmpty(username)) {
       socket.emit(SERVER_EVENT_NAME.UserLobbyInvalidUsername);
       socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.invalidUsername', 'Error');
@@ -37,7 +37,7 @@ export class AuthGateway extends BaseGateway {
     }
 
     const client = new Client(socket, username);
-    this.authService.createLobby(client);
+    this.authService.createLobby(client, language);
   }
 
   protected mapEvents(): void {

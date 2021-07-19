@@ -4,6 +4,8 @@ import { SERVER_EVENT_NAME } from '@shared/constants/events';
 import { ClientPayload } from '@shared/interfaces/clientPayload';
 import { LobbyCP } from '@shared/dto/lobby.dto';
 import { lobbyManager } from '@/managers/lobby.manager';
+import { LobbySettings } from '@shared/interfaces/lobby';
+import { LobbySettingsService } from '@services/lobbySettings.service';
 
 export class Lobby implements ClientPayload<LobbyCP> {
   public readonly id = generateRandomId();
@@ -12,8 +14,10 @@ export class Lobby implements ClientPayload<LobbyCP> {
   private _blacklist: Client[] = [];
   private _isInGame: boolean;
   private _ownerId: string;
+  private _settings: LobbySettings;
 
-  constructor(owner: Client) {
+  constructor(owner: Client, language: string) {
+    this._settings = new LobbySettingsService().createDefaultSettings(language);
     this._ownerId = owner.id;
     this._members.push(owner);
 

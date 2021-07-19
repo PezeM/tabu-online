@@ -4,14 +4,14 @@ import { SERVER_EVENT_NAME } from '@shared/constants/events';
 import { lobbyManager } from '@/managers/lobby.manager';
 
 export class Auth2Service {
-  public createLobby(owner: Client) {
+  public createLobby(owner: Client, language: string) {
     if (lobbyManager.getLobbyForSocketId(owner.socketId)) {
       owner.socket.emit(SERVER_EVENT_NAME.UserCouldntCreateLobby);
       owner.socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.userAlreadyInLobby', 'Error');
       return;
     }
 
-    const lobby = new Lobby(owner);
+    const lobby = new Lobby(owner, language);
     lobbyManager.addLobby(lobby);
   }
 

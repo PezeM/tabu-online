@@ -7,6 +7,7 @@ import {
   SERVER_EVENT_NAME,
 } from "../../../shared/constants/events";
 import { useListenServerEvent } from "../hooks/useListenServerEvent";
+import { getBrowserLanguage } from "../utils/browser";
 
 export const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -14,7 +15,7 @@ export const Home = () => {
   const onSubmit = (username: string) => {
     console.log("on submit", username);
     setIsLoading(true);
-    socket.emit(CLIENT_EVENT_NAME.CreateLobby, username);
+    socket.emit(CLIENT_EVENT_NAME.CreateLobby, username, getBrowserLanguage());
   };
 
   useListenServerEvent(SERVER_EVENT_NAME.UserLobbyInvalidUsername, () => {
