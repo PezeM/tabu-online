@@ -22,7 +22,6 @@ export const Home = () => {
   });
 
   useListenServerEvent(SERVER_EVENT_NAME.UserJoinLobby, () => {
-    console.log("Successfully joined lobby");
     setIsLoading(false);
   });
 
@@ -32,7 +31,6 @@ export const Home = () => {
   });
 
   useListenServerEvent(SERVER_EVENT_NAME.UserCouldntCreateLobby, () => {
-    console.log("User couldn't create lobby");
     setIsLoading(false);
   });
 

@@ -1,4 +1,9 @@
 {
+  "ui": {
+    "username": "Nazwa użytkownika",
+    "loadingText": "Ładowanie",
+    "submit": "Wyślij"
+  },
   "lobby": {
     "alreadyInGame": "Lobby jest już w grze",
     "invalidUsername": "Nieprawidłowa nazwa użytkownika",
