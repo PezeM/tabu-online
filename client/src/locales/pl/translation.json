@@ -2,7 +2,9 @@
   "ui": {
     "username": "Nazwa użytkownika",
     "loadingText": "Ładowanie",
-    "submit": "Wyślij"
+    "submit": "Wyślij",
+    "goBack": "Wróć",
+    "routeNotFound": "Nie znaleziono ścieżki dla lokalizacji"
   },
   "lobby": {
     "alreadyInGame": "Lobby jest już w grze",

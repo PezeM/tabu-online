@@ -2,7 +2,9 @@
   "ui": {
     "username": "Username",
     "loadingText": "Loading",
-    "submit": "Submit"
+    "submit": "Submit",
+    "goBack": "Go back",
+    "routeNotFound": "Route not found for location"
   },
   "lobby": {
     "alreadyInGame": "Lobby is already in game",

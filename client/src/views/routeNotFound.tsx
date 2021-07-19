@@ -2,8 +2,10 @@ import React from "react";
 import { Button, Code, Flex, Text } from "@chakra-ui/react";
 import { useHistory, useLocation } from "react-router-dom";
 import { ArrowBackIcon, WarningIcon } from "@chakra-ui/icons";
+import { useTranslation } from "react-i18next";
 
 export const RouteNotFound = () => {
+  const { t } = useTranslation();
   const location = useLocation();
   const history = useHistory();
 
@@ -17,7 +19,7 @@ export const RouteNotFound = () => {
     >
       <WarningIcon color={"red.400"} w={[12, 24]} h={[12, 24]} />
       <Text fontSize={["xl", "3xl", "4xl"]} mt={12}>
-        Route not found for location{" "}
+        {t("ui.routeNotFound")}{" "}
         <Code fontSize={["xl", "2xl", "3xl"]}>{location.pathname}</Code>
       </Text>
       <Button
@@ -28,7 +30,7 @@ export const RouteNotFound = () => {
         variant={"outline"}
         onClick={() => history.goBack()}
       >
-        Go back
+        {t("ui.goBack")}
       </Button>
     </Flex>
   );
