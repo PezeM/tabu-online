@@ -87,6 +87,7 @@ export class Lobby implements ClientPayload<LobbyCP> {
       id: this.id,
       ownerId: this._ownerId,
       members: this._members.map(c => c.getCP()),
+      settings: this._settings,
     };
   }
 }
