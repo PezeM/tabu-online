@@ -4,6 +4,13 @@ import { initReactI18next } from "react-i18next";
 import translationEN from "./locales/en/translation.json";
 import translationPL from "./locales/pl/translation.json";
 
+export const defaultNS = "translation";
+export const resources = {
+  en: {
+    translation: translationEN,
+  },
+} as const;
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
