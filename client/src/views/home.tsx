@@ -17,13 +17,9 @@ export const Home = () => {
     socket.emit(CLIENT_EVENT_NAME.CreateLobby, username);
   };
 
-  useListenServerEvent(
-    SERVER_EVENT_NAME.UserLobbyInvalidUsername,
-    (msg: string) => {
-      console.log("UserLobbyInvalidUsername", msg);
-      setIsLoading(false);
-    }
-  );
+  useListenServerEvent(SERVER_EVENT_NAME.UserLobbyInvalidUsername, () => {
+    setIsLoading(false);
+  });
 
   useListenServerEvent(SERVER_EVENT_NAME.UserJoinLobby, () => {
     console.log("Successfully joined lobby");

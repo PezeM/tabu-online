@@ -36,8 +36,8 @@ export class Lobby implements ClientPayload<LobbyCP> {
 
   public addClient(client: Client): void {
     if (this._isInGame) throw new Error('lobby.alreadyInGame');
-    if (this._members.includes(client)) throw new Error('errAlreadyInThisRoom');
-    if (this._blacklist.includes(client)) throw new Error('errRoomBlacklisted');
+    if (this._members.includes(client)) throw new Error('lobby.alreadyInThisRoom');
+    if (this._blacklist.includes(client)) throw new Error('lobby.userInBlacklist');
     // TODO: Add check for maximum number of players
 
     this._members.push(client);
@@ -65,16 +65,16 @@ export class Lobby implements ClientPayload<LobbyCP> {
   }
 
   public kick(clientId: string): void {
-    if (this._ownerId === clientId) throw new Error('errCantKickOwner');
+    if (this._ownerId === clientId) throw new Error('lobby.cantKickOwner');
 
     const clientToRemove = this.getMember(clientId);
     if (!clientToRemove) {
-      throw new Error('errUserNotFound');
+      throw new Error('lobby.userNotFound');
     }
 
     if (this.remove(clientToRemove)) {
       this._blacklist.push(clientToRemove);
-      clientToRemove.socket.emit(SERVER_EVENT_NAME.Notification, 'notificationKicked', 'Info');
+      clientToRemove.socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.kicked', 'Info');
     }
   }
 

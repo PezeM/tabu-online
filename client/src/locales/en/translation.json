@@ -1,5 +1,13 @@
 {
   "lobby": {
-    "alreadyInGame": "Lobby is already in game."
+    "alreadyInGame": "Lobby is already in game",
+    "invalidUsername": "Invalid username",
+    "userAlreadyInLobby": "You are already in lobby or game",
+    "doesntExist": "Lobby doesn't exist",
+    "alreadyInThisRoom": "You are already in this lobby",
+    "userInBlacklist": "You are banned from this lobby",
+    "cantKickOwner": "You can't kick lobby owner",
+    "userNotFound": "User not found",
+    "kicked": "You have been kicked from the lobby"
   }
 }

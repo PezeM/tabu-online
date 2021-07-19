@@ -1,5 +1,13 @@
 {
   "lobby": {
-    "alreadyInGame": "Lobby jest już w grze."
+    "alreadyInGame": "Lobby jest już w grze",
+    "invalidUsername": "Nieprawidłowa nazwa użytkownika",
+    "userAlreadyInLobby": "Jesteś już w jakimś lobby lub grze",
+    "doesntExist": "Takie lobby nie istnieje",
+    "alreadyInThisRoom": "Jesteś już w tym lobby",
+    "userInBlacklist": "Jesteś zbanowany z tego lobby",
+    "cantKickOwner": "Nie możesz wyrzucić założyciela lobby",
+    "userNotFound": "Użytkownik nie został znaleziony",
+    "kicked": "Zostałeś wyrzucony z lobby"
   }
 }
