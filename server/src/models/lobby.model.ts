@@ -35,7 +35,7 @@ export class Lobby implements ClientPayload<LobbyCP> {
   }
 
   public addClient(client: Client): void {
-    if (this._isInGame) throw new Error('errLobbyInGame');
+    if (this._isInGame) throw new Error('lobby.alreadyInGame');
     if (this._members.includes(client)) throw new Error('errAlreadyInThisRoom');
     if (this._blacklist.includes(client)) throw new Error('errRoomBlacklisted');
     // TODO: Add check for maximum number of players
