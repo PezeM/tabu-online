@@ -19,11 +19,8 @@ export class Lobby implements ClientPayload<LobbyCP> {
   constructor(owner: Client, language: string) {
     this._settings = new LobbySettingsService().createDefaultSettings(language);
     this._ownerId = owner.id;
-    this._members.push(owner);
 
-    owner.socket.join(this.id);
-    owner.socket.emit(SERVER_EVENT_NAME.UserJoinLobby, this.getCP());
-    owner.socket.to(this.id).emit(SERVER_EVENT_NAME.UserJoinedLobby, owner.getCP());
+    this.addNewMemberInternal(owner);
   }
 
   get members() {
@@ -44,10 +41,7 @@ export class Lobby implements ClientPayload<LobbyCP> {
     if (this._members.includes(client)) throw new Error('lobby.alreadyInThisRoom');
     if (this._blacklist.includes(client)) throw new Error('lobby.userInBlacklist');
 
-    this._members.push(client);
-    client.socket.join(this.id);
-    client.socket.emit(SERVER_EVENT_NAME.UserJoinLobby, this.getCP());
-    client.socket.to(this.id).emit(SERVER_EVENT_NAME.UserJoinedLobby, client.getCP());
+    this.addNewMemberInternal(client);
   }
 
   public remove(client: Client): boolean {
@@ -89,5 +83,13 @@ export class Lobby implements ClientPayload<LobbyCP> {
       members: this._members.map(c => c.getCP()),
       settings: this._settings,
     };
+  }
+
+  private addNewMemberInternal(client: Client) {
+    this._members.push(client);
+    client.socket.join(this.id);
+
+    client.socket.emit(SERVER_EVENT_NAME.UserJoinLobby, this.getCP());
+    client.socket.to(this.id).emit(SERVER_EVENT_NAME.UserJoinedLobby, client.getCP());
   }
 }

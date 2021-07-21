@@ -1,26 +1,33 @@
 import React, { useState } from "react";
 import { Box } from "@chakra-ui/react";
 import { LoginComponent } from "../components/LoginComponents";
+import { useHistory, useParams } from "react-router-dom";
 import { socket } from "../services/socket";
 import {
   CLIENT_EVENT_NAME,
   SERVER_EVENT_NAME,
 } from "../../../shared/constants/events";
 import { useListenServerEvent } from "../hooks/useListenServerEvent";
-import { getBrowserLanguage } from "../utils/browser";
-import { ClientCP } from "../../../shared/dto/client.dto";
 import { LobbyCP } from "../../../shared/dto/lobby.dto";
-import { useHistory } from "react-router-dom";
 
-export const Home = () => {
+type ParamsType = {
+  id: string;
+};
+
+export const Invite = () => {
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
+  const params = useParams<ParamsType>();
 
   const onSubmit = (username: string) => {
-    console.log("on submit", username);
+    console.log("Emit join lobby", username);
     setIsLoading(true);
-    socket.emit(CLIENT_EVENT_NAME.CreateLobby, username, getBrowserLanguage());
+    socket.emit(CLIENT_EVENT_NAME.JoinLobby, username, params.id);
   };
+
+  useListenServerEvent(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby, () => {
+    setIsLoading(false);
+  });
 
   useListenServerEvent(SERVER_EVENT_NAME.UserJoinLobby, (lobbyCP: LobbyCP) => {
     setIsLoading(false);
@@ -28,17 +35,7 @@ export const Home = () => {
     history.push("/lobby");
   });
 
-  useListenServerEvent(
-    SERVER_EVENT_NAME.UserJoinedLobby,
-    (userCP: ClientCP) => {
-      console.log(`User with id: ${userCP.id} joined lobby`);
-      setIsLoading(false);
-    }
-  );
-
-  useListenServerEvent(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby, () => {
-    setIsLoading(false);
-  });
+  console.log(params);
 
   return (
     <Box>

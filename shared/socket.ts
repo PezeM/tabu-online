@@ -5,20 +5,18 @@ import { LobbyCP } from "./dto/lobby.dto";
 
 export interface EventsFromServer {
   [SERVER_EVENT_NAME.FromServer]: (co: string[]) => void;
-  [SERVER_EVENT_NAME.UserLobbyInvalidUsername]: () => void;
-  [SERVER_EVENT_NAME.UserAlreadyInLobby]: () => void;
   [SERVER_EVENT_NAME.UserJoinLobby]: (lobbyCP: LobbyCP) => void;
   [SERVER_EVENT_NAME.UserJoinedLobby]: (clientCP: ClientCP) => void;
   [SERVER_EVENT_NAME.Notification]: (
     message: string,
     variant: NotificationVariation
   ) => void;
-  [SERVER_EVENT_NAME.UserCouldntCreateLobby]: () => void;
   [SERVER_EVENT_NAME.UserLeftRoom]: () => void;
   [SERVER_EVENT_NAME.LobbyUserLeft]: (
     clientId: string,
     ownerId: string
   ) => void;
+  [SERVER_EVENT_NAME.CouldntCreateOrJoinLobby]: () => void;
 }
 
 export interface EventsFromClient {

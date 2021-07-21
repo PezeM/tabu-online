@@ -19,9 +19,14 @@ export class AuthGateway extends BaseGateway {
 
   protected onJoinLobby(socket: Socket, username: string, lobbyId: string) {
     if (isEmpty(username)) {
-      socket.emit(SERVER_EVENT_NAME.UserLobbyInvalidUsername);
+      socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
       socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.invalidUsername', 'Error');
+      return;
+    }
 
+    if (isEmpty(lobbyId)) {
+      socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
+      socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.doesntExist', 'Error');
       return;
     }
 
@@ -31,7 +36,7 @@ export class AuthGateway extends BaseGateway {
 
   protected onCreateLobby(socket: Socket, username: string, language: string) {
     if (isEmpty(username)) {
-      socket.emit(SERVER_EVENT_NAME.UserLobbyInvalidUsername);
+      socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
       socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.invalidUsername', 'Error');
       return;
     }

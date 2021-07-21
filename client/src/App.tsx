@@ -16,6 +16,8 @@ import { Switch, Route } from "react-router-dom";
 import { Home } from "./views/home";
 import { NotificationContainer } from "./components/NotificationContainer";
 import { RouteNotFound } from "./views/routeNotFound";
+import { Lobby } from "./views/lobby";
+import { Invite } from "./views/invite";
 
 export const App = () => (
   <ChakraProvider theme={theme}>
@@ -27,7 +29,7 @@ export const App = () => (
           <Home />
         </Route>
 
-        <Route path="/lobby">
+        <Route path="/test">
           <Box h={"100%"} textAlign="center" fontSize="xl">
             <Grid h={"100%"} p={3}>
               <ColorModeSwitcher justifySelf="flex-end" />
@@ -51,8 +53,12 @@ export const App = () => (
           </Box>
         </Route>
 
+        <Route path="/lobby">
+          <Lobby />
+        </Route>
+
         <Route path={"/invite/:id"}>
-          <Box>Tutaj</Box>
+          <Invite />
         </Route>
 
         <Route path="*">

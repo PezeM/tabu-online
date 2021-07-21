@@ -6,7 +6,7 @@ import { lobbyManager } from '@/managers/lobby.manager';
 export class Auth2Service {
   public createLobby(owner: Client, language: string) {
     if (lobbyManager.getLobbyForSocketId(owner.socketId)) {
-      owner.socket.emit(SERVER_EVENT_NAME.UserCouldntCreateLobby);
+      owner.socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
       owner.socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.userAlreadyInLobby', 'Error');
       return;
     }
@@ -19,6 +19,7 @@ export class Auth2Service {
     const lobby = lobbyManager.getLobby(lobbyId);
 
     if (!lobby) {
+      client.socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
       client.socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.doesntExist', 'Error');
       return;
     }
@@ -27,6 +28,7 @@ export class Auth2Service {
     try {
       lobby.addClient(client);
     } catch (e) {
+      client.socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
       client.socket.emit(SERVER_EVENT_NAME.Notification, e.message, 'Error');
     }
   }
