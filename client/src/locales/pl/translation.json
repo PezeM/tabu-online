@@ -4,7 +4,9 @@
     "loadingText": "Ładowanie",
     "submit": "Wyślij",
     "goBack": "Wróć",
-    "routeNotFound": "Nie znaleziono ścieżki dla lokalizacji"
+    "routeNotFound": "Nie znaleziono ścieżki dla lokalizacji",
+    "createLobby": "Stwórz lobby",
+    "joinLobby": "Dołącz do lobby"
   },
   "lobby": {
     "alreadyInGame": "Lobby jest już w grze",

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { LoginComponent } from "../components/LoginComponents";
 import { useHistory, useParams } from "react-router-dom";
 import { socket } from "../services/socket";
@@ -9,6 +9,7 @@ import {
 } from "../../../shared/constants/events";
 import { useListenServerEvent } from "../hooks/useListenServerEvent";
 import { LobbyCP } from "../../../shared/dto/lobby.dto";
+import { useTranslation } from "react-i18next";
 
 type ParamsType = {
   id: string;
@@ -16,6 +17,7 @@ type ParamsType = {
 
 export const Invite = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const { t } = useTranslation();
   const history = useHistory();
   const params = useParams<ParamsType>();
 
@@ -39,6 +41,9 @@ export const Invite = () => {
 
   return (
     <Box>
+      <Text fontSize={["xl", "3xl", "4xl"]}>
+        {t("ui.joinLobby")}
+      </Text>
       <LoginComponent onSubmit={onSubmit} isLoading={isLoading} />
     </Box>
   );

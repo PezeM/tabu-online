@@ -4,7 +4,9 @@
     "loadingText": "Loading",
     "submit": "Submit",
     "goBack": "Go back",
-    "routeNotFound": "Route not found for location"
+    "routeNotFound": "Route not found for location",
+    "createLobby": "Create lobby",
+    "joinLobby": "Join lobby"
   },
   "lobby": {
     "alreadyInGame": "Lobby is already in game",

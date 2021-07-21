@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { LoginComponent } from "../components/LoginComponents";
 import { socket } from "../services/socket";
 import {
@@ -11,9 +11,11 @@ import { getBrowserLanguage } from "../utils/browser";
 import { ClientCP } from "../../../shared/dto/client.dto";
 import { LobbyCP } from "../../../shared/dto/lobby.dto";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const { t } = useTranslation();
   const history = useHistory();
 
   const onSubmit = (username: string) => {
@@ -42,6 +44,9 @@ export const Home = () => {
 
   return (
     <Box>
+      <Text fontSize={["xl", "3xl", "4xl"]}>
+        {t("ui.joinLobby")}
+      </Text>
       <LoginComponent onSubmit={onSubmit} isLoading={isLoading} />
     </Box>
   );
