@@ -15,6 +15,7 @@
     "userInBlacklist": "You are banned from this lobby",
     "cantKickOwner": "You can't kick lobby owner",
     "userNotFound": "User not found",
-    "kicked": "You have been kicked from the lobby"
+    "kicked": "You have been kicked from the lobby",
+    "roomIsFull": "Room is already full"
   }
 }
