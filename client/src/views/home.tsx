@@ -19,8 +19,12 @@ export const Home = () => {
   const history = useHistory();
 
   const onSubmit = (username: string) => {
+    socket.auth = { username };
+    socket.connect();
+
     console.log("on submit", username);
     setIsLoading(true);
+
     socket.emit(CLIENT_EVENT_NAME.CreateLobby, username, getBrowserLanguage());
   };
 
@@ -28,6 +32,7 @@ export const Home = () => {
     SERVER_EVENT_NAME.UserJoinLobby,
     (lobbyCP: LobbyCP, clientCP: ClientCP) => {
       setIsLoading(false);
+      socket.auth = { username: clientCP.username };
       console.log("Lobby cp:", lobbyCP, clientCP);
       history.push("/lobby");
     }

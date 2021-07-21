@@ -6,7 +6,7 @@ import { theme } from "../styles/theme";
 export const socket: Socket<EventsFromServer, EventsFromClient> = io(
   "http://localhost:3010/",
   {
-    autoConnect: true,
+    autoConnect: false,
   }
 );
 

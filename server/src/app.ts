@@ -1,4 +1,4 @@
-import { ServerSocket } from '@interfaces/socket.interface';
+import { ClientSocket, ServerSocket } from '@interfaces/socket.interface';
 
 process.env['NODE_CONFIG_DIR'] = __dirname + '/configs';
 
@@ -17,6 +17,7 @@ import { Server as SocketServer } from 'socket.io';
 import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '@shared/constants/events';
 import { AuthGateway } from '@/gateways/auth.gateway';
 import { socketLogMiddleware } from '@middlewares/socket-log.middleware';
+import { usernameMiddleware } from '@middlewares/username.middleware';
 
 export class App {
   public app: express.Application;
@@ -33,6 +34,7 @@ export class App {
 
     this.initializeMiddlewares();
     this.initializeSocketServer();
+    this.initializeSocketMiddlewares();
     this.initializeRoutes(Controllers);
     this.initializeErrorHandling();
   }
@@ -95,6 +97,10 @@ export class App {
         });
       }
     });
+  }
+
+  private initializeSocketMiddlewares() {
+    this.socketServer.use(usernameMiddleware);
   }
 
   private initializeRoutes(controllers: Function[]) {

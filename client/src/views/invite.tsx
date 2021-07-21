@@ -10,6 +10,7 @@ import {
 import { useListenServerEvent } from "../hooks/useListenServerEvent";
 import { LobbyCP } from "../../../shared/dto/lobby.dto";
 import { useTranslation } from "react-i18next";
+import { ClientCP } from "../../../shared/dto/client.dto";
 
 type ParamsType = {
   id: string;
@@ -22,6 +23,9 @@ export const Invite = () => {
   const params = useParams<ParamsType>();
 
   const onSubmit = (username: string) => {
+    socket.auth = { username };
+    socket.connect();
+
     console.log("Emit join lobby", username);
     setIsLoading(true);
     socket.emit(CLIENT_EVENT_NAME.JoinLobby, username, params.id);
@@ -31,7 +35,8 @@ export const Invite = () => {
     setIsLoading(false);
   });
 
-  useListenServerEvent(SERVER_EVENT_NAME.UserJoinLobby, (lobbyCP: LobbyCP) => {
+  useListenServerEvent(SERVER_EVENT_NAME.UserJoinLobby, (lobbyCP: LobbyCP, clientCP: ClientCP) => {
+    socket.auth = { username: clientCP.username };
     setIsLoading(false);
     console.log("Lobby cp:", lobbyCP);
     history.push("/lobby");
