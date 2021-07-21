@@ -8,7 +8,7 @@ export const Lobby = () => {
   useListenServerEvent(
     SERVER_EVENT_NAME.UserJoinedLobby,
     (userCP: ClientCP) => {
-      console.log(`User with id: ${userCP.id} joined lobby`);
+      console.log(`User with id: ${userCP.id} joined lobby`, userCP);
     }
   );
 

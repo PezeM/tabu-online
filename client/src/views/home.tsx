@@ -8,10 +8,10 @@ import {
 } from "../../../shared/constants/events";
 import { useListenServerEvent } from "../hooks/useListenServerEvent";
 import { getBrowserLanguage } from "../utils/browser";
-import { ClientCP } from "../../../shared/dto/client.dto";
 import { LobbyCP } from "../../../shared/dto/lobby.dto";
 import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { ClientCP } from "../../../shared/dto/client.dto";
 
 export const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -24,17 +24,12 @@ export const Home = () => {
     socket.emit(CLIENT_EVENT_NAME.CreateLobby, username, getBrowserLanguage());
   };
 
-  useListenServerEvent(SERVER_EVENT_NAME.UserJoinLobby, (lobbyCP: LobbyCP) => {
-    setIsLoading(false);
-    console.log("Lobby cp:", lobbyCP);
-    history.push("/lobby");
-  });
-
   useListenServerEvent(
-    SERVER_EVENT_NAME.UserJoinedLobby,
-    (userCP: ClientCP) => {
-      console.log(`User with id: ${userCP.id} joined lobby`);
+    SERVER_EVENT_NAME.UserJoinLobby,
+    (lobbyCP: LobbyCP, clientCP: ClientCP) => {
       setIsLoading(false);
+      console.log("Lobby cp:", lobbyCP, clientCP);
+      history.push("/lobby");
     }
   );
 
@@ -44,9 +39,7 @@ export const Home = () => {
 
   return (
     <Box>
-      <Text fontSize={["xl", "3xl", "4xl"]}>
-        {t("ui.createLobby")}
-      </Text>
+      <Text fontSize={["xl", "3xl", "4xl"]}>{t("ui.createLobby")}</Text>
       <LoginComponent onSubmit={onSubmit} isLoading={isLoading} />
     </Box>
   );

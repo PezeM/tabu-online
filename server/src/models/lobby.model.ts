@@ -89,7 +89,9 @@ export class Lobby implements ClientPayload<LobbyCP> {
     this._members.push(client);
     client.socket.join(this.id);
 
-    client.socket.emit(SERVER_EVENT_NAME.UserJoinLobby, this.getCP());
-    client.socket.to(this.id).emit(SERVER_EVENT_NAME.UserJoinedLobby, client.getCP());
+    const clientCP = client.getCP();
+
+    client.socket.emit(SERVER_EVENT_NAME.UserJoinLobby, this.getCP(), clientCP);
+    client.socket.to(this.id).emit(SERVER_EVENT_NAME.UserJoinedLobby, clientCP);
   }
 }

@@ -5,7 +5,7 @@ import { LobbyCP } from "./dto/lobby.dto";
 
 export interface EventsFromServer {
   [SERVER_EVENT_NAME.FromServer]: (co: string[]) => void;
-  [SERVER_EVENT_NAME.UserJoinLobby]: (lobbyCP: LobbyCP) => void;
+  [SERVER_EVENT_NAME.UserJoinLobby]: (lobbyCP: LobbyCP, clientCP: ClientCP) => void;
   [SERVER_EVENT_NAME.UserJoinedLobby]: (clientCP: ClientCP) => void;
   [SERVER_EVENT_NAME.Notification]: (
     message: string,
