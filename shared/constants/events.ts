@@ -3,9 +3,9 @@ export enum SERVER_EVENT_NAME {
   UserJoinLobby = "userJoinLobby",
   UserJoinedLobby = "userJoinedLobby",
   Notification = "notification",
-  UserLeftRoom = 'userLeftRoom',
-  LobbyUserLeft = 'lobbyUserLeft',
-  CouldntCreateOrJoinLobby = 'lobbyCouldntCreateOrJoin',
+  UserLeftRoom = "userLeftRoom",
+  LobbyUserLeft = "lobbyUserLeft",
+  CouldntCreateOrJoinLobby = "lobbyCouldntCreateOrJoin",
 }
 
 export enum CLIENT_EVENT_NAME {
@@ -13,5 +13,5 @@ export enum CLIENT_EVENT_NAME {
   CreateLobby = "createLobby",
   JoinLobby = "joinLobby",
   Disconnect = "disconnect",
-  Disconnecting = "disconnecting"
+  Disconnecting = "disconnecting",
 }

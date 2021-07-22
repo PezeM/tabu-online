@@ -4,14 +4,18 @@ import ReactDOM from "react-dom";
 import { App } from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
-import './styles/global.css';
-import './i18n';
+import "./styles/global.css";
+import "./i18n";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <ColorModeScript />
-      <App />
+      <Provider store={store}>
+        <ColorModeScript />
+        <App />
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
