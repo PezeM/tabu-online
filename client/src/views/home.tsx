@@ -12,11 +12,14 @@ import { LobbyCP } from "../../../shared/dto/lobby.dto";
 import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ClientCP } from "../../../shared/dto/client.dto";
+import { useAppDispatch } from "../hooks/reduxHooks";
+import { setLobby } from "../features/lobby/lobby.slice";
 
 export const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation();
   const history = useHistory();
+  const dispatch = useAppDispatch();
 
   const onSubmit = (username: string) => {
     socket.auth = { username };
@@ -31,6 +34,7 @@ export const Home = () => {
   useListenServerEvent(
     SERVER_EVENT_NAME.UserJoinLobby,
     (lobbyCP: LobbyCP, clientCP: ClientCP) => {
+      dispatch(setLobby(lobbyCP));
       setIsLoading(false);
       console.log("Lobby cp:", lobbyCP, clientCP);
       history.push("/lobby");

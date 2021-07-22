@@ -15,7 +15,7 @@ export const lobbySlice = createSlice({
   initialState,
   reducers: {
     setLobby: (state, action: PayloadAction<LobbyCP>) => {
-      state = action.payload;
+      Object.assign(state, action.payload);
     },
   },
 });
@@ -23,5 +23,6 @@ export const lobbySlice = createSlice({
 export const { setLobby } = lobbySlice.actions;
 
 export const selectIsInLobby = (state: RootState) => state.lobby.id !== "0";
+export const selectLobby = (state: RootState) => state.lobby;
 
 export default lobbySlice.reducer;
