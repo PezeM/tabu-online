@@ -11,6 +11,8 @@ import { useListenServerEvent } from "../hooks/useListenServerEvent";
 import { LobbyCP } from "../../../shared/dto/lobby.dto";
 import { useTranslation } from "react-i18next";
 import { ClientCP } from "../../../shared/dto/client.dto";
+import { setLobby } from "../features/lobby/lobby.slice";
+import { useAppDispatch } from "../hooks/reduxHooks";
 
 type ParamsType = {
   id: string;
@@ -21,6 +23,7 @@ export const Invite = () => {
   const { t } = useTranslation();
   const history = useHistory();
   const params = useParams<ParamsType>();
+  const dispatch = useAppDispatch();
 
   const onSubmit = (username: string) => {
     socket.auth = { username };
@@ -36,7 +39,7 @@ export const Invite = () => {
   });
 
   useListenServerEvent(SERVER_EVENT_NAME.UserJoinLobby, (lobbyCP: LobbyCP, clientCP: ClientCP) => {
-    socket.auth = { username: clientCP.username };
+    dispatch(setLobby(lobbyCP));
     setIsLoading(false);
     console.log("Lobby cp:", lobbyCP);
     history.push("/lobby");

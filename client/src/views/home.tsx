@@ -31,6 +31,10 @@ export const Home = () => {
     socket.emit(CLIENT_EVENT_NAME.CreateLobby, username, getBrowserLanguage());
   };
 
+  useListenServerEvent(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby, () => {
+    setIsLoading(false);
+  });
+
   useListenServerEvent(
     SERVER_EVENT_NAME.UserJoinLobby,
     (lobbyCP: LobbyCP, clientCP: ClientCP) => {
@@ -40,10 +44,6 @@ export const Home = () => {
       history.push("/lobby");
     }
   );
-
-  useListenServerEvent(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby, () => {
-    setIsLoading(false);
-  });
 
   return (
     <Box>
