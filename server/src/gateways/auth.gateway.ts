@@ -5,6 +5,7 @@ import { Auth2Service } from '@services/auth2.service';
 import { Client } from '@models/client.model';
 import { ClientSocket } from '@interfaces/socket.interface';
 import { clientManager } from '@/managers/client.manager';
+import { Socket } from 'socket.io';
 
 export class AuthGateway extends BaseGateway {
   private readonly authService: Auth2Service;
@@ -46,10 +47,11 @@ export class AuthGateway extends BaseGateway {
     this.authService.createLobby(client, language);
   }
 
-  protected onDisconnect(socket: ClientSocket) {
-    if (!socket.clientUser) return;
+  protected onDisconnect(socket: Socket) {
+    const client = clientManager.getClient(socket.id);
+    if (!client) return;
 
-    clientManager.removeClient(socket.clientUser.sessionId);
+    clientManager.removeClient(client);
   }
 
   protected mapEvents(): void {

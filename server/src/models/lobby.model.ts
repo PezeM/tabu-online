@@ -57,12 +57,9 @@ export class Lobby implements ClientPayload<LobbyCP> {
     client.socket.to(this.id).emit(SERVER_EVENT_NAME.LobbyUserLeft, client.id, this._ownerId);
     this._members = this._members.filter(c => c !== client);
 
-    console.log('3');
     // Remove lobby if all members left
-    if (this.membersCount === 0) {
-      lobbyManager.removeLobby(this);
-      console.log('4');
-    }
+    if (this.membersCount === 0) lobbyManager.removeLobby(this);
+
     return true;
   }
 

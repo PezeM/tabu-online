@@ -9,7 +9,7 @@ export class Auth2Service {
     if (lobbyManager.getLobbyForSocketId(owner.socketId)) {
       owner.socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
       owner.socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.userAlreadyInLobby', 'Error');
-      clientManager.removeClient(owner.sessionId);
+      clientManager.removeClient(owner);
       return;
     }
 
@@ -23,7 +23,7 @@ export class Auth2Service {
     if (!lobby) {
       client.socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
       client.socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.doesntExist', 'Error');
-      clientManager.removeClient(client.sessionId);
+      clientManager.removeClient(client);
       return;
     }
 
@@ -33,7 +33,7 @@ export class Auth2Service {
     } catch (e) {
       client.socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
       client.socket.emit(SERVER_EVENT_NAME.Notification, e.message, 'Error');
-      clientManager.removeClient(client.sessionId);
+      clientManager.removeClient(client);
     }
   }
 }

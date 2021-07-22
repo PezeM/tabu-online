@@ -32,7 +32,6 @@ export const Home = () => {
     SERVER_EVENT_NAME.UserJoinLobby,
     (lobbyCP: LobbyCP, clientCP: ClientCP) => {
       setIsLoading(false);
-      socket.auth = { username: clientCP.username };
       console.log("Lobby cp:", lobbyCP, clientCP);
       history.push("/lobby");
     }

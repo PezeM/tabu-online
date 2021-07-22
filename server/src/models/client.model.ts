@@ -6,11 +6,9 @@ import { clientManager } from '@/managers/client.manager';
 
 export class Client implements ClientPayload<ClientCP> {
   public readonly id: string;
-  public readonly sessionId: string;
 
   constructor(private _socket: ClientSocket, public readonly username: string) {
     this.id = generateRandomId();
-    this.sessionId = generateRandomId();
 
     clientManager.addClient(this);
   }

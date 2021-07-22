@@ -5,7 +5,10 @@ import { LobbyCP } from "./dto/lobby.dto";
 
 export interface EventsFromServer {
   [SERVER_EVENT_NAME.FromServer]: (co: string[]) => void;
-  [SERVER_EVENT_NAME.UserJoinLobby]: (lobbyCP: LobbyCP, clientCP: ClientCP) => void;
+  [SERVER_EVENT_NAME.UserJoinLobby]: (
+    lobbyCP: LobbyCP,
+    clientCSP: ClientCP
+  ) => void;
   [SERVER_EVENT_NAME.UserJoinedLobby]: (clientCP: ClientCP) => void;
   [SERVER_EVENT_NAME.Notification]: (
     message: string,
@@ -24,4 +27,5 @@ export interface EventsFromClient {
   [CLIENT_EVENT_NAME.CreateLobby]: (username: string, language: string) => void;
   [CLIENT_EVENT_NAME.JoinLobby]: (username: string, lobbyId: string) => void;
   [CLIENT_EVENT_NAME.Disconnect]: (reason: string) => void;
+  [CLIENT_EVENT_NAME.Disconnecting]: (reason: string) => void;
 }

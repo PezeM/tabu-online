@@ -2,6 +2,7 @@ import { BaseGateway } from '@/gateways/base.gateway';
 import { CLIENT_EVENT_NAME } from '@shared/constants/events';
 import { ClientSocket } from '@interfaces/socket.interface';
 import { lobbyManager } from '@/managers/lobby.manager';
+import { clientManager } from '@/managers/client.manager';
 
 export class LobbyGateway extends BaseGateway {
   constructor() {
@@ -9,19 +10,16 @@ export class LobbyGateway extends BaseGateway {
   }
 
   protected onDisconnect(socket: ClientSocket) {
-    console.log('Here kurde');
-    if (!socket.clientUser) return;
+    const client = clientManager.getClient(socket.id);
+    if (!client) return;
 
-    console.log('1');
     const lobby = lobbyManager.getLobbyForSocketId(socket.id);
     if (!lobby) return;
-    console.log('2');
-    lobby.remove(socket.clientUser);
 
-    console.log('5', lobbyManager);
+    lobby.remove(client);
   }
 
   protected mapEvents(): void {
-    this.eventsMap.set(CLIENT_EVENT_NAME.Disconnect, this.onDisconnect);
+    this.eventsMap.set(CLIENT_EVENT_NAME.Disconnecting, this.onDisconnect);
   }
 }

@@ -81,6 +81,7 @@ export class App {
       logger.info(`Socket client connected with id: ${socket.id}`, { socketId: socket.id });
 
       socket.on('disconnect', reason => {
+        console.log(socket.handshake.auth);
         logger.info(`Socket with id ${socket.id} disconnected. Reason: ${reason}`, { socketId: socket.id, reason });
       });
 
