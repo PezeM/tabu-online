@@ -2,6 +2,7 @@ import { ClientSocket } from '@interfaces/socket.interface';
 import { generateRandomId } from '@shared/utils/uuid';
 import { ClientPayload } from '@shared/interfaces/clientPayload';
 import { ClientCP } from '@shared/dto/client.dto';
+import { clientManager } from '@/managers/client.manager';
 
 export class Client implements ClientPayload<ClientCP> {
   public readonly id: string;
@@ -10,6 +11,8 @@ export class Client implements ClientPayload<ClientCP> {
   constructor(private _socket: ClientSocket, public readonly username: string) {
     this.id = generateRandomId();
     this.sessionId = generateRandomId();
+
+    clientManager.addClient(this);
   }
 
   get socket() {

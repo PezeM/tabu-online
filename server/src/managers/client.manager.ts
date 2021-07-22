@@ -1,0 +1,46 @@
+import { Client } from '@models/client.model';
+import { isEmpty } from '@utils/util';
+
+class ClientManager {
+  private readonly _clients: Map<string, Client>;
+
+  constructor() {
+    this._clients = new Map();
+  }
+
+  public addClient(client: Client): Client {
+    if (isEmpty(client)) throw new Error('Client object is empty');
+
+    this._clients.set(client.sessionId, client);
+
+    return client;
+  }
+
+  public removeClient(sessionId: string): boolean {
+    return this._clients.delete(sessionId);
+  }
+
+  public removeClientById(id: string): boolean {
+    for (const client of this._clients.values()) {
+      if (client.id === id) {
+        return this._clients.delete(client.sessionId);
+      }
+    }
+
+    return false;
+  }
+
+  public getClient(sessionId: string): Client | undefined {
+    return this._clients.get(sessionId);
+  }
+
+  public getClientById(id: string): Client | undefined {
+    for (const client of this._clients.values()) {
+      if (client.id === id) {
+        return client;
+      }
+    }
+  }
+}
+
+export const clientManager = new ClientManager();

@@ -1,4 +1,4 @@
-import { ClientSocket, ServerSocket } from '@interfaces/socket.interface';
+import { LobbyGateway } from '@/gateways/lobby.gateway';
 
 process.env['NODE_CONFIG_DIR'] = __dirname + '/configs';
 
@@ -14,10 +14,10 @@ import { useExpressServer } from 'routing-controllers';
 import errorMiddleware from '@middlewares/error.middleware';
 import { logger, stream } from '@utils/logger';
 import { Server as SocketServer } from 'socket.io';
-import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '@shared/constants/events';
 import { AuthGateway } from '@/gateways/auth.gateway';
 import { socketLogMiddleware } from '@middlewares/socket-log.middleware';
-import { usernameMiddleware } from '@middlewares/username.middleware';
+import { authMiddleware } from '@middlewares/auth.middleware';
+import { ServerSocket } from '@interfaces/socket.interface';
 
 export class App {
   public app: express.Application;
@@ -71,7 +71,7 @@ export class App {
       },
     });
 
-    const gateways = [new AuthGateway()];
+    const gateways = [new AuthGateway(), new LobbyGateway()];
 
     this.socketServer.on('connect', socket => {
       socket.onAny((eventName: string, ...args) => {
@@ -79,11 +79,6 @@ export class App {
       });
 
       logger.info(`Socket client connected with id: ${socket.id}`, { socketId: socket.id });
-
-      socket.on(CLIENT_EVENT_NAME.Test, (msg: string) => {
-        logger.info(`Msg from client: ${msg}`, { socketId: socket.id });
-        socket.emit(SERVER_EVENT_NAME.FromServer, ['Eluwa']);
-      });
 
       socket.on('disconnect', reason => {
         logger.info(`Socket with id ${socket.id} disconnected. Reason: ${reason}`, { socketId: socket.id, reason });
@@ -100,7 +95,7 @@ export class App {
   }
 
   private initializeSocketMiddlewares() {
-    this.socketServer.use(usernameMiddleware);
+    this.socketServer.use(authMiddleware);
   }
 
   private initializeRoutes(controllers: Function[]) {

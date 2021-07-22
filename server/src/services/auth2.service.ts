@@ -2,12 +2,14 @@ import { Client } from '@models/client.model';
 import { Lobby } from '@models/lobby.model';
 import { SERVER_EVENT_NAME } from '@shared/constants/events';
 import { lobbyManager } from '@/managers/lobby.manager';
+import { clientManager } from '@/managers/client.manager';
 
 export class Auth2Service {
   public createLobby(owner: Client, language: string) {
     if (lobbyManager.getLobbyForSocketId(owner.socketId)) {
       owner.socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
       owner.socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.userAlreadyInLobby', 'Error');
+      clientManager.removeClient(owner.sessionId);
       return;
     }
 
@@ -21,6 +23,7 @@ export class Auth2Service {
     if (!lobby) {
       client.socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
       client.socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.doesntExist', 'Error');
+      clientManager.removeClient(client.sessionId);
       return;
     }
 
@@ -30,6 +33,7 @@ export class Auth2Service {
     } catch (e) {
       client.socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
       client.socket.emit(SERVER_EVENT_NAME.Notification, e.message, 'Error');
+      clientManager.removeClient(client.sessionId);
     }
   }
 }

@@ -1,4 +1,4 @@
-import { CLIENT_EVENT_NAME } from '../../../shared/constants/events';
+import { CLIENT_EVENT_NAME } from '@shared/constants/events';
 import { EventsFromClientOnServer } from '@interfaces/socket.interface';
 
 export abstract class BaseGateway {
