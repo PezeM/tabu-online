@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import lobbyCounter from './features/lobby/lobby.slice';
+import lobbyCounter from "./features/lobby/lobby.slice";
 
 export const store = configureStore({
   reducer: {
