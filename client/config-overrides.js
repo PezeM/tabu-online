@@ -9,7 +9,8 @@ const path = require("path");
 module.exports = override(
   removeModuleScopePlugin(),
   addWebpackAlias({
-    ["shared"]: path.resolve(__dirname, "../shared"),
+    "@": path.resolve(__dirname, "src"),
+    shared: path.resolve(__dirname, "../shared"),
   }),
   babelInclude([path.resolve("src"), path.resolve("../shared")])
 );

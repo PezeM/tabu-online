@@ -1,8 +1,8 @@
-import React from "react";
-import { Button, Code, Flex, Text } from "@chakra-ui/react";
-import { useHistory, useLocation } from "react-router-dom";
-import { ArrowBackIcon, WarningIcon } from "@chakra-ui/icons";
-import { useTranslation } from "react-i18next";
+import React from 'react';
+import { Button, Code, Flex, Text } from '@chakra-ui/react';
+import { useHistory, useLocation } from 'react-router-dom';
+import { ArrowBackIcon, WarningIcon } from '@chakra-ui/icons';
+import { useTranslation } from 'react-i18next';
 
 export const RouteNotFound = () => {
   const { t } = useTranslation();
@@ -12,25 +12,24 @@ export const RouteNotFound = () => {
   return (
     <Flex
       width="full"
-      height={"full"}
+      height={'full'}
       align="center"
       justifyContent="center"
-      flexDirection={"column"}
+      flexDirection={'column'}
     >
-      <WarningIcon color={"red.400"} w={[12, 24]} h={[12, 24]} />
-      <Text fontSize={["xl", "3xl", "4xl"]} mt={12}>
-        {t("ui.routeNotFound")}{" "}
-        <Code fontSize={["xl", "2xl", "3xl"]}>{location.pathname}</Code>
+      <WarningIcon color={'red.400'} w={[12, 24]} h={[12, 24]} />
+      <Text fontSize={['xl', '3xl', '4xl']} mt={12}>
+        {t('ui.routeNotFound')} <Code fontSize={['xl', '2xl', '3xl']}>{location.pathname}</Code>
       </Text>
       <Button
-        size={"lg"}
+        size={'lg'}
         leftIcon={<ArrowBackIcon />}
         mt={12}
-        colorScheme={"blue"}
-        variant={"outline"}
+        colorScheme={'blue'}
+        variant={'outline'}
         onClick={() => history.goBack()}
       >
-        {t("ui.goBack")}
+        {t('ui.goBack')}
       </Button>
     </Flex>
   );
