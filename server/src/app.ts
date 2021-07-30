@@ -80,7 +80,10 @@ export class App {
       logger.info(`Socket client connected with id: ${socket.id}`, { socketId: socket.id });
 
       socket.on('disconnect', reason => {
-        logger.info(`Socket with id ${socket.id} disconnected. Reason: ${reason}`, { socketId: socket.id, reason });
+        logger.info(`Socket with id ${socket.id} disconnected. Reason: ${reason}`, {
+          socketId: socket.id,
+          reason,
+        });
       });
 
       for (const gateway of gateways) {

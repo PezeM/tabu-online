@@ -1,23 +1,15 @@
-import * as React from "react";
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-} from "@chakra-ui/react";
-import { Logo } from "./Logo";
-import { ColorModeSwitcher } from "./components/ColorModeSwitcher";
-import { theme } from "./styles/theme";
-import { LayoutContainer } from "./components/LayoutContainer";
-import { Switch, Route } from "react-router-dom";
-import { Home } from "./views/home";
-import { NotificationContainer } from "./components/NotificationContainer";
-import { RouteNotFound } from "./views/routeNotFound";
-import { Lobby } from "./views/lobby";
-import { Invite } from "./views/invite";
+import * as React from 'react';
+import { Box, ChakraProvider, Code, Grid, Link, Text, VStack } from '@chakra-ui/react';
+import { Logo } from './Logo';
+import { ColorModeSwitcher } from './components/ColorModeSwitcher';
+import { theme } from './styles/theme';
+import { LayoutContainer } from './components/LayoutContainer';
+import { Route, Switch } from 'react-router-dom';
+import { Home } from './views/home';
+import { NotificationContainer } from './components/NotificationContainer';
+import { RouteNotFound } from './views/routeNotFound';
+import { Lobby } from './views/lobby';
+import { Invite } from './views/invite';
 
 export const App = () => (
   <ChakraProvider theme={theme}>
@@ -30,14 +22,13 @@ export const App = () => (
         </Route>
 
         <Route path="/test">
-          <Box h={"100%"} textAlign="center" fontSize="xl">
-            <Grid h={"100%"} p={3}>
+          <Box h={'100%'} textAlign="center" fontSize="xl">
+            <Grid h={'100%'} p={3}>
               <ColorModeSwitcher justifySelf="flex-end" />
               <VStack spacing={8}>
                 <Logo h="40vmin" pointerEvents="none" />
                 <Text>
-                  Edit <Code fontSize="xl">src/App.tsx</Code> and save to
-                  reload.
+                  Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
                 </Text>
                 <Link
                   color="teal.500"
@@ -57,7 +48,7 @@ export const App = () => (
           <Lobby />
         </Route>
 
-        <Route path={"/invite/:id"}>
+        <Route path={'/invite/:id'}>
           <Invite />
         </Route>
 

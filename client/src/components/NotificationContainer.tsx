@@ -1,6 +1,5 @@
-import React from "react";
 import { useToast } from "@chakra-ui/react";
-import { useListenServerEvent } from "../hooks/useListenServerEvent";
+import { useListenServerEvent } from "@/hooks/useListenServerEvent";
 import { SERVER_EVENT_NAME } from "../../../shared/constants/events";
 import { NotificationVariation } from "../../../shared/notification";
 import i18n from "../i18n";

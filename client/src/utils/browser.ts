@@ -2,9 +2,7 @@ type BrowserLocalesOptions = {
   languageCodeOnly?: boolean;
 };
 
-export const getBrowserLocales = (
-  options: BrowserLocalesOptions = {}
-): string[] | undefined => {
+export const getBrowserLocales = (options: BrowserLocalesOptions = {}): string[] | undefined => {
   const defaultOptions = {
     languageCodeOnly: false,
   };
@@ -15,15 +13,13 @@ export const getBrowserLocales = (
   };
 
   const browserLocales =
-    navigator.languages === undefined
-      ? [navigator.language]
-      : navigator.languages;
+    navigator.languages === undefined ? [navigator.language] : navigator.languages;
 
   if (!browserLocales) {
     return undefined;
   }
 
-  return browserLocales.map((locale) => {
+  return browserLocales.map(locale => {
     const trimmedLocale = locale.trim();
 
     return opt.languageCodeOnly ? trimmedLocale.split(/-|_/)[0] : trimmedLocale;
@@ -35,9 +31,7 @@ export const getBrowserLocales = (
  * @param {BrowserLocalesOptions} options
  * @returns {string} Returns language code of the browser, defaults to "en"
  */
-export const getBrowserLanguage = (
-  options: BrowserLocalesOptions = { languageCodeOnly: true }
-) => {
+export const getBrowserLanguage = (options: BrowserLocalesOptions = { languageCodeOnly: true }) => {
   const browserLocales = getBrowserLocales(options);
-  return browserLocales ? browserLocales[0] : "en";
+  return browserLocales ? browserLocales[0] : 'en';
 };
