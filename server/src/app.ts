@@ -1,7 +1,4 @@
 import { LobbyGateway } from '@/gateways/lobby.gateway';
-
-process.env['NODE_CONFIG_DIR'] = __dirname + '/configs';
-
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import config from 'config';
@@ -18,6 +15,8 @@ import { AuthGateway } from '@/gateways/auth.gateway';
 import { socketLogMiddleware } from '@middlewares/socket-log.middleware';
 import { authMiddleware } from '@middlewares/auth.middleware';
 import { ServerSocket } from '@interfaces/socket.interface';
+
+process.env['NODE_CONFIG_DIR'] = __dirname + '/configs';
 
 export class App {
   public app: express.Application;
