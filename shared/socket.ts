@@ -2,6 +2,7 @@ import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from "./constants/events";
 import { NotificationVariation } from "./notification";
 import { ClientCP } from "./dto/client.dto";
 import { LobbyCP } from "./dto/lobby.dto";
+import { Team } from "./enums/client";
 
 export interface EventsFromServer {
   [SERVER_EVENT_NAME.FromServer]: (co: string[]) => void;
@@ -20,6 +21,7 @@ export interface EventsFromServer {
     ownerId: string
   ) => void;
   [SERVER_EVENT_NAME.CouldntCreateOrJoinLobby]: () => void;
+  [SERVER_EVENT_NAME.LobbyUserChangedTeam]: (clientId: string, team: Team) => void;
 }
 
 export interface EventsFromClient {
@@ -28,4 +30,5 @@ export interface EventsFromClient {
   [CLIENT_EVENT_NAME.JoinLobby]: (username: string, lobbyId: string) => void;
   [CLIENT_EVENT_NAME.Disconnect]: (reason: string) => void;
   [CLIENT_EVENT_NAME.Disconnecting]: (reason: string) => void;
+  [CLIENT_EVENT_NAME.ChangeTeam]: () => void;
 }

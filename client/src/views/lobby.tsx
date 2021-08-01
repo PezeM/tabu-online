@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Code, Text } from '@chakra-ui/react';
+import { Box, Button, Code, Text } from "@chakra-ui/react";
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
 import { SERVER_EVENT_NAME } from '../../../shared/constants/events';
 import { ClientCP } from '../../../shared/dto/client.dto';

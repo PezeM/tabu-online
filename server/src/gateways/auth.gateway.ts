@@ -8,11 +8,11 @@ import { clientManager } from '@/managers/client.manager';
 import { Socket } from 'socket.io';
 
 export class AuthGateway extends BaseGateway {
-  private readonly authService: Auth2Service;
+  private readonly _authService: Auth2Service;
 
   constructor() {
     super();
-    this.authService = new Auth2Service();
+    this._authService = new Auth2Service();
   }
 
   protected testClientEvent(socket: ClientSocket, msg: string) {
@@ -33,7 +33,7 @@ export class AuthGateway extends BaseGateway {
     }
 
     const client = new Client(socket, username);
-    this.authService.joinLobby(client, lobbyId);
+    this._authService.joinLobby(client, lobbyId);
   }
 
   protected onCreateLobby(socket: ClientSocket, username: string, language: string) {
@@ -44,7 +44,7 @@ export class AuthGateway extends BaseGateway {
     }
 
     const client = new Client(socket, username);
-    this.authService.createLobby(client, language);
+    this._authService.createLobby(client, language);
   }
 
   protected onDisconnect(socket: Socket) {

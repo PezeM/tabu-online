@@ -1,5 +1,6 @@
 import { Lobby } from '@models/lobby.model';
 import { isEmpty } from '@utils/util';
+import { Client } from '@models/client.model';
 
 class LobbyManager {
   private _lobbies: Map<string, Lobby>;
@@ -34,6 +35,16 @@ class LobbyManager {
   public getLobbyForSocketId(socketId: string): Lobby | undefined {
     for (const lobby of this._lobbies.values()) {
       if (lobby.members.some(c => c.socketId === socketId)) {
+        return lobby;
+      }
+    }
+  }
+
+  public getLobbyForClient(client: Client): Lobby | undefined {
+    if (!client) return;
+
+    for (const lobby of this._lobbies.values()) {
+      if (lobby.getMember(client.id)) {
         return lobby;
       }
     }

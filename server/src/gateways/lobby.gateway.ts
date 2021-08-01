@@ -3,10 +3,15 @@ import { CLIENT_EVENT_NAME } from '@shared/constants/events';
 import { ClientSocket } from '@interfaces/socket.interface';
 import { lobbyManager } from '@/managers/lobby.manager';
 import { clientManager } from '@/managers/client.manager';
+import { LobbyService } from '@services/lobby.service';
 
 export class LobbyGateway extends BaseGateway {
+  private readonly _lobbyService: LobbyService;
+
   constructor() {
     super();
+
+    this._lobbyService = new LobbyService();
   }
 
   protected onDisconnect(socket: ClientSocket) {
@@ -19,7 +24,17 @@ export class LobbyGateway extends BaseGateway {
     lobby.remove(client);
   }
 
+  protected onChangeTeam(socket: ClientSocket) {
+    if (!socket.clientUser) return;
+
+    const lobby = lobbyManager.getLobbyForClient(socket.clientUser);
+    if (!lobby) return;
+
+    this._lobbyService.changeTeam(socket.clientUser, lobby);
+  }
+
   protected mapEvents(): void {
     this.eventsMap.set(CLIENT_EVENT_NAME.Disconnecting, this.onDisconnect);
+    this.eventsMap.set(CLIENT_EVENT_NAME.ChangeTeam, this.onChangeTeam);
   }
 }

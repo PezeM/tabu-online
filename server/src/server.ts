@@ -10,5 +10,5 @@ import validateEnv from '@utils/validateEnv';
 
 validateEnv();
 
-const app = new App([AuthController, IndexController, UsersController]);
+export const app = new App([AuthController, IndexController, UsersController]);
 app.listen();

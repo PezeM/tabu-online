@@ -23,7 +23,7 @@ export class App {
   public httpServer: Server;
   public port: string | number;
   public env: string;
-  private socketServer: ServerSocket;
+  private _socketServer: ServerSocket;
 
   constructor(Controllers: Function[]) {
     this.app = express();
@@ -51,6 +51,10 @@ export class App {
     return this.app;
   }
 
+  public ioServer() {
+    return this._socketServer;
+  }
+
   private initializeMiddlewares() {
     this.app.use(morgan(config.get('log.format'), { stream }));
     this.app.use(hpp());
@@ -62,7 +66,7 @@ export class App {
   }
 
   private initializeSocketServer() {
-    this.socketServer = new SocketServer(this.httpServer, {
+    this._socketServer = new SocketServer(this.httpServer, {
       cors: {
         origin: '*',
         methods: ['GET', 'POST'],
@@ -72,7 +76,7 @@ export class App {
 
     const gateways = [new AuthGateway(), new LobbyGateway()];
 
-    this.socketServer.on('connect', socket => {
+    this._socketServer.on('connect', socket => {
       socket.onAny((eventName: string, ...args) => {
         socketLogMiddleware(socket, eventName, ...args);
       });
@@ -97,7 +101,7 @@ export class App {
   }
 
   private initializeSocketMiddlewares() {
-    this.socketServer.use(authMiddleware);
+    this._socketServer.use(authMiddleware);
   }
 
   private initializeRoutes(controllers: Function[]) {
