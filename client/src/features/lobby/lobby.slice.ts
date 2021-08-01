@@ -3,10 +3,16 @@ import { LobbyCP } from '../../../../shared/dto/lobby.dto';
 import { LobbySettings } from '../../../../shared/interfaces/lobby';
 import { RootState } from '@/store';
 import { ClientCP } from '../../../../shared/dto/client.dto';
+import { Team } from '../../../../shared/enums/client';
 
 interface RemoveMemberInterface {
   clientId: string;
   newOwnerId: string;
+}
+
+interface ChangeMemberTeamInterface {
+  clientId: string;
+  newTeam: Team;
 }
 
 const initialState: LobbyCP = {
@@ -44,13 +50,22 @@ export const lobbySlice = createSlice({
         state.ownerId = newOwnerId;
       }
     },
+    changeMemberTeam: (state, action: PayloadAction<ChangeMemberTeamInterface>) => {
+      const { newTeam, clientId } = action.payload;
+
+      const member = state.members.find(m => m.id === clientId);
+      if (member) {
+        member.team = newTeam;
+      }
+    },
     resetLobbyState: state => {
       Object.assign(state, initialState);
     },
   },
 });
 
-export const { setLobby, addMember, removeMember, resetLobbyState } = lobbySlice.actions;
+export const { setLobby, addMember, removeMember, changeMemberTeam, resetLobbyState } =
+  lobbySlice.actions;
 
 export const selectIsInLobby = (state: RootState) => state.lobby.id !== '0';
 export const selectLobby = (state: RootState) => state.lobby;

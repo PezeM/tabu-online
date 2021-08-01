@@ -25,7 +25,9 @@ export class LobbyGateway extends BaseGateway {
   }
 
   protected onChangeTeam(socket: ClientSocket) {
+    console.log('On change team');
     if (!socket.clientUser) return;
+    console.log('On change team 2');
 
     const lobby = lobbyManager.getLobbyForClient(socket.clientUser);
     if (!lobby) return;

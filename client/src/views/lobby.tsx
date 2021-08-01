@@ -1,20 +1,26 @@
 import React from 'react';
-import { Box, Button, Code, Text } from "@chakra-ui/react";
+import { Box, Button, Code, Text } from '@chakra-ui/react';
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
-import { SERVER_EVENT_NAME } from '../../../shared/constants/events';
+import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '../../../shared/constants/events';
 import { ClientCP } from '../../../shared/dto/client.dto';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import {
   addMember,
+  changeMemberTeam,
   removeMember,
   selectIsInLobby,
   selectLobby,
 } from '@/features/lobby/lobby.slice';
 import { LobbySkeleton } from '@/components/Skeletons/LobbySkeleton';
+import { Team } from '../../../shared/enums/client';
+import { changeClientTeam, selectClient } from '@/features/client/client.splice';
+import { socket } from '@/services/socket';
 
 export const Lobby = () => {
   const isInLobby = useAppSelector(selectIsInLobby);
   const lobbyData = useAppSelector(selectLobby);
+  const clientData = useAppSelector(selectClient);
+
   const dispatch = useAppDispatch();
 
   useListenServerEvent(SERVER_EVENT_NAME.UserJoinedLobby, (clientCP: ClientCP) => {
@@ -27,6 +33,23 @@ export const Lobby = () => {
     dispatch(removeMember({ clientId, newOwnerId }));
   });
 
+  useListenServerEvent(
+    SERVER_EVENT_NAME.LobbyUserChangedTeam,
+    (clientId: string, newTeam: Team) => {
+      console.log('User changed team', clientId, newTeam);
+
+      dispatch(changeMemberTeam({ clientId, newTeam }));
+
+      if (clientData?.id === clientId) {
+        dispatch(changeClientTeam(newTeam));
+      }
+    },
+  );
+
+  const changeTeam = () => {
+    socket.emit(CLIENT_EVENT_NAME.ChangeTeam);
+  };
+
   if (!isInLobby) {
     return <LobbySkeleton delay={1000} page={'/'} />;
   }
@@ -35,6 +58,7 @@ export const Lobby = () => {
     <Box>
       <Text>Is in lobby {isInLobby ? 'True' : 'False'}</Text>
       <Code>{JSON.stringify(lobbyData, null, 4)}</Code>
+      <Button onClick={() => changeTeam()}>Change team</Button>
     </Box>
   );
 };

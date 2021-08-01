@@ -14,7 +14,8 @@ import { Server as SocketServer } from 'socket.io';
 import { AuthGateway } from '@/gateways/auth.gateway';
 import { socketLogMiddleware } from '@middlewares/socket-log.middleware';
 import { authMiddleware } from '@middlewares/auth.middleware';
-import { ServerSocket } from '@interfaces/socket.interface';
+import { ClientSocket, ServerSocket } from "@interfaces/socket.interface";
+import { clientManager } from "@/managers/client.manager";
 
 process.env['NODE_CONFIG_DIR'] = __dirname + '/configs';
 
@@ -76,9 +77,14 @@ export class App {
 
     const gateways = [new AuthGateway(), new LobbyGateway()];
 
-    this._socketServer.on('connect', socket => {
+    this._socketServer.on('connect', (socket: ClientSocket) => {
       socket.onAny((eventName: string, ...args) => {
         socketLogMiddleware(socket, eventName, ...args);
+
+        const client = clientManager.getClient(socket.id);
+        if (client) {
+          socket.clientUser = client;
+        }
       });
 
       logger.info(`Socket client connected with id: ${socket.id}`, { socketId: socket.id });

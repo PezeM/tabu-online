@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { ClientCP } from '../../../shared/dto/client.dto';
 import { useAppDispatch } from '@/hooks/reduxHooks';
 import { setLobby } from '@/features/lobby/lobby.slice';
+import { setClient } from '@/features/client/client.splice';
 
 export const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -34,6 +35,8 @@ export const Home = () => {
 
   useListenServerEvent(SERVER_EVENT_NAME.UserJoinLobby, (lobbyCP: LobbyCP, clientCP: ClientCP) => {
     dispatch(setLobby(lobbyCP));
+    dispatch(setClient(clientCP));
+
     setIsLoading(false);
     console.log('Lobby cp:', lobbyCP, clientCP);
     history.push('/lobby');

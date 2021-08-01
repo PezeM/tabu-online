@@ -1,10 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import lobbyCounter from './features/lobby/lobby.slice';
+import lobbyReducer from './features/lobby/lobby.slice';
+import clientReducer from './features/client/client.splice';
 
 export const store = configureStore({
   reducer: {
-    lobby: lobbyCounter,
+    lobby: lobbyReducer,
+    auth: clientReducer
   },
+  devTools: true
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
