@@ -1,5 +1,4 @@
 import { ClientSocket } from '@interfaces/socket.interface';
-import { clientManager } from '@/managers/client.manager';
 
 export const authMiddleware = (socket: ClientSocket, next: Function) => {
   const username = socket.handshake.auth.username;
@@ -9,11 +8,5 @@ export const authMiddleware = (socket: ClientSocket, next: Function) => {
   }
 
   socket.username = username;
-
-  const client = clientManager.getClient(socket.id);
-  if (client) {
-    socket.clientUser = client;
-  }
-
   next();
 };
