@@ -6,7 +6,9 @@
     "goBack": "Go back",
     "routeNotFound": "Route not found for location",
     "createLobby": "Create lobby",
-    "joinLobby": "Join lobby"
+    "joinLobby": "Join lobby",
+    "personalSettings": "Personal settings",
+    "gameSettings": "Game settings"
   },
   "lobby": {
     "alreadyInGame": "Lobby is already in game",

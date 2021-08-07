@@ -15,6 +15,7 @@ import { LobbySkeleton } from '@/components/Skeletons/LobbySkeleton';
 import { Team } from '../../../shared/enums/client';
 import { changeClientTeam, selectClient } from '@/features/client/client.splice';
 import { socket } from '@/services/socket';
+import { LobbySettingTabs } from '@/components/LobbySettings/LobbySettingTabs';
 
 export const Lobby = () => {
   const isInLobby = useAppSelector(selectIsInLobby);
@@ -64,6 +65,7 @@ export const Lobby = () => {
       <Code>{JSON.stringify(lobbyData, null, 4)}</Code>
       <Button onClick={() => changeTeam()}>Change team</Button>
       <Button onClick={() => updateSettings()}>Update settings</Button>
+      <LobbySettingTabs />
     </Box>
   );
 };
