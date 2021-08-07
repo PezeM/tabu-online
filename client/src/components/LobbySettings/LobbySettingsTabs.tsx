@@ -3,10 +3,10 @@ import { useAppSelector } from '@/hooks/reduxHooks';
 import { selectIsLobbyOwner, selectLobby } from '@/features/lobby/lobby.slice';
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
-import { PersonalSettingTab } from '@/components/LobbySettings/PersonalSettingTab';
-import { GameSettingTab } from '@/components/LobbySettings/GameSettingTab';
+import { PersonalSettingsTab } from '@/components/LobbySettings/PersonalSettingsTab';
+import { GameSettingsTab } from '@/components/LobbySettings/GameSettingsTab';
 
-export const LobbySettingTabs = () => {
+export const LobbySettingsTabs = () => {
   const lobbyData = useAppSelector(selectLobby);
   const isLobbyOwner = useAppSelector(selectIsLobbyOwner);
   const { t } = useTranslation();
@@ -24,11 +24,11 @@ export const LobbySettingTabs = () => {
 
       <TabPanels>
         <TabPanel>
-          <PersonalSettingTab />
+          <PersonalSettingsTab />
         </TabPanel>
         {isLobbyOwner && (
           <TabPanel>
-            <GameSettingTab />
+            <GameSettingsTab />
           </TabPanel>
         )}
       </TabPanels>
