@@ -6,7 +6,9 @@
     "goBack": "Wróć",
     "routeNotFound": "Nie znaleziono ścieżki dla lokalizacji",
     "createLobby": "Stwórz lobby",
-    "joinLobby": "Dołącz do lobby"
+    "joinLobby": "Dołącz do lobby",
+    "personalSettings": "Własne ustawienia",
+    "gameSettings": "Ustawienia gry"
   },
   "lobby": {
     "alreadyInGame": "Lobby jest już w grze",
