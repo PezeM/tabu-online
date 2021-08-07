@@ -1,6 +1,7 @@
 import { LobbySettings } from '@shared/interfaces/lobby';
 import { LobbyLanguage } from '@shared/enums/lobby';
-import { IsInt, IsString, Length, Max, Min } from 'class-validator';
+import { IsIn, IsInt, IsString, Length, Max, Min } from 'class-validator';
+import { LOBBY_LANGUAGES } from '@shared/constants/lobby';
 
 export class UpdateSettingsDto implements Partial<LobbySettings> {
   @Length(2, 3, {
@@ -8,6 +9,9 @@ export class UpdateSettingsDto implements Partial<LobbySettings> {
   })
   @IsString({
     message: 'error.wrongType',
+  })
+  @IsIn(LOBBY_LANGUAGES, {
+    message: 'error.languageNotSupported',
   })
   language?: LobbyLanguage;
 
