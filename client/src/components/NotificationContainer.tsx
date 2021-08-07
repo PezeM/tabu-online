@@ -9,7 +9,7 @@ export const NotificationContainer = (): JSX.Element | null => {
 
   useListenServerEvent(
     SERVER_EVENT_NAME.Notification,
-    (message: string, variation: NotificationVariation) => {
+    (message: string, variation: NotificationVariation, ...rest: any[]) => {
       message = i18n.t(message);
 
       toast({

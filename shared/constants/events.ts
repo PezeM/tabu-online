@@ -15,5 +15,6 @@ export enum CLIENT_EVENT_NAME {
   JoinLobby = "joinLobby",
   Disconnect = "disconnect",
   Disconnecting = "disconnecting",
-  ChangeTeam = 'changeTeam'
+  ChangeTeam = 'changeTeam',
+  LobbyUpdateSettings = 'lobbyUpdateSettings',
 }

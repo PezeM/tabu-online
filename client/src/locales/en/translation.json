@@ -19,5 +19,8 @@
     "userNotFound": "User not found",
     "kicked": "You have been kicked from the lobby",
     "roomIsFull": "Room is already full"
+  },
+  "error": {
+
   }
 }

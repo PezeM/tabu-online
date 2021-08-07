@@ -35,6 +35,11 @@ export class Lobby implements ClientPayload<LobbyCP> {
     return this._members.find(c => c.id === clientId);
   }
 
+  public isOwner(client: Client): boolean {
+    if (!client) return false;
+    return client.id === this._ownerId;
+  }
+
   public addClient(client: Client): void {
     if (this._isInGame) throw new Error('lobby.alreadyInGame');
     if (this._members.length >= this._settings.maxPlayers) throw new Error('lobby.roomIsFull');

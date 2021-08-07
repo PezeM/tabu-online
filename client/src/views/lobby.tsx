@@ -50,6 +50,10 @@ export const Lobby = () => {
     socket.emit(CLIENT_EVENT_NAME.ChangeTeam);
   };
 
+  const updateSettings = () => {
+    socket.emit(CLIENT_EVENT_NAME.LobbyUpdateSettings, { maxPlayers: 18 });
+  };
+
   if (!isInLobby) {
     return <LobbySkeleton delay={1000} page={'/'} />;
   }
@@ -59,6 +63,7 @@ export const Lobby = () => {
       <Text>Is in lobby {isInLobby ? 'True' : 'False'}</Text>
       <Code>{JSON.stringify(lobbyData, null, 4)}</Code>
       <Button onClick={() => changeTeam()}>Change team</Button>
+      <Button onClick={() => updateSettings()}>Update settings</Button>
     </Box>
   );
 };

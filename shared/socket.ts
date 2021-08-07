@@ -3,6 +3,7 @@ import { NotificationVariation } from "./notification";
 import { ClientCP } from "./dto/client.dto";
 import { LobbyCP } from "./dto/lobby.dto";
 import { Team } from "./enums/client";
+import { LobbySettings } from "./interfaces/lobby";
 
 export interface EventsFromServer {
   [SERVER_EVENT_NAME.FromServer]: (co: string[]) => void;
@@ -31,4 +32,5 @@ export interface EventsFromClient {
   [CLIENT_EVENT_NAME.Disconnect]: (reason: string) => void;
   [CLIENT_EVENT_NAME.Disconnecting]: (reason: string) => void;
   [CLIENT_EVENT_NAME.ChangeTeam]: () => void;
+  [CLIENT_EVENT_NAME.LobbyUpdateSettings]: (settings: Partial<LobbySettings>) => void;
 }
