@@ -19,5 +19,13 @@
     "userNotFound": "Użytkownik nie został znaleziony",
     "kicked": "Zostałeś wyrzucony z lobby",
     "roomIsFull": "Lobby jest już pełne"
+  },
+  "error": {
+    "wrongLanguage": "Zła nazwa języka",
+    "languageNotSupported": "Wybrany język nie jest obecnie wspierany",
+    "wrongType": "Zły typ ustawienia",
+    "notAnInt": "Opcja powinna być liczbą",
+    "minLength": "Zbyt niska liczba",
+    "maxLength": "Zbyt wysoka liczba"
   }
 }

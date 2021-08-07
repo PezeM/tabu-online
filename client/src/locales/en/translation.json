@@ -21,6 +21,11 @@
     "roomIsFull": "Room is already full"
   },
   "error": {
-
+    "wrongLanguage": "Wrong language name",
+    "languageNotSupported": "Selected language is currently not supported",
+    "wrongType": "Wrong setting type",
+    "notAnInt": "Option should be an integer",
+    "minLength": "Too low number",
+    "maxLength": "Exceeded maximum number"
   }
 }
