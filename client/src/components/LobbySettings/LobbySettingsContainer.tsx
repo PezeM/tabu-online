@@ -7,7 +7,7 @@ interface Props {
 
 export const LobbySettingsContainer = ({ children }: Props) => {
   return (
-    <Flex flex={'1 1 0%'} direction={'column'} justifyContent={'space-between'}>
+    <Flex flex={'1 1 0%'} direction={'column'} justifyContent={'space-between'} height={'100%'}>
       {children}
     </Flex>
   );
