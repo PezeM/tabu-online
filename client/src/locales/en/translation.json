@@ -28,7 +28,8 @@
     "cantKickOwner": "You can't kick lobby owner",
     "userNotFound": "User not found",
     "kicked": "You have been kicked from the lobby",
-    "roomIsFull": "Room is already full"
+    "roomIsFull": "Room is already full",
+    "notAnOwner": "You are not an owner of the lobby"
   },
   "error": {
     "wrongLanguage": "Wrong language name",

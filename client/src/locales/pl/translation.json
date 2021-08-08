@@ -28,7 +28,8 @@
     "cantKickOwner": "Nie możesz wyrzucić założyciela lobby",
     "userNotFound": "Użytkownik nie został znaleziony",
     "kicked": "Zostałeś wyrzucony z lobby",
-    "roomIsFull": "Lobby jest już pełne"
+    "roomIsFull": "Lobby jest już pełne",
+    "notAnOwner": "Nie jesteś właścicielem lobby"
   },
   "error": {
     "wrongLanguage": "Zła nazwa języka",
