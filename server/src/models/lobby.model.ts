@@ -10,18 +10,19 @@ import { LobbySettingsService } from '@services/lobbySettings.service';
 export class Lobby implements ClientPayload<LobbyCP> {
   public readonly id = generateRandomId();
 
-  private _members: Client[] = [];
+  public settings: LobbySettings;
   private _blacklist: Client[] = [];
   private _isInGame: boolean;
   private _ownerId: string;
-  private _settings: LobbySettings;
 
   constructor(owner: Client, language: string) {
-    this._settings = new LobbySettingsService().createDefaultSettings(language);
+    this.settings = new LobbySettingsService().createDefaultSettings(language);
     this._ownerId = owner.id;
 
     this.addNewMemberInternal(owner);
   }
+
+  private _members: Client[] = [];
 
   get members() {
     return this._members;
@@ -42,7 +43,7 @@ export class Lobby implements ClientPayload<LobbyCP> {
 
   public addClient(client: Client): void {
     if (this._isInGame) throw new Error('lobby.alreadyInGame');
-    if (this._members.length >= this._settings.maxPlayers) throw new Error('lobby.roomIsFull');
+    if (this._members.length >= this.settings.maxPlayers) throw new Error('lobby.roomIsFull');
     if (this._members.includes(client)) throw new Error('lobby.alreadyInThisRoom');
     if (this._blacklist.includes(client)) throw new Error('lobby.userInBlacklist');
 
@@ -87,7 +88,7 @@ export class Lobby implements ClientPayload<LobbyCP> {
       id: this.id,
       ownerId: this._ownerId,
       members: this._members.map(c => c.getCP()),
-      settings: this._settings,
+      settings: this.settings,
     };
   }
 

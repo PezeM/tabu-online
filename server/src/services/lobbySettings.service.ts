@@ -3,6 +3,7 @@ import { LobbyLanguage } from '@shared/enums/lobby';
 import { ClientSocket } from '@interfaces/socket.interface';
 import { Lobby } from '@models/lobby.model';
 import { SERVER_EVENT_NAME } from '@shared/constants/events';
+import { app } from '@/server';
 
 const DEFAULT_LANGUAGE = LobbyLanguage.EN;
 
@@ -22,7 +23,7 @@ export class LobbySettingsService {
   }
 
   public updateSettings(socket: ClientSocket, lobby: Lobby, newSettings: Partial<LobbySettings>) {
-    if (socket.clientUser) return;
+    if (!socket.clientUser) return;
     if (!lobby.isOwner(socket.clientUser)) {
       socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.notAnOwner', 'Error');
       return;
@@ -30,5 +31,7 @@ export class LobbySettingsService {
 
     // Update settings
     // Emit events to all users
+    lobby.settings = { ...lobby.settings, ...newSettings };
+    app.ioServer().in(lobby.id).emit(SERVER_EVENT_NAME.LobbySettingsChanged, lobby.settings);
   }
 }

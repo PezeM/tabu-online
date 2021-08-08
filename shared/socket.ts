@@ -23,6 +23,7 @@ export interface EventsFromServer {
   ) => void;
   [SERVER_EVENT_NAME.CouldntCreateOrJoinLobby]: () => void;
   [SERVER_EVENT_NAME.LobbyUserChangedTeam]: (clientId: string, team: Team) => void;
+  [SERVER_EVENT_NAME.LobbySettingsChanged]: (lobbySettings: LobbySettings) => void;
 }
 
 export interface EventsFromClient {

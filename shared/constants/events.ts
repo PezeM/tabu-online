@@ -6,7 +6,8 @@ export enum SERVER_EVENT_NAME {
   UserLeftRoom = "userLeftRoom",
   LobbyUserLeft = "lobbyUserLeft",
   CouldntCreateOrJoinLobby = "lobbyCouldntCreateOrJoin",
-  LobbyUserChangedTeam = 'lobbyUserChangedTeam',
+  LobbyUserChangedTeam = "lobbyUserChangedTeam",
+  LobbySettingsChanged = "lobbySettingsChanged",
 }
 
 export enum CLIENT_EVENT_NAME {

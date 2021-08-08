@@ -6,6 +6,7 @@ import { ClientCP } from '../../../shared/dto/client.dto';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import {
   addMember,
+  changeLobbySettings,
   changeMemberTeam,
   removeMember,
   selectIsInLobby,
@@ -16,6 +17,7 @@ import { Team } from '../../../shared/enums/client';
 import { changeClientTeam, selectClient } from '@/features/client/client.splice';
 import { socket } from '@/services/socket';
 import { LobbySettingsTabs } from '@/components/LobbySettings/LobbySettingsTabs';
+import { LobbySettings } from '../../../shared/interfaces/lobby';
 
 export const Lobby = () => {
   const isInLobby = useAppSelector(selectIsInLobby);
@@ -47,12 +49,16 @@ export const Lobby = () => {
     },
   );
 
+  useListenServerEvent(SERVER_EVENT_NAME.LobbySettingsChanged, (newSettings: LobbySettings) => {
+    dispatch(changeLobbySettings(newSettings));
+  });
+
   const changeTeam = () => {
     socket.emit(CLIENT_EVENT_NAME.ChangeTeam);
   };
 
   const updateSettings = () => {
-    socket.emit(CLIENT_EVENT_NAME.LobbyUpdateSettings, { maxPlayers: 18 });
+    socket.emit(CLIENT_EVENT_NAME.LobbyUpdateSettings, { maxPlayers: 6 });
   };
 
   if (!isInLobby) {

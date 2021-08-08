@@ -58,14 +58,23 @@ export const lobbySlice = createSlice({
         member.team = newTeam;
       }
     },
+    changeLobbySettings: (state, action: PayloadAction<LobbySettings>) => {
+      state.settings = action.payload;
+    },
     resetLobbyState: state => {
       Object.assign(state, initialState);
     },
   },
 });
 
-export const { setLobby, addMember, removeMember, changeMemberTeam, resetLobbyState } =
-  lobbySlice.actions;
+export const {
+  setLobby,
+  addMember,
+  removeMember,
+  changeMemberTeam,
+  changeLobbySettings,
+  resetLobbyState,
+} = lobbySlice.actions;
 
 export const selectIsInLobby = (state: RootState) => state.lobby.id !== '0';
 export const selectLobby = (state: RootState) => state.lobby;
