@@ -16,6 +16,8 @@ import { socketLogMiddleware } from '@middlewares/socket-log.middleware';
 import { authMiddleware } from '@middlewares/auth.middleware';
 import { ClientSocket, ServerSocket } from '@interfaces/socket.interface';
 import { socketClientMiddleware } from '@middlewares/client.middleware';
+import { connect, set } from 'mongoose';
+import { databaseConnection } from '@/database';
 
 process.env['NODE_CONFIG_DIR'] = __dirname + '/configs';
 
@@ -32,6 +34,7 @@ export class App {
     this.port = process.env.PORT || 3000;
     this.env = process.env.NODE_ENV || 'development';
 
+    this.connectDatabase();
     this.initializeMiddlewares();
     this.initializeSocketServer();
     this.initializeSocketMiddlewares();
@@ -54,6 +57,16 @@ export class App {
 
   public ioServer() {
     return this._socketServer;
+  }
+
+  private connectDatabase() {
+    if (this.env !== 'production') {
+      set('debug', true);
+    }
+
+    connect(databaseConnection.url, databaseConnection.options)
+      .then(() => logger.info('Connected to database'))
+      .catch(() => logger.error('Error connecting to database'));
   }
 
   private initializeMiddlewares() {

@@ -17,3 +17,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+src/configs/development.json
+src/configs/production.json
