@@ -8,7 +8,15 @@
     "createLobby": "Stwórz lobby",
     "joinLobby": "Dołącz do lobby",
     "personalSettings": "Własne ustawienia",
-    "gameSettings": "Ustawienia gry"
+    "gameSettings": "Ustawienia gry",
+    "changeUiLanguage": "Zmiana języka",
+    "changeUiLanguageDescription": "Zmień język całej strony",
+    "changeUiTheme": "Kolor strony",
+    "changeUiThemeDescription": "Zmień kolor całej strony, ciemny albo jasny",
+    "toggleSounds": "Dźwięki",
+    "toggleSoundsDescription": "Włączenie lub wyłączenie dźwięków",
+    "changeTextScale": "Rozmiar czcionki",
+    "changeTextScaleDescription": "Zmiana rozmiaru czcionki na całej stronie"
   },
   "lobby": {
     "alreadyInGame": "Lobby jest już w grze",

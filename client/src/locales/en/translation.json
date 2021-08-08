@@ -8,7 +8,15 @@
     "createLobby": "Create lobby",
     "joinLobby": "Join lobby",
     "personalSettings": "Personal settings",
-    "gameSettings": "Game settings"
+    "gameSettings": "Game settings",
+    "changeUiLanguage": "Change language",
+    "changeUiLanguageDescription": "Select language of game UI",
+    "changeUiTheme": "Change theme",
+    "changeUiThemeDescription": "Change theme color of game, either light or dark",
+    "toggleSounds": "Toggle sounds",
+    "toggleSoundsDescription": "Disable or enable game sounds",
+    "changeTextScale": "Change text size",
+    "changeTextScaleDescription": "Customize page text size to your own needs"
   },
   "lobby": {
     "alreadyInGame": "Lobby is already in game",

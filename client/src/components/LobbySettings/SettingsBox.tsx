@@ -17,7 +17,7 @@ export const SettingsBox = ({ title, description, icon, children }: Props) => {
   return (
     <Flex direction={'row'} alignItems={'center'}>
       <Box display={'flex'} flexDirection={'row'} alignItems={'center'} flex={'1 1 0%'}>
-        {clonedIcon && clonedIcon}
+        {clonedIcon}
         <Flex flexDirection={'column'} flex={'1 1 0%'} marginLeft={[0, 4]}>
           <Heading size={'md'}>{title.toUpperCase()}</Heading>
           <Text>{description}</Text>
