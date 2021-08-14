@@ -3,14 +3,13 @@ import { validateOrReject, ValidatorOptions } from 'class-validator';
 import { plainToClass } from 'class-transformer';
 import { SERVER_EVENT_NAME } from '@shared/constants/events';
 import { ClassConstructor } from '@shared/types';
-import { Game } from '@models/game.model';
 
 const defaultValidatorOptions: ValidatorOptions = {
   whitelist: true,
   skipMissingProperties: true,
 };
 
-export const validateRequestData = async <T, V>(
+export const validateRequestData = async <T extends Object, V>(
   socket: ClientSocket,
   cls: ClassConstructor<T>,
   data: V,
@@ -19,9 +18,8 @@ export const validateRequestData = async <T, V>(
   const validatorOptions = { ...defaultValidatorOptions, ...options };
 
   try {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    await validateOrReject(plainToClass(cls, data), validatorOptions);
+    const object = plainToClass(cls, data);
+    await validateOrReject(object, validatorOptions);
     return true;
   } catch (e) {
     if (e instanceof Array) {
