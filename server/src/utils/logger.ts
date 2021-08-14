@@ -11,8 +11,6 @@ if (!fs.existsSync(logDir)) {
   fs.mkdirSync(logDir);
 }
 
-console.log('config', config);
-
 const formatter = winston.format.printf(info => {
   const { level, message, timestamp, ...restMeta } = info;
   const meta = Object.keys(restMeta).length ? JSON.stringify(restMeta) : '';

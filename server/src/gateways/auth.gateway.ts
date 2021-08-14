@@ -6,6 +6,7 @@ import { Client } from '@models/client.model';
 import { ClientSocket } from '@interfaces/socket.interface';
 import { clientManager } from '@/managers/client.manager';
 import { Socket } from 'socket.io';
+import { CardSet, CardSetModel } from '@models/card-set.model';
 
 export class AuthGateway extends BaseGateway {
   private readonly _authService: Auth2Service;
@@ -36,12 +37,16 @@ export class AuthGateway extends BaseGateway {
     this._authService.joinLobby(client, lobbyId);
   }
 
-  protected onCreateLobby(socket: ClientSocket, username: string, language: string) {
+  protected async onCreateLobby(socket: ClientSocket, username: string, language: string) {
     if (isEmpty(username)) {
       socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
       socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.invalidUsername', 'Error');
       return;
     }
+
+    // Something there
+    const cardSets = await CardSetModel.find();
+    console.log('Card sets', cardSets);
 
     const client = new Client(socket, username);
     this._authService.createLobby(client, language);
