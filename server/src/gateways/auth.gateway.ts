@@ -6,7 +6,6 @@ import { Client } from '@models/client.model';
 import { ClientSocket } from '@interfaces/socket.interface';
 import { clientManager } from '@/managers/client.manager';
 import { Socket } from 'socket.io';
-import { CardSet, CardSetModel } from '@models/card-set.model';
 
 export class AuthGateway extends BaseGateway {
   private readonly _authService: Auth2Service;
@@ -44,12 +43,8 @@ export class AuthGateway extends BaseGateway {
       return;
     }
 
-    // Something there
-    const cardSets = await CardSetModel.find();
-    console.log('Card sets', cardSets);
-
     const client = new Client(socket, username);
-    this._authService.createLobby(client, language);
+    await this._authService.createLobby(client, language);
   }
 
   protected onDisconnect(socket: Socket) {

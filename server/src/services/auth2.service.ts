@@ -3,27 +3,39 @@ import { Lobby } from '@models/lobby.model';
 import { SERVER_EVENT_NAME } from '@shared/constants/events';
 import { lobbyManager } from '@/managers/lobby.manager';
 import { clientManager } from '@/managers/client.manager';
+import { LobbySettingsService } from '@services/lobbySettings.service';
+import { CardSetRepository } from '@/repositories/card-set.repository';
 
 export class Auth2Service {
-  public createLobby(owner: Client, language: string) {
+  private lobbySettingsService = new LobbySettingsService();
+  private cardSetRepository = new CardSetRepository();
+
+  public async createLobby(owner: Client, language: string) {
     if (lobbyManager.getLobbyForSocketId(owner.socketId)) {
-      owner.socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
-      owner.socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.userAlreadyInLobby', 'Error');
-      clientManager.removeClient(owner);
+      this.emitActionError(owner, 'lobby.userAlreadyInLobby');
       return;
     }
 
-    const lobby = new Lobby(owner, language);
-    lobbyManager.addLobby(lobby);
+    const settings = this.lobbySettingsService.createDefaultSettings(language);
+
+    try {
+      const cardSets = await this.cardSetRepository.cardSetsForLanguage(settings.language);
+
+      console.log(cardSets);
+      const lobby = new Lobby(owner, settings);
+      lobbyManager.addLobby(lobby);
+    } catch (e) {
+      // Remove client
+      console.log('some error', e);
+      this.emitActionError(owner, 'lobby.userAlreadyInLobby'); // TODO Change error name
+    }
   }
 
   public joinLobby(client: Client, lobbyId: string) {
     const lobby = lobbyManager.getLobby(lobbyId);
 
     if (!lobby) {
-      client.socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
-      client.socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.doesntExist', 'Error');
-      clientManager.removeClient(client);
+      this.emitActionError(client, 'lobby.doesntExist');
       return;
     }
 
@@ -31,9 +43,13 @@ export class Auth2Service {
     try {
       lobby.addClient(client);
     } catch (e) {
-      client.socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
-      client.socket.emit(SERVER_EVENT_NAME.Notification, e.message, 'Error');
-      clientManager.removeClient(client);
+      this.emitActionError(client, e.message);
     }
+  }
+
+  private emitActionError(client: Client, errorName: string) {
+    client.socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
+    client.socket.emit(SERVER_EVENT_NAME.Notification, errorName, 'Error');
+    clientManager.removeClient(client);
   }
 }

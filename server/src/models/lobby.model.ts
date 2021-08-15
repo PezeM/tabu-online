@@ -5,18 +5,15 @@ import { ClientPayload } from '@shared/interfaces/clientPayload';
 import { LobbyCP } from '@shared/dto/lobby.dto';
 import { lobbyManager } from '@/managers/lobby.manager';
 import { LobbySettings } from '@shared/interfaces/lobby';
-import { LobbySettingsService } from '@services/lobbySettings.service';
 
 export class Lobby implements ClientPayload<LobbyCP> {
   public readonly id = generateRandomId();
 
-  public settings: LobbySettings;
   private _blacklist: Client[] = [];
   private _isInGame: boolean;
   private _ownerId: string;
 
-  constructor(owner: Client, language: string) {
-    this.settings = new LobbySettingsService().createDefaultSettings(language);
+  constructor(owner: Client, public settings: LobbySettings) {
     this._ownerId = owner.id;
 
     this.addNewMemberInternal(owner);

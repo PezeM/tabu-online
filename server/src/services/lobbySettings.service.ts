@@ -4,12 +4,13 @@ import { ClientSocket } from '@interfaces/socket.interface';
 import { Lobby } from '@models/lobby.model';
 import { SERVER_EVENT_NAME } from '@shared/constants/events';
 import { app } from '@/server';
+import { isLobbyLanguage } from '@utils/type-guards';
 
 const DEFAULT_LANGUAGE = LobbyLanguage.EN;
 
 export class LobbySettingsService {
   public createDefaultSettings(language: string): LobbySettings {
-    if (!Object.values(LobbyLanguage).includes(language as LobbyLanguage)) {
+    if (!isLobbyLanguage(language)) {
       language = DEFAULT_LANGUAGE;
     }
 
