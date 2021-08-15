@@ -12,7 +12,7 @@ export class CardSetRepository extends BaseRepository<CardSet> {
     return this.model.aggregate<CardSetsCountDto>([
       {
         $match: {
-          language: 'en',
+          language: language,
         },
       },
       {
