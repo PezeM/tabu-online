@@ -5,6 +5,7 @@ import { lobbyManager } from '@/managers/lobby.manager';
 import { clientManager } from '@/managers/client.manager';
 import { LobbySettingsService } from '@services/lobbySettings.service';
 import { CardSetRepository } from '@/repositories/card-set.repository';
+import { logger } from '@utils/logger';
 
 export class Auth2Service {
   private lobbySettingsService = new LobbySettingsService();
@@ -26,7 +27,7 @@ export class Auth2Service {
       lobbyManager.addLobby(lobby);
     } catch (e) {
       // Remove client
-      console.log('some error', e);
+      logger.error('[CREATE LOBBY] Error while creating lobby', { error: e });
       this.emitActionError(owner, 'lobby.userAlreadyInLobby'); // TODO Change error name
     }
   }

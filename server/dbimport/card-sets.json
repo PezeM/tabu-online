@@ -1,0 +1,1008 @@
+[
+  {
+    "name": "Cos",
+    "language": "en",
+    "cards": [
+      {
+        "name": "macho",
+        "forbiddenWords": [
+          "manly",
+          "spanish",
+          "virile",
+          "stud",
+          "testosterone"
+        ]
+      },
+      {
+        "name": "blackmail",
+        "forbiddenWords": [
+          "crime",
+          "extortion",
+          "demand",
+          "money",
+          "letters"
+        ]
+      },
+      {
+        "name": "blow",
+        "forbiddenWords": [
+          "wind",
+          "air",
+          "whistle",
+          "nose",
+          "kiss"
+        ]
+      },
+      {
+        "name": "eggnog",
+        "forbiddenWords": [
+          "christmas",
+          "punch bowl",
+          "spiked",
+          "creamy",
+          "brandy"
+        ]
+      },
+      {
+        "name": "ebenezer scrooge",
+        "forbiddenWords": [
+          "christmas carol",
+          "character",
+          "ghosts",
+          "tightwad",
+          "humbug!"
+        ]
+      },
+      {
+        "name": "recycle",
+        "forbiddenWords": [
+          "use",
+          "bin",
+          "waste",
+          "cans",
+          "paper"
+        ]
+      },
+      {
+        "name": "detective",
+        "forbiddenWords": [
+          "investigate",
+          "crime",
+          "clues",
+          "private eye",
+          "sherlock holmes"
+        ]
+      },
+      {
+        "name": "skyscraper",
+        "forbiddenWords": [
+          "empire",
+          "tall",
+          "new york city",
+          "high-rise",
+          "building"
+        ]
+      },
+      {
+        "name": "llama",
+        "forbiddenWords": [
+          "south america",
+          "alpaca",
+          "beast",
+          "burden",
+          "dalai"
+        ]
+      },
+      {
+        "name": "museum",
+        "forbiddenWords": [
+          "art",
+          "paintings",
+          "exhibits",
+          "buildings",
+          "collection"
+        ]
+      },
+      {
+        "name": "eureka!",
+        "forbiddenWords": [
+          "moment",
+          "discovery",
+          "found",
+          "know",
+          "revelation"
+        ]
+      },
+      {
+        "name": "lei",
+        "forbiddenWords": [
+          "flowers",
+          "necklace",
+          "hawaii",
+          "greeting",
+          "aloha"
+        ]
+      },
+      {
+        "name": "vegan",
+        "forbiddenWords": [
+          "meat",
+          "vegetarian",
+          "eat",
+          "fish",
+          "diet"
+        ]
+      },
+      {
+        "name": "flannel",
+        "forbiddenWords": [
+          "shirt",
+          "nightgown",
+          "cloth",
+          "sheets",
+          "pajamas"
+        ]
+      },
+      {
+        "name": "wheelbarrow",
+        "forbiddenWords": [
+          "load",
+          "gardener",
+          "rubbish",
+          "handles",
+          "carry"
+        ]
+      },
+      {
+        "name": "pez",
+        "forbiddenWords": [
+          "candy",
+          "toy",
+          "dispenser",
+          "push down",
+          "collectible"
+        ]
+      },
+      {
+        "name": "fool",
+        "forbiddenWords": [
+          "punk'd",
+          "april",
+          "idiot",
+          "trick",
+          "jerk"
+        ]
+      },
+      {
+        "name": "diamond",
+        "forbiddenWords": [
+          "baseball",
+          "ring",
+          "carats",
+          "jewel",
+          "engagement"
+        ]
+      },
+      {
+        "name": "trendy",
+        "forbiddenWords": [
+          "faddish",
+          "fashionable",
+          "stylish",
+          "vogue",
+          "chic"
+        ]
+      },
+      {
+        "name": "plastered",
+        "forbiddenWords": [
+          "drunk",
+          "intoxicated",
+          "smashed",
+          "walls",
+          "ceiling"
+        ]
+      },
+      {
+        "name": "alias",
+        "forbiddenWords": [
+          "fake",
+          "name",
+          "aka",
+          "i.d.",
+          "false"
+        ]
+      },
+      {
+        "name": "chip",
+        "forbiddenWords": [
+          "chocolate",
+          "cookie",
+          "potato",
+          "poker",
+          "pentium"
+        ]
+      },
+      {
+        "name": "grand slam",
+        "forbiddenWords": [
+          "homer",
+          "bases",
+          "loaded",
+          "4",
+          "runs"
+        ]
+      },
+      {
+        "name": "menu",
+        "forbiddenWords": [
+          "restaurant",
+          "order",
+          "entrees",
+          "bill of fare",
+          "prices"
+        ]
+      },
+      {
+        "name": "midas touch",
+        "forbiddenWords": [
+          "gold",
+          "legend",
+          "money",
+          "rich",
+          "easy"
+        ]
+      },
+      {
+        "name": "bunsen burner",
+        "forbiddenWords": [
+          "heater",
+          "lab",
+          "experiment",
+          "gas",
+          "flame"
+        ]
+      },
+      {
+        "name": "funny bone",
+        "forbiddenWords": [
+          "hit",
+          "elbom",
+          "body",
+          "arm",
+          "feeling"
+        ]
+      },
+      {
+        "name": "scavenger hunt",
+        "forbiddenWords": [
+          "search",
+          "game",
+          "find",
+          "contest",
+          "objects"
+        ]
+      },
+      {
+        "name": "comma",
+        "forbiddenWords": [
+          "punctuation",
+          "mark",
+          "period",
+          "rest",
+          "separate"
+        ]
+      },
+      {
+        "name": "pocket",
+        "forbiddenWords": [
+          "watch",
+          "hand",
+          "pants",
+          "trousers",
+          "pool table"
+        ]
+      },
+      {
+        "name": "panda",
+        "forbiddenWords": [
+          "bear",
+          "black & white",
+          "china",
+          "bamboo",
+          "zoo"
+        ]
+      },
+      {
+        "name": "minutes",
+        "forbiddenWords": [
+          "60",
+          "seconds",
+          "hours",
+          "time",
+          "meeting"
+        ]
+      },
+      {
+        "name": "r.s.v.p.",
+        "forbiddenWords": [
+          "invitation",
+          "answer",
+          "respond",
+          "party",
+          "coming"
+        ]
+      },
+      {
+        "name": "tiara",
+        "forbiddenWords": [
+          "crown",
+          "jeweled",
+          "head",
+          "gown",
+          "miss universe"
+        ]
+      },
+      {
+        "name": "mouthwash",
+        "forbiddenWords": [
+          "rinse",
+          "gargle",
+          "brush",
+          "teeth",
+          "breath"
+        ]
+      },
+      {
+        "name": "jackhammer",
+        "forbiddenWords": [
+          "drill",
+          "break-up",
+          "pavement",
+          "construction",
+          "rock"
+        ]
+      },
+      {
+        "name": "pentagon",
+        "forbiddenWords": [
+          "5",
+          "sides",
+          "office building",
+          "washington dc",
+          "defense"
+        ]
+      },
+      {
+        "name": "flip flops",
+        "forbiddenWords": [
+          "sandals",
+          "thongs",
+          "toes",
+          "beach",
+          "politician"
+        ]
+      },
+      {
+        "name": "whisper",
+        "forbiddenWords": [
+          "speak",
+          "softly",
+          "ear",
+          "sound",
+          "shout"
+        ]
+      },
+      {
+        "name": "merry-go-round",
+        "forbiddenWords": [
+          "carousel",
+          "spin",
+          "horses",
+          "pole",
+          "up & down"
+        ]
+      },
+      {
+        "name": "dark horse",
+        "forbiddenWords": [
+          "unexpected",
+          "winner",
+          "surprise",
+          "behind",
+          "chance"
+        ]
+      },
+      {
+        "name": "howdy",
+        "forbiddenWords": [
+          "hi!",
+          "hello!",
+          "greeting",
+          "cowboy",
+          "doody"
+        ]
+      },
+      {
+        "name": "big ben",
+        "forbiddenWords": [
+          "london",
+          "parliament",
+          "chime",
+          "clock",
+          "time"
+        ]
+      },
+      {
+        "name": "slip",
+        "forbiddenWords": [
+          "pink",
+          "fired",
+          "freudian",
+          "mistake",
+          "lingerie"
+        ]
+      },
+      {
+        "name": "canvas",
+        "forbiddenWords": [
+          "tent",
+          "sail",
+          "cloth",
+          "bag",
+          "sneakers"
+        ]
+      },
+      {
+        "name": "lie detector",
+        "forbiddenWords": [
+          "test",
+          "police",
+          "yes",
+          "no",
+          "polygraph"
+        ]
+      },
+      {
+        "name": "laugh",
+        "forbiddenWords": [
+          "funny",
+          "ha-ha",
+          "chuckle",
+          "giggle",
+          "lol"
+        ]
+      },
+      {
+        "name": "spit",
+        "forbiddenWords": [
+          "saliva",
+          "rotisserie",
+          "drool",
+          "expectorate",
+          "mouth"
+        ]
+      },
+      {
+        "name": "steeple",
+        "forbiddenWords": [
+          "church",
+          "spire",
+          "tower",
+          "bell",
+          "top"
+        ]
+      },
+      {
+        "name": "shower",
+        "forbiddenWords": [
+          "bathroom",
+          "bridal",
+          "water",
+          "clean",
+          "april"
+        ]
+      },
+      {
+        "name": "red herring",
+        "forbiddenWords": [
+          "diversion",
+          "decoy",
+          "curve ball",
+          "trick",
+          "fake out"
+        ]
+      },
+      {
+        "name": "semi",
+        "forbiddenWords": [
+          "truck",
+          "colon",
+          "circle",
+          "conductor",
+          "automatic"
+        ]
+      },
+      {
+        "name": "banjo",
+        "forbiddenWords": [
+          "music",
+          "dixieland",
+          "bluegrass",
+          "strings",
+          "strum"
+        ]
+      },
+      {
+        "name": "tooth fairy",
+        "forbiddenWords": [
+          "bed",
+          "pillow",
+          "money",
+          "make believe",
+          "night"
+        ]
+      },
+      {
+        "name": "the brothers grim",
+        "forbiddenWords": [
+          "fairy tales",
+          "german",
+          "siblings",
+          "authors",
+          "storytellers"
+        ]
+      },
+      {
+        "name": "cough drop",
+        "forbiddenWords": [
+          "lorenge",
+          "sore",
+          "halls",
+          "throat",
+          "suck"
+        ]
+      },
+      {
+        "name": "copper",
+        "forbiddenWords": [
+          "penny",
+          "pipes",
+          "metal",
+          "coin",
+          "lincoln"
+        ]
+      },
+      {
+        "name": "filling",
+        "forbiddenWords": [
+          "tooth",
+          "cavity",
+          "dentist",
+          "cream",
+          "oreo"
+        ]
+      },
+      {
+        "name": "key",
+        "forbiddenWords": [
+          "door",
+          "open",
+          "car",
+          "lock",
+          "piano"
+        ]
+      },
+      {
+        "name": "parking meter",
+        "forbiddenWords": [
+          "car",
+          "curb",
+          "machine",
+          "slot",
+          "quarters"
+        ]
+      },
+      {
+        "name": "sphinx",
+        "forbiddenWords": [
+          "huge",
+          "sculpture",
+          "pyramids",
+          "man",
+          "lion"
+        ]
+      },
+      {
+        "name": "puppet",
+        "forbiddenWords": [
+          "strings",
+          "finger",
+          "marionette",
+          "wooden",
+          "pinocchio"
+        ]
+      },
+      {
+        "name": "guru",
+        "forbiddenWords": [
+          "hindu",
+          "wise",
+          "spiritual",
+          "teacher",
+          "go-to-guy"
+        ]
+      },
+      {
+        "name": "thomas edison",
+        "forbiddenWords": [
+          "light bulb",
+          "electric",
+          "inventor",
+          "phonograph",
+          "movies"
+        ]
+      },
+      {
+        "name": "adult",
+        "forbiddenWords": [
+          "grown-up",
+          "mature",
+          "old",
+          "child",
+          "x-rated"
+        ]
+      },
+      {
+        "name": "tie-dye",
+        "forbiddenWords": [
+          "t-shirt",
+          "hippie",
+          "pattern",
+          "psychadelic",
+          "colors"
+        ]
+      },
+      {
+        "name": "poison ivy",
+        "forbiddenWords": [
+          "itch",
+          "plant",
+          "rash",
+          "scratch",
+          "leaves"
+        ]
+      },
+      {
+        "name": "toll booth",
+        "forbiddenWords": [
+          "highway",
+          "pay",
+          "attendant",
+          "coins",
+          "ticket"
+        ]
+      },
+      {
+        "name": "dr. jekyll",
+        "forbiddenWords": [
+          "mr. hyde",
+          "robert louis stevenson",
+          "split personality",
+          "good",
+          "evil"
+        ]
+      },
+      {
+        "name": "school bus",
+        "forbiddenWords": [
+          "yellow",
+          "children",
+          "pick up",
+          "vehicle",
+          "kids"
+        ]
+      },
+      {
+        "name": "stool pigeon",
+        "forbiddenWords": [
+          "whistle blower",
+          "snitch",
+          "tattletale",
+          "turn in",
+          "informer"
+        ]
+      },
+      {
+        "name": "roman colosseum",
+        "forbiddenWords": [
+          "arena",
+          "italy",
+          "gladiators",
+          "nero",
+          "thumbs up"
+        ]
+      },
+      {
+        "name": "boa",
+        "forbiddenWords": [
+          "snake",
+          "coil",
+          "constrictor",
+          "feathery",
+          "scarf"
+        ]
+      },
+      {
+        "name": "slush",
+        "forbiddenWords": [
+          "snow",
+          "rain",
+          "weather",
+          "fund",
+          "puppie"
+        ]
+      },
+      {
+        "name": "wallpaper",
+        "forbiddenWords": [
+          "paste",
+          "hang",
+          "roll",
+          "strip",
+          "paint"
+        ]
+      },
+      {
+        "name": "big ten",
+        "forbiddenWords": [
+          "midwest",
+          "state",
+          "universities",
+          "group",
+          "compete"
+        ]
+      },
+      {
+        "name": "greeting card",
+        "forbiddenWords": [
+          "hallmark",
+          "message",
+          "rhyme",
+          "occasion",
+          "drugstore"
+        ]
+      },
+      {
+        "name": "jet lag",
+        "forbiddenWords": [
+          "air",
+          "tired",
+          "travel",
+          "time",
+          "adjust"
+        ]
+      },
+      {
+        "name": "headhunter",
+        "forbiddenWords": [
+          "job",
+          "recruiter",
+          "find",
+          "cannibal",
+          "shrunken"
+        ]
+      },
+      {
+        "name": "jingle",
+        "forbiddenWords": [
+          "bells",
+          "ring",
+          "sleigh",
+          "horse",
+          "song"
+        ]
+      },
+      {
+        "name": "poker",
+        "forbiddenWords": [
+          "card",
+          "hand",
+          "texas hold'em",
+          "game",
+          "bet"
+        ]
+      },
+      {
+        "name": "paul revere",
+        "forbiddenWords": [
+          "ride",
+          "warning",
+          "british",
+          "coming",
+          "revolution"
+        ]
+      },
+      {
+        "name": "seagull",
+        "forbiddenWords": [
+          "bird",
+          "beach",
+          "ocean",
+          "wings",
+          "landfill"
+        ]
+      },
+      {
+        "name": "gargoyle",
+        "forbiddenWords": [
+          "carved",
+          "buildings",
+          "grotesque",
+          "monsters",
+          "ornament"
+        ]
+      },
+      {
+        "name": "octopus",
+        "forbiddenWords": [
+          "tentacles",
+          "ocean",
+          "arms",
+          "8",
+          "squid"
+        ]
+      },
+      {
+        "name": "daydream",
+        "forbiddenWords": [
+          "think",
+          "sleep",
+          "fantasize",
+          "bored",
+          "mind"
+        ]
+      },
+      {
+        "name": "thong",
+        "forbiddenWords": [
+          "underwear",
+          "skimpy",
+          "butt",
+          "bikini",
+          "bathing suit"
+        ]
+      },
+      {
+        "name": "fortune cookie",
+        "forbiddenWords": [
+          "advice",
+          "message",
+          "chinese",
+          "restaurant",
+          "predict"
+        ]
+      },
+      {
+        "name": "jacks",
+        "forbiddenWords": [
+          "game pieces",
+          "metal",
+          "points",
+          "rubber ball",
+          "pick-up"
+        ]
+      },
+      {
+        "name": "tiffany",
+        "forbiddenWords": [
+          "jewels",
+          "store",
+          "fifth avenue",
+          "breakfast",
+          "lamp"
+        ]
+      },
+      {
+        "name": "pupil",
+        "forbiddenWords": [
+          "student",
+          "classroom",
+          "school",
+          "eye",
+          "dilated"
+        ]
+      },
+      {
+        "name": "yak",
+        "forbiddenWords": [
+          "ox",
+          "tibet",
+          "chat",
+          "blab",
+          "gab"
+        ]
+      },
+      {
+        "name": "lullaby",
+        "forbiddenWords": [
+          "baby",
+          "sleep",
+          "cradle",
+          "sing",
+          "rock"
+        ]
+      },
+      {
+        "name": "scale",
+        "forbiddenWords": [
+          "weigh",
+          "musical",
+          "do re mi",
+          "fish",
+          "richter"
+        ]
+      },
+      {
+        "name": "bazooka",
+        "forbiddenWords": [
+          "rocket",
+          "launcher",
+          "war",
+          "bubblegum",
+          "comics"
+        ]
+      },
+      {
+        "name": "liberty bell",
+        "forbiddenWords": [
+          "ring",
+          "crack",
+          "freedom",
+          "america",
+          "symbol"
+        ]
+      },
+      {
+        "name": "cameo",
+        "forbiddenWords": [
+          "jewelry",
+          "carved",
+          "profile",
+          "small",
+          "role"
+        ]
+      },
+      {
+        "name": "credit",
+        "forbiddenWords": [
+          "card",
+          "money",
+          "bank",
+          "visa",
+          "master"
+        ]
+      },
+      {
+        "name": "gap",
+        "forbiddenWords": [
+          "generation",
+          "jeans",
+          "old navy",
+          "store",
+          "mall"
+        ]
+      },
+      {
+        "name": "brown-nose",
+        "forbiddenWords": [
+          "flatter",
+          "bootlick",
+          "boss",
+          "suck-up",
+          "yes-man"
+        ]
+      }
+    ]
+  }
+]

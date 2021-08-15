@@ -7,7 +7,7 @@ import { ModelType } from '@typegoose/typegoose/lib/types';
 @modelOptions({
   options: { allowMixed: Severity.ALLOW },
   schemaOptions: {
-    collection: 'cardSets',
+    collection: 'card-sets',
     timestamps: true,
     toJSON: {
       virtuals: true,
@@ -31,9 +31,9 @@ export class CardSet extends BaseModel {
   @prop({ required: true, type: () => Card })
   public cards!: Card[];
 
-  @prop()
+  @prop({ default: new Date(), type: Date })
   createdAt: Date; // provided by schemaOptions.timestamps
-  @prop()
+  @prop({ default: new Date(), type: Date })
   updatedAt: Date; // provided by schemaOptions.timestamps
 
   static get model(): ModelType<CardSet> {

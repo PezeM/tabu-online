@@ -11,7 +11,8 @@
     "build": "tsc --build --verbose && npx tsc-alias",
     "test": "jest --forceExit --detectOpenHandles",
     "lint": "eslint --ignore-path .gitignore --ext .ts src/",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "dbimport": "bash dbimport.sh"
   },
   "dependencies": {
     "@typegoose/typegoose": "^8.1.1",

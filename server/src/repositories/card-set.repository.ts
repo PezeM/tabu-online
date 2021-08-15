@@ -12,14 +12,14 @@ export class CardSetRepository extends BaseRepository<CardSet> {
     return this.model.aggregate<CardSetsCountDto>([
       {
         $match: {
-          language: language,
+          language: 'en',
         },
       },
       {
         $project: {
           _id: 1,
           name: 1,
-          cardCount: { $size: '$card' },
+          cardsCount: { $size: '$cards' },
         },
       },
     ]);
