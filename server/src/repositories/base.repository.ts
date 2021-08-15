@@ -16,5 +16,3 @@ export class BaseRepository<T extends BaseModel> {
     return this.model.create(data);
   }
 }
-
-const test = new BaseRepository(CardSet.model);
