@@ -1,6 +1,6 @@
-import { HttpException } from '@exceptions/HttpException';
 import { User } from '@interfaces/users.interface';
 import userModel from '@models/users.model';
+import { HttpException } from '@exceptions/http.exception';
 
 export class UserService {
   public users = userModel;

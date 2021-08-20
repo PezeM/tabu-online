@@ -6,6 +6,7 @@ import { Client } from '@models/client.model';
 import { ClientSocket } from '@interfaces/socket.interface';
 import { clientManager } from '@/managers/client.manager';
 import { Socket } from 'socket.io';
+import { PerformanceLog } from '@utils/performance-logger';
 
 export class AuthGateway extends BaseGateway {
   private readonly _authService: Auth2Service;
@@ -19,6 +20,7 @@ export class AuthGateway extends BaseGateway {
     console.log('Inside test client event', socket.id, msg);
   }
 
+  @PerformanceLog()
   protected onJoinLobby(socket: ClientSocket, username: string, lobbyId: string) {
     if (isEmpty(username)) {
       socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
@@ -36,6 +38,7 @@ export class AuthGateway extends BaseGateway {
     this._authService.joinLobby(client, lobbyId);
   }
 
+  @PerformanceLog()
   protected async onCreateLobby(socket: ClientSocket, username: string, language: string) {
     if (isEmpty(username)) {
       socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
@@ -47,6 +50,7 @@ export class AuthGateway extends BaseGateway {
     await this._authService.createLobby(client, language);
   }
 
+  @PerformanceLog()
   protected onDisconnect(socket: Socket) {
     const client = clientManager.getClient(socket.id);
     if (!client) return;
