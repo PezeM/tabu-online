@@ -16,7 +16,12 @@
     "toggleSounds": "Toggle sounds",
     "toggleSoundsDescription": "Disable or enable game sounds",
     "changeTextScale": "Change text size",
-    "changeTextScaleDescription": "Customize page text size to your own needs"
+    "changeTextScaleDescription": "Customize page text size to your own needs",
+    "team": {
+      "name": "Team",
+      "0": "Blue",
+      "1": "Red"
+    }
   },
   "lobby": {
     "alreadyInGame": "Lobby is already in game",

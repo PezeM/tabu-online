@@ -16,7 +16,12 @@
     "toggleSounds": "Dźwięki",
     "toggleSoundsDescription": "Włączenie lub wyłączenie dźwięków",
     "changeTextScale": "Rozmiar czcionki",
-    "changeTextScaleDescription": "Zmiana rozmiaru czcionki na całej stronie"
+    "changeTextScaleDescription": "Zmiana rozmiaru czcionki na całej stronie",
+    "team": {
+      "name": "Zespół",
+      "0": "Niebieski",
+      "1": "Czerwony"
+    }
   },
   "lobby": {
     "alreadyInGame": "Lobby jest już w grze",
