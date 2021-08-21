@@ -78,7 +78,9 @@ export const {
 
 export const selectIsInLobby = (state: RootState) => state.lobby.id !== '0';
 export const selectLobby = (state: RootState) => state.lobby;
+export const selectOwnerId = (state: RootState) => state.lobby.ownerId;
 export const selectIsLobbyOwner = (state: RootState) =>
   state.lobby.ownerId === state.auth.client?.id;
+export const selectLobbyMembers = (state: RootState) => state.lobby.members;
 
 export default lobbySlice.reducer;

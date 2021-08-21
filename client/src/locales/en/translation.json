@@ -18,6 +18,7 @@
     "changeTextScale": "Change text size",
     "changeTextScaleDescription": "Customize page text size to your own needs",
     "team": {
+      "join": "Join team",
       "name": "Team",
       "0": "Blue",
       "1": "Red"

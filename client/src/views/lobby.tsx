@@ -67,7 +67,13 @@ export const Lobby = () => {
   }
 
   return (
-    <Grid gap={6} templateColumns={'repeat(1, 1fr)'} h={'100%'} overflowY={'auto'}>
+    <Grid
+      gap={6}
+      templateColumns={'repeat(1, 1fr)'}
+      templateRows={'auto 1fr'}
+      h={'100%'}
+      overflowY={'auto'}
+    >
       <TeamsContainer />
       <LobbySettingsTabs />
     </Grid>

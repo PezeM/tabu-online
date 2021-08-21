@@ -18,6 +18,7 @@
     "changeTextScale": "Rozmiar czcionki",
     "changeTextScaleDescription": "Zmiana rozmiaru czcionki na całej stronie",
     "team": {
+      "join": "Dołącz",
       "name": "Zespół",
       "0": "Niebieski",
       "1": "Czerwony"
