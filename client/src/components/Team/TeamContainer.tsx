@@ -1,13 +1,28 @@
 import React from 'react';
-import { Avatar, Box, Button, Flex, HStack, Text, useColorModeValue } from '@chakra-ui/react';
+import { Box, Button, Flex, HStack, useColorModeValue } from '@chakra-ui/react';
 import { Team } from '../../../../shared/enums/client';
 import { TeamName } from '@/components/Team/TeamName';
+import { TeamMember } from '@/components/Team/TeamMember';
 
 interface Props {
   team: Team;
 }
 
 export const TeamContainer = ({ team }: Props) => {
+  const members = [
+    'eluwa',
+    'siema co tam',
+    'dasd',
+    'pezem',
+    'dcao',
+    'test d',
+    'kolejny',
+    'no co tam',
+    'sadasd',
+    'sadasdadasdas',
+    'sadasa',
+  ];
+
   return (
     <Flex
       flexDirection="column"
@@ -17,7 +32,13 @@ export const TeamContainer = ({ team }: Props) => {
       width="100%"
     >
       <TeamName team={team} />
-      <HStack spacing={8} alignItems="center" width="100%" overflowX="auto">
+      <HStack
+        spacing={8}
+        alignItems="center"
+        width="100%"
+        overflowX="auto"
+        display={'-webkit-box'}
+      >
         <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
           <Button
             bg={useColorModeValue('#151f21', 'gray.700')}
@@ -31,38 +52,10 @@ export const TeamContainer = ({ team }: Props) => {
             Follow
           </Button>
         </Box>
-        <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-          <Avatar />
-          <Text>Text value</Text>
-        </Box>
-        <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-          <Avatar />
-          <Text>Text value</Text>
-        </Box>
-        <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-          <Avatar />
-          <Text>Text value</Text>
-        </Box>
-        <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-          <Avatar />
-          <Text>Text value</Text>
-        </Box>
-        <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-          <Avatar />
-          <Text>Text value</Text>
-        </Box>
-        <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-          <Avatar />
-          <Text>Text value</Text>
-        </Box>
-        <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-          <Avatar />
-          <Text>Text value</Text>
-        </Box>
-        <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-          <Avatar />
-          <Text>Text value</Text>
-        </Box>
+
+        {members.map(m => (
+          <TeamMember key={m} name={m} />
+        ))}
       </HStack>
     </Flex>
   );

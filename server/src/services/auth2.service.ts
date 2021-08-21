@@ -11,24 +11,31 @@ export class Auth2Service {
   private lobbySettingsService = new LobbySettingsService();
   private cardSetRepository = new CardSetRepository();
 
+  private static emitActionError(client: Client, errorName: string) {
+    client.socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
+    client.socket.emit(SERVER_EVENT_NAME.Notification, errorName, 'Error');
+    clientManager.removeClient(client);
+  }
+
   public async createLobby(owner: Client, language: string) {
     if (lobbyManager.getLobbyForSocketId(owner.socketId)) {
-      this.emitActionError(owner, 'lobby.userAlreadyInLobby');
+      Auth2Service.emitActionError(owner, 'lobby.userAlreadyInLobby');
       return;
     }
 
     const settings = this.lobbySettingsService.createDefaultSettings(language);
 
+    let lobby: Lobby;
     try {
       const cardSets = await this.cardSetRepository.cardSetsForLanguage(settings.language);
 
       console.log(cardSets);
-      const lobby = new Lobby(owner, settings);
+      lobby = new Lobby(owner, settings);
       lobbyManager.addLobby(lobby);
     } catch (e) {
-      // Remove client
+      lobbyManager.removeLobby(lobby);
       logger.error('[CREATE LOBBY] Error while creating lobby', { error: e });
-      this.emitActionError(owner, 'lobby.userAlreadyInLobby'); // TODO Change error name
+      Auth2Service.emitActionError(owner, 'lobby.userAlreadyInLobby'); // TODO Change error name
     }
   }
 
@@ -36,7 +43,7 @@ export class Auth2Service {
     const lobby = lobbyManager.getLobby(lobbyId);
 
     if (!lobby) {
-      this.emitActionError(client, 'lobby.doesntExist');
+      Auth2Service.emitActionError(client, 'lobby.doesntExist');
       return;
     }
 
@@ -44,13 +51,7 @@ export class Auth2Service {
     try {
       lobby.addClient(client);
     } catch (e) {
-      this.emitActionError(client, e.message);
+      Auth2Service.emitActionError(client, e.message);
     }
-  }
-
-  private emitActionError(client: Client, errorName: string) {
-    client.socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
-    client.socket.emit(SERVER_EVENT_NAME.Notification, errorName, 'Error');
-    clientManager.removeClient(client);
   }
 }
