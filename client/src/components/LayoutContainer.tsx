@@ -13,13 +13,14 @@ export const LayoutContainer = ({ children }: Props) => {
       flexDirection={'column'}
       justifyContent={'space-between'}
       px={[8, 16, 32]}
-      py={[1, 2, 4]}
+      py={[1, 2]}
     >
       <Flex
         margin="0 auto"
         direction="column"
         maxW="1250px"
-        my={[8, 16, 32]}
+        maxH='90%'
+        my={[8, 16, 24]}
         p={4}
         width={'100%'}
         flex={'1 0 auto'}

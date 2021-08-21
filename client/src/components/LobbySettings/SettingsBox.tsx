@@ -23,7 +23,7 @@ export const SettingsBox = ({ title, description, icon, children }: Props) => {
           <Text>{description}</Text>
         </Flex>
       </Box>
-      <Box flex={'1 1 auto'} marginLeft={8}>
+      <Box flex={'1 1 0%'} marginLeft={8}>
         {children && children}
       </Box>
     </Flex>

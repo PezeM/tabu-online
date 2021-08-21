@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Code, Text } from '@chakra-ui/react';
+import { Button, Code, Grid, Text } from '@chakra-ui/react';
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
 import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '../../../shared/constants/events';
 import { ClientCP } from '../../../shared/dto/client.dto';
@@ -66,12 +66,11 @@ export const Lobby = () => {
   }
 
   return (
-    <Box>
-      <Text>Is in lobby {isInLobby ? 'True' : 'False'}</Text>
+    <Grid gap={6} templateColumns={'repeat(1, 1fr)'} h={'100%'} overflowY={'auto'}>
       <Code>{JSON.stringify(lobbyData, null, 4)}</Code>
       <Button onClick={() => changeTeam()}>Change team</Button>
       <Button onClick={() => updateSettings()}>Update settings</Button>
       <LobbySettingsTabs />
-    </Box>
+    </Grid>
   );
 };
