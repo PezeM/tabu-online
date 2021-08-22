@@ -54,10 +54,6 @@ export const Lobby = () => {
     dispatch(changeLobbySettings(newSettings));
   });
 
-  const changeTeam = () => {
-    socket.emit(CLIENT_EVENT_NAME.ChangeTeam);
-  };
-
   const updateSettings = () => {
     socket.emit(CLIENT_EVENT_NAME.LobbyUpdateSettings, { maxPlayers: 6 });
   };

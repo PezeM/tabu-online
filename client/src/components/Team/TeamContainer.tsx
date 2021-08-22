@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button, Flex, HStack, useColorModeValue } from '@chakra-ui/react';
 import { Team } from '../../../../shared/enums/client';
 import { TeamName } from '@/components/Team/TeamName';
@@ -9,6 +9,10 @@ import { selectLobbyMembers } from '@/features/lobby/lobby.slice';
 import { ClientCP } from '../../../../shared/dto/client.dto';
 import { generateRandomId } from '../../../../shared/utils/uuid';
 import { generateRandomInt } from '../../../../shared/utils/number';
+import { selectClient } from '@/features/client/client.splice';
+import { socket } from '@/services/socket';
+import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '../../../../shared/constants/events';
+import { useListenServerEvent } from '@/hooks/useListenServerEvent';
 
 interface Props {
   team: Team;
@@ -23,10 +27,25 @@ const generateRandomMembers = (team: Team, membersNumber = 5): ClientCP[] => {
 };
 
 export const TeamContainer = ({ team }: Props) => {
-  const { t } = useTranslation();
+  const [isButtonLoading, setIsButtonLoading] = useState(false);
+  const client = useAppSelector(selectClient);
   const allMembers = useAppSelector(selectLobbyMembers)?.filter(m => m.team === team);
+  const { t } = useTranslation();
+  const joinButtonBg = useColorModeValue('#151f21', 'gray.700');
 
+  const showJoinTeamButton = client?.team !== team;
   const members = [...generateRandomMembers(team), ...allMembers];
+
+  useListenServerEvent(SERVER_EVENT_NAME.LobbyUserChangedTeam, (clientId: string) => {
+    if (client?.id === clientId) {
+      setIsButtonLoading(false);
+    }
+  });
+
+  const joinTeam = () => {
+    setIsButtonLoading(true);
+    socket.emit(CLIENT_EVENT_NAME.ChangeTeam);
+  };
 
   return (
     <Flex
@@ -46,17 +65,21 @@ export const TeamContainer = ({ team }: Props) => {
         pb={[2, 3]}
       >
         <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-          <Button
-            bg={useColorModeValue('#151f21', 'gray.700')}
-            color={'white'}
-            rounded={'md'}
-            _hover={{
-              transform: 'translateY(-2px)',
-              boxShadow: 'lg',
-            }}
-          >
-            {t('ui.team.join')}
-          </Button>
+          {showJoinTeamButton && (
+            <Button
+              bg={joinButtonBg}
+              color={'white'}
+              rounded={'md'}
+              isLoading={isButtonLoading}
+              onClick={joinTeam}
+              _hover={{
+                transform: 'translateY(-2px)',
+                boxShadow: 'lg',
+              }}
+            >
+              {t('ui.team.join')}
+            </Button>
+          )}
         </Box>
 
         {members.map(member => (
