@@ -17,6 +17,8 @@
     "toggleSoundsDescription": "Włączenie lub wyłączenie dźwięków",
     "changeTextScale": "Rozmiar czcionki",
     "changeTextScaleDescription": "Zmiana rozmiaru czcionki na całej stronie",
+    "gameOwnerTooltip": "Jesteś właścicielem gry",
+    "clientTooltip": "To ty",
     "team": {
       "join": "Dołącz",
       "name": "Zespół",

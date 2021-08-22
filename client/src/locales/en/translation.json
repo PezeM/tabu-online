@@ -17,6 +17,8 @@
     "toggleSoundsDescription": "Disable or enable game sounds",
     "changeTextScale": "Change text size",
     "changeTextScaleDescription": "Customize page text size to your own needs",
+    "gameOwnerTooltip": "You are game owner",
+    "clientTooltip": "It's you",
     "team": {
       "join": "Join team",
       "name": "Team",
