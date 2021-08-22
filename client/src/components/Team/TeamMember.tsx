@@ -1,9 +1,11 @@
 import React from 'react';
-import { Avatar, AvatarBadge, Box, Text } from '@chakra-ui/react';
+import { Avatar, Box, Text } from '@chakra-ui/react';
 import { ClientCP } from '../../../../shared/dto/client.dto';
 import { useAppSelector } from '@/hooks/reduxHooks';
 import { selectOwnerId } from '@/features/lobby/lobby.slice';
 import { selectClientId } from '@/features/client/client.splice';
+import { MemberBadge } from '@/components/Team/MemberBadge';
+import { CrownIcon, UserIcon } from '@/styles/icons';
 
 interface Props {
   member: ClientCP;
@@ -26,8 +28,16 @@ export const TeamMember = ({ member }: Props) => {
       whiteSpace={'nowrap'}
     >
       <Avatar name={member.username} size={'sm'}>
-        {isOwner && <AvatarBadge bg="green.500" boxSize={'1.2em'} />}
-        {isClient && <AvatarBadge bg="red.500" boxSize={'1.2em'} left={'-8px'} />}
+        {isOwner && (
+          <MemberBadge bottom={'-12px'} right={'2px'} bg={'cyan.400'}>
+            <CrownIcon w={'0.85rem'} h={'0.85rem'} />
+          </MemberBadge>
+        )}
+        {isClient && (
+          <MemberBadge bottom={'-12px'} right={'30px'} bg={'purple.400'}>
+            <UserIcon w={'0.85rem'} h={'0.85rem'} />
+          </MemberBadge>
+        )}
       </Avatar>
 
       <Text>{member.username}</Text>

@@ -1,7 +1,7 @@
 import { createIcon } from '@chakra-ui/react';
 
 export const GithubIcon = createIcon({
-  displayName: 'GithubIcon',
+  displayName: 'githubIcon',
   defaultProps: {
     fill: 'none',
     stroke: 'currentColor',
@@ -10,7 +10,7 @@ export const GithubIcon = createIcon({
 });
 
 export const InputFieldIcon = createIcon({
-  displayName: 'InputFieldIcon',
+  displayName: 'inputFieldIcon',
   defaultProps: {
     fill: 'transparent',
     stroke: 'currentColor',
@@ -20,7 +20,7 @@ export const InputFieldIcon = createIcon({
 });
 
 export const PizzaSliceIcon = createIcon({
-  displayName: 'PizzaSliceIcon',
+  displayName: 'pizzaSliceIcon',
   defaultProps: {
     fill: 'transparent',
     stroke: 'currentColor',
@@ -39,7 +39,7 @@ export const PizzaSliceIcon = createIcon({
 });
 
 export const CircleIcon = createIcon({
-  displayName: 'CircleIcon',
+  displayName: 'circleIcon',
   defaultProps: {
     fill: 'transparent',
     stroke: 'currentColor',
@@ -51,7 +51,7 @@ export const CircleIcon = createIcon({
 });
 
 export const ScaleIcon = createIcon({
-  displayName: 'ScaleIcon',
+  displayName: 'scaleIcon',
   defaultProps: {
     fill: 'transparent',
     stroke: 'currentColor',
@@ -62,4 +62,26 @@ export const ScaleIcon = createIcon({
   d: 'M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3',
 });
 
+export const UserIcon = createIcon({
+  displayName: 'userIcon',
+  defaultProps: {
+    strokeWidth: '2',
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+  },
+  path: [
+    <path d="M19.207 17.156l-3.824-1.91a1.051 1.051 0 01-.582-.945v-1.356a9.153 9.153 0 001.469-2.7c.562-.257.93-.815.93-1.444V7.199c0-.383-.145-.758-.4-1.05V4.022c.024-.222.11-1.53-.835-2.609C15.14.477 13.809 0 12 0c-1.809 0-3.14.477-3.965 1.41-.945 1.082-.86 2.39-.836 2.613v2.125A1.614 1.614 0 006.801 7.2v1.602c0 .484.219.941.597 1.242a8.36 8.36 0 001.403 2.895v1.324c0 .386-.211.742-.551.93l-3.57 1.945a3.606 3.606 0 00-1.88 3.168v1.297C2.8 23.5 8.817 24 12 24c3.184 0 9.2-.5 9.2-2.398v-1.22a3.583 3.583 0 00-1.993-3.226zm0 0" />,
+  ],
+});
 
+export const CrownIcon = createIcon({
+  displayName: 'crownIcon',
+  defaultProps: {
+    strokeWidth: '2',
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+  },
+  path: [
+    <path d="M23.055 9.004a.687.687 0 01-.016.2l-1.48 5.921a.673.673 0 01-.653.508l-8.879.047H3.141a.672.672 0 01-.653-.512l-1.48-5.945a.6.6 0 01-.02-.203 1.414 1.414 0 01.426-2.762 1.413 1.413 0 01.895 2.504l1.855 1.867a2.523 2.523 0 001.781.742c.79 0 1.54-.371 2.012-1L11 6.336a1.412 1.412 0 011-2.41c.777 0 1.414.633 1.414 1.414 0 .375-.152.719-.394.973l.003.003 3.024 4.047a2.518 2.518 0 003.789.274l1.867-1.867a1.413 1.413 0 111.352.234zm-1.64 8.781c0-.37-.302-.672-.677-.672H3.336c-.371 0-.676.301-.676.672v1.617c0 .371.305.672.676.672h17.402c.375 0 .676-.3.676-.672zm0 0" />,
+  ],
+});
