@@ -19,6 +19,8 @@
     "changeTextScaleDescription": "Customize page text size to your own needs",
     "gameOwnerTooltip": "You are game owner",
     "clientTooltip": "It's you",
+    "lobbyStartGame": "Start game",
+    "lobbyCopyInviteLink": "Invite",
     "team": {
       "join": "Join team",
       "name": "Team",

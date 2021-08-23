@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '@chakra-ui/react';
+import { Flex, Grid } from '@chakra-ui/react';
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
 import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '../../../shared/constants/events';
 import { ClientCP } from '../../../shared/dto/client.dto';
@@ -19,6 +19,7 @@ import { socket } from '@/services/socket';
 import { LobbySettingsTabs } from '@/components/LobbySettings/LobbySettingsTabs';
 import { LobbySettings } from '../../../shared/interfaces/lobby';
 import { TeamsContainer } from '@/components/Team/TeamsContainer';
+import { LobbyFooter } from '@/components/LobbyFooter';
 
 export const Lobby = () => {
   const isInLobby = useAppSelector(selectIsInLobby);
@@ -64,14 +65,15 @@ export const Lobby = () => {
 
   return (
     <Grid
-      gap={6}
+      gap={[2, 4, 6]}
       templateColumns={'repeat(1, 1fr)'}
-      templateRows={'auto 1fr'}
+      templateRows={'auto 1fr auto'}
       h={'100%'}
       overflowY={'auto'}
     >
       <TeamsContainer />
       <LobbySettingsTabs />
+      <LobbyFooter />
     </Grid>
   );
 };

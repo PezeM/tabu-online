@@ -19,6 +19,8 @@
     "changeTextScaleDescription": "Zmiana rozmiaru czcionki na całej stronie",
     "gameOwnerTooltip": "Jesteś właścicielem gry",
     "clientTooltip": "To ty",
+    "lobbyStartGame": "Rozpocznij",
+    "lobbyCopyInviteLink": "Zaproś",
     "team": {
       "join": "Dołącz",
       "name": "Zespół",
