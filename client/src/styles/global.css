@@ -1,4 +1,18 @@
-html {
-    scroll-behavior: smooth;
-    background-color: #edf2f7;
+html,
+body {
+  scroll-behavior: smooth;
+  background-color: #edf2f7;
+}
+
+body::-webkit-scrollbar {
+  width: 0.4em !important;
+}
+
+body::-webkit-scrollbar-track-piece {
+  width: 10px !important;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: red !important;
+  border-radius: 1em !important;
 }

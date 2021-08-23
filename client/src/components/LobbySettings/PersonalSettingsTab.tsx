@@ -16,7 +16,7 @@ export const PersonalSettingsTab = () => {
         description={t('ui.changeUiLanguageDescription')}
       >
         <Box>
-          <Text>Random other component</Text>
+          <Text variant={'emphasis'}>Random other component</Text>
         </Box>
       </SettingsBox>
       <SettingsBox
@@ -25,7 +25,7 @@ export const PersonalSettingsTab = () => {
         description={t('ui.changeUiThemeDescription')}
       >
         <Box>
-          <Text>Random other component</Text>
+          <Text variant={'description'}>Random other component</Text>
         </Box>
       </SettingsBox>
       <SettingsBox
@@ -34,7 +34,7 @@ export const PersonalSettingsTab = () => {
         description={t('ui.toggleSoundsDescription')}
       >
         <Box>
-          <Text>Random other component</Text>
+          <Text variant={'accentAlternative'}>Random other component</Text>
         </Box>
       </SettingsBox>
       <SettingsBox
@@ -43,7 +43,7 @@ export const PersonalSettingsTab = () => {
         description={t('ui.changeTextScaleDescription')}
       >
         <Box>
-          <Text>Random other component</Text>
+          <Text variant={'accent'}>Random other component</Text>
         </Box>
       </SettingsBox>
     </LobbySettingsContainer>
