@@ -21,6 +21,8 @@
     "clientTooltip": "To ty",
     "lobbyStartGame": "Rozpocznij",
     "lobbyCopyInviteLink": "Zaproś",
+    "copyingToClipboard": "Kopiowanie do schowka",
+    "inviteLinkCopiedSuccessfully": "Odnośnik z zaproszeniem zapisany w schowku!",
     "team": {
       "join": "Dołącz",
       "name": "Zespół",
@@ -47,6 +49,7 @@
     "wrongType": "Zły typ ustawienia",
     "notAnInt": "Opcja powinna być liczbą",
     "minLength": "Zbyt niska liczba",
-    "maxLength": "Zbyt wysoka liczba"
+    "maxLength": "Zbyt wysoka liczba",
+    "copyingToClipboard": "Błąd podczas kopiowania odnośnika do schowka!"
   }
 }

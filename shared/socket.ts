@@ -34,4 +34,5 @@ export interface EventsFromClient {
   [CLIENT_EVENT_NAME.Disconnecting]: (reason: string) => void;
   [CLIENT_EVENT_NAME.ChangeTeam]: () => void;
   [CLIENT_EVENT_NAME.LobbyUpdateSettings]: (settings: Partial<LobbySettings>) => void;
+  [CLIENT_EVENT_NAME.TryStartGame]: () => void;
 }

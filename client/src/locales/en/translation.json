@@ -21,6 +21,8 @@
     "clientTooltip": "It's you",
     "lobbyStartGame": "Start game",
     "lobbyCopyInviteLink": "Invite",
+    "copyingToClipboard": "Copy to clipboard",
+    "inviteLinkCopiedSuccessfully": "Invite link copied to clipboard!",
     "team": {
       "join": "Join team",
       "name": "Team",
@@ -47,6 +49,7 @@
     "wrongType": "Wrong setting type",
     "notAnInt": "Option should be an integer",
     "minLength": "Too low number",
-    "maxLength": "Exceeded maximum number"
+    "maxLength": "Exceeded maximum number",
+    "copyingToClipboard": "Error copying invite link to clipboard!"
   }
 }
