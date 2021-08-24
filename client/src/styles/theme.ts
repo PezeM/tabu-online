@@ -1,5 +1,5 @@
 import { extendTheme, ThemeComponentProps, ThemeConfig } from '@chakra-ui/react';
-import { mode } from '@chakra-ui/theme-tools';
+import { GlobalStyleProps, mode } from '@chakra-ui/theme-tools';
 
 const config: ThemeConfig = {
   initialColorMode: 'dark',
@@ -39,12 +39,40 @@ const textVariants = {
   }),
 };
 
+const styles = {
+  global: (props: GlobalStyleProps) => ({
+    body: {
+      fontFamily: 'body',
+      lineHeight: 'base',
+      MozOsxFontSmoothing: 'grayscale',
+      WebkitFontSmoothing: 'antialiased',
+      textRendering: 'optimizeLegibility',
+      overflow: "hidden",
+    },
+    '*': {
+      scrollbarWidth: 'thin',
+      scrollbarColor: 'blue orange',
+    },
+    '*::-webkit-scrollbar': {
+      height: '0.4em',
+      width: '0.4em',
+    },
+    '*::-webkit-scrollbar-track': {
+      background: mode('white', 'gray.800')(props),
+    },
+    '*::-webkit-scrollbar-thumb': {
+      backgroundColor: mode('gray.200', 'gray.600')(props),
+      borderRadius: '1rem',
+    },
+  }),
+};
+
 export const theme = extendTheme({
   config,
   colors,
   fontWeights,
   fonts,
-  textVariants,
+  styles,
   components: {
     Link: {
       baseStyle: props => ({
