@@ -19,6 +19,7 @@ export interface EventsFromClientOnServer {
     socket: ClientSocket,
     settings: Partial<LobbySettings>,
   ) => void;
+  [CLIENT_EVENT_NAME.TryStartGame]: (socket: Socket) => void;
 }
 
 export type ServerSocket = Server<EventsFromClient, EventsFromServer>;

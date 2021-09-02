@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  tabu-online-server:
+    build:
+      target: production
+    environment:
+      PORT: 3010
+      NODE_ENV: production
+    command: node dist/server/src/server.js
