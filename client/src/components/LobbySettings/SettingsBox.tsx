@@ -32,7 +32,7 @@ export const SettingsBox = ({ title, description, icon, children }: Props) => {
           {!isMobile && <Text variant={'accentAlternative'}>{description}</Text>}
         </Flex>
       </Box>
-      <Box flex={'1 1 0%'} marginLeft={{ base: 0, md: 8 }}>
+      <Box flex={'1 1 0%'} paddingLeft={{ base: 0, md: 8 }} width={'100%'}>
         {children && children}
       </Box>
     </Grid>

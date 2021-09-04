@@ -5,5 +5,5 @@ export const useListenServerEvent = (...[ev, listener]: Parameters<typeof socket
   useEffect(() => {
     socket.on(ev, listener);
     return () => void socket.off(ev, listener);
-  }, []);
+  }, [ev, listener]);
 };

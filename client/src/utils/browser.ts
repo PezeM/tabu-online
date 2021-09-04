@@ -22,7 +22,7 @@ export const getBrowserLocales = (options: BrowserLocalesOptions = {}): string[]
   return browserLocales.map(locale => {
     const trimmedLocale = locale.trim();
 
-    return opt.languageCodeOnly ? trimmedLocale.split(/-|_/)[0] : trimmedLocale;
+    return opt.languageCodeOnly ? getLanguageCodeOnly(trimmedLocale) : trimmedLocale;
   });
 };
 
@@ -35,3 +35,10 @@ export const getBrowserLanguage = (options: BrowserLocalesOptions = { languageCo
   const browserLocales = getBrowserLocales(options);
   return browserLocales ? browserLocales[0] : 'en';
 };
+
+/**
+ * Returns only language code, ex from pl-PL will return only pl
+ * @param {string} language
+ * @returns {string} Only language code
+ */
+export const getLanguageCodeOnly = (language: string) => language.split(/-|_/)[0];
