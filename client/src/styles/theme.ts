@@ -24,6 +24,8 @@ const fonts = {
   body: `Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"`,
 };
 
+export const mobileBreakpoints = { base: true, sm: true, md: false, lg: false, xl: false };
+
 const textVariants = {
   emphasis: (props: ThemeComponentProps) => ({
     color: mode('teal.500', 'cyan.200')(props),
@@ -47,7 +49,7 @@ const styles = {
       MozOsxFontSmoothing: 'grayscale',
       WebkitFontSmoothing: 'antialiased',
       textRendering: 'optimizeLegibility',
-      overflow: "hidden",
+      overflow: 'hidden',
     },
     '*': {
       scrollbarWidth: 'thin',
@@ -75,7 +77,7 @@ export const theme = extendTheme({
   styles,
   components: {
     Link: {
-      baseStyle: props => ({
+      baseStyle: (props: any) => ({
         color: mode('teal.500', 'cyan.200')(props),
       }),
       variants: {
@@ -97,7 +99,7 @@ export const theme = extendTheme({
     },
     Divider: {
       variants: {
-        solid: props => ({
+        solid: (props: any) => ({
           borderColor: mode('gray.800', 'gray.400')(props),
           marginLeft: 'auto',
           marginRight: 'auto',
