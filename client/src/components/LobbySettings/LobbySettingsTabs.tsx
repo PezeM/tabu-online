@@ -28,8 +28,8 @@ export const LobbySettingsTabs = () => {
         {isLobbyOwner && <Tab>{t('ui.gameSettings').toUpperCase()}</Tab>}
       </TabList>
 
-      <TabPanels>
-        <TabPanel>
+      <TabPanels height={'100%'}>
+        <TabPanel height={'100%'}>
           <PersonalSettingsTab />
         </TabPanel>
         {isLobbyOwner && (
