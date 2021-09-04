@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import lobbyReducer from './features/lobby/lobby.slice';
 import clientReducer from './features/client/client.splice';
+import settingsReducer from './features/settings/settings.splice';
 
 export const store = configureStore({
   reducer: {
     lobby: lobbyReducer,
-    auth: clientReducer
+    auth: clientReducer,
+    settings: settingsReducer
   },
   devTools: true
 });

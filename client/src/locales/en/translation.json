@@ -33,8 +33,10 @@
       "en": "English",
       "pl": "Polish"
     },
-    "switchToDarkMode": "Switch to light mode",
-    "switchToLightMode": "Switch to dark mode"
+    "switchToDarkMode": "Switch to dark mode",
+    "switchToLightMode": "Switch to light mode",
+    "muteSounds": "Disable sounds",
+    "unmuteSounds": "Enable sounds"
   },
   "lobby": {
     "alreadyInGame": "Lobby is already in game",

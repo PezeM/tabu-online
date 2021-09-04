@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react';
+import { getLocalStorageValue } from '@/utils/localStorage';
 
 export function useLocalStorage<T>(
   key: string,
@@ -12,13 +13,7 @@ export function useLocalStorage<T>(
       return initialValue;
     }
 
-    try {
-      const item = window.localStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
-    } catch (error) {
-      console.warn(`Error reading localStorage key “${key}”:`, error);
-      return initialValue;
-    }
+    return getLocalStorageValue(key, initialValue);
   }, [initialValue, key]);
 
   // State to store our value

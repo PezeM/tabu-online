@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import { SettingsBox } from '@/components/LobbySettings/SettingsBox';
 import { LobbySettingsContainer } from '@/components/LobbySettings/LobbySettingsContainer';
 import { PizzaSliceIcon } from '@/styles/icons';
@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { ChangeLanguageSelect } from '@/components/LobbySettings/ChangeLanguageSelect';
 import { ToggleColorModeButton } from '@/components/ToggleColorModeButton';
 import { ChangeFontScaleSelect } from '@/components/LobbySettings/ChangeFontScaleSelect';
+import { ToggleSoundsButton } from '@/components/LobbySettings/ToggleSoundsButton';
 
 export const PersonalSettingsTab = () => {
   const { t } = useTranslation();
@@ -40,7 +41,15 @@ export const PersonalSettingsTab = () => {
         icon={<PizzaSliceIcon />}
         description={t('ui.toggleSoundsDescription')}
       >
-        <ChangeFontScaleSelect />
+        <Box
+          alignItems={'center'}
+          width={'100%'}
+          height={'100%'}
+          display={'flex'}
+          justifyContent={'center'}
+        >
+          <ToggleSoundsButton />
+        </Box>
       </SettingsBox>
       <SettingsBox
         title={t('ui.changeTextScale')}
