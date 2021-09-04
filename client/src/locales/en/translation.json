@@ -32,7 +32,9 @@
     "language": {
       "en": "English",
       "pl": "Polish"
-    }
+    },
+    "switchToDarkMode": "Switch to light mode",
+    "switchToLightMode": "Switch to dark mode"
   },
   "lobby": {
     "alreadyInGame": "Lobby is already in game",

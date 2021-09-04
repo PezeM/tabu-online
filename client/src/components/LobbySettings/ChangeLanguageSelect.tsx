@@ -17,7 +17,7 @@ export const ChangeLanguageSelect = () => {
           .sort((a, b) => a.localeCompare(b, currentLanguage, { sensitivity: 'base' })),
       ),
     );
-  }, [i18n.languages]);
+  }, [i18n.languages, currentLanguage]);
 
   const changeLanguage = async (e: any) => {
     await i18n.changeLanguage(e.target.value);

@@ -5,6 +5,7 @@ import { LobbySettingsContainer } from '@/components/LobbySettings/LobbySettings
 import { PizzaSliceIcon } from '@/styles/icons';
 import { useTranslation } from 'react-i18next';
 import { ChangeLanguageSelect } from '@/components/LobbySettings/ChangeLanguageSelect';
+import { ToggleColorModeButton } from '@/components/ToggleColorModeButton';
 
 export const PersonalSettingsTab = () => {
   const { t } = useTranslation();
@@ -23,8 +24,14 @@ export const PersonalSettingsTab = () => {
         icon={<PizzaSliceIcon />}
         description={t('ui.changeUiThemeDescription')}
       >
-        <Box>
-          <Text variant={'description'}>Random other component</Text>
+        <Box
+          alignItems={'center'}
+          width={'100%'}
+          height={'100%'}
+          display={'flex'}
+          justifyContent={'center'}
+        >
+          <ToggleColorModeButton />
         </Box>
       </SettingsBox>
       <SettingsBox
