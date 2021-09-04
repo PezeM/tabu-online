@@ -90,6 +90,7 @@ export const ToggleSoundsButton = () => {
             d="M8.25 3.75L4.5 6.75H1.5V11.25H4.5L8.25 14.25V3.75Z"
             variants={iconVariants}
             animate={isSoundMuted ? 'animate' : 'stop'}
+            initial={false}
           />
           <motion.path
             stroke="currentColor"
