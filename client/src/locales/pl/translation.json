@@ -28,6 +28,10 @@
       "name": "Zespół",
       "0": "Niebieski",
       "1": "Czerwony"
+    },
+    "language": {
+      "en": "Angielski",
+      "pl": "Polski"
     }
   },
   "lobby": {

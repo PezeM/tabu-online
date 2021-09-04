@@ -28,6 +28,10 @@
       "name": "Team",
       "0": "Blue",
       "1": "Red"
+    },
+    "language": {
+      "en": "English",
+      "pl": "Polish"
     }
   },
   "lobby": {

@@ -1,18 +1,13 @@
 import React from 'react';
-import { Box, Select, Text } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import { SettingsBox } from '@/components/LobbySettings/SettingsBox';
 import { LobbySettingsContainer } from '@/components/LobbySettings/LobbySettingsContainer';
 import { PizzaSliceIcon } from '@/styles/icons';
 import { useTranslation } from 'react-i18next';
-import { getLanguageCodeOnly } from '@/utils/browser';
+import { ChangeLanguageSelect } from '@/components/LobbySettings/ChangeLanguageSelect';
 
 export const PersonalSettingsTab = () => {
-  const { t, i18n } = useTranslation();
-
-  console.log(i18n);
-
-  const currentLanguage = getLanguageCodeOnly(i18n.language);
-  const languages = Array.from(new Set(i18n.languages.map(getLanguageCodeOnly)));
+  const { t } = useTranslation();
 
   return (
     <LobbySettingsContainer>
@@ -21,13 +16,7 @@ export const PersonalSettingsTab = () => {
         icon={<PizzaSliceIcon />}
         description={t('ui.changeUiLanguageDescription')}
       >
-        <Box>
-          <Select defaultValue={currentLanguage}>
-            {languages.map(l => (
-              <option value={l}>{l}</option>
-            ))}
-          </Select>
-        </Box>
+        <ChangeLanguageSelect />
       </SettingsBox>
       <SettingsBox
         title={t('ui.changeUiTheme')}
