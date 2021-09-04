@@ -6,6 +6,7 @@ import { PizzaSliceIcon } from '@/styles/icons';
 import { useTranslation } from 'react-i18next';
 import { ChangeLanguageSelect } from '@/components/LobbySettings/ChangeLanguageSelect';
 import { ToggleColorModeButton } from '@/components/ToggleColorModeButton';
+import { ChangeFontScaleSelect } from '@/components/LobbySettings/ChangeFontScaleSelect';
 
 export const PersonalSettingsTab = () => {
   const { t } = useTranslation();
@@ -39,18 +40,14 @@ export const PersonalSettingsTab = () => {
         icon={<PizzaSliceIcon />}
         description={t('ui.toggleSoundsDescription')}
       >
-        <Box>
-          <Text variant={'accentAlternative'}>Random other component</Text>
-        </Box>
+        <ChangeFontScaleSelect />
       </SettingsBox>
       <SettingsBox
         title={t('ui.changeTextScale')}
         icon={<PizzaSliceIcon />}
         description={t('ui.changeTextScaleDescription')}
       >
-        <Box>
-          <Text variant={'accent'}>Random other component</Text>
-        </Box>
+        <ChangeFontScaleSelect />
       </SettingsBox>
     </LobbySettingsContainer>
   );

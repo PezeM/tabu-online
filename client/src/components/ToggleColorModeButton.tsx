@@ -1,9 +1,11 @@
 import React from 'react';
-import { IconButton, Tooltip, useColorMode, useColorModeValue } from '@chakra-ui/react';
+import { IconButton, IconButtonProps, Tooltip, useColorMode, useColorModeValue } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { useTranslation } from 'react-i18next';
 
-export const ToggleColorModeButton = (props: any) => {
+type ColorModeSwitcherProps = Omit<IconButtonProps, 'aria-label'>;
+
+export const ToggleColorModeButton = (props: ColorModeSwitcherProps) => {
   const { toggleColorMode } = useColorMode();
   const { t } = useTranslation();
 

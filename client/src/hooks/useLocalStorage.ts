@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react';
 
 export function useLocalStorage<T>(
   key: string,
@@ -6,7 +6,7 @@ export function useLocalStorage<T>(
 ): [T, Dispatch<SetStateAction<T>>] {
   // Get from local storage then
   // parse stored json or return initialValue
-  const readValue = () => {
+  const readValue = useCallback(() => {
     // Prevent build error "window is undefined" but keep keep working
     if (typeof window === 'undefined') {
       return initialValue;
@@ -19,7 +19,7 @@ export function useLocalStorage<T>(
       console.warn(`Error reading localStorage key “${key}”:`, error);
       return initialValue;
     }
-  };
+  }, [initialValue, key]);
 
   // State to store our value
   // Pass initial state function to useState so logic is only executed once
@@ -54,7 +54,7 @@ export function useLocalStorage<T>(
 
   useEffect(() => {
     setStoredValue(readValue());
-  }, []);
+  }, [readValue]);
 
   useEffect(() => {
     const handleStorageChange = () => {
@@ -71,7 +71,7 @@ export function useLocalStorage<T>(
       window.removeEventListener('storage', handleStorageChange);
       window.removeEventListener('local-storage', handleStorageChange);
     };
-  }, []);
+  }, [readValue]);
 
   return [storedValue, setValue];
 }

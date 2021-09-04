@@ -8,10 +8,12 @@ import { NotificationContainer } from './components/NotificationContainer';
 import { RouteNotFound } from './views/routeNotFound';
 import { Lobby } from './views/lobby';
 import { Invite } from './views/invite';
+import { BodyTextScale } from '@/components/BodyTextScale';
 
 export const App = () => (
   <ChakraProvider theme={theme}>
     <LayoutContainer>
+      <BodyTextScale />
       <NotificationContainer />
 
       <Switch>

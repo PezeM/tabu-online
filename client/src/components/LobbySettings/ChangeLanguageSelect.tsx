@@ -19,7 +19,7 @@ export const ChangeLanguageSelect = () => {
     );
   }, [i18n.languages, currentLanguage]);
 
-  const changeLanguage = async (e: any) => {
+  const changeLanguage = async (e: React.ChangeEvent<HTMLSelectElement>) => {
     await i18n.changeLanguage(e.target.value);
   };
 
