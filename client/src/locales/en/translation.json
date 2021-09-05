@@ -36,7 +36,19 @@
     "switchToDarkMode": "Switch to dark mode",
     "switchToLightMode": "Switch to light mode",
     "muteSounds": "Disable sounds",
-    "unmuteSounds": "Enable sounds"
+    "unmuteSounds": "Enable sounds",
+    "maxPlayersNumber": "Max players number",
+    "maxPlayersNumberTooltip": "Maximum number of players in the game",
+    "pointsToWin": "Points to win",
+    "pointsToWinTooltip": "Number of points team has to get to win the game",
+    "cardsLanguage": "Cards language",
+    "cardsLanguageTooltip": "Language of the cards in game",
+    "cards": "Cards",
+    "cardsTooltip": "List of cards that will be in the game",
+    "roundTime": "Round time",
+    "roundTimeTooltip": "Time of each round in the game",
+    "maxNumberOfSkips": "Max skips number",
+    "maxNumberOfSkipsTooltip": "Maximum number of skips of cards per team"
   },
   "lobby": {
     "alreadyInGame": "Lobby is already in game",

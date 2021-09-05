@@ -33,7 +33,7 @@ export const LobbySettingsTabs = () => {
           <PersonalSettingsTab />
         </TabPanel>
         {isLobbyOwner && (
-          <TabPanel>
+          <TabPanel height={'100%'}>
             <GameSettingsTab />
           </TabPanel>
         )}
