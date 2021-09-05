@@ -5,6 +5,9 @@ import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { selectIsSoundMuted, toggleIsSoundMuted } from '@/features/settings/settings.splice';
 import { useSoundModeValue } from '@/hooks/useSoundModeValue';
 import { motion } from 'framer-motion';
+import { useSound } from '@/hooks/useSound';
+import enableSound from '@/assets/sounds/enable-sound.mp3';
+import disableSound from '@/assets/sounds/disable-sound.mp3';
 
 const iconVariants = {
   animate: {
@@ -56,10 +59,18 @@ export const ToggleSoundsButton = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const isSoundMuted = useAppSelector(selectIsSoundMuted);
+  const [playOnMute] = useSound(disableSound);
+  const [playOnUnmute] = useSound(enableSound);
 
   const text = useSoundModeValue(t('ui.muteSounds'), t('ui.unmuteSounds'));
 
   const toggleSound = () => {
+    if (isSoundMuted) {
+      playOnUnmute({ forceSoundEnabled: true });
+    } else {
+      playOnMute();
+    }
+
     dispatch(toggleIsSoundMuted());
   };
 

@@ -6,7 +6,7 @@ type SpriteMap = {
   [key: string]: [number, number];
 };
 
-type HookOptions<T = any> = T & {
+type HookOptions = {
   id?: string;
   volume?: number;
   playbackRate?: number;
@@ -21,6 +21,7 @@ export const useSound = (src: string | string[], options?: HookOptions) => {
 
   return useSoundHook(src, {
     soundEnabled: !isMuted,
+    volume: 0.6,
     ...options,
   });
 };
