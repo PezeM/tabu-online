@@ -32,7 +32,11 @@
     "language": {
       "en": "Angielski",
       "pl": "Polski"
-    }
+    },
+    "switchToDarkMode": "Zmień na ciemny motyw",
+    "switchToLightMode": "Zmień na jasny motyw",
+    "muteSounds": "Wyłącz dźwięk",
+    "unmuteSounds": "Włącz dźwięk"
   },
   "lobby": {
     "alreadyInGame": "Lobby jest już w grze",
