@@ -1,6 +1,9 @@
 import React from 'react';
 import { Button, chakra, Tooltip, useColorMode, useColorModeValue } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
+import darkOn from '../assets/sounds/dark-on.mp3';
+import lightOn from '../assets/sounds/light-on.mp3';
+import { useSound } from '@/hooks/useSound';
 
 // transformed from https://codepen.io/aaroniker/pen/KGpXZo
 
@@ -10,16 +13,28 @@ export const ToggleColorModeButton = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const buttonColor = useColorModeValue('#1A202C', '#CBD5E0');
   const text = useColorModeValue(t('ui.switchToDarkMode'), t('ui.switchToLightMode'));
+  const [playOnDark] = useSound(darkOn);
+  const [playOnLight] = useSound(lightOn);
+
+  const onToggleColorMode = () => {
+    if (colorMode === 'dark') {
+      playOnDark();
+    } else {
+      playOnLight();
+    }
+
+    toggleColorMode();
+  };
 
   return (
     <Tooltip label={text} aria-label={text}>
       <Button
-        onClick={toggleColorMode}
+        onClick={onToggleColorMode}
         _hover={{
-          opacity: 1,
+          opacity: 1
         }}
         _focus={{
-          opacity: 1,
+          opacity: 1
         }}
         aria-label={text}
         size="lg"
@@ -60,7 +75,7 @@ export const ToggleColorModeButton = () => {
             borderRadius: `50%`,
             opacity: colorMode === 'dark' ? 0 : 1,
             transform: colorMode === 'dark' ? `translate(14px, -14px)` : `translate(0, 0)`,
-            transition: `transform 0.45s ease`,
+            transition: `transform 0.45s ease`
           }}
           _after={{
             content: `""`,
@@ -73,7 +88,7 @@ export const ToggleColorModeButton = () => {
             left: `50%`,
             boxShadow: `0 -26px 0 ${buttonColor}, 0 26px 0 ${buttonColor}, 26px 0 0 ${buttonColor}, -26px 0 0 ${buttonColor}, 18px 18px 0 ${buttonColor}, -18px 18px 0 ${buttonColor}, 18px -18px 0 ${buttonColor}, -18px -18px 0 ${buttonColor}`,
             transform: colorMode === 'dark' ? `scale(1)` : `scale(0)`,
-            transition: `all 0.35s ease`,
+            transition: `all 0.35s ease`
           }}
         />
       </Button>

@@ -89,7 +89,7 @@ export const ToggleSoundsButton = () => {
             strokeWidth={1}
             d="M8.25 3.75L4.5 6.75H1.5V11.25H4.5L8.25 14.25V3.75Z"
             variants={iconVariants}
-            animate={isSoundMuted ? 'animate' : 'stop'}
+            animate={isSoundMuted ? 'stop' : 'animate'}
             initial={false}
           />
           <motion.path
@@ -101,7 +101,7 @@ export const ToggleSoundsButton = () => {
             C12.358 7.04824 12.753 8.00189 12.753 8.99626
             C12.753 9.99063 12.358 10.9443 11.655 11.6475"
             variants={firstPath}
-            animate={isSoundMuted ? 'animate' : 'stop'}
+            animate={isSoundMuted ? 'stop' : 'animate'}
           />
           <motion.path
             stroke="currentColor"
@@ -112,7 +112,7 @@ export const ToggleSoundsButton = () => {
             C15.7086 5.10397 16.4984 7.01128 16.4984 9.00001
             C16.4984 10.9887 15.7086 12.8961 14.3025 14.3025"
             variants={secondPath}
-            animate={isSoundMuted ? 'animate' : 'stop'}
+            animate={isSoundMuted ? 'stop' : 'animate'}
           />
         </motion.svg>
       </MotionButton>

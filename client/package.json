@@ -31,6 +31,7 @@
     "shared": "file:../shared",
     "socket.io-client": "^4.2.0",
     "typescript": "^4.4.2",
+    "use-sound": "^4.0.1",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
