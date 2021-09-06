@@ -1,7 +1,7 @@
 import React from 'react';
-import { Flex, Grid } from '@chakra-ui/react';
+import { Grid } from '@chakra-ui/react';
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
-import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '../../../shared/constants/events';
+import { SERVER_EVENT_NAME } from '../../../shared/constants/events';
 import { ClientCP } from '../../../shared/dto/client.dto';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import {
@@ -15,11 +15,11 @@ import {
 import { LobbySkeleton } from '@/components/Skeletons/LobbySkeleton';
 import { Team } from '../../../shared/enums/client';
 import { changeClientTeam, selectClient } from '@/features/client/client.splice';
-import { socket } from '@/services/socket';
 import { LobbySettingsTabs } from '@/components/LobbySettings/LobbySettingsTabs';
 import { LobbySettings } from '../../../shared/interfaces/lobby';
 import { TeamsContainer } from '@/components/Team/TeamsContainer';
 import { LobbyFooter } from '@/components/LobbyFooter';
+import { setIsLoading } from '@/features/settings/settings.splice';
 
 export const Lobby = () => {
   const isInLobby = useAppSelector(selectIsInLobby);
@@ -53,11 +53,8 @@ export const Lobby = () => {
 
   useListenServerEvent(SERVER_EVENT_NAME.LobbySettingsChanged, (newSettings: LobbySettings) => {
     dispatch(changeLobbySettings(newSettings));
+    dispatch(setIsLoading(false));
   });
-
-  const updateSettings = () => {
-    socket.emit(CLIENT_EVENT_NAME.LobbyUpdateSettings, { maxPlayers: 6 });
-  };
 
   if (!isInLobby) {
     return <LobbySkeleton delay={1000} page={'/'} />;

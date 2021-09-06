@@ -1,13 +1,15 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getLocalStorageValue, saveLocalStorage } from '@/utils/localStorage';
 import { RootState } from '@/store';
 
 interface InitialState {
   isSoundMuted: boolean;
+  isLoading: boolean;
 }
 
 const initialState: InitialState = {
   isSoundMuted: false,
+  isLoading: false,
 };
 
 const initialStateInLocalStorage = getLocalStorageValue('settings', initialState);
@@ -20,11 +22,15 @@ export const settingsSplice = createSlice({
       state.isSoundMuted = !state.isSoundMuted;
       saveLocalStorage('settings', state);
     },
+    setIsLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
+    },
   },
 });
 
-export const { toggleIsSoundMuted } = settingsSplice.actions;
+export const { toggleIsSoundMuted, setIsLoading } = settingsSplice.actions;
 
 export const selectIsSoundMuted = (state: RootState) => state.settings.isSoundMuted;
+export const selectIsLoading = (state: RootState) => state.settings.isLoading;
 
 export default settingsSplice.reducer;

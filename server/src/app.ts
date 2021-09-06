@@ -18,6 +18,7 @@ import { ClientSocket, ServerSocket } from '@interfaces/socket.interface';
 import { socketClientMiddleware } from '@middlewares/client.middleware';
 import { connect, set } from 'mongoose';
 import { databaseConnection } from '@/database';
+import { GatewayHandlers } from '@/gateways/gateway.handlers';
 
 process.env['NODE_CONFIG_DIR'] = __dirname + '/configs';
 
@@ -98,20 +99,14 @@ export class App {
 
       logger.info(`Socket client connected with id: ${socket.id}`, { socketId: socket.id });
 
+      GatewayHandlers.applyHandlerToSocket(socket);
+
       socket.on('disconnect', reason => {
         logger.info(`Socket with id ${socket.id} disconnected. Reason: ${reason}`, {
           socketId: socket.id,
           reason,
         });
       });
-
-      for (const gateway of gateways) {
-        gateway.handlers.forEach((value, key) => {
-          socket.on(key, (...args) => {
-            value.apply(gateway, [socket, ...args]);
-          });
-        });
-      }
     });
   }
 

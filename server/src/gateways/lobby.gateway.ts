@@ -1,4 +1,3 @@
-import { BaseGateway } from '@/gateways/base.gateway';
 import { CLIENT_EVENT_NAME } from '@shared/constants/events';
 import { ClientSocket } from '@interfaces/socket.interface';
 import { lobbyManager } from '@/managers/lobby.manager';
@@ -7,18 +6,20 @@ import { LobbyService } from '@services/lobby.service';
 import { UpdateSettingsDto } from '@dtos/settings.lobby.dto';
 import { LobbySettingsService } from '@services/lobbySettings.service';
 import { validateRequestData } from '@utils/dataValidation';
+import { Gateway, OnEvent } from '@utils/gateway.decorator';
+import { PerformanceLog } from '@utils/performance-logger';
 
-export class LobbyGateway extends BaseGateway {
+@Gateway
+export class LobbyGateway {
   private readonly _lobbyService: LobbyService;
   private readonly _lobbySettingsService: LobbySettingsService;
 
   constructor() {
-    super();
-
     this._lobbyService = new LobbyService();
     this._lobbySettingsService = new LobbySettingsService();
   }
 
+  @OnEvent(CLIENT_EVENT_NAME.Disconnect)
   protected onDisconnect(socket: ClientSocket) {
     const client = clientManager.getClient(socket.id);
     if (!client) return;
@@ -29,6 +30,7 @@ export class LobbyGateway extends BaseGateway {
     lobby.remove(client);
   }
 
+  @OnEvent(CLIENT_EVENT_NAME.ChangeTeam)
   protected onChangeTeam(socket: ClientSocket) {
     if (!socket.clientUser) return;
 
@@ -38,6 +40,8 @@ export class LobbyGateway extends BaseGateway {
     this._lobbyService.changeTeam(socket.clientUser, lobby);
   }
 
+  @OnEvent(CLIENT_EVENT_NAME.LobbyUpdateSettings)
+  @PerformanceLog()
   protected async onUpdateSettings(socket: ClientSocket, newSettings: Partial<UpdateSettingsDto>) {
     if (!socket.clientUser) return;
 
@@ -48,11 +52,5 @@ export class LobbyGateway extends BaseGateway {
 
     // Update settings
     this._lobbySettingsService.updateSettings(socket, lobby, newSettings);
-  }
-
-  protected mapEvents(): void {
-    this.eventsMap.set(CLIENT_EVENT_NAME.Disconnecting, this.onDisconnect);
-    this.eventsMap.set(CLIENT_EVENT_NAME.ChangeTeam, this.onChangeTeam);
-    this.eventsMap.set(CLIENT_EVENT_NAME.LobbyUpdateSettings, this.onUpdateSettings);
   }
 }
