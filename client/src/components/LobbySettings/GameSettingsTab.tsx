@@ -5,7 +5,7 @@ import { SettingsBox } from '@/components/LobbySettings/SettingsBox';
 import { PizzaSliceIcon } from '@/styles/icons';
 import { ChangeCardsLanguageSelect } from '@/components/LobbySettings/ChangeCardsLanguageSelect';
 
-export const GameSettingsTab = () => {
+export const GameSettingsTab = React.memo(() => {
   const { t } = useTranslation();
 
   return (
@@ -50,4 +50,4 @@ export const GameSettingsTab = () => {
       </SettingsBox>
     </LobbySettingsContainer>
   );
-};
+});

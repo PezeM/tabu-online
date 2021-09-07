@@ -10,7 +10,7 @@ interface Props {
   children?: React.ReactNode;
 }
 
-export const SettingsBox = ({ title, description, tooltip, icon, children }: Props) => {
+export const SettingsBox = React.memo(({ title, description, tooltip, icon, children }: Props) => {
   const isMobile = useIsMobile();
   const displayDescription = description && !isMobile;
   const tooltipText = tooltip ? tooltip : description;
@@ -40,4 +40,4 @@ export const SettingsBox = ({ title, description, tooltip, icon, children }: Pro
       </Box>
     </Grid>
   );
-};
+});

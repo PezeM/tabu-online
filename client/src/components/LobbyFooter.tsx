@@ -9,7 +9,7 @@ import { selectLobbyId } from '@/features/lobby/lobby.slice';
 import { socket } from '@/services/socket';
 import { CLIENT_EVENT_NAME } from '../../../shared/constants/events';
 
-export const LobbyFooter = () => {
+export const LobbyFooter = React.memo(() => {
   const { t } = useTranslation();
   const [startGameButtonLoading, setStartGameButtonLoading] = useState(false);
   const [copyLinkButtonLoading, setCopyLinkButtonLoading] = useState(false);
@@ -74,4 +74,4 @@ export const LobbyFooter = () => {
       </RippledButton>
     </Grid>
   );
-};
+});

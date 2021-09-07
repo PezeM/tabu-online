@@ -26,7 +26,7 @@ const generateRandomMembers = (team: Team, membersNumber = 5): ClientCP[] => {
   }));
 };
 
-export const TeamContainer = ({ team }: Props) => {
+export const TeamContainer = React.memo(({ team }: Props) => {
   const [isButtonLoading, setIsButtonLoading] = useState(false);
   const client = useAppSelector(selectClient);
   const allMembers = useAppSelector(selectLobbyMembers)?.filter(m => m.team === team);
@@ -88,4 +88,4 @@ export const TeamContainer = ({ team }: Props) => {
       </HStack>
     </Flex>
   );
-};
+});

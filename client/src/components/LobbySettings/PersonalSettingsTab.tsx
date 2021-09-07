@@ -9,7 +9,7 @@ import { ToggleColorModeButton } from '@/components/ToggleColorModeButton';
 import { ChangeFontScaleSelect } from '@/components/LobbySettings/ChangeFontScaleSelect';
 import { ToggleSoundsButton } from '@/components/LobbySettings/ToggleSoundsButton';
 
-export const PersonalSettingsTab = () => {
+export const PersonalSettingsTab = React.memo(() => {
   const { t } = useTranslation();
 
   return (
@@ -60,4 +60,4 @@ export const PersonalSettingsTab = () => {
       </SettingsBox>
     </LobbySettingsContainer>
   );
-};
+});
