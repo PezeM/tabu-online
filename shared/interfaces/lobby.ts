@@ -31,3 +31,5 @@ export interface LobbySettings {
    */
   cardsIds?: string[];
 }
+
+export type LobbyKeys = keyof LobbySettings;
