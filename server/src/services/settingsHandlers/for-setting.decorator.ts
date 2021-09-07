@@ -4,7 +4,7 @@ import { BaseSettingsHandler } from '@services/settingsHandlers/base-settings.ha
 import { ClassConstructor } from '@shared/types';
 
 export function ForEvent(key: LobbyKeys) {
-  return (constructor: ClassConstructor<BaseSettingsHandler>): void => {
+  return (constructor: ClassConstructor<BaseSettingsHandler<LobbyKeys>>): void => {
     SettingsHandler.set(key, constructor);
   };
 }

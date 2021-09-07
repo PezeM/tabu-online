@@ -45,12 +45,8 @@ export class LobbyGateway {
   protected async onUpdateSettings(socket: ClientSocket, newSettings: Partial<UpdateSettingsDto>) {
     if (!socket.clientUser) return;
 
-    const lobby = lobbyManager.getLobbyForClient(socket.clientUser);
-    if (!lobby) return;
-
     if (!(await validateRequestData(socket, UpdateSettingsDto, newSettings))) return;
 
-    // Update settings
-    this._lobbySettingsService.updateSettings(socket, lobby, newSettings);
+    await this._lobbySettingsService.updateSettings(socket, newSettings);
   }
 }

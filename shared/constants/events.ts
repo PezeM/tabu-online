@@ -8,6 +8,7 @@ export enum SERVER_EVENT_NAME {
   CouldntCreateOrJoinLobby = "lobbyCouldntCreateOrJoin",
   LobbyUserChangedTeam = "lobbyUserChangedTeam",
   LobbySettingsChanged = "lobbySettingsChanged",
+  LobbySettingsUpdateFailed = "lobbySettingsUpdateFailed"
 }
 
 export enum CLIENT_EVENT_NAME {

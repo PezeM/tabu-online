@@ -5,11 +5,11 @@ import { ClassConstructor } from '@shared/types';
 export class SettingsHandler {
   private static handlers = {};
 
-  public static set(key: LobbyKeys, constructor: ClassConstructor<BaseSettingsHandler>) {
+  public static set(key: LobbyKeys, constructor: ClassConstructor<BaseSettingsHandler<LobbyKeys>>) {
     SettingsHandler.handlers[key] = constructor;
   }
 
-  public static get(key: LobbyKeys): ClassConstructor<BaseSettingsHandler> | undefined {
+  public static get(key: LobbyKeys): ClassConstructor<BaseSettingsHandler<LobbyKeys>> | undefined {
     return SettingsHandler.handlers[key];
   }
 }
