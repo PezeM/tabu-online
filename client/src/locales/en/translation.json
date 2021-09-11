@@ -50,7 +50,9 @@
     "maxNumberOfSkips": "Max skips number",
     "maxNumberOfSkipsTooltip": "Maximum number of skips of cards per team",
     "points": "Points",
-    "unlimited": "Unlimited"
+    "unlimited": "Unlimited",
+    "zero": "Zero",
+    "skips": "Skips"
   },
   "lobby": {
     "alreadyInGame": "Lobby is already in game",

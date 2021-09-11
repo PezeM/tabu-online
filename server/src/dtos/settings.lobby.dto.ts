@@ -1,7 +1,7 @@
 import { LobbySettings } from '@shared/interfaces/lobby';
 import { LobbyLanguage } from '@shared/enums/lobby';
 import { IsIn, IsInt, IsString, Length, Max, Min } from 'class-validator';
-import { LOBBY_LANGUAGES, MAX_POINTS_TO_WIN } from '@shared/constants/lobby';
+import { LOBBY_LANGUAGES, MAX_POINTS_TO_WIN, MAX_SKIPS_NUMBER } from '@shared/constants';
 
 export class UpdateSettingsDto implements Partial<LobbySettings> {
   @Length(2, 3, {
@@ -31,6 +31,9 @@ export class UpdateSettingsDto implements Partial<LobbySettings> {
   })
   @Min(0, {
     message: 'error.minLength',
+  })
+  @Max(MAX_SKIPS_NUMBER, {
+    message: 'error.maxLength',
   })
   maximumNumberOfSkips?: number;
 

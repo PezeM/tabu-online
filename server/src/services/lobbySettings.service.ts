@@ -12,6 +12,7 @@ import {
   BaseSettingsHandler,
   LanguageSettingHandler,
   MaxPlayersSettingHandler,
+  MaxSkipsSettingHandler,
   PointsToWinSettingHandler,
 } from './settingsHandlers';
 
@@ -25,6 +26,7 @@ export class LobbySettingsService {
       new LanguageSettingHandler(),
       new MaxPlayersSettingHandler(),
       new PointsToWinSettingHandler(),
+      new MaxSkipsSettingHandler(),
     ];
   }
 

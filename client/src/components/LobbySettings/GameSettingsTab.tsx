@@ -6,6 +6,7 @@ import { PizzaSliceIcon } from '@/styles/icons';
 import { ChangeCardsLanguageSelect } from '@/components/LobbySettings/ChangeCardsLanguageSelect';
 import { ChangeMaxPlayersNumberSelect } from '@/components/LobbySettings/ChangeMaxPlayersNumberSelect';
 import { ChangePointsToWinSlider } from '@/components/LobbySettings/ChangePointsToWinSlider';
+import { ChangeMaxSkipsNumberSlider } from '@/components/LobbySettings/ChangeMaxSkipsNumberSlider';
 
 export const GameSettingsTab = React.memo(() => {
   const { t } = useTranslation();
@@ -48,7 +49,7 @@ export const GameSettingsTab = React.memo(() => {
         tooltip={t('ui.maxNumberOfSkipsTooltip')}
         icon={<PizzaSliceIcon />}
       >
-        Maximum number of skips
+        <ChangeMaxSkipsNumberSlider />
       </SettingsBox>
     </LobbySettingsContainer>
   );

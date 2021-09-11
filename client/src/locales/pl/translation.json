@@ -50,7 +50,9 @@
     "maxNumberOfSkips": "Liczba pominięć",
     "maxNumberOfSkipsTooltip": "Maksymalna ilość pominięć kart dla każdej drużyny",
     "points": "Punktów",
-    "unlimited": "Nieskończona"
+    "unlimited": "Nieskończona",
+    "zero": "Zero",
+    "skips": "Pominięć"
   },
   "lobby": {
     "alreadyInGame": "Lobby jest już w grze",
