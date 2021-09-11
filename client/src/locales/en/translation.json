@@ -48,7 +48,9 @@
     "roundTime": "Round time",
     "roundTimeTooltip": "Time of each round in the game",
     "maxNumberOfSkips": "Max skips number",
-    "maxNumberOfSkipsTooltip": "Maximum number of skips of cards per team"
+    "maxNumberOfSkipsTooltip": "Maximum number of skips of cards per team",
+    "points": "Points",
+    "unlimited": "Unlimited"
   },
   "lobby": {
     "alreadyInGame": "Lobby is already in game",

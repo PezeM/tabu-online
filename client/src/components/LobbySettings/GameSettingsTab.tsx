@@ -5,6 +5,7 @@ import { SettingsBox } from '@/components/LobbySettings/SettingsBox';
 import { PizzaSliceIcon } from '@/styles/icons';
 import { ChangeCardsLanguageSelect } from '@/components/LobbySettings/ChangeCardsLanguageSelect';
 import { ChangeMaxPlayersNumberSelect } from '@/components/LobbySettings/ChangeMaxPlayersNumberSelect';
+import { ChangePointsToWinSlider } from '@/components/LobbySettings/ChangePointsToWin';
 
 export const GameSettingsTab = React.memo(() => {
   const { t } = useTranslation();
@@ -23,7 +24,7 @@ export const GameSettingsTab = React.memo(() => {
         tooltip={t('ui.pointsToWinTooltip')}
         icon={<PizzaSliceIcon />}
       >
-        Points to win
+        <ChangePointsToWinSlider />
       </SettingsBox>
       <SettingsBox
         title={t('ui.cardsLanguage')}
