@@ -27,7 +27,7 @@
     "noEmit": false,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "importHelpers": true,
+    "importHelpers": false,
     "removeComments": true,
     "baseUrl": "src",
     "rootDirs": [
