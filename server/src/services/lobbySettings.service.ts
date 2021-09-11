@@ -14,6 +14,7 @@ import {
   MaxPlayersSettingHandler,
   MaxSkipsSettingHandler,
   PointsToWinSettingHandler,
+  RoundTimeSettingHandler,
 } from './settingsHandlers';
 
 const DEFAULT_LANGUAGE = LobbyLanguage.EN;
@@ -27,6 +28,7 @@ export class LobbySettingsService {
       new MaxPlayersSettingHandler(),
       new PointsToWinSettingHandler(),
       new MaxSkipsSettingHandler(),
+      new RoundTimeSettingHandler(),
     ];
   }
 

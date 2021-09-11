@@ -5,3 +5,4 @@ export * from './max-players-setting.handler';
 export * from './settings.handler';
 export * from './points-to-win-setting.handler';
 export * from './max-skips-setting.handler';
+export * from './round-time-setting.handler';

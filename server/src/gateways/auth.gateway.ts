@@ -7,6 +7,7 @@ import { clientManager } from '@/managers/client.manager';
 import { Socket } from 'socket.io';
 import { PerformanceLog } from '@utils/performance-logger';
 import { Gateway, OnEvent } from '@utils/gateway.decorator';
+import { lobbyManager } from '@/managers/lobby.manager';
 
 @Gateway
 export class AuthGateway {
@@ -58,6 +59,11 @@ export class AuthGateway {
   protected onDisconnect(socket: Socket) {
     const client = clientManager.getClient(socket.id);
     if (!client) return;
+
+    const lobby = lobbyManager.getLobbyForClient(client);
+    if (lobby) {
+      lobby.remove(client);
+    }
 
     clientManager.removeClient(client);
   }
