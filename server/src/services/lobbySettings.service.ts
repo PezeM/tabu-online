@@ -12,6 +12,7 @@ import {
   BaseSettingsHandler,
   LanguageSettingHandler,
   MaxPlayersSettingHandler,
+  PointsToWinSettingHandler,
 } from './settingsHandlers';
 
 const DEFAULT_LANGUAGE = LobbyLanguage.EN;
@@ -20,7 +21,11 @@ export class LobbySettingsService {
   private readonly handlers: BaseSettingsHandler<LobbyKeys>[];
 
   constructor() {
-    this.handlers = [new LanguageSettingHandler(), new MaxPlayersSettingHandler()];
+    this.handlers = [
+      new LanguageSettingHandler(),
+      new MaxPlayersSettingHandler(),
+      new PointsToWinSettingHandler(),
+    ];
   }
 
   public createDefaultSettings(language: string): LobbySettings {

@@ -5,7 +5,7 @@ import { SettingsBox } from '@/components/LobbySettings/SettingsBox';
 import { PizzaSliceIcon } from '@/styles/icons';
 import { ChangeCardsLanguageSelect } from '@/components/LobbySettings/ChangeCardsLanguageSelect';
 import { ChangeMaxPlayersNumberSelect } from '@/components/LobbySettings/ChangeMaxPlayersNumberSelect';
-import { ChangePointsToWinSlider } from '@/components/LobbySettings/ChangePointsToWin';
+import { ChangePointsToWinSlider } from '@/components/LobbySettings/ChangePointsToWinSlider';
 
 export const GameSettingsTab = React.memo(() => {
   const { t } = useTranslation();

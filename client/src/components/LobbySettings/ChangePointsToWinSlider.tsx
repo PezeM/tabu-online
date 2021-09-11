@@ -4,7 +4,7 @@ import { selectLobby } from '@/features/lobby/lobby.slice';
 import { useTranslation } from 'react-i18next';
 import { setIsLoading } from '@/features/settings/settings.splice';
 import { socket } from '@/services/socket';
-import { CLIENT_EVENT_NAME } from '../../../../shared/constants/events';
+import { CLIENT_EVENT_NAME, MAX_POINTS_TO_WIN } from '../../../../shared/constants';
 import { SettingsSlider } from '@/components/LobbySettings/SettingsSlider';
 
 export const ChangePointsToWinSlider = () => {
@@ -18,7 +18,7 @@ export const ChangePointsToWinSlider = () => {
   };
 
   const textTransformer = (value: number) => {
-    if (value < 99) {
+    if (value < MAX_POINTS_TO_WIN) {
       return `${value} ${t('ui.points')}`;
     }
 
@@ -30,7 +30,7 @@ export const ChangePointsToWinSlider = () => {
       defaultValue={currentPointsToWin}
       onChangeValue={changePointsToWin}
       min={1}
-      max={99}
+      max={MAX_POINTS_TO_WIN}
       valueTextTransformer={textTransformer}
     />
   );
