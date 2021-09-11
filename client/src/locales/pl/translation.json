@@ -36,7 +36,19 @@
     "switchToDarkMode": "Zmień na ciemny motyw",
     "switchToLightMode": "Zmień na jasny motyw",
     "muteSounds": "Wyłącz dźwięk",
-    "unmuteSounds": "Włącz dźwięk"
+    "unmuteSounds": "Włącz dźwięk",
+    "maxPlayersNumber": "Maksymalna liczba osób",
+    "maxPlayersNumberTooltip": "Maksymalna liczba osób które mogą brać udział w grze",
+    "pointsToWin": "Warunek zwycięstwa",
+    "pointsToWinTooltip": "Ile punktów musi zdobyć drużyna aby wygrać grę",
+    "cardsLanguage": "Język kart",
+    "cardsLanguageTooltip": "Język kart w grze",
+    "cards": "Karty",
+    "cardsTooltip": "Lista kart, które używane będą podczas gry",
+    "roundTime": "Czas rundy",
+    "roundTimeTooltip": "Time of each round in the game",
+    "maxNumberOfSkips": "Liczba pominięć",
+    "maxNumberOfSkipsTooltip": "Maksymalna ilość pominięć kart dla każdej drużyny"
   },
   "lobby": {
     "alreadyInGame": "Lobby jest już w grze",
