@@ -4,7 +4,7 @@ import { LobbyKeys, LobbySettings } from '@shared/interfaces/lobby';
 
 export abstract class BaseSettingsHandler<TProperty extends LobbyKeys> {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  constructor() {}
+  protected constructor() {}
 
   abstract process(
     socket: ClientSocket,

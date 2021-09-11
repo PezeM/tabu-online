@@ -6,10 +6,13 @@ import { app } from '@/server';
 import { isLobbyLanguage } from '@utils/type-guards';
 import { SettingsHandler } from '@services/settingsHandlers/settings.handler';
 import { logger } from '@utils/logger';
-import { LanguageSettingHandler } from '@services/settingsHandlers/language-setting.handler';
 import { LobbySettingsUpdateException } from '@exceptions/LobbySettingsUpdateException';
 import { lobbyManager } from '@/managers/lobby.manager';
-import { BaseSettingsHandler } from '@services/settingsHandlers/base-settings.handler';
+import {
+  BaseSettingsHandler,
+  LanguageSettingHandler,
+  MaxPlayersSettingHandler,
+} from './settingsHandlers';
 
 const DEFAULT_LANGUAGE = LobbyLanguage.EN;
 
@@ -17,7 +20,7 @@ export class LobbySettingsService {
   private readonly handlers: BaseSettingsHandler<LobbyKeys>[];
 
   constructor() {
-    this.handlers = [new LanguageSettingHandler()];
+    this.handlers = [new LanguageSettingHandler(), new MaxPlayersSettingHandler()];
   }
 
   public createDefaultSettings(language: string): LobbySettings {
@@ -55,10 +58,9 @@ export class LobbySettingsService {
       }
 
       try {
-        await new handler().process(socket, lobby, value);
+        await handler.process(socket, lobby, value);
       } catch (e) {
         if (e instanceof LobbySettingsUpdateException) {
-          // Emit msg here to client
           socket.emit(SERVER_EVENT_NAME.LobbySettingsUpdateFailed, e.message);
           return;
         }

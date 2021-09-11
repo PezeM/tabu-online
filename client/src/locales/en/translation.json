@@ -61,7 +61,8 @@
     "userNotFound": "User not found",
     "kicked": "You have been kicked from the lobby",
     "roomIsFull": "Room is already full",
-    "notAnOwner": "You are not an owner of the lobby"
+    "notAnOwner": "You are not an owner of the lobby",
+    "playersText": "Players"
   },
   "error": {
     "wrongLanguage": "Wrong language name",
@@ -70,6 +71,7 @@
     "notAnInt": "Option should be an integer",
     "minLength": "Too low number",
     "maxLength": "Exceeded maximum number",
-    "copyingToClipboard": "Error copying invite link to clipboard!"
+    "copyingToClipboard": "Error copying invite link to clipboard!",
+    "morePlayersInGameThanSelected": "There are more players in the game than the new limit allows"
   }
 }

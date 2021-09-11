@@ -6,10 +6,10 @@ export class SettingsHandler {
   private static handlers = {};
 
   public static set(key: LobbyKeys, constructor: ClassConstructor<BaseSettingsHandler<LobbyKeys>>) {
-    SettingsHandler.handlers[key] = constructor;
+    SettingsHandler.handlers[key] = new constructor();
   }
 
-  public static get(key: LobbyKeys): ClassConstructor<BaseSettingsHandler<LobbyKeys>> | undefined {
+  public static get(key: LobbyKeys): BaseSettingsHandler<LobbyKeys> | undefined {
     return SettingsHandler.handlers[key];
   }
 }

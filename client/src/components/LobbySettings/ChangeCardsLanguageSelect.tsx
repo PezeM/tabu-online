@@ -14,7 +14,7 @@ export const ChangeCardsLanguageSelect = () => {
   const currentLanguage = useAppSelector(selectLobby).settings.language;
   const languages = Object.values(LobbyLanguage);
 
-  const changeLanguage = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const changeLanguage = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newLanguage = e.target.value as LobbyLanguage;
 
     socket.emit(CLIENT_EVENT_NAME.LobbyUpdateSettings, { language: newLanguage });

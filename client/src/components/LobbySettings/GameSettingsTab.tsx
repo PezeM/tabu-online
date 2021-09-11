@@ -4,6 +4,7 @@ import { LobbySettingsContainer } from '@/components/LobbySettings/LobbySettings
 import { SettingsBox } from '@/components/LobbySettings/SettingsBox';
 import { PizzaSliceIcon } from '@/styles/icons';
 import { ChangeCardsLanguageSelect } from '@/components/LobbySettings/ChangeCardsLanguageSelect';
+import { ChangeMaxPlayersNumberSelect } from '@/components/LobbySettings/ChangeMaxPlayersNumberSelect';
 
 export const GameSettingsTab = React.memo(() => {
   const { t } = useTranslation();
@@ -15,7 +16,7 @@ export const GameSettingsTab = React.memo(() => {
         tooltip={t('ui.maxPlayersNumberTooltip')}
         icon={<PizzaSliceIcon />}
       >
-        Max players
+        <ChangeMaxPlayersNumberSelect />
       </SettingsBox>
       <SettingsBox
         title={t('ui.pointsToWin')}

@@ -21,7 +21,7 @@ export class UpdateSettingsDto implements Partial<LobbySettings> {
   @Min(2, {
     message: 'error.minLength',
   })
-  @Max(12, {
+  @Max(14, {
     message: 'error.maxLength',
   })
   maxPlayers?: number;
