@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
-import { selectIsLobbyOwner, selectLobby } from '@/features/lobby/lobby.slice';
-import { Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
+import { selectIsLobbyOwner, selectLobby, updateCardSets } from '@/features/lobby/lobby.slice';
+import { Tab, TabList, TabPanel, TabPanels, Tabs, useToast } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { PersonalSettingsTab } from '@/components/LobbySettings/PersonalSettingsTab';
 import { GameSettingsTab } from '@/components/LobbySettings/GameSettingsTab';
@@ -9,6 +9,8 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
 import { SERVER_EVENT_NAME } from '../../../../shared/constants/events';
 import { setIsLoading } from '@/features/settings/settings.splice';
+import { CardSetsCountDto } from '../../../../shared/dto/card-set.dto';
+import i18n from '@/i18n';
 
 export const LobbySettingsTabs = () => {
   const lobbyData = useAppSelector(selectLobby);
@@ -16,14 +18,27 @@ export const LobbySettingsTabs = () => {
   const dispatch = useAppDispatch();
   const isMobile = useIsMobile();
   const { t } = useTranslation();
+  const toast = useToast();
 
   useEffect(() => {
     console.log('Is mobile', isMobile);
   }, [isMobile]);
 
   useListenServerEvent(SERVER_EVENT_NAME.LobbySettingsUpdateFailed, (msg: string) => {
-    console.log('msg', msg);
     dispatch(setIsLoading(false));
+
+    toast({
+      description: i18n.t(msg),
+      position: 'top-right',
+      variant: 'subtle',
+      status: 'error',
+      isClosable: true,
+      duration: 5000,
+    });
+  });
+
+  useListenServerEvent(SERVER_EVENT_NAME.UpdateCardSets, (cardSets: CardSetsCountDto[]) => {
+    dispatch(updateCardSets(cardSets));
   });
 
   if (!lobbyData) {

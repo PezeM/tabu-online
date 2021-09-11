@@ -29,7 +29,7 @@ export interface LobbySettings {
   /**
    * IDs of selected cards
    */
-  cardsIds?: string[];
+  cardIds?: string[];
 }
 
 export type LobbyKeys = keyof LobbySettings;

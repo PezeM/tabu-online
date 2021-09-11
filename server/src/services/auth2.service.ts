@@ -27,7 +27,7 @@ export class Auth2Service {
 
     let lobby: Lobby;
     try {
-      const cardSets = await this.cardSetRepository.cardSetsForLanguage(settings.language);
+      const cardSets = await this.cardSetRepository.getCardSetsForLanguage(settings.language);
 
       console.log(cardSets);
       lobby = new Lobby(owner, settings);

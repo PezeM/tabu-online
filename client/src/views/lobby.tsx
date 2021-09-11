@@ -23,7 +23,6 @@ import { setIsLoading } from '@/features/settings/settings.splice';
 
 export const Lobby = () => {
   const isInLobby = useAppSelector(selectIsInLobby);
-  const lobbyData = useAppSelector(selectLobby);
   const clientData = useAppSelector(selectClient);
 
   const dispatch = useAppDispatch();

@@ -4,6 +4,7 @@ import { LobbySettings } from '../../../../shared/interfaces/lobby';
 import { RootState } from '@/store';
 import { ClientCP } from '../../../../shared/dto/client.dto';
 import { Team } from '../../../../shared/enums/client';
+import { CardSetsCountDto } from '../../../../shared/dto/card-set.dto';
 
 interface RemoveMemberInterface {
   clientId: string;
@@ -15,11 +16,16 @@ interface ChangeMemberTeamInterface {
   newTeam: Team;
 }
 
-const initialState: LobbyCP = {
+interface LobbyState extends LobbyCP {
+  cardSets: CardSetsCountDto[];
+}
+
+const initialState: LobbyState = {
   id: '0',
   settings: {} as LobbySettings,
   members: [],
   ownerId: '',
+  cardSets: [],
 };
 
 export const lobbySlice = createSlice({
@@ -58,6 +64,9 @@ export const lobbySlice = createSlice({
         member.team = newTeam;
       }
     },
+    updateCardSets: (state, action: PayloadAction<CardSetsCountDto[]>) => {
+      state.cardSets = action.payload;
+    },
     changeLobbySettings: (state, action: PayloadAction<LobbySettings>) => {
       state.settings = action.payload;
     },
@@ -74,6 +83,7 @@ export const {
   changeMemberTeam,
   changeLobbySettings,
   resetLobbyState,
+  updateCardSets,
 } = lobbySlice.actions;
 
 export const selectIsInLobby = (state: RootState) => state.lobby.id !== '0';

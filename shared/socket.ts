@@ -4,6 +4,7 @@ import { ClientCP } from "./dto/client.dto";
 import { LobbyCP } from "./dto/lobby.dto";
 import { Team } from "./enums/client";
 import { LobbySettings } from "./interfaces/lobby";
+import { CardSetsCountDto } from './dto/card-set.dto';
 
 export interface EventsFromServer {
   [SERVER_EVENT_NAME.FromServer]: (co: string[]) => void;
@@ -25,6 +26,7 @@ export interface EventsFromServer {
   [SERVER_EVENT_NAME.LobbyUserChangedTeam]: (clientId: string, team: Team) => void;
   [SERVER_EVENT_NAME.LobbySettingsChanged]: (lobbySettings: LobbySettings) => void;
   [SERVER_EVENT_NAME.LobbySettingsUpdateFailed]: (msg: string) => void;
+  [SERVER_EVENT_NAME.UpdateCardSets]: (cardSets: CardSetsCountDto[]) => void;
 }
 
 export interface EventsFromClient {

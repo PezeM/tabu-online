@@ -8,7 +8,7 @@ export class CardSetRepository extends BaseRepository<CardSet> {
     super(CardSet.model);
   }
 
-  async cardSetsForLanguage(language: LobbyLanguage): Promise<CardSetsCountDto[]> {
+  async getCardSetsForLanguage(language: LobbyLanguage): Promise<CardSetsCountDto[]> {
     return this.model.aggregate<CardSetsCountDto>([
       {
         $match: {
