@@ -5,6 +5,7 @@ import { ClientPayload } from '@shared/interfaces/clientPayload';
 import { LobbyCP } from '@shared/dto/lobby.dto';
 import { lobbyManager } from '@/managers/lobby.manager';
 import { LobbySettings } from '@shared/interfaces/lobby';
+import { CardSetsCountDto } from '@shared/dto';
 
 export class Lobby implements ClientPayload<LobbyCP> {
   public readonly id = generateRandomId();
@@ -13,8 +14,9 @@ export class Lobby implements ClientPayload<LobbyCP> {
   private _isInGame: boolean;
   private _ownerId: string;
 
-  constructor(owner: Client, public settings: LobbySettings) {
+  constructor(owner: Client, public settings: LobbySettings, cardSets: CardSetsCountDto[]) {
     this._ownerId = owner.id;
+    this._cardSets = cardSets;
 
     this.addNewMemberInternal(owner);
   }
@@ -23,6 +25,17 @@ export class Lobby implements ClientPayload<LobbyCP> {
 
   get members() {
     return this._members;
+  }
+
+  private _cardSets: CardSetsCountDto[] = [];
+
+  get cardSets(): CardSetsCountDto[] {
+    return this._cardSets;
+  }
+
+  set cardSets(value: CardSetsCountDto[]) {
+    this._cardSets = value;
+    this.getMember(this._ownerId)?.socket?.emit(SERVER_EVENT_NAME.UpdateCardSets, this._cardSets);
   }
 
   get membersCount(): number {
@@ -53,6 +66,7 @@ export class Lobby implements ClientPayload<LobbyCP> {
       const newOwner = this._members.find(c => c.id !== this._ownerId);
       if (newOwner) {
         this._ownerId = newOwner.id;
+        this.cardSets = this._cardSets;
       }
     }
 
@@ -94,8 +108,9 @@ export class Lobby implements ClientPayload<LobbyCP> {
     client.socket.join(this.id);
 
     const clientCP = client.getCP();
+    const cardSets = this.isOwner(client) ? this._cardSets : undefined;
 
-    client.socket.emit(SERVER_EVENT_NAME.UserJoinLobby, this.getCP(), clientCP);
+    client.socket.emit(SERVER_EVENT_NAME.UserJoinLobby, this.getCP(), clientCP, cardSets);
     client.socket.to(this.id).emit(SERVER_EVENT_NAME.UserJoinedLobby, clientCP);
   }
 }

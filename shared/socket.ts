@@ -1,16 +1,15 @@
-import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from "./constants/events";
+import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from "./constants";
 import { NotificationVariation } from "./notification";
-import { ClientCP } from "./dto/client.dto";
-import { LobbyCP } from "./dto/lobby.dto";
-import { Team } from "./enums/client";
-import { LobbySettings } from "./interfaces/lobby";
-import { CardSetsCountDto } from './dto/card-set.dto';
+import { CardSetsCountDto, ClientCP, LobbyCP } from "./dto";
+import { Team } from "./enums";
+import { LobbySettings } from "./interfaces";
 
 export interface EventsFromServer {
   [SERVER_EVENT_NAME.FromServer]: (co: string[]) => void;
   [SERVER_EVENT_NAME.UserJoinLobby]: (
     lobbyCP: LobbyCP,
-    clientCSP: ClientCP
+    clientCSP: ClientCP,
+    cardSets?: CardSetsCountDto[]
   ) => void;
   [SERVER_EVENT_NAME.UserJoinedLobby]: (clientCP: ClientCP) => void;
   [SERVER_EVENT_NAME.Notification]: (
@@ -23,8 +22,13 @@ export interface EventsFromServer {
     ownerId: string
   ) => void;
   [SERVER_EVENT_NAME.CouldntCreateOrJoinLobby]: () => void;
-  [SERVER_EVENT_NAME.LobbyUserChangedTeam]: (clientId: string, team: Team) => void;
-  [SERVER_EVENT_NAME.LobbySettingsChanged]: (lobbySettings: LobbySettings) => void;
+  [SERVER_EVENT_NAME.LobbyUserChangedTeam]: (
+    clientId: string,
+    team: Team
+  ) => void;
+  [SERVER_EVENT_NAME.LobbySettingsChanged]: (
+    lobbySettings: LobbySettings
+  ) => void;
   [SERVER_EVENT_NAME.LobbySettingsUpdateFailed]: (msg: string) => void;
   [SERVER_EVENT_NAME.UpdateCardSets]: (cardSets: CardSetsCountDto[]) => void;
 }
@@ -36,6 +40,8 @@ export interface EventsFromClient {
   [CLIENT_EVENT_NAME.Disconnect]: (reason: string) => void;
   [CLIENT_EVENT_NAME.Disconnecting]: (reason: string) => void;
   [CLIENT_EVENT_NAME.ChangeTeam]: () => void;
-  [CLIENT_EVENT_NAME.LobbyUpdateSettings]: (settings: Partial<LobbySettings>) => void;
+  [CLIENT_EVENT_NAME.LobbyUpdateSettings]: (
+    settings: Partial<LobbySettings>
+  ) => void;
   [CLIENT_EVENT_NAME.TryStartGame]: () => void;
 }

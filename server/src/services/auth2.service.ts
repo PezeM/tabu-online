@@ -5,9 +5,11 @@ import { lobbyManager } from '@/managers/lobby.manager';
 import { clientManager } from '@/managers/client.manager';
 import { LobbySettingsService } from '@services/lobbySettings.service';
 import { logger } from '@utils/logger';
+import { CardSetRepository } from '@/repositories/card-set.repository';
 
 export class Auth2Service {
-  private lobbySettingsService = new LobbySettingsService();
+  private readonly lobbySettingsService = new LobbySettingsService();
+  private readonly cardSetRepository = new CardSetRepository();
 
   private static emitActionError(client: Client, errorName: string) {
     client.socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
@@ -25,7 +27,8 @@ export class Auth2Service {
 
     let lobby: Lobby;
     try {
-      lobby = new Lobby(owner, settings);
+      const cardSets = await this.cardSetRepository.getCardSetsForLanguage(settings.language);
+      lobby = new Lobby(owner, settings, cardSets);
       lobbyManager.addLobby(lobby);
     } catch (e) {
       lobbyManager.removeLobby(lobby);

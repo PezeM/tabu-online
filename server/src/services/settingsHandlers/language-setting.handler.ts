@@ -5,16 +5,15 @@ import { Lobby } from '@models/lobby.model';
 import { LobbyLanguage } from '@shared/enums/lobby';
 import { LobbySettingsUpdateException } from '@exceptions/LobbySettingsUpdateException';
 import { isLobbyLanguage } from '@utils/type-guards';
-import { CardSetRepository } from '@/repositories/card-set.repository';
-import { SERVER_EVENT_NAME } from '@shared/constants/events';
+import { CardService } from '@services/card.service';
 
 @ForEvent('language')
 export class LanguageSettingHandler extends BaseSettingsHandler<'language'> {
-  private cardSetRepository: CardSetRepository;
+  private readonly cardService: CardService;
 
   constructor() {
     super();
-    this.cardSetRepository = new CardSetRepository();
+    this.cardService = new CardService();
   }
 
   async process(socket: ClientSocket, lobby: Lobby, language: LobbyLanguage): Promise<boolean> {
@@ -23,9 +22,7 @@ export class LanguageSettingHandler extends BaseSettingsHandler<'language'> {
     }
 
     lobby.settings.cardIds = undefined;
-
-    const cardSets = await this.cardSetRepository.getCardSetsForLanguage(language);
-    socket.emit(SERVER_EVENT_NAME.UpdateCardSets, cardSets);
+    await this.cardService.setCardSets(lobby, language);
 
     return true;
   }

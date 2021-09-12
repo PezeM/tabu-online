@@ -1,10 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { LobbyCP } from '../../../../shared/dto/lobby.dto';
-import { LobbySettings } from '../../../../shared/interfaces/lobby';
+import { CardSetsCountDto, ClientCP, LobbyCP } from '../../../../shared/dto';
+import { LobbySettings } from '../../../../shared/interfaces';
 import { RootState } from '@/store';
-import { ClientCP } from '../../../../shared/dto/client.dto';
-import { Team } from '../../../../shared/enums/client';
-import { CardSetsCountDto } from '../../../../shared/dto/card-set.dto';
+import { Team } from '../../../../shared/enums';
 
 interface RemoveMemberInterface {
   clientId: string;
@@ -64,8 +62,8 @@ export const lobbySlice = createSlice({
         member.team = newTeam;
       }
     },
-    updateCardSets: (state, action: PayloadAction<CardSetsCountDto[]>) => {
-      state.cardSets = action.payload;
+    updateCardSets: (state, action: PayloadAction<CardSetsCountDto[] | undefined>) => {
+      state.cardSets = action.payload || [];
     },
     changeLobbySettings: (state, action: PayloadAction<LobbySettings>) => {
       state.settings = action.payload;

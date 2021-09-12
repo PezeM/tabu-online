@@ -12,7 +12,7 @@ export const LobbySettingsContainer = ({ children }: Props) => {
       direction={'column'}
       justifyContent={'space-evenly'}
       height={'90%'}
-      gridRowGap={[2, 3, 5]}
+      gridRowGap={[1, 2, 3]}
     >
       {children}
     </Flex>

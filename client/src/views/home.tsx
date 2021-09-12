@@ -2,15 +2,14 @@ import React, { useState } from 'react';
 import { Box, Text } from '@chakra-ui/react';
 import { LoginComponent } from '@/components/LoginComponents';
 import { socket } from '@/services/socket';
-import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '../../../shared/constants/events';
+import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '../../../shared/constants';
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
 import { getBrowserLanguage } from '@/utils/browser';
-import { LobbyCP } from '../../../shared/dto/lobby.dto';
+import { CardSetsCountDto, ClientCP, LobbyCP } from '../../../shared/dto';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ClientCP } from '../../../shared/dto/client.dto';
 import { useAppDispatch } from '@/hooks/reduxHooks';
-import { setLobby } from '@/features/lobby/lobby.slice';
+import { setLobby, updateCardSets } from '@/features/lobby/lobby.slice';
 import { setClient } from '@/features/client/client.splice';
 
 export const Home = () => {
@@ -33,14 +32,18 @@ export const Home = () => {
     setIsLoading(false);
   });
 
-  useListenServerEvent(SERVER_EVENT_NAME.UserJoinLobby, (lobbyCP: LobbyCP, clientCP: ClientCP) => {
-    dispatch(setLobby(lobbyCP));
-    dispatch(setClient(clientCP));
+  useListenServerEvent(
+    SERVER_EVENT_NAME.UserJoinLobby,
+    (lobbyCP: LobbyCP, clientCP: ClientCP, cardSets?: CardSetsCountDto[]) => {
+      dispatch(setLobby(lobbyCP));
+      dispatch(setClient(clientCP));
+      dispatch(updateCardSets(cardSets));
 
-    setIsLoading(false);
-    console.log('Lobby cp:', lobbyCP, clientCP);
-    history.push('/lobby');
-  });
+      setIsLoading(false);
+      console.log('Lobby cp:', lobbyCP, clientCP);
+      history.push('/lobby');
+    },
+  );
 
   return (
     <Box>
