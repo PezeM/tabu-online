@@ -7,6 +7,7 @@ import { ChangeCardsLanguageSelect } from '@/components/LobbySettings/ChangeCard
 import { ChangeMaxPlayersNumberSelect } from '@/components/LobbySettings/ChangeMaxPlayersNumberSelect';
 import { ChangePointsToWinSlider } from '@/components/LobbySettings/ChangePointsToWinSlider';
 import { ChangeMaxSkipsNumberSlider } from '@/components/LobbySettings/ChangeMaxSkipsNumberSlider';
+import { ChangeRoundTimeSlider } from '@/components/LobbySettings/ChangeRoundTimeSlider';
 
 export const GameSettingsTab = React.memo(() => {
   const { t } = useTranslation();
@@ -42,7 +43,7 @@ export const GameSettingsTab = React.memo(() => {
         tooltip={t('ui.roundTimeTooltip')}
         icon={<PizzaSliceIcon />}
       >
-        Round time
+        <ChangeRoundTimeSlider />
       </SettingsBox>
       <SettingsBox
         title={t('ui.maxNumberOfSkips')}

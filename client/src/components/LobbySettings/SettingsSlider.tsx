@@ -5,6 +5,7 @@ interface Props {
   defaultValue: number;
   min?: number;
   max?: number;
+  step?: number;
   onChangeValue: (value: number) => void;
   valueTextTransformer?: (value: number) => string;
 }
@@ -14,6 +15,7 @@ export const SettingsSlider = ({
   onChangeValue,
   min,
   max,
+  step = 1,
   valueTextTransformer,
 }: Props) => {
   const [value, setValue] = useState(defaultValue);
@@ -34,6 +36,7 @@ export const SettingsSlider = ({
         value={value}
         min={min}
         max={max}
+        step={step}
         onChangeEnd={v => onChangeValue(v)}
         onChange={v => setValue(v)}
       >

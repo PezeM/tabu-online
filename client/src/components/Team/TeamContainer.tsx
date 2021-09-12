@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { Box, Button, Flex, HStack, useColorModeValue } from '@chakra-ui/react';
-import { Team } from '../../../../shared/enums/client';
+import { Team } from '../../../../shared/enums';
 import { TeamName } from '@/components/Team/TeamName';
 import { TeamMember } from '@/components/Team/TeamMember';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '@/hooks/reduxHooks';
 import { selectLobbyMembers } from '@/features/lobby/lobby.slice';
-import { ClientCP } from '../../../../shared/dto/client.dto';
-import { generateRandomId } from '../../../../shared/utils/uuid';
-import { generateRandomInt } from '../../../../shared/utils/number';
+import { ClientCP } from '../../../../shared/dto';
+import { generateRandomId } from '../../../../shared/utils';
+import { generateRandomInt } from '../../../../shared/utils';
 import { selectClient } from '@/features/client/client.splice';
 import { socket } from '@/services/socket';
-import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '../../../../shared/constants/events';
+import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '../../../../shared/constants';
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
 
 interface Props {
@@ -33,7 +33,7 @@ export const TeamContainer = React.memo(({ team }: Props) => {
   const { t } = useTranslation();
   const joinButtonBg = useColorModeValue('#151f21', 'gray.700');
 
-  const showJoinTeamButton = client?.team !== team;
+  const showJoinTeamButton = client && client.team !== team;
   const members = [...generateRandomMembers(team), ...allMembers];
 
   useListenServerEvent(SERVER_EVENT_NAME.LobbyUserChangedTeam, (clientId: string) => {

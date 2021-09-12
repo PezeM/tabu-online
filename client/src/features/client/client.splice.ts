@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '@/store';
-import { ClientCP } from '../../../../shared/dto/client.dto';
-import { Team } from '../../../../shared/enums/client';
+import { ClientCP } from '../../../../shared/dto';
+import { Team } from '../../../../shared/enums';
 
 interface InitialState {
   client?: ClientCP;

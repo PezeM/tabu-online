@@ -1,7 +1,7 @@
 import React from 'react';
 import { VStack } from '@chakra-ui/react';
 import { TeamContainer } from '@/components/Team/TeamContainer';
-import { Team } from '../../../../shared/enums/client';
+import { Team } from '../../../../shared/enums';
 
 export const TeamsContainer = React.memo(() => {
   return (

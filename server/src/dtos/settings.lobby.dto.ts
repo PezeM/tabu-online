@@ -1,7 +1,13 @@
 import { LobbySettings } from '@shared/interfaces/lobby';
 import { LobbyLanguage } from '@shared/enums/lobby';
 import { IsIn, IsInt, IsString, Length, Max, Min } from 'class-validator';
-import { LOBBY_LANGUAGES, MAX_POINTS_TO_WIN, MAX_SKIPS_NUMBER } from '@shared/constants';
+import {
+  LOBBY_LANGUAGES,
+  MAX_POINTS_TO_WIN,
+  MAX_ROUND_TIME,
+  MAX_SKIPS_NUMBER,
+  MIN_ROUND_TIME,
+} from '@shared/constants';
 
 export class UpdateSettingsDto implements Partial<LobbySettings> {
   @Length(2, 3, {
@@ -51,10 +57,10 @@ export class UpdateSettingsDto implements Partial<LobbySettings> {
   @IsInt({
     message: 'error.notAnInt',
   })
-  @Min(10 * 1000, {
+  @Min(MIN_ROUND_TIME, {
     message: 'error.minLength',
   })
-  @Max(10 * 60 * 1000, {
+  @Max(MAX_ROUND_TIME, {
     message: 'error.maxLength',
   })
   roundTime?: number;
