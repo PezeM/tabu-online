@@ -7,7 +7,7 @@ import { useClipboard } from '@/hooks/useClipboard';
 import { useAppSelector } from '@/hooks/reduxHooks';
 import { selectLobbyId } from '@/features/lobby/lobby.slice';
 import { socket } from '@/services/socket';
-import { CLIENT_EVENT_NAME } from '../../../shared/constants/events';
+import { CLIENT_EVENT_NAME } from '../../../shared/constants';
 
 export const LobbyFooter = React.memo(() => {
   const { t } = useTranslation();

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button, useColorModeValue } from '@chakra-ui/react';
+import { Button, ButtonProps, useColorModeValue } from '@chakra-ui/react';
 
-interface Props {
+interface Props extends ButtonProps {
   scheme?: string;
   size?: string;
 

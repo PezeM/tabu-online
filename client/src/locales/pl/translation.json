@@ -52,7 +52,12 @@
     "points": "Punktów",
     "unlimited": "Nieskończona",
     "zero": "Zero",
-    "skips": "Pominięć"
+    "skips": "Pominięć",
+    "selectCards": "Wybierz karty",
+    "save": "Zapisz",
+    "cancel": "Anuluj",
+    "name": "Nazwa",
+    "cardsCount": "Liczba kart"
   },
   "lobby": {
     "alreadyInGame": "Lobby jest już w grze",
@@ -76,6 +81,7 @@
     "minLength": "Zbyt niska liczba",
     "maxLength": "Zbyt wysoka liczba",
     "copyingToClipboard": "Błąd podczas kopiowania odnośnika do schowka!",
-    "morePlayersInGameThanSelected": "W grze jest więcej graczy niż nowy limit umożliwia"
+    "morePlayersInGameThanSelected": "W grze jest więcej graczy niż nowy limit umożliwia",
+    "wrongCardIds": "Wystąpił błąd podczas wybierania kart"
   }
 }

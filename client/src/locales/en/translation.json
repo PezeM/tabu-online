@@ -52,7 +52,12 @@
     "points": "Points",
     "unlimited": "Unlimited",
     "zero": "Zero",
-    "skips": "Skips"
+    "skips": "Skips",
+    "selectCards": "Select cards",
+    "save": "Save",
+    "cancel": "Cancel",
+    "name": "Name",
+    "cardsCount": "Cards count"
   },
   "lobby": {
     "alreadyInGame": "Lobby is already in game",
@@ -76,6 +81,7 @@
     "minLength": "Too low number",
     "maxLength": "Exceeded maximum number",
     "copyingToClipboard": "Error copying invite link to clipboard!",
-    "morePlayersInGameThanSelected": "There are more players in the game than the new limit allows"
+    "morePlayersInGameThanSelected": "There are more players in the game than the new limit allows",
+    "wrongCardIds": "Error while selecting cards"
   }
 }

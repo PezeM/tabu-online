@@ -1,0 +1,52 @@
+$check-size: 20px;
+$selected-color: #44aadd;
+$transition: all 0.45s cubic-bezier(.35, .8, .35, 1);
+
+.card {
+    position: relative;
+    transition: $transition;
+    border: 4px solid transparent;
+    cursor: pointer;
+
+    .check {
+        transition: $transition;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 10;
+        width: $check-size;
+        height: $check-size;
+
+        &:before {
+            transition: $transition;
+            content: '';
+            border: $check-size solid transparent;
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: -1;
+        }
+
+        .checkmark {
+            display: block;
+            font: $check-size sans-serif;
+            line-height: $check-size;
+            text-align: center;
+            color: transparent;
+        }
+    }
+
+    &.selected {
+        border-color: $selected-color;
+
+        .check {
+            &:before {
+                border-color: $selected-color $selected-color rgba(0, 0, 255, 0) rgba(255, 0, 0, 0);
+            }
+
+            .checkmark {
+                color: #fff;
+            }
+        }
+    }
+}
