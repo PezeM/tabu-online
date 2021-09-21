@@ -16,6 +16,7 @@ import {
   PointsToWinSettingHandler,
   RoundTimeSettingHandler,
 } from './settingsHandlers';
+import { CardIdsSettingsHandler } from '@services/settingsHandlers/card-ids-settings.handler';
 
 const DEFAULT_LANGUAGE = LobbyLanguage.EN;
 
@@ -29,6 +30,7 @@ export class LobbySettingsService {
       new PointsToWinSettingHandler(),
       new MaxSkipsSettingHandler(),
       new RoundTimeSettingHandler(),
+      new CardIdsSettingsHandler(),
     ];
   }
 
@@ -43,6 +45,7 @@ export class LobbySettingsService {
       maximumNumberOfSkips: 10,
       pointsToWin: 25,
       roundTime: 1 * 60 * 1000,
+      cardIds: [],
     };
   }
 
@@ -63,6 +66,7 @@ export class LobbySettingsService {
 
       if (!handler) {
         logger.warn(`No lobby setting handler for key ${key}`);
+
         return;
       }
 
@@ -79,6 +83,7 @@ export class LobbySettingsService {
           socketId: socket.id,
           lobbyId: lobby.id,
         });
+
         return;
       }
     }
