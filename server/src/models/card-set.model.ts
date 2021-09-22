@@ -28,8 +28,11 @@ export class CardSet extends BaseModel {
   })
   public language!: LobbyLanguage;
 
-  @prop({ required: true, type: () => Card })
+  @prop({ required: true, type: () => [Card] })
   public cards!: Card[];
+
+  @prop({ required: false, type: () => [String] })
+  public tags?: string[];
 
   @prop({ default: new Date(), type: Date })
   createdAt: Date; // provided by schemaOptions.timestamps

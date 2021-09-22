@@ -19,6 +19,7 @@ export class CardSetRepository extends BaseRepository<CardSet> {
         $project: {
           _id: 1,
           name: 1,
+          tags: 1,
           cardsCount: { $size: '$cards' },
         },
       },

@@ -26,7 +26,7 @@ export class CardIdsSettingsHandler extends BaseSettingsHandler<'cardIds'> {
     const cardSets = lobby.cardSets;
 
     for (const newCardId of newCardIds) {
-      if (!cardSets.some(c => c._id === newCardId)) {
+      if (!cardSets.some(c => c._id.toString() === newCardId)) {
         return false;
       }
     }
