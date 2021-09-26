@@ -47,7 +47,7 @@ export const SelectCard = ({ cardSet, isSelected, setIsSelected }: Props) => {
       </Heading>
 
       <Stack align={'center'} justify={'center'} direction={'row'} mt={4}>
-        {tags && tags.map((tag, index) => <SelectCardTag index={index} tag={tag} />)}
+        {tags && tags.map(tag => <SelectCardTag key={tag} tag={tag} />)}
       </Stack>
     </Box>
   );

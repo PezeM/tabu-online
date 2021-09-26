@@ -57,7 +57,8 @@ export const SelectCardsContainer = ({ isOpen, onClose, saveSelectedCards }: Pro
             }}
             columnGap={'1em'}
             rowGap={'1em'}>
-            {cardSets && cardSets.map(cardSet => <SelectCard cardSet={cardSet} key={cardSet._id}
+            {cardSets && cardSets.map(cardSet => <SelectCard cardSet={cardSet}
+                                                             key={cardSet._id}
                                                              setIsSelected={setIsSelected}
                                                              isSelected={selectedCards.some(s => s === cardSet._id)} />)}
           </Grid>
