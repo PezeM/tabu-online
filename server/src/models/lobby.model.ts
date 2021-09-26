@@ -6,13 +6,14 @@ import { LobbyCP } from '@shared/dto/lobby.dto';
 import { lobbyManager } from '@/managers/lobby.manager';
 import { LobbySettings } from '@shared/interfaces/lobby';
 import { CardSetsCountDto } from '@shared/dto';
+import { Game } from '@models/game.model';
 
 export class Lobby implements ClientPayload<LobbyCP> {
   public readonly id = generateRandomId();
 
   private _blacklist: Client[] = [];
-  private _isInGame: boolean;
   private _ownerId: string;
+  private _game?: Game;
 
   constructor(owner: Client, public settings: LobbySettings, cardSets: CardSetsCountDto[]) {
     this._ownerId = owner.id;
@@ -42,6 +43,10 @@ export class Lobby implements ClientPayload<LobbyCP> {
     return this._members.length;
   }
 
+  get isGameStarted(): boolean {
+    return this._game !== undefined;
+  }
+
   public getMember(clientId: string): Client | undefined {
     return this._members.find(c => c.id === clientId);
   }
@@ -52,7 +57,7 @@ export class Lobby implements ClientPayload<LobbyCP> {
   }
 
   public addClient(client: Client): void {
-    if (this._isInGame) throw new Error('lobby.alreadyInGame');
+    if (this.isGameStarted) throw new Error('lobby.alreadyInGame');
     if (this._members.length >= this.settings.maxPlayers) throw new Error('lobby.roomIsFull');
     if (this._members.includes(client)) throw new Error('lobby.alreadyInThisRoom');
     if (this._blacklist.includes(client)) throw new Error('lobby.userInBlacklist');
@@ -92,6 +97,10 @@ export class Lobby implements ClientPayload<LobbyCP> {
       this._blacklist.push(clientToRemove);
       clientToRemove.socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.kicked', 'Info');
     }
+  }
+
+  public setNewGame(game: Game) {
+    this._game = game;
   }
 
   public getCP(): LobbyCP {

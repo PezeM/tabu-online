@@ -19,6 +19,7 @@ import { socketClientMiddleware } from '@middlewares/client.middleware';
 import { connect, set } from 'mongoose';
 import { databaseConnection } from '@/database';
 import { GatewayHandlers } from '@/gateways/gateway.handlers';
+import { GameGateway } from '@/gateways/game.gateway';
 
 process.env['NODE_CONFIG_DIR'] = __dirname + '/configs';
 
@@ -89,7 +90,7 @@ export class App {
       },
     });
 
-    const gateways = [new AuthGateway(), new LobbyGateway()];
+    const gateways = [new AuthGateway(), new LobbyGateway(), new GameGateway()];
 
     this._socketServer.on('connect', (socket: ClientSocket) => {
       socket.onAny((eventName: string, ...args) => {

@@ -1,63 +1,55 @@
-import config from 'config';
-import jwt from 'jsonwebtoken';
-import { DataStoredInToken, TokenData } from '@interfaces/auth.interface';
-import { User } from '@interfaces/users.interface';
-import userModel from '@models/users.model';
-import { isEmpty } from '@utils/util';
-import { HttpException } from '@exceptions/http.exception';
+import { Client } from '@models/client.model';
+import { Lobby } from '@models/lobby.model';
+import { SERVER_EVENT_NAME } from '@shared/constants/events';
+import { lobbyManager } from '@/managers/lobby.manager';
+import { clientManager } from '@/managers/client.manager';
+import { logger } from '@utils/logger';
+import { CardSetRepository } from '@/repositories/card-set.repository';
+import { LobbySettingsService } from '@services/lobby-settings.service';
 
-class AuthService {
-  public users = userModel;
+export class AuthService {
+  private readonly lobbySettingsService = new LobbySettingsService();
+  private readonly cardSetRepository = new CardSetRepository();
 
-  // public async signup(userData: CreateLobbyUser): Promise<User> {
-  //   if (isEmpty(userData)) throw new HttpException(400, "You're not userData");
-  //
-  //   const findUser: User = this.users.find(user => user.email === userData.email);
-  //   if (findUser) throw new HttpException(409, `You're email ${userData.email} already exists`);
-  //
-  //   const hashedPassword = await bcrypt.hash(userData.password, 10);
-  //   const createUserData: User = { id: this.users.length + 1, ...userData, password: hashedPassword };
-  //
-  //   return createUserData;
-  // }
-  //
-  // public async login(userData: CreateLobbyUser): Promise<{ cookie: string; findUser: User }> {
-  //   if (isEmpty(userData)) throw new HttpException(400, "You're not userData");
-  //
-  //   const findUser: User = this.users.find(user => user.email === userData.email);
-  //   if (!findUser) throw new HttpException(409, `You're email ${userData.email} not found`);
-  //
-  //   const isPasswordMatching: boolean = await bcrypt.compare(userData.password, findUser.password);
-  //   if (!isPasswordMatching) throw new HttpException(409, "You're password not matching");
-  //
-  //   const tokenData = this.createToken(findUser);
-  //   const cookie = this.createCookie(tokenData);
-  //
-  //   return { cookie, findUser };
-  // }
-
-  public async logout(userData: User): Promise<User> {
-    if (isEmpty(userData)) throw new HttpException(400, "You're not userData");
-
-    const findUser: User = this.users.find(
-      user => user.email === userData.email && user.password === userData.password,
-    );
-    if (!findUser) throw new HttpException(409, "You're not user");
-
-    return findUser;
+  private static emitActionError(client: Client, errorName: string) {
+    client.socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
+    client.socket.emit(SERVER_EVENT_NAME.Notification, errorName, 'Error');
+    clientManager.removeClient(client);
   }
 
-  public createToken(user: User): TokenData {
-    const dataStoredInToken: DataStoredInToken = { id: user.id };
-    const secretKey: string = config.get('secretKey');
-    const expiresIn: number = 60 * 60;
+  public async createLobby(owner: Client, language: string) {
+    if (lobbyManager.getLobbyForSocketId(owner.socketId)) {
+      AuthService.emitActionError(owner, 'lobby.userAlreadyInLobby');
+      return;
+    }
 
-    return { expiresIn, token: jwt.sign(dataStoredInToken, secretKey, { expiresIn }) };
+    const settings = this.lobbySettingsService.createDefaultSettings(language);
+
+    let lobby: Lobby;
+    try {
+      const cardSets = await this.cardSetRepository.getCardSetsForLanguage(settings.language);
+      lobby = new Lobby(owner, settings, cardSets);
+      lobbyManager.addLobby(lobby);
+    } catch (e) {
+      lobbyManager.removeLobby(lobby);
+      logger.error('[CREATE LOBBY] Error while creating lobby', { error: e });
+      AuthService.emitActionError(owner, 'lobby.errorCreatingLobby');
+    }
   }
 
-  public createCookie(tokenData: TokenData): string {
-    return `Authorization=${tokenData.token}; HttpOnly; Max-Age=${tokenData.expiresIn};`;
+  public joinLobby(client: Client, lobbyId: string) {
+    const lobby = lobbyManager.getLobby(lobbyId);
+
+    if (!lobby) {
+      AuthService.emitActionError(client, 'lobby.doesntExist');
+      return;
+    }
+
+    // Add client to lobby
+    try {
+      lobby.addClient(client);
+    } catch (e) {
+      AuthService.emitActionError(client, e.message);
+    }
   }
 }
-
-export default AuthService;

@@ -1,8 +1,8 @@
-import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from "./constants";
-import { NotificationVariation } from "./notification";
-import { CardSetsCountDto, ClientCP, LobbyCP } from "./dto";
-import { Team } from "./enums";
-import { LobbySettings } from "./interfaces";
+import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from './constants';
+import { NotificationVariation } from './notification';
+import { CardSetsCountDto, ClientCP, LobbyCP } from './dto';
+import { Team } from './enums';
+import { LobbySettings } from './interfaces';
 
 export interface EventsFromServer {
   [SERVER_EVENT_NAME.FromServer]: (co: string[]) => void;
@@ -32,6 +32,9 @@ export interface EventsFromServer {
   [SERVER_EVENT_NAME.LobbySettingsUpdateFailed]: (msg: string) => void;
   [SERVER_EVENT_NAME.UpdateCardSets]: (cardSets: CardSetsCountDto[]) => void;
   [SERVER_EVENT_NAME.StartGameFailed]: (msg: string) => void;
+  [SERVER_EVENT_NAME.ErrorCreatingGame]: (msg: string) => void;
+  [SERVER_EVENT_NAME.PlayerLeftGame]: () => void;
+  [SERVER_EVENT_NAME.GamePlayerLeft]: (playerId: string) => void;
 }
 
 export interface EventsFromClient {

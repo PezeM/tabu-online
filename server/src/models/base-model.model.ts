@@ -1,4 +1,5 @@
 import { modelOptions, prop, Severity } from '@typegoose/typegoose';
+import mongoose from 'mongoose';
 
 @modelOptions({
   options: { allowMixed: Severity.ALLOW },
@@ -11,5 +12,5 @@ import { modelOptions, prop, Severity } from '@typegoose/typegoose';
 })
 export abstract class BaseModel {
   @prop()
-  public _id: string; // change the type of _id to string
+  public _id: mongoose.Types.ObjectId;
 }

@@ -85,6 +85,7 @@
     "wrongCardIds": "Wystąpił błąd podczas wybierania kart",
     "noCardSelected": "Nie można wystartować gry bez wybrania kart!",
     "minimumNumberOfPlayers": "Nie można wystartować gry z mniej niż dwoma graczami!",
-    "onlyOwnerCanStartTheGame": "Tylko założyciel lobby może wystartować grę!"
+    "onlyOwnerCanStartTheGame": "Tylko założyciel lobby może wystartować grę!",
+    "errorCreatingLobby": "Nieznany błąd wystąpił podczas tworzenia nowego lobby"
   }
 }

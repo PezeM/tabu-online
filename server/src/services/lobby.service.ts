@@ -7,9 +7,11 @@ import { lobbyManager } from '@/managers/lobby.manager';
 import { LobbySettingsValidator } from '@services/validators/lobby-settings.validator';
 import { InternalServerErrorException } from '@/exceptions';
 import { logClient, logError, logger, logLobby } from '@utils/logger';
+import { GameCreateService } from '@services/game-create.service';
 
 export class LobbyService {
-  private lobbySettingsValidator = new LobbySettingsValidator();
+  private _lobbySettingsValidator = new LobbySettingsValidator();
+  private _gameCreateService = new GameCreateService();
 
   changeTeam(client: Client, lobby: Lobby) {
     client.team = client.team === Team.Blue ? Team.Red : Team.Blue;
@@ -26,7 +28,9 @@ export class LobbyService {
     if (!lobby) return;
 
     try {
-      this.lobbySettingsValidator.validateLobbySettings(lobby);
+      this._lobbySettingsValidator.validateLobbySettings(lobby);
+      LobbyService.validateOwnership(lobby, client);
+      await this._gameCreateService.createNewGame(lobby, client);
     } catch (e) {
       if (e instanceof InternalServerErrorException) {
         client.socket.emit(SERVER_EVENT_NAME.StartGameFailed, e.message);
@@ -40,5 +44,11 @@ export class LobbyService {
     // Validate settings
     // Validate if is owner and game can be started
     // Load cards from db and start game
+  }
+
+  private static validateOwnership(lobby: Lobby, client: Client) {
+    if (!lobby.isOwner(client)) {
+      throw new InternalServerErrorException('error.onlyOwnerCanStartTheGame');
+    }
   }
 }

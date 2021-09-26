@@ -51,6 +51,11 @@ export const LobbyFooter = React.memo(() => {
     showErrorNotification(toast, msg);
   });
 
+  useListenServerEvent(SERVER_EVENT_NAME.ErrorCreatingGame, (msg: string) => {
+    dispatch(setIsLoading(false));
+    showErrorNotification(toast, msg);
+  });
+
   return (
     <Grid
       marginY={[2, 4, 8]}

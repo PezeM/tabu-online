@@ -28,10 +28,10 @@ export class CardSet extends BaseModel {
   })
   public language!: LobbyLanguage;
 
-  @prop({ required: true, type: () => [Card] })
+  @prop({ required: true, type: () => [Card], _id: false })
   public cards!: Card[];
 
-  @prop({ required: false, type: () => [String] })
+  @prop({ required: false, type: () => [String], _id: false })
   public tags?: string[];
 
   @prop({ default: new Date(), type: Date })

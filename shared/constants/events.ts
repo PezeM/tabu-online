@@ -11,6 +11,9 @@ export enum SERVER_EVENT_NAME {
   LobbySettingsUpdateFailed = "lobbySettingsUpdateFailed",
   UpdateCardSets = 'updateCardSets',
   StartGameFailed = 'startGameFailed',
+  ErrorCreatingGame = 'errorCreatingGame',
+  PlayerLeftGame = 'playerLeftGame',
+  GamePlayerLeft = 'gamePlayerLeft',
 }
 
 export enum CLIENT_EVENT_NAME {

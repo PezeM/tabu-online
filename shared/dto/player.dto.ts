@@ -1,6 +1,6 @@
 import { Team } from '../enums';
 
-export interface ClientCP {
+export interface PlayerCP {
   id: string;
   username: string;
   team: Team;
