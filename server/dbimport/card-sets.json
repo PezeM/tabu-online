@@ -2,7 +2,11 @@
   {
     "name": "Popular words",
     "language": "en",
-    "tags": ["popular", "food", "menus"],
+    "tags": [
+      "popular",
+      "food",
+      "menus"
+    ],
     "cards": [
       {
         "name": "macho",
@@ -1009,816 +1013,822 @@
   {
     "name": "Popular words 2",
     "language": "en",
-    "tags": ["animal", "food", "job"],
+    "tags": [
+      "animal",
+      "food",
+      "job"
+    ],
     "cards": [
-      [
-        {
-          "name": "zebra",
-          "forbiddenWords": [
-            "black",
-            "white",
-            "horse",
-            "animal",
-            "Africa"
-          ]
-        },
-        {
-          "name": "blink",
-          "forbiddenWords": [
-            "eye",
-            "moist",
-            "dry",
-            "182",
-            "shut"
-          ]
-        },
-        {
-          "name": "diabetes",
-          "forbiddenWords": [
-            "insulin",
-            "sugar",
-            "pancreas",
-            "needle",
-            "inject"
-          ]
-        },
-        {
-          "name": "papaya",
-          "forbiddenWords": [
-            "fruit",
-            "tropical",
-            "orange",
-            "yellow",
-            "sweet"
-          ]
-        },
-        {
-          "name": "hashtag",
-          "forbiddenWords": [
-            "Twitter",
-            "tweet",
-            "Instagram",
-            "pound",
-            "symbol"
-          ]
-        },
-        {
-          "name": "pharaoh",
-          "forbiddenWords": [
-            "ancient",
-            "Egypt",
-            "pyramid",
-            "king",
-            "ruler"
-          ]
-        },
-        {
-          "name": "dagger",
-          "forbiddenWords": [
-            "sword",
-            "knife",
-            "sharp",
-            "stab",
-            "blade"
-          ]
-        },
-        {
-          "name": "narwhal",
-          "forbiddenWords": [
-            "horn",
-            "tusk",
-            "whale",
-            "ocean",
-            "sea"
-          ]
-        },
-        {
-          "name": "waffle",
-          "forbiddenWords": [
-            "breakfast",
-            "pancake",
-            "maple",
-            "syrup",
-            "iron"
-          ]
-        },
-        {
-          "name": "matcha",
-          "forbiddenWords": [
-            "tea",
-            "green",
-            "powder",
-            "drink",
-            "hot"
-          ]
-        },
-        {
-          "name": "organic",
-          "forbiddenWords": [
-            "food",
-            "chemistry",
-            "chemical",
-            "natural",
-            "pesticides"
-          ]
-        },
-        {
-          "name": "confuse",
-          "forbiddenWords": [
-            "think",
-            "wrong",
-            "mistake",
-            "unclear",
-            "unsure"
-          ]
-        },
-        {
-          "name": "sunburn",
-          "forbiddenWords": [
-            "skin",
-            "red",
-            "sunscreen",
-            "aloe",
-            "UV"
-          ]
-        },
-        {
-          "name": "major",
-          "forbiddenWords": [
-            "minor",
-            "officer",
-            "army",
-            "college",
-            "university"
-          ]
-        },
-        {
-          "name": "carry",
-          "forbiddenWords": [
-            "hold",
-            "move",
-            "transport",
-            "place",
-            "take"
-          ]
-        },
-        {
-          "name": "oyster",
-          "forbiddenWords": [
-            "mussel",
-            "clam",
-            "shell",
-            "animal",
-            "ocean"
-          ]
-        },
-        {
-          "name": "accident",
-          "forbiddenWords": [
-            "mishap",
-            "disaster",
-            "bad",
-            "injury",
-            "crash"
-          ]
-        },
-        {
-          "name": "mythology",
-          "forbiddenWords": [
-            "legend",
-            "lore",
-            "folktale",
-            "fairytale",
-            "story"
-          ]
-        },
-        {
-          "name": "cease",
-          "forbiddenWords": [
-            "desist",
-            "stop",
-            "refrain",
-            "discontinue",
-            "quit"
-          ]
-        },
-        {
-          "name": "grade",
-          "forbiddenWords": [
-            "school",
-            "class",
-            "student",
-            "teacher",
-            "homework"
-          ]
-        },
-        {
-          "name": "mirror",
-          "forbiddenWords": [
-            "light",
-            "reflect",
-            "self",
-            "glass",
-            "see"
-          ]
-        },
-        {
-          "name": "derivative",
-          "forbiddenWords": [
-            "math",
-            "change",
-            "original",
-            "influence",
-            "art"
-          ]
-        },
-        {
-          "name": "buffalo",
-          "forbiddenWords": [
-            "cow",
-            "bison",
-            "America",
-            "animal",
-            "horns"
-          ]
-        },
-        {
-          "name": "sketch",
-          "forbiddenWords": [
-            "picture",
-            "draw",
-            "pencil",
-            "illustrate",
-            "art"
-          ]
-        },
-        {
-          "name": "marathon",
-          "forbiddenWords": [
-            "run",
-            "race",
-            "endurance",
-            "26",
-            "miles"
-          ]
-        },
-        {
-          "name": "galaxy",
-          "forbiddenWords": [
-            "milky",
-            "stars",
-            "planets",
-            "space",
-            "black"
-          ]
-        },
-        {
-          "name": "coral",
-          "forbiddenWords": [
-            "pink",
-            "orange",
-            "ocean",
-            "reef",
-            "water"
-          ]
-        },
-        {
-          "name": "tornado",
-          "forbiddenWords": [
-            "cyclone",
-            "twister",
-            "wind",
-            "weather",
-            "storm"
-          ]
-        },
-        {
-          "name": "coyote",
-          "forbiddenWords": [
-            "wolf",
-            "dog",
-            "animal",
-            "gray",
-            "canine"
-          ]
-        },
-        {
-          "name": "lump",
-          "forbiddenWords": [
-            "bump",
-            "hump",
-            "bunch",
-            "under",
-            "mass"
-          ]
-        },
-        {
-          "name": "cash",
-          "forbiddenWords": [
-            "money",
-            "dollar",
-            "currency",
-            "paper",
-            "check"
-          ]
-        },
-        {
-          "name": "theater",
-          "forbiddenWords": [
-            "acting",
-            "drama",
-            "play",
-            "audience",
-            "stage"
-          ]
-        },
-        {
-          "name": "thunder",
-          "forbiddenWords": [
-            "lightning",
-            "noise",
-            "sound",
-            "weather",
-            "storm"
-          ]
-        },
-        {
-          "name": "cream",
-          "forbiddenWords": [
-            "milk",
-            "liquid",
-            "tea",
-            "coffee",
-            "peaches"
-          ]
-        },
-        {
-          "name": "butterfly",
-          "forbiddenWords": [
-            "insect",
-            "wings",
-            "flutter",
-            "colorful",
-            "caterpillar"
-          ]
-        },
-        {
-          "name": "question",
-          "forbiddenWords": [
-            "ask",
-            "answer",
-            "find",
-            "information",
-            "wonder"
-          ]
-        },
-        {
-          "name": "driveway",
-          "forbiddenWords": [
-            "asphalt",
-            "road",
-            "garage",
-            "car",
-            "park"
-          ]
-        },
-        {
-          "name": "slither",
-          "forbiddenWords": [
-            "snake",
-            "serpent",
-            "ground",
-            "belly",
-            "slide"
-          ]
-        },
-        {
-          "name": "draft",
-          "forbiddenWords": [
-            "wind",
-            "window",
-            "war",
-            "military",
-            "Vietnam"
-          ]
-        },
-        {
-          "name": "crystal",
-          "forbiddenWords": [
-            "ball",
-            "gem",
-            "rock",
-            "chandelier",
-            "healing"
-          ]
-        },
-        {
-          "name": "conspiracy",
-          "forbiddenWords": [
-            "theory",
-            "commit",
-            "aliens",
-            "UFOs",
-            "assassination"
-          ]
-        },
-        {
-          "name": "bagpipes",
-          "forbiddenWords": [
-            "instrument",
-            "play",
-            "blow",
-            "Scotland",
-            "kilt"
-          ]
-        },
-        {
-          "name": "damp",
-          "forbiddenWords": [
-            "water",
-            "wet",
-            "moist",
-            "towel",
-            "humid"
-          ]
-        },
-        {
-          "name": "castanets",
-          "forbiddenWords": [
-            "instrument",
-            "Spain",
-            "flamenco",
-            "hand",
-            "fingers"
-          ]
-        },
-        {
-          "name": "generator",
-          "forbiddenWords": [
-            "power",
-            "electricity",
-            "emergency",
-            "outage",
-            "storm"
-          ]
-        },
-        {
-          "name": "cataracts",
-          "forbiddenWords": [
-            "eyes",
-            "lens",
-            "vision",
-            "sun",
-            "surgery"
-          ]
-        },
-        {
-          "name": "decimal",
-          "forbiddenWords": [
-            "point",
-            "math",
-            "number",
-            "fraction",
-            "Dewey"
-          ]
-        },
-        {
-          "name": "chickpea",
-          "forbiddenWords": [
-            "garbanzo",
-            "bean",
-            "falafel",
-            "hummus",
-            "vegetable"
-          ]
-        },
-        {
-          "name": "pesto",
-          "forbiddenWords": [
-            "sauce",
-            "basil",
-            "garlic",
-            "pasta",
-            "Italian"
-          ]
-        },
-        {
-          "name": "cornucopia",
-          "forbiddenWords": [
-            "Thanksgiving",
-            "plenty",
-            "hunger",
-            "food",
-            "horn"
-          ]
-        },
-        {
-          "name": "crunchy",
-          "forbiddenWords": [
-            "step",
-            "bite",
-            "sound",
-            "crack",
-            "crisp"
-          ]
-        },
-        {
-          "name": "glacier",
-          "forbiddenWords": [
-            "ice",
-            "polar",
-            "Antarctica",
-            "Titanic",
-            "climate"
-          ]
-        },
-        {
-          "name": "generic",
-          "forbiddenWords": [
-            "brand",
-            "prescription",
-            "drug",
-            "medicine",
-            "specific"
-          ]
-        },
-        {
-          "name": "lightbulb",
-          "forbiddenWords": [
-            "lamp",
-            "electricity",
-            "screw",
-            "incandescent",
-            "watts"
-          ]
-        },
-        {
-          "name": "apology",
-          "forbiddenWords": [
-            "sorry",
-            "guilt",
-            "wrong",
-            "ask",
-            "forgiveness"
-          ]
-        },
-        {
-          "name": "liver",
-          "forbiddenWords": [
-            "organ",
-            "body",
-            "chopped",
-            "toxins",
-            "transplant"
-          ]
-        },
-        {
-          "name": "compromise",
-          "forbiddenWords": [
-            "agree",
-            "argument",
-            "settle",
-            "concession",
-            "dispute"
-          ]
-        },
-        {
-          "name": "taxi",
-          "forbiddenWords": [
-            "ride",
-            "car",
-            "Uber",
-            "Lyft",
-            "cab"
-          ]
-        },
-        {
-          "name": "spiral",
-          "forbiddenWords": [
-            "shape",
-            "downward",
-            "design",
-            "curve",
-            "draw"
-          ]
-        },
-        {
-          "name": "saddle",
-          "forbiddenWords": [
-            "ride",
-            "horse",
-            "leather",
-            "sit",
-            "back"
-          ]
-        },
-        {
-          "name": "banshee",
-          "forbiddenWords": [
-            "shriek",
-            "wail",
-            "scream",
-            "ghost",
-            "spirit"
-          ]
-        },
-        {
-          "name": "snout",
-          "forbiddenWords": [
-            "animal",
-            "face",
-            "protrude",
-            "pig",
-            "dog"
-          ]
-        },
-        {
-          "name": "toffee",
-          "forbiddenWords": [
-            "candy",
-            "crunchy",
-            "hard",
-            "sugar",
-            "brown"
-          ]
-        },
-        {
-          "name": "kettle",
-          "forbiddenWords": [
-            "pot",
-            "black",
-            "boil",
-            "tea",
-            "stove"
-          ]
-        },
-        {
-          "name": "jam",
-          "forbiddenWords": [
-            "jelly",
-            "preserves",
-            "raspberry",
-            "printer",
-            "stuck"
-          ]
-        },
-        {
-          "name": "gavel",
-          "forbiddenWords": [
-            "courtroom",
-            "judge",
-            "hammer",
-            "case",
-            "verdict"
-          ]
-        },
-        {
-          "name": "beige",
-          "forbiddenWords": [
-            "color",
-            "bland",
-            "light",
-            "neutral",
-            "off-white"
-          ]
-        },
-        {
-          "name": "chartreuse",
-          "forbiddenWords": [
-            "color",
-            "green",
-            "yellow",
-            "light",
-            "pale"
-          ]
-        },
-        {
-          "name": "hoard",
-          "forbiddenWords": [
-            "dragon",
-            "gold",
-            "greed",
-            "things",
-            "stuff"
-          ]
-        },
-        {
-          "name": "wrath",
-          "forbiddenWords": [
-            "anger",
-            "rage",
-            "fury",
-            "feel",
-            "emotion"
-          ]
-        },
-        {
-          "name": "envy",
-          "forbiddenWords": [
-            "jealous",
-            "covet",
-            "wish",
-            "feel",
-            "emotion"
-          ]
-        },
-        {
-          "name": "hermit",
-          "forbiddenWords": [
-            "person",
-            "someone",
-            "live",
-            "alone",
-            "society"
-          ]
-        },
-        {
-          "name": "riddle",
-          "forbiddenWords": [
-            "ask",
-            "question",
-            "puzzle",
-            "solve",
-            "sphinx"
-          ]
-        },
-        {
-          "name": "genuine",
-          "forbiddenWords": [
-            "real",
-            "authentic",
-            "fake",
-            "actual",
-            "sincere"
-          ]
-        },
-        {
-          "name": "slang",
-          "forbiddenWords": [
-            "informal",
-            "speech",
-            "language",
-            "colloquial",
-            "talk"
-          ]
-        },
-        {
-          "name": "sorcery",
-          "forbiddenWords": [
-            "magic",
-            "witch",
-            "wizard",
-            "spell",
-            "fantasy"
-          ]
-        },
-        {
-          "name": "paramedic",
-          "forbiddenWords": [
-            "ambulance",
-            "medical",
-            "emergency",
-            "hospital",
-            "health"
-          ]
-        },
-        {
-          "name": "spruce",
-          "forbiddenWords": [
-            "tree",
-            "plant",
-            "clean",
-            "tidy",
-            "place"
-          ]
-        },
-        {
-          "name": "league",
-          "forbiddenWords": [
-            "devil",
-            "thousand",
-            "sea",
-            "extraordinary",
-            "legends"
-          ]
-        },
-        {
-          "name": "tuft",
-          "forbiddenWords": [
-            "hair",
-            "bunch",
-            "clump",
-            "bunch",
-            "collection"
-          ]
-        }
-      ]
+      {
+        "name": "zebra",
+        "forbiddenWords": [
+          "black",
+          "white",
+          "horse",
+          "animal",
+          "Africa"
+        ]
+      },
+      {
+        "name": "blink",
+        "forbiddenWords": [
+          "eye",
+          "moist",
+          "dry",
+          "182",
+          "shut"
+        ]
+      },
+      {
+        "name": "diabetes",
+        "forbiddenWords": [
+          "insulin",
+          "sugar",
+          "pancreas",
+          "needle",
+          "inject"
+        ]
+      },
+      {
+        "name": "papaya",
+        "forbiddenWords": [
+          "fruit",
+          "tropical",
+          "orange",
+          "yellow",
+          "sweet"
+        ]
+      },
+      {
+        "name": "hashtag",
+        "forbiddenWords": [
+          "Twitter",
+          "tweet",
+          "Instagram",
+          "pound",
+          "symbol"
+        ]
+      },
+      {
+        "name": "pharaoh",
+        "forbiddenWords": [
+          "ancient",
+          "Egypt",
+          "pyramid",
+          "king",
+          "ruler"
+        ]
+      },
+      {
+        "name": "dagger",
+        "forbiddenWords": [
+          "sword",
+          "knife",
+          "sharp",
+          "stab",
+          "blade"
+        ]
+      },
+      {
+        "name": "narwhal",
+        "forbiddenWords": [
+          "horn",
+          "tusk",
+          "whale",
+          "ocean",
+          "sea"
+        ]
+      },
+      {
+        "name": "waffle",
+        "forbiddenWords": [
+          "breakfast",
+          "pancake",
+          "maple",
+          "syrup",
+          "iron"
+        ]
+      },
+      {
+        "name": "matcha",
+        "forbiddenWords": [
+          "tea",
+          "green",
+          "powder",
+          "drink",
+          "hot"
+        ]
+      },
+      {
+        "name": "organic",
+        "forbiddenWords": [
+          "food",
+          "chemistry",
+          "chemical",
+          "natural",
+          "pesticides"
+        ]
+      },
+      {
+        "name": "confuse",
+        "forbiddenWords": [
+          "think",
+          "wrong",
+          "mistake",
+          "unclear",
+          "unsure"
+        ]
+      },
+      {
+        "name": "sunburn",
+        "forbiddenWords": [
+          "skin",
+          "red",
+          "sunscreen",
+          "aloe",
+          "UV"
+        ]
+      },
+      {
+        "name": "major",
+        "forbiddenWords": [
+          "minor",
+          "officer",
+          "army",
+          "college",
+          "university"
+        ]
+      },
+      {
+        "name": "carry",
+        "forbiddenWords": [
+          "hold",
+          "move",
+          "transport",
+          "place",
+          "take"
+        ]
+      },
+      {
+        "name": "oyster",
+        "forbiddenWords": [
+          "mussel",
+          "clam",
+          "shell",
+          "animal",
+          "ocean"
+        ]
+      },
+      {
+        "name": "accident",
+        "forbiddenWords": [
+          "mishap",
+          "disaster",
+          "bad",
+          "injury",
+          "crash"
+        ]
+      },
+      {
+        "name": "mythology",
+        "forbiddenWords": [
+          "legend",
+          "lore",
+          "folktale",
+          "fairytale",
+          "story"
+        ]
+      },
+      {
+        "name": "cease",
+        "forbiddenWords": [
+          "desist",
+          "stop",
+          "refrain",
+          "discontinue",
+          "quit"
+        ]
+      },
+      {
+        "name": "grade",
+        "forbiddenWords": [
+          "school",
+          "class",
+          "student",
+          "teacher",
+          "homework"
+        ]
+      },
+      {
+        "name": "mirror",
+        "forbiddenWords": [
+          "light",
+          "reflect",
+          "self",
+          "glass",
+          "see"
+        ]
+      },
+      {
+        "name": "derivative",
+        "forbiddenWords": [
+          "math",
+          "change",
+          "original",
+          "influence",
+          "art"
+        ]
+      },
+      {
+        "name": "buffalo",
+        "forbiddenWords": [
+          "cow",
+          "bison",
+          "America",
+          "animal",
+          "horns"
+        ]
+      },
+      {
+        "name": "sketch",
+        "forbiddenWords": [
+          "picture",
+          "draw",
+          "pencil",
+          "illustrate",
+          "art"
+        ]
+      },
+      {
+        "name": "marathon",
+        "forbiddenWords": [
+          "run",
+          "race",
+          "endurance",
+          "26",
+          "miles"
+        ]
+      },
+      {
+        "name": "galaxy",
+        "forbiddenWords": [
+          "milky",
+          "stars",
+          "planets",
+          "space",
+          "black"
+        ]
+      },
+      {
+        "name": "coral",
+        "forbiddenWords": [
+          "pink",
+          "orange",
+          "ocean",
+          "reef",
+          "water"
+        ]
+      },
+      {
+        "name": "tornado",
+        "forbiddenWords": [
+          "cyclone",
+          "twister",
+          "wind",
+          "weather",
+          "storm"
+        ]
+      },
+      {
+        "name": "coyote",
+        "forbiddenWords": [
+          "wolf",
+          "dog",
+          "animal",
+          "gray",
+          "canine"
+        ]
+      },
+      {
+        "name": "lump",
+        "forbiddenWords": [
+          "bump",
+          "hump",
+          "bunch",
+          "under",
+          "mass"
+        ]
+      },
+      {
+        "name": "cash",
+        "forbiddenWords": [
+          "money",
+          "dollar",
+          "currency",
+          "paper",
+          "check"
+        ]
+      },
+      {
+        "name": "theater",
+        "forbiddenWords": [
+          "acting",
+          "drama",
+          "play",
+          "audience",
+          "stage"
+        ]
+      },
+      {
+        "name": "thunder",
+        "forbiddenWords": [
+          "lightning",
+          "noise",
+          "sound",
+          "weather",
+          "storm"
+        ]
+      },
+      {
+        "name": "cream",
+        "forbiddenWords": [
+          "milk",
+          "liquid",
+          "tea",
+          "coffee",
+          "peaches"
+        ]
+      },
+      {
+        "name": "butterfly",
+        "forbiddenWords": [
+          "insect",
+          "wings",
+          "flutter",
+          "colorful",
+          "caterpillar"
+        ]
+      },
+      {
+        "name": "question",
+        "forbiddenWords": [
+          "ask",
+          "answer",
+          "find",
+          "information",
+          "wonder"
+        ]
+      },
+      {
+        "name": "driveway",
+        "forbiddenWords": [
+          "asphalt",
+          "road",
+          "garage",
+          "car",
+          "park"
+        ]
+      },
+      {
+        "name": "slither",
+        "forbiddenWords": [
+          "snake",
+          "serpent",
+          "ground",
+          "belly",
+          "slide"
+        ]
+      },
+      {
+        "name": "draft",
+        "forbiddenWords": [
+          "wind",
+          "window",
+          "war",
+          "military",
+          "Vietnam"
+        ]
+      },
+      {
+        "name": "crystal",
+        "forbiddenWords": [
+          "ball",
+          "gem",
+          "rock",
+          "chandelier",
+          "healing"
+        ]
+      },
+      {
+        "name": "conspiracy",
+        "forbiddenWords": [
+          "theory",
+          "commit",
+          "aliens",
+          "UFOs",
+          "assassination"
+        ]
+      },
+      {
+        "name": "bagpipes",
+        "forbiddenWords": [
+          "instrument",
+          "play",
+          "blow",
+          "Scotland",
+          "kilt"
+        ]
+      },
+      {
+        "name": "damp",
+        "forbiddenWords": [
+          "water",
+          "wet",
+          "moist",
+          "towel",
+          "humid"
+        ]
+      },
+      {
+        "name": "castanets",
+        "forbiddenWords": [
+          "instrument",
+          "Spain",
+          "flamenco",
+          "hand",
+          "fingers"
+        ]
+      },
+      {
+        "name": "generator",
+        "forbiddenWords": [
+          "power",
+          "electricity",
+          "emergency",
+          "outage",
+          "storm"
+        ]
+      },
+      {
+        "name": "cataracts",
+        "forbiddenWords": [
+          "eyes",
+          "lens",
+          "vision",
+          "sun",
+          "surgery"
+        ]
+      },
+      {
+        "name": "decimal",
+        "forbiddenWords": [
+          "point",
+          "math",
+          "number",
+          "fraction",
+          "Dewey"
+        ]
+      },
+      {
+        "name": "chickpea",
+        "forbiddenWords": [
+          "garbanzo",
+          "bean",
+          "falafel",
+          "hummus",
+          "vegetable"
+        ]
+      },
+      {
+        "name": "pesto",
+        "forbiddenWords": [
+          "sauce",
+          "basil",
+          "garlic",
+          "pasta",
+          "Italian"
+        ]
+      },
+      {
+        "name": "cornucopia",
+        "forbiddenWords": [
+          "Thanksgiving",
+          "plenty",
+          "hunger",
+          "food",
+          "horn"
+        ]
+      },
+      {
+        "name": "crunchy",
+        "forbiddenWords": [
+          "step",
+          "bite",
+          "sound",
+          "crack",
+          "crisp"
+        ]
+      },
+      {
+        "name": "glacier",
+        "forbiddenWords": [
+          "ice",
+          "polar",
+          "Antarctica",
+          "Titanic",
+          "climate"
+        ]
+      },
+      {
+        "name": "generic",
+        "forbiddenWords": [
+          "brand",
+          "prescription",
+          "drug",
+          "medicine",
+          "specific"
+        ]
+      },
+      {
+        "name": "lightbulb",
+        "forbiddenWords": [
+          "lamp",
+          "electricity",
+          "screw",
+          "incandescent",
+          "watts"
+        ]
+      },
+      {
+        "name": "apology",
+        "forbiddenWords": [
+          "sorry",
+          "guilt",
+          "wrong",
+          "ask",
+          "forgiveness"
+        ]
+      },
+      {
+        "name": "liver",
+        "forbiddenWords": [
+          "organ",
+          "body",
+          "chopped",
+          "toxins",
+          "transplant"
+        ]
+      },
+      {
+        "name": "compromise",
+        "forbiddenWords": [
+          "agree",
+          "argument",
+          "settle",
+          "concession",
+          "dispute"
+        ]
+      },
+      {
+        "name": "taxi",
+        "forbiddenWords": [
+          "ride",
+          "car",
+          "Uber",
+          "Lyft",
+          "cab"
+        ]
+      },
+      {
+        "name": "spiral",
+        "forbiddenWords": [
+          "shape",
+          "downward",
+          "design",
+          "curve",
+          "draw"
+        ]
+      },
+      {
+        "name": "saddle",
+        "forbiddenWords": [
+          "ride",
+          "horse",
+          "leather",
+          "sit",
+          "back"
+        ]
+      },
+      {
+        "name": "banshee",
+        "forbiddenWords": [
+          "shriek",
+          "wail",
+          "scream",
+          "ghost",
+          "spirit"
+        ]
+      },
+      {
+        "name": "snout",
+        "forbiddenWords": [
+          "animal",
+          "face",
+          "protrude",
+          "pig",
+          "dog"
+        ]
+      },
+      {
+        "name": "toffee",
+        "forbiddenWords": [
+          "candy",
+          "crunchy",
+          "hard",
+          "sugar",
+          "brown"
+        ]
+      },
+      {
+        "name": "kettle",
+        "forbiddenWords": [
+          "pot",
+          "black",
+          "boil",
+          "tea",
+          "stove"
+        ]
+      },
+      {
+        "name": "jam",
+        "forbiddenWords": [
+          "jelly",
+          "preserves",
+          "raspberry",
+          "printer",
+          "stuck"
+        ]
+      },
+      {
+        "name": "gavel",
+        "forbiddenWords": [
+          "courtroom",
+          "judge",
+          "hammer",
+          "case",
+          "verdict"
+        ]
+      },
+      {
+        "name": "beige",
+        "forbiddenWords": [
+          "color",
+          "bland",
+          "light",
+          "neutral",
+          "off-white"
+        ]
+      },
+      {
+        "name": "chartreuse",
+        "forbiddenWords": [
+          "color",
+          "green",
+          "yellow",
+          "light",
+          "pale"
+        ]
+      },
+      {
+        "name": "hoard",
+        "forbiddenWords": [
+          "dragon",
+          "gold",
+          "greed",
+          "things",
+          "stuff"
+        ]
+      },
+      {
+        "name": "wrath",
+        "forbiddenWords": [
+          "anger",
+          "rage",
+          "fury",
+          "feel",
+          "emotion"
+        ]
+      },
+      {
+        "name": "envy",
+        "forbiddenWords": [
+          "jealous",
+          "covet",
+          "wish",
+          "feel",
+          "emotion"
+        ]
+      },
+      {
+        "name": "hermit",
+        "forbiddenWords": [
+          "person",
+          "someone",
+          "live",
+          "alone",
+          "society"
+        ]
+      },
+      {
+        "name": "riddle",
+        "forbiddenWords": [
+          "ask",
+          "question",
+          "puzzle",
+          "solve",
+          "sphinx"
+        ]
+      },
+      {
+        "name": "genuine",
+        "forbiddenWords": [
+          "real",
+          "authentic",
+          "fake",
+          "actual",
+          "sincere"
+        ]
+      },
+      {
+        "name": "slang",
+        "forbiddenWords": [
+          "informal",
+          "speech",
+          "language",
+          "colloquial",
+          "talk"
+        ]
+      },
+      {
+        "name": "sorcery",
+        "forbiddenWords": [
+          "magic",
+          "witch",
+          "wizard",
+          "spell",
+          "fantasy"
+        ]
+      },
+      {
+        "name": "paramedic",
+        "forbiddenWords": [
+          "ambulance",
+          "medical",
+          "emergency",
+          "hospital",
+          "health"
+        ]
+      },
+      {
+        "name": "spruce",
+        "forbiddenWords": [
+          "tree",
+          "plant",
+          "clean",
+          "tidy",
+          "place"
+        ]
+      },
+      {
+        "name": "league",
+        "forbiddenWords": [
+          "devil",
+          "thousand",
+          "sea",
+          "extraordinary",
+          "legends"
+        ]
+      },
+      {
+        "name": "tuft",
+        "forbiddenWords": [
+          "hair",
+          "bunch",
+          "clump",
+          "bunch",
+          "collection"
+        ]
+      }
     ]
   },
   {
     "name": "Starter pack",
     "language": "en",
-    "tags": ["animal", "food", "job"],
+    "tags": [
+      "animal",
+      "food",
+      "job"
+    ],
     "cards": [
       {
         "name": "Food",
@@ -1965,7 +1975,11 @@
   {
     "name": "Popular words 4",
     "language": "en",
-    "tags": ["descriptions", "animals", "job"],
+    "tags": [
+      "descriptions",
+      "animals",
+      "job"
+    ],
     "cards": [
       {
         "name": "bloggers",
@@ -2972,7 +2986,10 @@
   {
     "name": "Popular words 5",
     "language": "en",
-    "tags": ["metals", "activities"],
+    "tags": [
+      "metals",
+      "activities"
+    ],
     "cards": [
       {
         "name": "played",
@@ -3979,7 +3996,10 @@
   {
     "name": "Popular words 6",
     "language": "en",
-    "tags": ["nouns", "activities"],
+    "tags": [
+      "nouns",
+      "activities"
+    ],
     "cards": [
       {
         "name": "bill",
@@ -4986,7 +5006,10 @@
   {
     "name": "Popular words 7",
     "language": "en",
-    "tags": ["jobs", "objects"],
+    "tags": [
+      "jobs",
+      "objects"
+    ],
     "cards": [
       {
         "name": "spies",
@@ -5993,7 +6016,10 @@
   {
     "name": "Popular words 8",
     "language": "en",
-    "tags": ["biology", "animals"],
+    "tags": [
+      "biology",
+      "animals"
+    ],
     "cards": [
       {
         "name": "hearts",
@@ -7000,7 +7026,11 @@
   {
     "name": "Popular words 9",
     "language": "en",
-    "tags": ["economy", "adjectives", "time"],
+    "tags": [
+      "economy",
+      "adjectives",
+      "time"
+    ],
     "cards": [
       {
         "name": "introducing",
@@ -8007,7 +8037,11 @@
   {
     "name": "Popular words 10",
     "language": "en",
-    "tags": ["economy", "adjectives", "time"],
+    "tags": [
+      "economy",
+      "adjectives",
+      "time"
+    ],
     "cards": [
       {
         "name": "scientists",
@@ -9014,7 +9048,10 @@
   {
     "name": "Popular words 11",
     "language": "en",
-    "tags": ["IT", "body"],
+    "tags": [
+      "IT",
+      "body"
+    ],
     "cards": [
       {
         "name": "body",
@@ -10021,7 +10058,10 @@
   {
     "name": "Popular words 12",
     "language": "en",
-    "tags": ["body", "time"],
+    "tags": [
+      "body",
+      "time"
+    ],
     "cards": [
       {
         "name": "afternoon",
@@ -11028,7 +11068,11 @@
   {
     "name": "Popular words 13",
     "language": "en",
-    "tags": ["adjectives", "time", "clothes"],
+    "tags": [
+      "adjectives",
+      "time",
+      "clothes"
+    ],
     "cards": [
       {
         "name": "wondering",
@@ -12035,7 +12079,11 @@
   {
     "name": "Popular words 14",
     "language": "en",
-    "tags": ["cop", "time", "clothes"],
+    "tags": [
+      "cop",
+      "time",
+      "clothes"
+    ],
     "cards": [
       {
         "name": "permissions",
@@ -13042,7 +13090,10 @@
   {
     "name": "Popular words 15",
     "language": "en",
-    "tags": ["food", "art"],
+    "tags": [
+      "food",
+      "art"
+    ],
     "cards": [
       {
         "name": "compression",
@@ -14049,7 +14100,10 @@
   {
     "name": "Popular words 16",
     "language": "en",
-    "tags": ["food", "art"],
+    "tags": [
+      "food",
+      "art"
+    ],
     "cards": [
       {
         "name": "killer",
@@ -15056,7 +15110,10 @@
   {
     "name": "Popular words 17",
     "language": "en",
-    "tags": ["food", "art"],
+    "tags": [
+      "food",
+      "art"
+    ],
     "cards": [
       {
         "name": "highlights",
