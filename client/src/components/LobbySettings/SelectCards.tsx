@@ -18,6 +18,7 @@ export const SelectCards = () => {
 
   const selectedCardsCount = useMemo(() => {
     if (!selectedCards || selectedCards.length === 0) return 0;
+
     return selectedCards.reduce((previousValue, currentValue) => {
       const set = cardSets?.find(s => s._id === currentValue);
       if (set) {

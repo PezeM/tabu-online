@@ -49,4 +49,9 @@ export class LobbyGateway {
 
     await this._lobbySettingsService.updateSettings(socket, newSettings);
   }
+
+  @OnEvent(CLIENT_EVENT_NAME.TryStartGame)
+  protected async onTryStartGame(socket: ClientSocket) {
+    
+  }
 }

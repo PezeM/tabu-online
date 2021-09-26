@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { ArrowRightIcon, LinkIcon } from '@chakra-ui/icons';
 import { useClipboard } from '@/hooks/useClipboard';
 import { useAppSelector } from '@/hooks/reduxHooks';
-import { selectLobbyId } from '@/features/lobby/lobby.slice';
+import { selectIsLobbyOwner, selectLobbyId } from '@/features/lobby/lobby.slice';
 import { socket } from '@/services/socket';
 import { CLIENT_EVENT_NAME } from '../../../shared/constants';
 
@@ -15,7 +15,13 @@ export const LobbyFooter = React.memo(() => {
   const [copyLinkButtonLoading, setCopyLinkButtonLoading] = useState(false);
   const [, copyToClipboard] = useClipboard();
   const lobbyId = useAppSelector(selectLobbyId);
+  const isLobbyOwner = useAppSelector(selectIsLobbyOwner);
   const toast = useToast();
+
+  const gridTemplateColumns = [
+    '1fr',
+    isLobbyOwner ? 'repeat(2, minmax(20%, 200px))' : 'minmax(20%, 200px)'
+  ];
 
   const startGame = () => {
     console.log('Starting game');
@@ -24,27 +30,31 @@ export const LobbyFooter = React.memo(() => {
   };
 
   const copyInviteLink = async () => {
-    setCopyLinkButtonLoading(true);
     const link = `${process.env.REACT_APP_ADDRESS}/invite/${lobbyId}`;
+    setCopyLinkButtonLoading(true);
+
     if (await copyToClipboard(link)) {
       console.log(`Copied invite link ${link}`);
+
       toast({
         title: t('ui.copyingToClipboard'),
         description: t('ui.inviteLinkCopiedSuccessfully'),
         status: 'success',
         duration: 5000,
-        isClosable: true,
+        isClosable: true
       });
     } else {
       console.error(`Error copying invite link ${link}`);
+
       toast({
         title: t('ui.copyingToClipboard'),
         description: t('error.copyingToClipboard'),
         status: 'error',
         duration: 5000,
-        isClosable: true,
+        isClosable: true
       });
     }
+
     setCopyLinkButtonLoading(false);
   };
 
@@ -52,7 +62,7 @@ export const LobbyFooter = React.memo(() => {
     <Grid
       marginY={[2, 4, 8]}
       gap={6}
-      templateColumns={['1fr', 'repeat(2, minmax(20%, 200px))']}
+      templateColumns={gridTemplateColumns}
       justifyContent={'center'}
     >
       <RippledButton
@@ -63,7 +73,7 @@ export const LobbyFooter = React.memo(() => {
       >
         {t('ui.lobbyCopyInviteLink')}
       </RippledButton>
-      <RippledButton
+      {isLobbyOwner && <RippledButton
         scheme={'blue'}
         leftIcon={<ArrowRightIcon />}
         onClick={() => startGame()}
@@ -71,7 +81,7 @@ export const LobbyFooter = React.memo(() => {
         loadingText={t('ui.lobbyStartGame')}
       >
         {t('ui.lobbyStartGame')}
-      </RippledButton>
+      </RippledButton>}
     </Grid>
   );
 });
