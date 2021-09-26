@@ -82,6 +82,9 @@
     "maxLength": "Exceeded maximum number",
     "copyingToClipboard": "Error copying invite link to clipboard!",
     "morePlayersInGameThanSelected": "There are more players in the game than the new limit allows",
-    "wrongCardIds": "Error while selecting cards"
+    "wrongCardIds": "Error while selecting cards",
+    "noCardSelected": "Can't start the game without any cards selected!",
+    "minimumNumberOfPlayers": "Can't start the game with less than two players!",
+    "onlyOwnerCanStartTheGame": "Only lobby owner can start the game!"
   }
 }
