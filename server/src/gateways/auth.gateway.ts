@@ -1,6 +1,5 @@
 import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '@shared/constants/events';
 import { isEmpty } from '@utils/util';
-import { Auth2Service } from '@services/auth2.service';
 import { Client } from '@models/client.model';
 import { ClientSocket } from '@interfaces/socket.interface';
 import { clientManager } from '@/managers/client.manager';
@@ -8,13 +7,14 @@ import { Socket } from 'socket.io';
 import { PerformanceLog } from '@utils/performance-logger';
 import { Gateway, OnEvent } from '@utils/gateway.decorator';
 import { lobbyManager } from '@/managers/lobby.manager';
+import { AuthService } from '@services/auth.service';
 
 @Gateway
 export class AuthGateway {
-  private readonly _authService: Auth2Service;
+  private readonly _authService: AuthService;
 
   constructor() {
-    this._authService = new Auth2Service();
+    this._authService = new AuthService();
   }
 
   @OnEvent(CLIENT_EVENT_NAME.Test)
