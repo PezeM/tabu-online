@@ -3,6 +3,7 @@ import { useListenServerEvent } from "@/hooks/useListenServerEvent";
 import { SERVER_EVENT_NAME } from '../../../shared/constants';
 import { NotificationVariation } from "../../../shared/notification";
 import i18n from "../i18n";
+import { showNotification } from '@/utils/notification';
 
 export const NotificationContainer = (): JSX.Element | null => {
   const toast = useToast();
@@ -12,13 +13,7 @@ export const NotificationContainer = (): JSX.Element | null => {
     (message: string, variation: NotificationVariation, ...rest: any[]) => {
       message = i18n.t(message);
 
-      toast({
-        description: message,
-        position: "top-right",
-        variant: variation,
-        isClosable: true,
-        duration: 5000,
-      });
+      showNotification(toast, message, { variant: variation });
     }
   );
 

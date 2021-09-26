@@ -39,11 +39,8 @@ export const Invite = () => {
     dispatch(setClient(clientCP));
 
     setIsLoading(false);
-    console.log('Lobby cp:', lobbyCP);
     history.push('/lobby');
   });
-
-  console.log(params);
 
   return (
     <Box>

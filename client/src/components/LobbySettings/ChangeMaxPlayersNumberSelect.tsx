@@ -4,7 +4,7 @@ import { Select } from '@chakra-ui/react';
 import { selectLobby } from '@/features/lobby/lobby.slice';
 import { setIsLoading } from '@/features/settings/settings.splice';
 import { socket } from '@/services/socket';
-import { CLIENT_EVENT_NAME } from '../../../../shared/constants/events';
+import { CLIENT_EVENT_NAME } from '../../../../shared/constants';
 import { useTranslation } from 'react-i18next';
 
 const AVAILABLE_PLAYERS_VALUES = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];

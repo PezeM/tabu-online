@@ -22,7 +22,6 @@ export const Home = () => {
     socket.auth = { username };
     socket.connect();
 
-    console.log('on submit', username);
     setIsLoading(true);
 
     socket.emit(CLIENT_EVENT_NAME.CreateLobby, username, getBrowserLanguage());
@@ -40,7 +39,6 @@ export const Home = () => {
       dispatch(updateCardSets(cardSets));
 
       setIsLoading(false);
-      console.log('Lobby cp:', lobbyCP, clientCP);
       history.push('/lobby');
     },
   );

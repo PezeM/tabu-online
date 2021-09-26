@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Grid, Spinner } from '@chakra-ui/react';
+import { Grid } from '@chakra-ui/react';
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
 import { SERVER_EVENT_NAME } from '../../../shared/constants';
 import { ClientCP } from '../../../shared/dto';
@@ -18,7 +18,7 @@ import { LobbySettingsTabs } from '@/components/LobbySettings/LobbySettingsTabs'
 import { LobbySettings } from '../../../shared/interfaces';
 import { TeamsContainer } from '@/components/Team/TeamsContainer';
 import { LobbyFooter } from '@/components/LobbyFooter';
-import { selectIsLoading, setIsLoading } from '@/features/settings/settings.splice';
+import { setIsLoading } from '@/features/settings/settings.splice';
 
 export const Lobby = () => {
   const isInLobby = useAppSelector(selectIsInLobby);

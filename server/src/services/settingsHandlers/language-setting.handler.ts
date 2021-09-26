@@ -3,9 +3,9 @@ import { ForEvent } from '@services/settingsHandlers/for-setting.decorator';
 import { ClientSocket } from '@interfaces/socket.interface';
 import { Lobby } from '@models/lobby.model';
 import { LobbyLanguage } from '@shared/enums/lobby';
-import { LobbySettingsUpdateException } from '@exceptions/LobbySettingsUpdateException';
 import { isLobbyLanguage } from '@utils/type-guards';
 import { CardService } from '@services/card.service';
+import { LobbySettingsUpdateException } from '@/exceptions';
 
 @ForEvent('language')
 export class LanguageSettingHandler extends BaseSettingsHandler<'language'> {

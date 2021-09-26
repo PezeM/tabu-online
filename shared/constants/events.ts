@@ -10,6 +10,7 @@ export enum SERVER_EVENT_NAME {
   LobbySettingsChanged = "lobbySettingsChanged",
   LobbySettingsUpdateFailed = "lobbySettingsUpdateFailed",
   UpdateCardSets = 'updateCardSets',
+  StartGameFailed = 'startGameFailed',
 }
 
 export enum CLIENT_EVENT_NAME {

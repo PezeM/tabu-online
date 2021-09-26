@@ -3,7 +3,7 @@ import { BaseSettingsHandler } from '@services/settingsHandlers/base-settings.ha
 import { CardSetRepository } from '@/repositories/card-set.repository';
 import { ClientSocket } from '@interfaces/socket.interface';
 import { Lobby } from '@models/lobby.model';
-import { LobbySettingsUpdateException } from '@exceptions/LobbySettingsUpdateException';
+import { LobbySettingsUpdateException } from '@/exceptions';
 
 @ForEvent('cardIds')
 export class CardIdsSettingsHandler extends BaseSettingsHandler<'cardIds'> {

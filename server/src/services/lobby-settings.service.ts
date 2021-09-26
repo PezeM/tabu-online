@@ -5,8 +5,7 @@ import { SERVER_EVENT_NAME } from '@shared/constants/events';
 import { app } from '@/server';
 import { isLobbyLanguage } from '@utils/type-guards';
 import { SettingsHandler } from '@services/settingsHandlers/settings.handler';
-import { logger } from '@utils/logger';
-import { LobbySettingsUpdateException } from '@exceptions/LobbySettingsUpdateException';
+import { logClient, logError, logger, logLobby } from '@utils/logger';
 import { lobbyManager } from '@/managers/lobby.manager';
 import {
   BaseSettingsHandler,
@@ -17,6 +16,7 @@ import {
   RoundTimeSettingHandler,
 } from './settingsHandlers';
 import { CardIdsSettingsHandler } from '@services/settingsHandlers/card-ids-settings.handler';
+import { LobbySettingsUpdateException } from '@/exceptions';
 
 const DEFAULT_LANGUAGE = LobbyLanguage.EN;
 
@@ -52,10 +52,12 @@ export class LobbySettingsService {
   public async updateSettings(socket: ClientSocket, newSettings: Partial<LobbySettings>) {
     if (!socket.clientUser) return;
 
-    const lobby = lobbyManager.getLobbyForClient(socket.clientUser);
+    const { clientUser: client } = socket;
+
+    const lobby = lobbyManager.getLobbyForClient(client);
     if (!lobby) return;
 
-    if (!lobby.isOwner(socket.clientUser)) {
+    if (!lobby.isOwner(client)) {
       socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.notAnOwner', 'Error');
       return;
     }
@@ -78,11 +80,12 @@ export class LobbySettingsService {
           return;
         }
 
-        logger.warn(`Couldn't update lobby setting ${key}:${value}`, {
-          error: e.message,
-          socketId: socket.id,
-          lobbyId: lobby.id,
-        });
+        logger.warn(
+          `Couldn't update lobby setting ${key}:${value}`,
+          logError(e),
+          logClient(client),
+          logLobby(lobby),
+        );
 
         return;
       }

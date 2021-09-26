@@ -31,6 +31,7 @@ export interface EventsFromServer {
   ) => void;
   [SERVER_EVENT_NAME.LobbySettingsUpdateFailed]: (msg: string) => void;
   [SERVER_EVENT_NAME.UpdateCardSets]: (cardSets: CardSetsCountDto[]) => void;
+  [SERVER_EVENT_NAME.StartGameFailed]: (msg: string) => void;
 }
 
 export interface EventsFromClient {

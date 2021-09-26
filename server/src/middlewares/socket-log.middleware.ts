@@ -1,6 +1,9 @@
 import { Socket } from 'socket.io';
-import { logger } from '@utils/logger';
+import { logger, logSocket } from '@utils/logger';
 
 export const socketLogMiddleware = (socket: Socket, eventName: string, ...rest) => {
-  logger.debug(`[SOCKET] ID: ${socket.id} EventName: ${eventName}`, { socketId: socket.id, eventName, args: rest });
+  logger.debug(`[SOCKET] ID: ${socket.id} EventName: ${eventName}`, logSocket(socket), {
+    eventName,
+    args: rest,
+  });
 };

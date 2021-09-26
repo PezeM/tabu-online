@@ -7,10 +7,10 @@ import { PersonalSettingsTab } from '@/components/LobbySettings/PersonalSettings
 import { GameSettingsTab } from '@/components/LobbySettings/GameSettingsTab';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
-import { SERVER_EVENT_NAME } from '../../../../shared/constants/events';
+import { SERVER_EVENT_NAME } from '../../../../shared/constants';
 import { setIsLoading } from '@/features/settings/settings.splice';
-import { CardSetsCountDto } from '../../../../shared/dto/card-set.dto';
-import i18n from '@/i18n';
+import { CardSetsCountDto } from '../../../../shared/dto';
+import { showErrorNotification } from '@/utils/notification';
 
 export const LobbySettingsTabs = () => {
   const lobbyData = useAppSelector(selectLobby);
@@ -26,15 +26,7 @@ export const LobbySettingsTabs = () => {
 
   useListenServerEvent(SERVER_EVENT_NAME.LobbySettingsUpdateFailed, (msg: string) => {
     dispatch(setIsLoading(false));
-
-    toast({
-      description: i18n.t(msg),
-      position: 'top-right',
-      variant: 'subtle',
-      status: 'error',
-      isClosable: true,
-      duration: 5000,
-    });
+    showErrorNotification(toast, msg);
   });
 
   useListenServerEvent(SERVER_EVENT_NAME.UpdateCardSets, (cardSets: CardSetsCountDto[]) => {

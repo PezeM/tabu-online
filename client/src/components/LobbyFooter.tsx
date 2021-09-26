@@ -4,19 +4,22 @@ import { RippledButton } from '@/components/RippledButton';
 import { useTranslation } from 'react-i18next';
 import { ArrowRightIcon, LinkIcon } from '@chakra-ui/icons';
 import { useClipboard } from '@/hooks/useClipboard';
-import { useAppSelector } from '@/hooks/reduxHooks';
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { selectIsLobbyOwner, selectLobbyId } from '@/features/lobby/lobby.slice';
 import { socket } from '@/services/socket';
-import { CLIENT_EVENT_NAME } from '../../../shared/constants';
+import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '../../../shared/constants';
+import { useListenServerEvent } from '@/hooks/useListenServerEvent';
+import { setIsLoading } from '@/features/settings/settings.splice';
+import { showErrorNotification, showNotification } from '@/utils/notification';
 
 export const LobbyFooter = React.memo(() => {
   const { t } = useTranslation();
-  const [startGameButtonLoading, setStartGameButtonLoading] = useState(false);
   const [copyLinkButtonLoading, setCopyLinkButtonLoading] = useState(false);
   const [, copyToClipboard] = useClipboard();
   const lobbyId = useAppSelector(selectLobbyId);
   const isLobbyOwner = useAppSelector(selectIsLobbyOwner);
   const toast = useToast();
+  const dispatch = useAppDispatch();
 
   const gridTemplateColumns = [
     '1fr',
@@ -24,8 +27,6 @@ export const LobbyFooter = React.memo(() => {
   ];
 
   const startGame = () => {
-    console.log('Starting game');
-    setStartGameButtonLoading(true);
     socket.emit(CLIENT_EVENT_NAME.TryStartGame);
   };
 
@@ -36,27 +37,19 @@ export const LobbyFooter = React.memo(() => {
     if (await copyToClipboard(link)) {
       console.log(`Copied invite link ${link}`);
 
-      toast({
-        title: t('ui.copyingToClipboard'),
-        description: t('ui.inviteLinkCopiedSuccessfully'),
-        status: 'success',
-        duration: 5000,
-        isClosable: true
-      });
+      showNotification(toast, 'ui.inviteLinkCopiedSuccessfully', { title: t('ui.copyingToClipboard') });
     } else {
       console.error(`Error copying invite link ${link}`);
-
-      toast({
-        title: t('ui.copyingToClipboard'),
-        description: t('error.copyingToClipboard'),
-        status: 'error',
-        duration: 5000,
-        isClosable: true
-      });
+      showErrorNotification(toast, 'error.copyingToClipboard', { title: t('ui.copyingToClipboard') });
     }
 
     setCopyLinkButtonLoading(false);
   };
+
+  useListenServerEvent(SERVER_EVENT_NAME.StartGameFailed, (msg: string) => {
+    dispatch(setIsLoading(false));
+    showErrorNotification(toast, msg);
+  });
 
   return (
     <Grid
@@ -77,7 +70,6 @@ export const LobbyFooter = React.memo(() => {
         scheme={'blue'}
         leftIcon={<ArrowRightIcon />}
         onClick={() => startGame()}
-        isLoading={startGameButtonLoading}
         loadingText={t('ui.lobbyStartGame')}
       >
         {t('ui.lobbyStartGame')}

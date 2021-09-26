@@ -3,6 +3,9 @@ import fs from 'fs';
 import path from 'path';
 import winston from 'winston';
 import winstonDaily from 'winston-daily-rotate-file';
+import { Socket } from 'socket.io';
+import { Client } from '@models/client.model';
+import { Lobby } from '@models/lobby.model';
 
 // logs dir
 const logDir: string = path.join(__dirname, config.get('log.dir'));
@@ -69,3 +72,25 @@ const stream = {
 };
 
 export { logger, stream };
+
+export const logSocket = (socket: Socket) => ({ socket: { socketId: socket.id } });
+
+export const logClient = (client: Client) => ({
+  client: {
+    clientId: client.id,
+    username: client.username,
+  },
+  ...logSocket(client.socket),
+});
+
+export const logLobby = (lobby: Lobby) => ({
+  lobby: { lobbyId: lobby.id, membersCount: lobby.membersCount },
+});
+
+export const logError = (error: Error, logStack = false) => ({
+  error: {
+    errorMsg: error.message,
+    errorName: error.name,
+    errorStack: logStack ? error.stack : undefined,
+  },
+});

@@ -4,10 +4,10 @@ import { lobbyManager } from '@/managers/lobby.manager';
 import { clientManager } from '@/managers/client.manager';
 import { LobbyService } from '@services/lobby.service';
 import { UpdateSettingsDto } from '@dtos/settings.lobby.dto';
-import { LobbySettingsService } from '@services/lobbySettings.service';
 import { validateRequestData } from '@utils/dataValidation';
 import { Gateway, OnEvent } from '@utils/gateway.decorator';
 import { PerformanceLog } from '@utils/performance-logger';
+import { LobbySettingsService } from '@services/lobby-settings.service';
 
 @Gateway
 export class LobbyGateway {

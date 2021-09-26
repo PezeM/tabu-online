@@ -3,9 +3,9 @@ import { Lobby } from '@models/lobby.model';
 import { SERVER_EVENT_NAME } from '@shared/constants/events';
 import { lobbyManager } from '@/managers/lobby.manager';
 import { clientManager } from '@/managers/client.manager';
-import { LobbySettingsService } from '@services/lobbySettings.service';
 import { logger } from '@utils/logger';
 import { CardSetRepository } from '@/repositories/card-set.repository';
+import { LobbySettingsService } from '@services/lobby-settings.service';
 
 export class Auth2Service {
   private readonly lobbySettingsService = new LobbySettingsService();
