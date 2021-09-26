@@ -9,9 +9,12 @@ import { RouteNotFound } from './views/routeNotFound';
 import { Lobby } from './views/lobby';
 import { Invite } from './views/invite';
 import { BodyTextScale } from '@/components/BodyTextScale';
+import { LoadingSpinnerOverlay } from '@/components/LoadingSpinnerOverlay';
 
 export const App = () => (
   <ChakraProvider theme={theme}>
+    <LoadingSpinnerOverlay />
+
     <LayoutContainer>
       <BodyTextScale />
       <NotificationContainer />

@@ -43,15 +43,16 @@ export class LobbyGateway {
   @OnEvent(CLIENT_EVENT_NAME.LobbyUpdateSettings)
   @PerformanceLog()
   protected async onUpdateSettings(socket: ClientSocket, newSettings: Partial<UpdateSettingsDto>) {
-    if (!socket.clientUser) return;
-
     if (!(await validateRequestData(socket, UpdateSettingsDto, newSettings))) return;
 
     await this._lobbySettingsService.updateSettings(socket, newSettings);
   }
 
   @OnEvent(CLIENT_EVENT_NAME.TryStartGame)
+  @PerformanceLog()
   protected async onTryStartGame(socket: ClientSocket) {
-    
+    if (!socket.clientUser) return;
+
+    await this._lobbyService.startGame(socket.clientUser);
   }
 }

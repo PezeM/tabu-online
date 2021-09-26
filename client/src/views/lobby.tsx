@@ -1,25 +1,24 @@
 import React from 'react';
-import { Grid } from '@chakra-ui/react';
+import { Box, Grid, Spinner } from '@chakra-ui/react';
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
-import { SERVER_EVENT_NAME } from '../../../shared/constants/events';
-import { ClientCP } from '../../../shared/dto/client.dto';
+import { SERVER_EVENT_NAME } from '../../../shared/constants';
+import { ClientCP } from '../../../shared/dto';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import {
   addMember,
   changeLobbySettings,
   changeMemberTeam,
   removeMember,
-  selectIsInLobby,
-  selectLobby,
+  selectIsInLobby
 } from '@/features/lobby/lobby.slice';
 import { LobbySkeleton } from '@/components/Skeletons/LobbySkeleton';
-import { Team } from '../../../shared/enums/client';
+import { Team } from '../../../shared/enums';
 import { changeClientTeam, selectClient } from '@/features/client/client.splice';
 import { LobbySettingsTabs } from '@/components/LobbySettings/LobbySettingsTabs';
-import { LobbySettings } from '../../../shared/interfaces/lobby';
+import { LobbySettings } from '../../../shared/interfaces';
 import { TeamsContainer } from '@/components/Team/TeamsContainer';
 import { LobbyFooter } from '@/components/LobbyFooter';
-import { setIsLoading } from '@/features/settings/settings.splice';
+import { selectIsLoading, setIsLoading } from '@/features/settings/settings.splice';
 
 export const Lobby = () => {
   const isInLobby = useAppSelector(selectIsInLobby);
@@ -47,7 +46,7 @@ export const Lobby = () => {
       if (clientData?.id === clientId) {
         dispatch(changeClientTeam(newTeam));
       }
-    },
+    }
   );
 
   useListenServerEvent(SERVER_EVENT_NAME.LobbySettingsChanged, (newSettings: LobbySettings) => {
