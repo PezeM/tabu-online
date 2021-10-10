@@ -1,15 +1,12 @@
 import * as React from 'react';
-import { ChakraProvider} from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
 import { theme } from './styles/theme';
 import { LayoutContainer } from './components/LayoutContainer';
 import { Route, Switch } from 'react-router-dom';
-import { Home } from './views/home';
 import { NotificationContainer } from './components/NotificationContainer';
-import { RouteNotFound } from './views/routeNotFound';
-import { Lobby } from './views/lobby';
-import { Invite } from './views/invite';
 import { BodyTextScale } from '@/components/BodyTextScale';
 import { LoadingSpinnerOverlay } from '@/components/LoadingSpinnerOverlay';
+import { Game, Home, Invite, Lobby, RouteNotFound } from '@/views';
 
 export const App = () => (
   <ChakraProvider theme={theme}>
@@ -26,6 +23,10 @@ export const App = () => (
 
         <Route path="/lobby">
           <Lobby />
+        </Route>
+
+        <Route path="/game">
+          <Game />
         </Route>
 
         <Route path={'/invite/:id'}>
