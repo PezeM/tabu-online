@@ -3,19 +3,28 @@ import { Lobby } from '@models/lobby.model';
 import { generateRandomId } from '@shared/utils';
 import { Player } from '@models/player.model';
 import { SERVER_EVENT_NAME } from '@shared/constants';
+import { logGame, logger, logPlayer } from '@utils/logger';
+import { sortPlayers } from '@utils/player.utils';
+import { Team } from '@shared/enums';
+import { LobbySettings } from '@shared/interfaces';
 
 export class Game {
   public readonly id = generateRandomId();
-  private _cards: Card[];
+  private readonly _cards: Card[];
   private _currentCard: Card;
   private _currentCardIndex = -1;
+  private _currentPlayerIndex = 0;
+  private _settings: LobbySettings;
 
   constructor(cards: Card[], lobby: Lobby) {
     this._cards = cards;
-    this._players = lobby.members.map(m => {
-      m.socket.join(this.id);
-      return new Player(m);
-    });
+    this._settings = lobby.settings;
+    this._players = sortPlayers(
+      lobby.members.map(m => {
+        m.socket.join(this.id);
+        return new Player(m);
+      }),
+    );
 
     this.selectNextCard();
     lobby.setNewGame(this);
@@ -36,14 +45,18 @@ export class Game {
   }
 
   public getPlayerBySocketId(socketId: string): Player | undefined {
-    return this.players.find(p => p.socketId === socketId);
+    return this._players.find(p => p.socketId === socketId);
+  }
+
+  public getPlayersForTeam(team: Team): Player[] {
+    return this._players.filter(p => p.team === team);
   }
 
   public selectNextCard() {
     const nextIndex = this.getNextCardIndex();
     const nextCard = this._cards[nextIndex];
 
-    if (nextCard === this._currentCard) {
+    if (!nextCard || nextCard === this._currentCard) {
       // End of the game
     }
 
@@ -59,6 +72,13 @@ export class Game {
 
     player.socket.emit(SERVER_EVENT_NAME.PlayerLeftGame);
     player.socket.to(this.id).emit(SERVER_EVENT_NAME.GamePlayerLeft, player.id);
+    logger.debug('Player left the game', logPlayer(player), logGame(this));
+  }
+
+  public emitStartGameEvent() {
+    // Game payload
+    // Emit event to current player with current card
+    // Emit event to enemy team with current card and flag they are the enemy team
   }
 
   private getNextCardIndex(): number {

@@ -5,7 +5,7 @@ import 'reflect-metadata';
 import { App } from '@/app';
 import { IndexController } from '@controllers/index.controller';
 import { UsersController } from '@controllers/users.controller';
-import validateEnv from '@utils/validateEnv';
+import validateEnv from '@utils/validate-env';
 
 validateEnv();
 

@@ -1,4 +1,4 @@
-import { LobbyLanguage } from '../enums';
+import { LobbyLanguage } from "../enums";
 
 export interface LobbySettings {
   /**

@@ -24,3 +24,13 @@ export const isEmpty = (value: string | number | object): boolean => {
  * @returns {Promise<void>}
  */
 export const waitFor = (ms: number): Promise<void> => new Promise(res => setTimeout(res, ms));
+
+export function pick<T extends object, U extends keyof T>(obj: T, paths: Array<U>): Pick<T, U> {
+  const ret = Object.create(null);
+
+  for (const k of paths) {
+    ret[k] = obj[k];
+  }
+
+  return ret;
+}

@@ -4,10 +4,10 @@ import { Client } from '@models/client.model';
 import { ClientSocket } from '@interfaces/socket.interface';
 import { clientManager } from '@/managers/client.manager';
 import { Socket } from 'socket.io';
-import { PerformanceLog } from '@utils/performance-logger';
 import { Gateway, OnEvent } from '@utils/gateway.decorator';
 import { lobbyManager } from '@/managers/lobby.manager';
 import { AuthService } from '@services/auth.service';
+import { PerformanceLog } from '@utils/performance.logger';
 
 @Gateway
 export class AuthGateway {

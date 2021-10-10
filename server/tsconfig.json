@@ -7,7 +7,8 @@
       "esnext.asynciterable"
     ],
     "types": [
-      "node"
+      "node",
+      "jest"
     ],
     "typeRoots": [
       "node_modules/@types"
@@ -23,7 +24,7 @@
     "inlineSourceMap": true,
     "declaration": false,
     "outDir": "./dist",
-    "allowJs": true,
+    "allowJs": false,
     "noEmit": false,
     "esModuleInterop": true,
     "resolveJsonModule": true,

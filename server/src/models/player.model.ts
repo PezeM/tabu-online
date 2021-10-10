@@ -10,6 +10,9 @@ export class Player implements ClientPayload<PlayerCP> {
   public readonly team: Team;
   public readonly username: string;
 
+  private _numberOfSkips = 0;
+  private _numberOfShowingCards = 0;
+
   constructor(client: Client) {
     this.id = generateRandomId();
     this.team = client.team;

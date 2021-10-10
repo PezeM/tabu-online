@@ -9,9 +9,13 @@ export class Client implements ClientPayload<ClientCP> {
   public readonly id: string;
   public team: Team;
 
-  constructor(private _socket: ClientSocket, public readonly username: string) {
+  constructor(
+    private _socket: ClientSocket,
+    public readonly username: string,
+    team: Team = Team.Blue,
+  ) {
     this.id = generateRandomId();
-    this.team = Team.Blue;
+    this.team = team;
 
     clientManager.addClient(this);
   }

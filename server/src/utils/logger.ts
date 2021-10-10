@@ -6,6 +6,8 @@ import winstonDaily from 'winston-daily-rotate-file';
 import { Socket } from 'socket.io';
 import { Client } from '@models/client.model';
 import { Lobby } from '@models/lobby.model';
+import { Player } from '@models/player.model';
+import { Game } from '@models/game.model';
 
 // logs dir
 const logDir: string = path.join(__dirname, config.get('log.dir'));
@@ -83,8 +85,20 @@ export const logClient = (client: Client) => ({
   ...logSocket(client.socket),
 });
 
+export const logPlayer = (player: Player) => ({
+  player: {
+    clientId: player.id,
+    username: player.username,
+  },
+  ...logSocket(player.socket),
+});
+
 export const logLobby = (lobby: Lobby) => ({
   lobby: { lobbyId: lobby.id, membersCount: lobby.membersCount },
+});
+
+export const logGame = (game: Game) => ({
+  game: { gameId: game.id, membersCount: game.players.length },
 });
 
 export const logError = (error: Error, logStack = false) => ({

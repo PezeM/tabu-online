@@ -13,6 +13,12 @@ export class LobbyService {
   private _lobbySettingsValidator = new LobbySettingsValidator();
   private _gameCreateService = new GameCreateService();
 
+  private static validateOwnership(lobby: Lobby, client: Client) {
+    if (!lobby.isOwner(client)) {
+      throw new InternalServerErrorException('error.onlyOwnerCanStartTheGame');
+    }
+  }
+
   changeTeam(client: Client, lobby: Lobby) {
     client.team = client.team === Team.Blue ? Team.Red : Team.Blue;
 
@@ -37,18 +43,6 @@ export class LobbyService {
       }
 
       logger.warn('Starting game failed.', logClient(client), logLobby(lobby), logError(e));
-
-      return;
-    }
-
-    // Validate settings
-    // Validate if is owner and game can be started
-    // Load cards from db and start game
-  }
-
-  private static validateOwnership(lobby: Lobby, client: Client) {
-    if (!lobby.isOwner(client)) {
-      throw new InternalServerErrorException('error.onlyOwnerCanStartTheGame');
     }
   }
 }
