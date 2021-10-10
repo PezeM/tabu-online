@@ -9,11 +9,15 @@ export enum SERVER_EVENT_NAME {
   LobbyUserChangedTeam = "lobbyUserChangedTeam",
   LobbySettingsChanged = "lobbySettingsChanged",
   LobbySettingsUpdateFailed = "lobbySettingsUpdateFailed",
-  UpdateCardSets = 'updateCardSets',
-  StartGameFailed = 'startGameFailed',
-  ErrorCreatingGame = 'errorCreatingGame',
-  PlayerLeftGame = 'playerLeftGame',
-  GamePlayerLeft = 'gamePlayerLeft',
+  UpdateCardSets = "updateCardSets",
+  StartGameFailed = "startGameFailed",
+  ErrorCreatingGame = "errorCreatingGame",
+  PlayerLeftGame = "playerLeftGame",
+  GamePlayerLeft = "gamePlayerLeft",
+  GameStarted = "gameStarted",
+  GameRoundExplainerPerson = "gameRoundExplainerPerson",
+  GameGuessingTeamPlayer = "gameGuessingTeamPlayer",
+  GameEnemyTeamPlayer = "gameEnemyTeamPlayer",
 }
 
 export enum CLIENT_EVENT_NAME {
@@ -22,7 +26,7 @@ export enum CLIENT_EVENT_NAME {
   JoinLobby = "joinLobby",
   Disconnect = "disconnect",
   Disconnecting = "disconnecting",
-  ChangeTeam = 'changeTeam',
-  LobbyUpdateSettings = 'lobbyUpdateSettings',
-  TryStartGame = 'lobbyTryStartGame',
+  ChangeTeam = "changeTeam",
+  LobbyUpdateSettings = "lobbyUpdateSettings",
+  TryStartGame = "lobbyTryStartGame",
 }

@@ -1,14 +1,14 @@
-import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from './constants';
-import { NotificationVariation } from './notification';
-import { CardSetsCountDto, ClientCP, LobbyCP } from './dto';
-import { Team } from './enums';
-import { LobbySettings } from './interfaces';
+import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from "./constants";
+import { NotificationVariation } from "./notification";
+import { CardDto, CardSetsCountDto, ClientCP, LobbyCP, PlayerCP } from "./dto";
+import { Team } from "./enums";
+import { LobbySettings } from "./interfaces";
 
 export interface EventsFromServer {
   [SERVER_EVENT_NAME.FromServer]: (co: string[]) => void;
   [SERVER_EVENT_NAME.UserJoinLobby]: (
     lobbyCP: LobbyCP,
-    clientCSP: ClientCP,
+    clientCP: ClientCP,
     cardSets?: CardSetsCountDto[]
   ) => void;
   [SERVER_EVENT_NAME.UserJoinedLobby]: (clientCP: ClientCP) => void;
@@ -35,6 +35,10 @@ export interface EventsFromServer {
   [SERVER_EVENT_NAME.ErrorCreatingGame]: (msg: string) => void;
   [SERVER_EVENT_NAME.PlayerLeftGame]: () => void;
   [SERVER_EVENT_NAME.GamePlayerLeft]: (playerId: string) => void;
+  [SERVER_EVENT_NAME.GameStarted]: (gameCP: any, playerCP: PlayerCP) => void;
+  [SERVER_EVENT_NAME.GameRoundExplainerPerson]: (card: CardDto) => void;
+  [SERVER_EVENT_NAME.GameGuessingTeamPlayer]: () => void;
+  [SERVER_EVENT_NAME.GameEnemyTeamPlayer]: (card: CardDto) => void;
 }
 
 export interface EventsFromClient {

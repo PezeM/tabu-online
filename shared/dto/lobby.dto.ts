@@ -1,5 +1,5 @@
 import { ClientCP } from "./client.dto";
-import { LobbySettings } from "../interfaces/lobby";
+import { LobbySettings } from "../interfaces";
 
 export interface LobbyCP {
   id: string;
