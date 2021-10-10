@@ -27,6 +27,7 @@ export const LobbyFooter = React.memo(() => {
   ];
 
   const startGame = () => {
+    dispatch(setIsLoading(true));
     socket.emit(CLIENT_EVENT_NAME.TryStartGame);
   };
 

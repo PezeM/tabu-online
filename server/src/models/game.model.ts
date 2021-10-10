@@ -121,7 +121,12 @@ export class Game implements ClientPayload<GameCP> {
   private emitStartGameEvent() {
     for (const gameTeam of this._teamMap.values()) {
       for (const player of gameTeam.players) {
-        player.socket.emit(SERVER_EVENT_NAME.GameStarted, this.getCP(), player.getCP());
+        player.socket.emit(
+          SERVER_EVENT_NAME.GameStarted,
+          this.getCP(),
+          player.getCP(),
+          gameTeam.getCP(),
+        );
       }
     }
 

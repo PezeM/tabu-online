@@ -1,6 +1,13 @@
 import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from "./constants";
 import { NotificationVariation } from "./notification";
-import { CardDto, CardSetsCountDto, ClientCP, LobbyCP, PlayerCP } from "./dto";
+import {
+  CardDto,
+  CardSetsCountDto,
+  ClientCP,
+  GameTeamCP,
+  LobbyCP,
+  PlayerCP,
+} from "./dto";
 import { Team } from "./enums";
 import { LobbySettings } from "./interfaces";
 
@@ -35,7 +42,11 @@ export interface EventsFromServer {
   [SERVER_EVENT_NAME.ErrorCreatingGame]: (msg: string) => void;
   [SERVER_EVENT_NAME.PlayerLeftGame]: () => void;
   [SERVER_EVENT_NAME.GamePlayerLeft]: (playerId: string) => void;
-  [SERVER_EVENT_NAME.GameStarted]: (gameCP: any, playerCP: PlayerCP) => void;
+  [SERVER_EVENT_NAME.GameStarted]: (
+    gameCP: any,
+    playerCP: PlayerCP,
+    gameTeamCP: GameTeamCP
+  ) => void;
   [SERVER_EVENT_NAME.GameRoundExplainerPerson]: (card: CardDto) => void;
   [SERVER_EVENT_NAME.GameGuessingTeamPlayer]: () => void;
   [SERVER_EVENT_NAME.GameEnemyTeamPlayer]: (card: CardDto) => void;

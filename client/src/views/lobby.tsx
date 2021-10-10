@@ -2,14 +2,14 @@ import React from 'react';
 import { Grid } from '@chakra-ui/react';
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
 import { SERVER_EVENT_NAME } from '../../../shared/constants';
-import { ClientCP } from '../../../shared/dto';
+import { ClientCP, GameCP, GameTeamCP, PlayerCP } from '../../../shared/dto';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import {
   addMember,
   changeLobbySettings,
   changeMemberTeam,
   removeMember,
-  selectIsInLobby
+  selectIsInLobby,
 } from '@/features/lobby/lobby.slice';
 import { LobbySkeleton } from '@/components/Skeletons/LobbySkeleton';
 import { Team } from '../../../shared/enums';
@@ -19,10 +19,14 @@ import { LobbySettings } from '../../../shared/interfaces';
 import { TeamsContainer } from '@/components/Team/TeamsContainer';
 import { LobbyFooter } from '@/components/LobbyFooter';
 import { setIsLoading } from '@/features/settings/settings.splice';
+import { useHistory } from 'react-router-dom';
+import { setGame, setGameTeam } from '@/features/game/game.slice';
+import { setPlayer } from '@/features/player/player.slice';
 
 export const Lobby = () => {
   const isInLobby = useAppSelector(selectIsInLobby);
   const clientData = useAppSelector(selectClient);
+  const history = useHistory();
 
   const dispatch = useAppDispatch();
 
@@ -46,13 +50,25 @@ export const Lobby = () => {
       if (clientData?.id === clientId) {
         dispatch(changeClientTeam(newTeam));
       }
-    }
+    },
   );
 
   useListenServerEvent(SERVER_EVENT_NAME.LobbySettingsChanged, (newSettings: LobbySettings) => {
     dispatch(changeLobbySettings(newSettings));
     dispatch(setIsLoading(false));
   });
+
+  useListenServerEvent(
+    SERVER_EVENT_NAME.GameStarted,
+    (gameCP: GameCP, playerCP: PlayerCP, gameTeamCP: GameTeamCP) => {
+      dispatch(setGame(gameCP));
+      dispatch(setPlayer(playerCP));
+      dispatch(setGameTeam(gameTeamCP));
+      dispatch(setIsLoading(false));
+
+      history.push('/game');
+    },
+  );
 
   if (!isInLobby) {
     return <LobbySkeleton delay={1000} page={'/'} />;
