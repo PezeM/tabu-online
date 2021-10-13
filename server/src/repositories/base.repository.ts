@@ -1,5 +1,6 @@
 import { DocumentType, ReturnModelType } from '@typegoose/typegoose';
 import { BaseModel } from '@models/base-model.model';
+import * as mongoose from 'mongoose';
 import { FilterQuery } from 'mongoose';
 import { MongoError } from 'mongodb';
 import { InternalServerErrorException } from '@exceptions/internal-server.exception';
@@ -23,12 +24,11 @@ export class BaseRepository<T extends BaseModel> {
     return this.model.create(data);
   }
 
-  async removeById(item: string);
-  async removeById(item: T);
-  async removeById(item: string | T) {
-    let id = item;
-    if (typeof item !== 'string' && item?._id) {
-      id = item._id;
+  async removeById(id: string);
+  async removeById(id: mongoose.Types.ObjectId);
+  async removeById(id: string | mongoose.Types.ObjectId) {
+    if (typeof id !== 'string') {
+      id = id.toString();
     }
 
     return this.model.deleteOne({ _id: id } as FilterQuery<DocumentType<T>>);
