@@ -22,9 +22,11 @@ export class Game implements ClientPayload<GameCP> {
   private _currentPlayerIndex = -1;
   private _settings: GameSettings;
   private _teamMap: Map<Team, GameTeam>;
+  private _started: boolean;
 
   constructor(cards: Card[], lobby: Lobby) {
     this._cards = cards;
+    this._started = false;
     this._settings = pick(lobby.settings, ['roundTime', 'pointsToWin', 'maximumNumberOfSkips']);
     this._players = sortPlayers(
       lobby.members.map(m => {
@@ -38,9 +40,7 @@ export class Game implements ClientPayload<GameCP> {
       [Team.Blue, new GameTeam(Team.Blue, this.getPlayersForTeam(Team.Blue))],
     ]);
 
-    this.selectNextCard();
     lobby.setNewGame(this);
-    this.emitStartGameEvent();
   }
 
   private _players: Player[];
@@ -84,18 +84,28 @@ export class Game implements ClientPayload<GameCP> {
 
   public newCardTurn() {
     this.selectNextCard();
-    this._currentPlayer.socket.emit(SERVER_EVENT_NAME.GameRoundExplainerPerson, this._currentCard);
 
     const guessingTeam = this._teamMap.get(this._currentPlayer.team);
     const guessingTeamPlayers = guessingTeam.players.filter(p => p.id !== this._currentPlayer.id);
     const enemyTeamPlayers = this._teamMap.get(getOppositeTeam(guessingTeam)).players;
+    const guessingTeamCP = guessingTeam.getCP();
+
+    this._currentPlayer.socket.emit(
+      SERVER_EVENT_NAME.GameRoundExplainerPerson,
+      this._currentCard,
+      guessingTeamCP,
+    );
 
     for (const guessingTeamPlayer of guessingTeamPlayers) {
-      guessingTeamPlayer.socket.emit(SERVER_EVENT_NAME.GameGuessingTeamPlayer);
+      guessingTeamPlayer.socket.emit(SERVER_EVENT_NAME.GameGuessingTeamPlayer, guessingTeamCP);
     }
 
     for (const enemyTeamPlayer of enemyTeamPlayers) {
-      enemyTeamPlayer.socket.emit(SERVER_EVENT_NAME.GameEnemyTeamPlayer, this._currentCard);
+      enemyTeamPlayer.socket.emit(
+        SERVER_EVENT_NAME.GameEnemyTeamPlayer,
+        this._currentCard,
+        guessingTeamCP,
+      );
     }
 
     // Get current player and emit event to current player with current card
@@ -118,7 +128,12 @@ export class Game implements ClientPayload<GameCP> {
     };
   }
 
-  private emitStartGameEvent() {
+  public emitStartGameEvent() {
+    if (this._started) {
+      logger.warn('Cant start already started game', logGame(this));
+      return;
+    }
+
     for (const gameTeam of this._teamMap.values()) {
       for (const player of gameTeam.players) {
         player.socket.emit(
@@ -131,6 +146,7 @@ export class Game implements ClientPayload<GameCP> {
     }
 
     this.startRound();
+    this._started = true;
   }
 
   private selectNextCard() {
@@ -145,7 +161,9 @@ export class Game implements ClientPayload<GameCP> {
   }
 
   private getNextCardIndex(): number {
-    return Math.min(++this._currentCardIndex, this.maxCardIndex);
+    const index = Math.min(++this._currentCardIndex, this.maxCardIndex);
+    this._currentPlayerIndex = index;
+    return index;
   }
 
   private selectNextPlayer() {
@@ -154,11 +172,12 @@ export class Game implements ClientPayload<GameCP> {
   }
 
   private getNextPlayerIndex(): number {
-    let newPlayerIndex = this._currentPlayerIndex++;
+    let newPlayerIndex = ++this._currentPlayerIndex;
     if (newPlayerIndex >= this._players.length) {
       newPlayerIndex = 0;
     }
 
+    this._currentPlayerIndex = newPlayerIndex;
     return newPlayerIndex;
   }
 }
