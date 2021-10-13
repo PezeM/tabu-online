@@ -6,7 +6,7 @@
   "license": "ISC",
   "scripts": {
     "clean": "rimraf ./dist",
-    "start": "npm run build && cross-env NODE_ENV=production node dist/server/src/server.js",
+    "start": "cross-env NODE_ENV=production node dist/server/src/server.js",
     "dev": "cross-env NODE_ENV=development nodemon",
     "build": "tsc --build --verbose && npx tsc-alias",
     "test": "jest --forceExit --detectOpenHandles",

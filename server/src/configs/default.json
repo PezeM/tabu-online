@@ -8,8 +8,5 @@
   "cors": {
     "origin": true,
     "credentials": true
-  },
-  "db": {
-    "connectionString": "mongodb://localhost:27017/tabu"
   }
 }
