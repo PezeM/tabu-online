@@ -5,6 +5,7 @@ import { LobbySkeleton } from '@/components/Skeletons/LobbySkeleton';
 import { selectIsInGame } from '@/features/game/game.slice';
 import { GameLogo } from '@/components/GameLogo';
 import { GameStats } from '@/components/Game/GameStats';
+import { GameButtons } from '@/components/Game/GameButtons';
 
 export const Game = () => {
   const isInGame = useAppSelector(selectIsInGame);
@@ -28,6 +29,7 @@ export const Game = () => {
       {/* Center card */}
       {/* Add button to skip card by enemy team and current explainer */}
       <Box>Inside game</Box>
+      <GameButtons />
     </Grid>
   );
 };

@@ -125,6 +125,7 @@ export class Game implements ClientPayload<GameCP> {
       id: this.id,
       roundTime: this._settings.roundTime,
       pointsToWin: this._settings.pointsToWin,
+      maximumNumberOfSkips: this._settings.maximumNumberOfSkips,
     };
   }
 

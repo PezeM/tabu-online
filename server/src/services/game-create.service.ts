@@ -19,9 +19,7 @@ export class GameCreateService {
     try {
       game = new Game(cards, lobby);
       gameManager.addGame(game);
-
-      // Emit event to everyone
-
+      game.emitStartGameEvent();
       logger.info('New game started', logGame(game));
     } catch (e) {
       gameManager.removeGame(game);

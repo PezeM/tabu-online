@@ -1,15 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { GameCP, GameTeamCP } from '../../../../shared/dto';
+import { CardDto, GameCP, GameTeamCP } from '../../../../shared/dto';
 import { RootState } from '@/store';
+import { GameState } from '@/types/game-state.enum';
 
 interface InitialState {
   game?: GameCP;
-  gameTeam?: GameTeamCP;
+  ownGameTeam?: GameTeamCP;
+  currentGameTeam?: GameTeamCP;
+  currentCard?: CardDto;
+  state: GameState;
 }
 
 const initialState: InitialState = {
   game: undefined,
-  gameTeam: undefined,
+  ownGameTeam: undefined,
+  state: GameState.GuessingTeam,
 };
 
 export const gameSlice = createSlice({
@@ -17,10 +22,19 @@ export const gameSlice = createSlice({
   initialState,
   reducers: {
     setGame: (state, action: PayloadAction<GameCP>) => {
-      Object.assign(state, { game: action.payload });
+      state.game = action.payload;
     },
     setGameTeam: (state, action: PayloadAction<GameTeamCP>) => {
-      Object.assign(state, { gameTeam: action.payload });
+      state.ownGameTeam = action.payload;
+    },
+    setCurrentGameTeam: (state, action: PayloadAction<GameTeamCP>) => {
+      state.currentGameTeam = action.payload;
+    },
+    setCurrentCard: (state, action: PayloadAction<CardDto | undefined>) => {
+      state.currentCard = action.payload;
+    },
+    setGameState: (state, action: PayloadAction<GameState>) => {
+      state.state = action.payload;
     },
     resetGameState: state => {
       Object.assign(state, initialState);
@@ -28,10 +42,18 @@ export const gameSlice = createSlice({
   },
 });
 
-export const { setGame, setGameTeam, resetGameState } = gameSlice.actions;
+export const {
+  setGame,
+  setGameTeam,
+  setCurrentGameTeam,
+  setCurrentCard,
+  setGameState,
+  resetGameState,
+} = gameSlice.actions;
 
 export const selectIsInGame = (state: RootState) => state.game.game !== undefined;
 export const selectGame = (state: RootState) => state.game.game;
-export const selectGameTeam = (state: RootState) => state.game.gameTeam;
+export const selectOwnGameTeam = (state: RootState) => state.game.ownGameTeam;
+export const selectCurrentGameTeam = (state: RootState) => state.game.currentGameTeam;
 
 export default gameSlice.reducer;
