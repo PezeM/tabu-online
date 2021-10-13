@@ -1,0 +1,14 @@
+{
+  "name": "tabu-online",
+  "version": "0.0.1",
+  "description": "",
+  "author": "PezeM",
+  "license": "ISC",
+  "scripts": {
+    "heroku-prebuild": "cd server && yarn install && yarn build",
+    "start": "cd server && yarn run start"
+  },
+  "engines": {
+    "node": "16.x"
+  }
+}

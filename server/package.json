@@ -12,8 +12,7 @@
     "test": "jest --forceExit --detectOpenHandles",
     "lint": "eslint --ignore-path .gitignore --ext .ts src/",
     "lint:fix": "npm run lint -- --fix",
-    "dbimport": "bash dbimport.sh",
-    "postinstall": "npm run build"
+    "dbimport": "bash dbimport.sh"
   },
   "engines": {
     "node": "16.x"
