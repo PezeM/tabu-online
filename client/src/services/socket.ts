@@ -4,7 +4,9 @@ import { createStandaloneToast } from '@chakra-ui/react';
 import { theme } from '@/styles/theme';
 import { showNotification } from '@/utils/notification';
 
-export const socket: Socket<EventsFromServer, EventsFromClient> = io('http://localhost:3010/', {
+console.log(process.env);
+
+export const socket: Socket<EventsFromServer, EventsFromClient> = io(process.env.REACT_APP_SERVER_URL as string, {
   autoConnect: false
 });
 
