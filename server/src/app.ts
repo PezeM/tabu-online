@@ -33,7 +33,7 @@ export class App {
   constructor(Controllers: Function[]) {
     this.app = express();
     this.httpServer = createServer(this.app);
-    this.port = process.env.PORT || 3000;
+    this.port = process.env.PORT || 80;
     this.env = process.env.NODE_ENV || 'development';
 
     this.connectDatabase();
