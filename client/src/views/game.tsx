@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Grid } from '@chakra-ui/react';
-import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
+import { useAppSelector } from '@/hooks/reduxHooks';
 import { LobbySkeleton } from '@/components/Skeletons/LobbySkeleton';
 import { selectIsInGame } from '@/features/game/game.slice';
 import { GameLogo } from '@/components/GameLogo';
