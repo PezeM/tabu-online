@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Grid } from '@chakra-ui/react';
 import { useAppSelector } from '@/hooks/reduxHooks';
-import { selectCurrentGameTeam, selectGame } from '@/features/game/game.slice';
+import { selectGame } from '@/features/game/game.slice';
 import { GamePointStat } from '@/components/Game/GamePointStat';
 import { GameSkipStat } from '@/components/Game/GameSkipStat';
 

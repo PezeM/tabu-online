@@ -10,8 +10,6 @@ import { GameButtons } from '@/components/Game/GameButtons';
 export const Game = () => {
   const isInGame = useAppSelector(selectIsInGame);
 
-  const dispatch = useAppDispatch();
-
   if (!isInGame) {
     return <LobbySkeleton delay={1000} page={'/'} />;
   }
