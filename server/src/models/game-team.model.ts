@@ -14,6 +14,7 @@ export class GameTeam implements ClientPayload<GameTeamCP> {
 
   public getCP(): GameTeamCP {
     return {
+      team: this.team,
       points: this.points,
       numberOfSkips: this.numberOfSkips,
     };

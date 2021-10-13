@@ -86,10 +86,9 @@ export class Game implements ClientPayload<GameCP> {
     this.selectNextCard();
     this._currentPlayer.socket.emit(SERVER_EVENT_NAME.GameRoundExplainerPerson, this._currentCard);
 
-    const guessingTeamPlayers = this._teamMap
-      .get(this._currentPlayer.team)
-      .players.filter(p => p.id !== this._currentPlayer.id);
-    const enemyTeamPlayers = this._teamMap.get(getOppositeTeam(this._currentPlayer.team)).players;
+    const guessingTeam = this._teamMap.get(this._currentPlayer.team);
+    const guessingTeamPlayers = guessingTeam.players.filter(p => p.id !== this._currentPlayer.id);
+    const enemyTeamPlayers = this._teamMap.get(getOppositeTeam(guessingTeam)).players;
 
     for (const guessingTeamPlayer of guessingTeamPlayers) {
       guessingTeamPlayer.socket.emit(SERVER_EVENT_NAME.GameGuessingTeamPlayer);
@@ -106,6 +105,7 @@ export class Game implements ClientPayload<GameCP> {
 
   public startRound() {
     this.selectNextPlayer();
+    this.newCardTurn();
 
     // Start the timer or so, the timer should end the round with screen to start the next round
   }
@@ -133,7 +133,7 @@ export class Game implements ClientPayload<GameCP> {
     this.startRound();
   }
 
-  public selectNextCard() {
+  private selectNextCard() {
     const nextIndex = this.getNextCardIndex();
     const nextCard = this._cards[nextIndex];
 
