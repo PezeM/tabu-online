@@ -55,5 +55,6 @@ export const selectIsInGame = (state: RootState) => state.game.game !== undefine
 export const selectGame = (state: RootState) => state.game.game;
 export const selectOwnGameTeam = (state: RootState) => state.game.ownGameTeam;
 export const selectCurrentGameTeam = (state: RootState) => state.game.currentGameTeam;
+export const selectGameState = (state: RootState) => state.game.state;
 
 export default gameSlice.reducer;
