@@ -2,6 +2,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CardDto, GameCP, GameTeamCP } from '../../../../shared/dto';
 import { RootState } from '@/store';
 import { GameState } from '@/types/game-state.enum';
+import { Team } from '../../../../shared/enums';
+
+interface SetTeamAction {
+  team: Team;
+  payload: GameTeamCP;
+}
 
 interface InitialState {
   game?: GameCP;
@@ -9,6 +15,7 @@ interface InitialState {
   currentGameTeam?: GameTeamCP;
   currentCard?: CardDto;
   state: GameState;
+  teams?: Map<Team, GameTeamCP>;
 }
 
 const initialState: InitialState = {
@@ -35,6 +42,14 @@ export const gameSlice = createSlice({
     },
     setGameState: (state, action: PayloadAction<GameState>) => {
       state.state = action.payload;
+    },
+    setTeams: (state, action: PayloadAction<Map<Team, GameTeamCP>>) => {
+      state.teams = action.payload;
+    },
+    setTeam: (state, action: PayloadAction<SetTeamAction>) => {
+      const { team, payload } = action.payload;
+
+      state.teams?.set(team, payload);
     },
     resetGameState: state => {
       Object.assign(state, initialState);
