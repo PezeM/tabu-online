@@ -56,5 +56,6 @@ export const selectGame = (state: RootState) => state.game.game;
 export const selectOwnGameTeam = (state: RootState) => state.game.ownGameTeam;
 export const selectCurrentGameTeam = (state: RootState) => state.game.currentGameTeam;
 export const selectGameState = (state: RootState) => state.game.state;
+export const selectCurrentCard = (state: RootState) => state.game.currentCard;
 
 export default gameSlice.reducer;

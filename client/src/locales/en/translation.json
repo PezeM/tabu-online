@@ -57,7 +57,10 @@
     "save": "Save",
     "cancel": "Cancel",
     "name": "Name",
-    "cardsCount": "Cards count"
+    "cardsCount": "Cards count",
+    "skipCardTooltip": "Skip current card",
+    "validAnswerTooltip": "Valid answer",
+    "forbiddenWordUsed": "Forbidden word used"
   },
   "lobby": {
     "alreadyInGame": "Lobby is already in game",

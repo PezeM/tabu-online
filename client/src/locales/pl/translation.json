@@ -57,7 +57,10 @@
     "save": "Zapisz",
     "cancel": "Anuluj",
     "name": "Nazwa",
-    "cardsCount": "Liczba kart"
+    "cardsCount": "Liczba kart",
+    "skipCardTooltip": "Weź następną kartę",
+    "validAnswerTooltip": "Prawidłowa odpowiedź",
+    "forbiddenWordUsed": "Użyto zakazanego słowa"
   },
   "lobby": {
     "alreadyInGame": "Lobby jest już w grze",

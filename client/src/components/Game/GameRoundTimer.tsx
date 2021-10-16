@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useAppSelector } from '@/hooks/reduxHooks';
 import { selectGameState } from '@/features/game/game.slice';
-import { Box, Heading } from '@chakra-ui/react';
-import { StarIcon } from '@chakra-ui/icons';
+import { Box, Heading, useColorModeValue } from '@chakra-ui/react';
+import { RepeatClockIcon } from '@chakra-ui/icons';
 import { useTimer } from 'react-timer-hook';
 import { GameState } from '@/types/game-state.enum';
 
@@ -27,7 +27,7 @@ export const GameRoundTimer = ({ expireTime }: Props) => {
 
   return (
     <Box display="flex">
-      <StarIcon mr={[1, 2, 3, 4]} w={8} h={8} color={'yellow.400'} />
+      <RepeatClockIcon mr={[1, 2, 3, 4]} w={8} h={8} color={useColorModeValue('gray.800', 'gray.300')} />
       <Heading size="lg">
         {minutes}:{seconds}
       </Heading>

@@ -23,7 +23,7 @@ export const GameStats = () => {
 
   return (
     <Grid
-      marginTop={['2vh', '3vh', '5vh']}
+      marginTop={['1vh', '2vh']}
       templateColumns={'repeat(3, 1fr)'}
       justifyItems={'center'}
     >
