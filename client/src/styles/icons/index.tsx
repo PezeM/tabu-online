@@ -1,14 +1,5 @@
 import { createIcon } from '@chakra-ui/react';
 
-export const GithubIcon = createIcon({
-  displayName: 'githubIcon',
-  defaultProps: {
-    fill: 'none',
-    stroke: 'currentColor',
-    strokeWidth: '2',
-  },
-});
-
 export const InputFieldIcon = createIcon({
   displayName: 'inputFieldIcon',
   defaultProps: {
@@ -89,5 +80,20 @@ export const CrownIcon = createIcon({
       key={1}
       d="M23.055 9.004a.687.687 0 01-.016.2l-1.48 5.921a.673.673 0 01-.653.508l-8.879.047H3.141a.672.672 0 01-.653-.512l-1.48-5.945a.6.6 0 01-.02-.203 1.414 1.414 0 01.426-2.762 1.413 1.413 0 01.895 2.504l1.855 1.867a2.523 2.523 0 001.781.742c.79 0 1.54-.371 2.012-1L11 6.336a1.412 1.412 0 011-2.41c.777 0 1.414.633 1.414 1.414 0 .375-.152.719-.394.973l.003.003 3.024 4.047a2.518 2.518 0 003.789.274l1.867-1.867a1.413 1.413 0 111.352.234zm-1.64 8.781c0-.37-.302-.672-.677-.672H3.336c-.371 0-.676.301-.676.672v1.617c0 .371.305.672.676.672h17.402c.375 0 .676-.3.676-.672zm0 0"
     />,
+  ],
+});
+
+export const RedoIcon = createIcon({
+  displayName: 'redoIcon',
+  defaultProps: {
+    fill: 'transparent',
+    stroke: 'currentColor',
+    strokeWidth: '2',
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+  },
+  path: [
+    <path key={1} d="M19 9.5H9c-.16153 0-4 0-4 4C5 18 8.70237 18 9 18h8" />,
+    <path key={2} d="M15.5 13 19 9.5c-1.3668-1.36683-2.1332-2.13317-3.5-3.5" />,
   ],
 });

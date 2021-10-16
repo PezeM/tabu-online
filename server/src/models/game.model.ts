@@ -87,7 +87,7 @@ export class Game implements ClientPayload<GameCP> {
 
     const guessingTeam = this._teamMap.get(this._currentPlayer.team);
     const guessingTeamPlayers = guessingTeam.players.filter(p => p.id !== this._currentPlayer.id);
-    const enemyTeamPlayers = this._teamMap.get(getOppositeTeam(guessingTeam)).players;
+    const enemyTeamPlayers = this._teamMap.get(getOppositeTeam(guessingTeam.team)).players;
     const guessingTeamCP = guessingTeam.getCP();
 
     this._currentPlayer.socket.emit(
