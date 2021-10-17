@@ -64,4 +64,7 @@ export interface EventsFromClient {
     settings: Partial<LobbySettings>
   ) => void;
   [CLIENT_EVENT_NAME.TryStartGame]: () => void;
+  [CLIENT_EVENT_NAME.GameSkipCard]: (cardName: string) => void;
+  [CLIENT_EVENT_NAME.GameValidAnswer]: (cardName: string) => void;
+  [CLIENT_EVENT_NAME.GameForbiddenWordUsed]: (cardName: string) => void;
 }

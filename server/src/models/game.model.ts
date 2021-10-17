@@ -53,6 +53,10 @@ export class Game implements ClientPayload<GameCP> {
     return this._cards.length - 1;
   }
 
+  get currentCard() {
+    return this._currentCard;
+  }
+
   public getPlayer(playerId: string): Player | undefined {
     return this._players.find(p => p.id === playerId);
   }

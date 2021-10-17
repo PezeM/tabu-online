@@ -1,15 +1,33 @@
 import React from 'react';
 import { Box, IconButton, Tooltip } from '@chakra-ui/react';
-import { CheckIcon, CloseIcon, SearchIcon } from '@chakra-ui/icons';
+import { CheckIcon, CloseIcon } from '@chakra-ui/icons';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '@/hooks/reduxHooks';
-import { selectGameState } from '@/features/game/game.slice';
+import { selectCurrentCard, selectGameState } from '@/features/game/game.slice';
 import { GameState } from '@/types/game-state.enum';
 import { RedoIcon } from '@/styles/icons';
+import { socket } from '@/services/socket';
+import { CLIENT_EVENT_NAME } from '../../../../shared/constants';
 
 export const GameButtons = () => {
   const { t } = useTranslation();
   const state = useAppSelector(selectGameState);
+  const currentCard = useAppSelector(selectCurrentCard);
+
+  const skipCard = () => {
+    if (!currentCard) return;
+    socket.emit(CLIENT_EVENT_NAME.GameSkipCard, currentCard.name);
+  };
+
+  const validAnswer = () => {
+    if (!currentCard) return;
+    socket.emit(CLIENT_EVENT_NAME.GameValidAnswer, currentCard.name);
+  };
+
+  const forbiddenWordUsed = () => {
+    if (!currentCard) return;
+    socket.emit(CLIENT_EVENT_NAME.GameForbiddenWordUsed, currentCard.name);
+  };
 
   return (
     <Box mb={[2, 4, 6, 10]} display={'flex'} justifyContent={'center'}>
@@ -19,10 +37,12 @@ export const GameButtons = () => {
             <GameButton
               tooltip={t('ui.skipCardTooltip')}
               icon={<RedoIcon color={'gray.100'} h={8} w={8} />}
+              onClick={skipCard}
             />
             <GameButton
               tooltip={t('ui.validAnswerTooltip')}
               icon={<CheckIcon color={'green.600'} h={8} w={8} />}
+              onClick={validAnswer}
             />
           </>
         )}
@@ -33,6 +53,7 @@ export const GameButtons = () => {
             width={['250px']}
             tooltip={t('ui.forbiddenWordUsed')}
             icon={<CloseIcon color={'red.500'} h={6} w={6} />}
+            onClick={forbiddenWordUsed}
           />
         )}
       </Box>
@@ -45,9 +66,10 @@ interface GameButtonProps {
   icon: React.ReactElement;
   width?: string[];
   maxW?: any;
+  onClick: () => void;
 }
 
-const GameButton = ({ tooltip, maxW, width, icon }: GameButtonProps) => {
+const GameButton = ({ tooltip, maxW, width, icon, onClick }: GameButtonProps) => {
   const maxWidth = maxW ? maxW : { lg: '120px' };
   const minWidth = width ? width : ['23vw', '15vw', '12vw', '8vw'];
 
@@ -59,6 +81,7 @@ const GameButton = ({ tooltip, maxW, width, icon }: GameButtonProps) => {
       maxW={maxWidth}
       boxShadow={'lg'}
       colorScheme={'whiteAlpha'}
+      onClick={onClick}
       icon={
         <Tooltip label={tooltip} aria-label={'tooltip'}>
           {icon}

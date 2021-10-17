@@ -29,4 +29,7 @@ export enum CLIENT_EVENT_NAME {
   ChangeTeam = "changeTeam",
   LobbyUpdateSettings = "lobbyUpdateSettings",
   TryStartGame = "lobbyTryStartGame",
+  GameSkipCard = 'gameSkipCard',
+  GameValidAnswer = 'gameValidAnswer',
+  GameForbiddenWordUsed = 'gameForbiddenWordUsed',
 }
