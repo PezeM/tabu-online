@@ -2,7 +2,7 @@ import { Card } from '@models/card.model';
 import { Lobby } from '@models/lobby.model';
 import { generateRandomId } from '@shared/utils';
 import { Player } from '@models/player.model';
-import { MAX_SKIPS_NUMBER, SERVER_EVENT_NAME } from '@shared/constants';
+import { MAX_POINTS_TO_WIN, MAX_SKIPS_NUMBER, SERVER_EVENT_NAME } from '@shared/constants';
 import { logGame, logger, logPlayer } from '@utils/logger';
 import { sortPlayers } from '@utils/player.utils';
 import { Team } from '@shared/enums';
@@ -149,6 +149,28 @@ export class Game implements ClientPayload<GameCP> {
     player.increaseNumberOfSkips();
   }
 
+  public validAnswer(player: Player): boolean {
+    const gameTeam = this._teamMap.get(player.team);
+    const newPointsCount = gameTeam.points + 1;
+
+    if (
+      newPointsCount >= this._settings.pointsToWin &&
+      this._settings.pointsToWin !== MAX_POINTS_TO_WIN
+    ) {
+      // Win condition
+      // Emit event to all players that game finished
+      // Calculate some statistics
+      // Remove the game from game manager
+      // Return to lobby
+      console.log('Should end the game');
+
+      return false;
+    }
+
+    gameTeam.points = newPointsCount;
+    return true;
+  }
+
   public emitGameTeam(player: Player) {
     const gameTeam = this._teamMap.get(player.team);
     if (!gameTeam) return;
@@ -177,6 +199,7 @@ export class Game implements ClientPayload<GameCP> {
   private selectNextPlayer() {
     const nextIndex = this.getNextPlayerIndex();
     this._currentPlayer = this._players[nextIndex];
+    this._currentPlayer.increaseTimesShowingCards();
   }
 
   private getNextPlayerIndex(): number {

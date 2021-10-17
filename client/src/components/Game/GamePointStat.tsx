@@ -19,7 +19,7 @@ export const GamePointStat = () => {
     <Box alignSelf={'center'} display="flex" alignItems={'center'}>
       <StarIcon mr={[1, 2, 3, 4]} w={8} h={8} color={'yellow.400'} />
       <Heading size="md">
-        {t('ui.points')} {gameTeams[Team.Red]?.points ?? 0} / {game?.pointsToWin ?? 0}
+        {t('ui.points')} {gameTeams[Team.Blue]?.points ?? 0} / {game?.pointsToWin ?? 0}
       </Heading>
     </Box>
   );

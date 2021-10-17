@@ -11,7 +11,7 @@ export class Player implements ClientPayload<PlayerCP> {
   public readonly username: string;
 
   private _numberOfSkips = 0;
-  private _numberOfShowingCards = 0;
+  private _timesShowingCard = 0;
 
   constructor(client: Client) {
     this.id = generateRandomId();
@@ -37,6 +37,10 @@ export class Player implements ClientPayload<PlayerCP> {
 
   public increaseNumberOfSkips() {
     this._numberOfSkips++;
+  }
+
+  public increaseTimesShowingCards() {
+    this._timesShowingCard++;
   }
 
   public getCP(): PlayerCP {
