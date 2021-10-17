@@ -10,7 +10,7 @@ import { GameSettings } from '@shared/types';
 import { pick } from '@utils/util';
 import { ClientPayload } from '@shared/interfaces';
 import { GameTeam } from '@models/game-team.model';
-import { GameCP } from '@shared/dto';
+import { GameCP, GameTeamCP } from '@shared/dto';
 import { getOppositeTeam } from '@shared/utils/team';
 
 export class Game implements ClientPayload<GameCP> {
@@ -88,29 +88,16 @@ export class Game implements ClientPayload<GameCP> {
     const guessingTeam = this._teamMap.get(this._currentPlayer.team);
     const guessingTeamPlayers = guessingTeam.players.filter(p => p.id !== this._currentPlayer.id);
     const enemyTeamPlayers = this._teamMap.get(getOppositeTeam(guessingTeam.team)).players;
-    const guessingTeamCP = guessingTeam.getCP();
 
-    this._currentPlayer.socket.emit(
-      SERVER_EVENT_NAME.GameRoundExplainerPerson,
-      this._currentCard,
-      guessingTeamCP,
-    );
+    this._currentPlayer.socket.emit(SERVER_EVENT_NAME.GameRoundExplainerPerson, this._currentCard);
 
     for (const guessingTeamPlayer of guessingTeamPlayers) {
-      guessingTeamPlayer.socket.emit(SERVER_EVENT_NAME.GameGuessingTeamPlayer, guessingTeamCP);
+      guessingTeamPlayer.socket.emit(SERVER_EVENT_NAME.GameGuessingTeamPlayer);
     }
 
     for (const enemyTeamPlayer of enemyTeamPlayers) {
-      enemyTeamPlayer.socket.emit(
-        SERVER_EVENT_NAME.GameEnemyTeamPlayer,
-        this._currentCard,
-        guessingTeamCP,
-      );
+      enemyTeamPlayer.socket.emit(SERVER_EVENT_NAME.GameEnemyTeamPlayer, this._currentCard);
     }
-
-    // Get current player and emit event to current player with current card
-    // Emit event to searching team they are the searching team
-    // Emit event to enemy team with current card and flag they are the enemy team
   }
 
   public startRound() {
@@ -135,15 +122,10 @@ export class Game implements ClientPayload<GameCP> {
       return;
     }
 
-    for (const gameTeam of this._teamMap.values()) {
-      for (const player of gameTeam.players) {
-        player.socket.emit(
-          SERVER_EVENT_NAME.GameStarted,
-          this.getCP(),
-          player.getCP(),
-          gameTeam.getCP(),
-        );
-      }
+    const teamMap = this.getTeamMapCP();
+
+    for (const player of this._players) {
+      player.socket.emit(SERVER_EVENT_NAME.GameStarted, this.getCP(), player.getCP(), teamMap);
     }
 
     this.startRound();
@@ -180,5 +162,15 @@ export class Game implements ClientPayload<GameCP> {
 
     this._currentPlayerIndex = newPlayerIndex;
     return newPlayerIndex;
+  }
+
+  private getTeamMapCP(): Record<Team, GameTeamCP> {
+    const result = {};
+
+    for (const [key, value] of this._teamMap.entries()) {
+      result[key] = value.getCP();
+    }
+
+    return result as Record<Team, GameTeamCP>;
   }
 }
