@@ -35,6 +35,10 @@ export class Player implements ClientPayload<PlayerCP> {
     return this._socket.id;
   }
 
+  public increaseNumberOfSkips() {
+    this._numberOfSkips++;
+  }
+
   public getCP(): PlayerCP {
     return {
       id: this.id,

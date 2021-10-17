@@ -18,6 +18,7 @@ export enum SERVER_EVENT_NAME {
   GameRoundExplainerPerson = "gameRoundExplainerPerson",
   GameGuessingTeamPlayer = "gameGuessingTeamPlayer",
   GameEnemyTeamPlayer = "gameEnemyTeamPlayer",
+  GameUpdateGameTeam = "gameUpdateGameTeam",
 }
 
 export enum CLIENT_EVENT_NAME {
@@ -29,7 +30,7 @@ export enum CLIENT_EVENT_NAME {
   ChangeTeam = "changeTeam",
   LobbyUpdateSettings = "lobbyUpdateSettings",
   TryStartGame = "lobbyTryStartGame",
-  GameSkipCard = 'gameSkipCard',
-  GameValidAnswer = 'gameValidAnswer',
-  GameForbiddenWordUsed = 'gameForbiddenWordUsed',
+  GameSkipCard = "gameSkipCard",
+  GameValidAnswer = "gameValidAnswer",
+  GameForbiddenWordUsed = "gameForbiddenWordUsed",
 }

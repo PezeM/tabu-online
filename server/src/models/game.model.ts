@@ -2,7 +2,7 @@ import { Card } from '@models/card.model';
 import { Lobby } from '@models/lobby.model';
 import { generateRandomId } from '@shared/utils';
 import { Player } from '@models/player.model';
-import { SERVER_EVENT_NAME } from '@shared/constants';
+import { MAX_SKIPS_NUMBER, SERVER_EVENT_NAME } from '@shared/constants';
 import { logGame, logger, logPlayer } from '@utils/logger';
 import { sortPlayers } from '@utils/player.utils';
 import { Team } from '@shared/enums';
@@ -16,7 +16,6 @@ import { getOppositeTeam } from '@shared/utils/team';
 export class Game implements ClientPayload<GameCP> {
   public readonly id = generateRandomId();
   private readonly _cards: Card[];
-  private _currentCard: Card;
   private _currentCardIndex = -1;
   private _currentPlayer: Player;
   private _currentPlayerIndex = -1;
@@ -43,6 +42,12 @@ export class Game implements ClientPayload<GameCP> {
     lobby.setNewGame(this);
   }
 
+  private _currentCard: Card;
+
+  get currentCard() {
+    return this._currentCard;
+  }
+
   private _players: Player[];
 
   get players() {
@@ -51,10 +56,6 @@ export class Game implements ClientPayload<GameCP> {
 
   get maxCardIndex() {
     return this._cards.length - 1;
-  }
-
-  get currentCard() {
-    return this._currentCard;
   }
 
   public getPlayer(playerId: string): Player | undefined {
@@ -134,6 +135,26 @@ export class Game implements ClientPayload<GameCP> {
 
     this.startRound();
     this._started = true;
+  }
+
+  public checkIfCanSkipCurrentCard(player: Player) {
+    if (this._settings.maximumNumberOfSkips === MAX_SKIPS_NUMBER) return true;
+    const gameTeam = this._teamMap.get(player.team);
+    return gameTeam.numberOfSkips < this._settings.maximumNumberOfSkips;
+  }
+
+  public skipCurrentCard(player: Player) {
+    const gameTeam = this._teamMap.get(player.team);
+    gameTeam.numberOfSkips++;
+    player.increaseNumberOfSkips();
+  }
+
+  public emitGameTeam(player: Player) {
+    const gameTeam = this._teamMap.get(player.team);
+    if (!gameTeam) return;
+    for (const p of this._players) {
+      p.socket.emit(SERVER_EVENT_NAME.GameUpdateGameTeam, gameTeam.getCP());
+    }
   }
 
   private selectNextCard() {

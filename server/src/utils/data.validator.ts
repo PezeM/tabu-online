@@ -24,7 +24,7 @@ export const validateRequestData = async <T extends Object, V>(
   } catch (e) {
     if (e instanceof Array) {
       const message = Object.values(e[0].constraints)[0] as string;
-      socket.emit(SERVER_EVENT_NAME.Notification, message, 'Error');
+      socket.emit(SERVER_EVENT_NAME.Notification, message, 'error');
     }
 
     return false;

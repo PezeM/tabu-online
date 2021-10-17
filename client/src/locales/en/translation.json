@@ -89,6 +89,7 @@
     "noCardSelected": "Can't start the game without any cards selected!",
     "minimumNumberOfPlayers": "Can't start the game with less than two players!",
     "onlyOwnerCanStartTheGame": "Only lobby owner can start the game!",
-    "errorCreatingLobby": "Unexpected error occurred while creating new lobby"
+    "errorCreatingLobby": "Unexpected error occurred while creating new lobby",
+    "cantSkipMoreCard": "You can't skip more cards, limit exceeded!"
   }
 }

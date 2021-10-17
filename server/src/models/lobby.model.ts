@@ -95,7 +95,7 @@ export class Lobby implements ClientPayload<LobbyCP> {
 
     if (this.remove(clientToRemove)) {
       this._blacklist.push(clientToRemove);
-      clientToRemove.socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.kicked', 'Info');
+      clientToRemove.socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.kicked', 'info');
     }
   }
 

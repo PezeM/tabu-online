@@ -4,11 +4,6 @@ import { RootState } from '@/store';
 import { GameState } from '@/types/game-state.enum';
 import { Team } from '../../../../shared/enums';
 
-interface SetTeamAction {
-  team: Team;
-  payload: GameTeamCP;
-}
-
 interface InitialState {
   game?: GameCP;
   currentCard?: CardDto;
@@ -37,14 +32,14 @@ export const gameSlice = createSlice({
     setGameTeams: (state, action: PayloadAction<Record<Team, GameTeamCP>>) => {
       state.teams = action.payload;
     },
-    setGameTeam: (state, action: PayloadAction<SetTeamAction>) => {
-      const { team, payload } = action.payload;
+    setGameTeam: (state, action: PayloadAction<GameTeamCP>) => {
+      const { team } = action.payload;
 
-      if (!state.teams?.[team]) {
+      if (!state.teams || !state.teams[team]) {
         return;
       }
 
-      state.teams[team] = payload;
+      state.teams[team] = action.payload;
     },
     resetGameState: state => {
       Object.assign(state, initialState);

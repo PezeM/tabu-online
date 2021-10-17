@@ -1,8 +1,8 @@
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
 import { SERVER_EVENT_NAME } from '../../../shared/constants';
 import { useAppDispatch } from '@/hooks/reduxHooks';
-import { CardDto } from '../../../shared/dto';
-import { setCurrentCard, setGameState } from '@/features/game/game.slice';
+import { CardDto, GameTeamCP } from '../../../shared/dto';
+import { setCurrentCard, setGameState, setGameTeam } from '@/features/game/game.slice';
 import { GameState } from '@/types/game-state.enum';
 
 export const GlobalEventsListener = (): JSX.Element | null => {
@@ -21,6 +21,10 @@ export const GlobalEventsListener = (): JSX.Element | null => {
   useListenServerEvent(SERVER_EVENT_NAME.GameEnemyTeamPlayer, (currentCard: CardDto) => {
     dispatch(setCurrentCard(currentCard));
     dispatch(setGameState(GameState.EnemyTeam));
+  });
+
+  useListenServerEvent(SERVER_EVENT_NAME.GameUpdateGameTeam, (gameTeam: GameTeamCP) => {
+    dispatch(setGameTeam(gameTeam));
   });
 
   return null;

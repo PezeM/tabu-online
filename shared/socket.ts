@@ -51,6 +51,7 @@ export interface EventsFromServer {
   [SERVER_EVENT_NAME.GameRoundExplainerPerson]: (currentCard: CardDto) => void;
   [SERVER_EVENT_NAME.GameGuessingTeamPlayer]: () => void;
   [SERVER_EVENT_NAME.GameEnemyTeamPlayer]: (currentCard: CardDto) => void;
+  [SERVER_EVENT_NAME.GameUpdateGameTeam]: (gameTeamCP: GameTeamCP) => void;
 }
 
 export interface EventsFromClient {
