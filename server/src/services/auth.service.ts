@@ -13,7 +13,7 @@ export class AuthService {
 
   private static emitActionError(client: Client, errorName: string) {
     client.socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
-    client.socket.emit(SERVER_EVENT_NAME.Notification, errorName, 'Error');
+    client.socket.emit(SERVER_EVENT_NAME.Notification, errorName, 'error');
     clientManager.removeClient(client);
   }
 

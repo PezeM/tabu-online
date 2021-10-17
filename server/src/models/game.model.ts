@@ -2,7 +2,7 @@ import { Card } from '@models/card.model';
 import { Lobby } from '@models/lobby.model';
 import { generateRandomId } from '@shared/utils';
 import { Player } from '@models/player.model';
-import { SERVER_EVENT_NAME } from '@shared/constants';
+import { MAX_POINTS_TO_WIN, MAX_SKIPS_NUMBER, SERVER_EVENT_NAME } from '@shared/constants';
 import { logGame, logger, logPlayer } from '@utils/logger';
 import { sortPlayers } from '@utils/player.utils';
 import { Team } from '@shared/enums';
@@ -10,13 +10,12 @@ import { GameSettings } from '@shared/types';
 import { pick } from '@utils/util';
 import { ClientPayload } from '@shared/interfaces';
 import { GameTeam } from '@models/game-team.model';
-import { GameCP } from '@shared/dto';
+import { GameCP, GameTeamCP } from '@shared/dto';
 import { getOppositeTeam } from '@shared/utils/team';
 
 export class Game implements ClientPayload<GameCP> {
   public readonly id = generateRandomId();
   private readonly _cards: Card[];
-  private _currentCard: Card;
   private _currentCardIndex = -1;
   private _currentPlayer: Player;
   private _currentPlayerIndex = -1;
@@ -41,6 +40,12 @@ export class Game implements ClientPayload<GameCP> {
     ]);
 
     lobby.setNewGame(this);
+  }
+
+  private _currentCard: Card;
+
+  get currentCard() {
+    return this._currentCard;
   }
 
   private _players: Player[];
@@ -87,30 +92,17 @@ export class Game implements ClientPayload<GameCP> {
 
     const guessingTeam = this._teamMap.get(this._currentPlayer.team);
     const guessingTeamPlayers = guessingTeam.players.filter(p => p.id !== this._currentPlayer.id);
-    const enemyTeamPlayers = this._teamMap.get(getOppositeTeam(guessingTeam)).players;
-    const guessingTeamCP = guessingTeam.getCP();
+    const enemyTeamPlayers = this._teamMap.get(getOppositeTeam(guessingTeam.team)).players;
 
-    this._currentPlayer.socket.emit(
-      SERVER_EVENT_NAME.GameRoundExplainerPerson,
-      this._currentCard,
-      guessingTeamCP,
-    );
+    this._currentPlayer.socket.emit(SERVER_EVENT_NAME.GameRoundExplainerPerson, this._currentCard);
 
     for (const guessingTeamPlayer of guessingTeamPlayers) {
-      guessingTeamPlayer.socket.emit(SERVER_EVENT_NAME.GameGuessingTeamPlayer, guessingTeamCP);
+      guessingTeamPlayer.socket.emit(SERVER_EVENT_NAME.GameGuessingTeamPlayer);
     }
 
     for (const enemyTeamPlayer of enemyTeamPlayers) {
-      enemyTeamPlayer.socket.emit(
-        SERVER_EVENT_NAME.GameEnemyTeamPlayer,
-        this._currentCard,
-        guessingTeamCP,
-      );
+      enemyTeamPlayer.socket.emit(SERVER_EVENT_NAME.GameEnemyTeamPlayer, this._currentCard);
     }
-
-    // Get current player and emit event to current player with current card
-    // Emit event to searching team they are the searching team
-    // Emit event to enemy team with current card and flag they are the enemy team
   }
 
   public startRound() {
@@ -135,19 +127,56 @@ export class Game implements ClientPayload<GameCP> {
       return;
     }
 
-    for (const gameTeam of this._teamMap.values()) {
-      for (const player of gameTeam.players) {
-        player.socket.emit(
-          SERVER_EVENT_NAME.GameStarted,
-          this.getCP(),
-          player.getCP(),
-          gameTeam.getCP(),
-        );
-      }
+    const teamMap = this.getTeamMapCP();
+
+    for (const player of this._players) {
+      player.socket.emit(SERVER_EVENT_NAME.GameStarted, this.getCP(), player.getCP(), teamMap);
     }
 
     this.startRound();
     this._started = true;
+  }
+
+  public checkIfCanSkipCurrentCard(player: Player) {
+    if (this._settings.maximumNumberOfSkips === MAX_SKIPS_NUMBER) return true;
+    const gameTeam = this._teamMap.get(player.team);
+    return gameTeam.numberOfSkips < this._settings.maximumNumberOfSkips;
+  }
+
+  public skipCurrentCard(player: Player) {
+    const gameTeam = this._teamMap.get(player.team);
+    gameTeam.numberOfSkips++;
+    player.increaseNumberOfSkips();
+  }
+
+  public validAnswer(player: Player): boolean {
+    const gameTeam = this._teamMap.get(player.team);
+    const newPointsCount = gameTeam.points + 1;
+
+    if (
+      newPointsCount >= this._settings.pointsToWin &&
+      this._settings.pointsToWin !== MAX_POINTS_TO_WIN
+    ) {
+      // Win condition
+      // Emit event to all players that game finished
+      // Calculate some statistics
+      // Remove the game from game manager
+      // Return to lobby
+      console.log('Should end the game');
+
+      return false;
+    }
+
+    gameTeam.points = newPointsCount;
+    return true;
+  }
+
+  public emitGameTeam(player: Player) {
+    const gameTeam = this._teamMap.get(player.team);
+    if (!gameTeam) return;
+    for (const p of this._players) {
+      p.socket.emit(SERVER_EVENT_NAME.GameUpdateGameTeam, gameTeam.getCP());
+    }
   }
 
   private selectNextCard() {
@@ -170,6 +199,7 @@ export class Game implements ClientPayload<GameCP> {
   private selectNextPlayer() {
     const nextIndex = this.getNextPlayerIndex();
     this._currentPlayer = this._players[nextIndex];
+    this._currentPlayer.increaseTimesShowingCards();
   }
 
   private getNextPlayerIndex(): number {
@@ -180,5 +210,15 @@ export class Game implements ClientPayload<GameCP> {
 
     this._currentPlayerIndex = newPlayerIndex;
     return newPlayerIndex;
+  }
+
+  private getTeamMapCP(): Record<Team, GameTeamCP> {
+    const result = {};
+
+    for (const [key, value] of this._teamMap.entries()) {
+      result[key] = value.getCP();
+    }
+
+    return result as Record<Team, GameTeamCP>;
   }
 }

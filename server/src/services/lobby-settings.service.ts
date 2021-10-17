@@ -58,7 +58,7 @@ export class LobbySettingsService {
     if (!lobby) return;
 
     if (!lobby.isOwner(client)) {
-      socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.notAnOwner', 'Error');
+      socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.notAnOwner', 'error');
       return;
     }
 

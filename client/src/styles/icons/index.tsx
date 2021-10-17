@@ -1,14 +1,5 @@
 import { createIcon } from '@chakra-ui/react';
 
-export const GithubIcon = createIcon({
-  displayName: 'githubIcon',
-  defaultProps: {
-    fill: 'none',
-    stroke: 'currentColor',
-    strokeWidth: '2',
-  },
-});
-
 export const InputFieldIcon = createIcon({
   displayName: 'inputFieldIcon',
   defaultProps: {
@@ -91,3 +82,36 @@ export const CrownIcon = createIcon({
     />,
   ],
 });
+
+export const RedoIcon = createIcon({
+  displayName: 'redoIcon',
+  defaultProps: {
+    fill: 'transparent',
+    stroke: 'currentColor',
+    strokeWidth: '2',
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+  },
+  path: [
+    <path key={1} d="M19 9.5H9c-.16153 0-4 0-4 4C5 18 8.70237 18 9 18h8" />,
+    <path key={2} d="M15.5 13 19 9.5c-1.3668-1.36683-2.1332-2.13317-3.5-3.5" />,
+  ],
+});
+
+export const ClockIcon = createIcon({
+  displayName: 'clockIcon',
+  defaultProps: {
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: '2',
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+  },
+  path: [
+    <path key={1} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />,
+  ],
+});
+
+// <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+// </svg>

@@ -17,24 +17,20 @@ export class AuthGateway {
     this._authService = new AuthService();
   }
 
-  @OnEvent(CLIENT_EVENT_NAME.Test)
-  protected testClientEvent(socket: ClientSocket, msg: string) {
-    console.log('Inside test client event', socket.id, msg);
+  private static emitCouldntCreateLobby(socket: ClientSocket, errorName: string) {
+    socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
+    socket.emit(SERVER_EVENT_NAME.Notification, errorName, 'error');
   }
 
   @OnEvent(CLIENT_EVENT_NAME.JoinLobby)
   @PerformanceLog()
   protected onJoinLobby(socket: ClientSocket, username: string, lobbyId: string) {
     if (isEmpty(username)) {
-      socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
-      socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.invalidUsername', 'Error');
-      return;
+      return AuthGateway.emitCouldntCreateLobby(socket, 'lobby.invalidUsername');
     }
 
     if (isEmpty(lobbyId)) {
-      socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
-      socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.doesntExist', 'Error');
-      return;
+      return AuthGateway.emitCouldntCreateLobby(socket, 'lobby.doesntExist');
     }
 
     const client = new Client(socket, username);
@@ -45,9 +41,7 @@ export class AuthGateway {
   @PerformanceLog()
   protected async onCreateLobby(socket: ClientSocket, username: string, language: string) {
     if (isEmpty(username)) {
-      socket.emit(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby);
-      socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.invalidUsername', 'Error');
-      return;
+      return AuthGateway.emitCouldntCreateLobby(socket, 'lobby.invalidUsername');
     }
 
     const client = new Client(socket, username);

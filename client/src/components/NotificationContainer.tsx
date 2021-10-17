@@ -10,10 +10,10 @@ export const NotificationContainer = (): JSX.Element | null => {
 
   useListenServerEvent(
     SERVER_EVENT_NAME.Notification,
-    (message: string, variation: NotificationVariation, ...rest: any[]) => {
+    (message: string, variation: NotificationVariation) => {
       message = i18n.t(message);
 
-      showNotification(toast, message, { variant: variation });
+      showNotification(toast, message, { status: variation });
     }
   );
 

@@ -1,1 +1,1 @@
-export type NotificationVariation = "Success" | "Error" | "Warning" | "Info";
+export type NotificationVariation = "success" | "error" | "warning" | "info";

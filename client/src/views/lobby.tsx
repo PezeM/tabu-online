@@ -20,7 +20,7 @@ import { TeamsContainer } from '@/components/Team/TeamsContainer';
 import { LobbyFooter } from '@/components/LobbyFooter';
 import { setIsLoading } from '@/features/settings/settings.splice';
 import { useHistory } from 'react-router-dom';
-import { setGame, setGameTeam } from '@/features/game/game.slice';
+import { setGame, setGameTeams } from '@/features/game/game.slice';
 import { setPlayer } from '@/features/player/player.slice';
 
 export const Lobby = () => {
@@ -60,10 +60,10 @@ export const Lobby = () => {
 
   useListenServerEvent(
     SERVER_EVENT_NAME.GameStarted,
-    (gameCP: GameCP, playerCP: PlayerCP, gameTeamCP: GameTeamCP) => {
+    (gameCP: GameCP, playerCP: PlayerCP, teamMap: Record<Team, GameTeamCP>) => {
       dispatch(setGame(gameCP));
       dispatch(setPlayer(playerCP));
-      dispatch(setGameTeam(gameTeamCP));
+      dispatch(setGameTeams(teamMap));
       dispatch(setIsLoading(false));
 
       history.push('/game');
