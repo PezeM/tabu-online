@@ -1,18 +1,11 @@
 import { Game } from '@models/game.model';
 import { ClientSocket } from '@interfaces/socket.interface';
 import { SERVER_EVENT_NAME } from '@shared/constants';
+import { IsCurrentCard } from '@utils/game.decorator';
 
 export class GameService {
-  private static isCurrentCard(game: Game, cardName: string): boolean {
-    if (!game.currentCard) return false;
-    return game.currentCard.name === cardName;
-  }
-
-  public skipCard(socket: ClientSocket, game: Game, cardName: string) {
-    if (!GameService.isCurrentCard(game, cardName)) {
-      return;
-    }
-
+  @IsCurrentCard()
+  public skipCard(socket: ClientSocket, game: Game, _cardName: string) {
     const player = game.getPlayerBySocketId(socket.id);
     if (!player) return;
 
@@ -26,11 +19,8 @@ export class GameService {
     game.emitGameTeam(player);
   }
 
-  public validAnswer(socket: ClientSocket, game: Game, cardName: string) {
-    if (!GameService.isCurrentCard(game, cardName)) {
-      return;
-    }
-
+  @IsCurrentCard()
+  public validAnswer(socket: ClientSocket, game: Game, _cardName: string) {
     const player = game.getPlayerBySocketId(socket.id);
     if (!player) return;
 
@@ -38,5 +28,13 @@ export class GameService {
       game.newCardTurn();
       game.emitGameTeam(player);
     }
+  }
+
+  @IsCurrentCard()
+  public forbiddenWordUsed(socket: ClientSocket, game: Game, _cardName: string) {
+    const player = game.getPlayerBySocketId(socket.id);
+    if (!player) return;
+
+    game.newCardTurn();
   }
 }

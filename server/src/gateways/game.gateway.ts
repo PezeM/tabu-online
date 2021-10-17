@@ -24,6 +24,14 @@ export class GameGateway {
     this._gameService.validAnswer(socket, game, cardName);
   }
 
+  @OnEvent(CLIENT_EVENT_NAME.GameForbiddenWordUsed)
+  private onGameForbiddenWordUsed(socket: ClientSocket, cardName: string) {
+    const game = gameManager.getGameForSocketId(socket.id);
+    if (!game) return;
+
+    this._gameService.forbiddenWordUsed(socket, game, cardName);
+  }
+
   @OnEvent(CLIENT_EVENT_NAME.Disconnect)
   protected onDisconnect(socket: ClientSocket) {
     const game = gameManager.getGameForSocketId(socket.id);
