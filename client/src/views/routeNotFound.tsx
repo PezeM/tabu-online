@@ -16,6 +16,7 @@ export const RouteNotFound = () => {
       align="center"
       justifyContent="center"
       flexDirection={'column'}
+      p={4}
     >
       <WarningIcon color={'red.400'} w={[12, 24]} h={[12, 24]} />
       <Text fontSize={['xl', '3xl', '4xl']} mt={12}>

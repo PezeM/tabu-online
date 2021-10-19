@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Grid } from '@chakra-ui/react';
+import { Grid, useColorModeValue } from '@chakra-ui/react';
 import { GamePointStat } from '@/components/Game/GamePointStat';
 import { GameSkipStat } from '@/components/Game/GameSkipStat';
 import { GameRoundTimer } from '@/components/Game/GameRoundTimer';
@@ -13,6 +13,8 @@ export const GameStats = () => {
   const game = useAppSelector(selectGame);
   const gameState = useAppSelector(selectGameState);
 
+  const bgColor = useColorModeValue('gray.700', 'blackAlpha.600');
+
   useEffect(() => {
     if (gameState !== GameState.WaitingForNextRound) {
       const now = new Date();
@@ -23,12 +25,13 @@ export const GameStats = () => {
 
   return (
     <Grid
-      marginTop={['1vh', '2vh']}
       templateColumns={'repeat(3, 1fr)'}
       justifyItems={'center'}
+      roundedBottom={'xl'}
+      bg={bgColor}
     >
       <GamePointStat />
-      <GameRoundTimer expireTime={expireTime} />
+      {/*<GameRoundTimer expireTime={expireTime} />*/}
       <GameSkipStat />
     </Grid>
   );

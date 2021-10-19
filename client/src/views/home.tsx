@@ -44,7 +44,7 @@ export const Home = () => {
   );
 
   return (
-    <Box>
+    <Box p={4}>
       <Text fontSize={['xl', '3xl', '4xl']}>{t('ui.createLobby')}</Text>
       <LoginComponent onSubmit={onSubmit} isLoading={isLoading} />
     </Box>

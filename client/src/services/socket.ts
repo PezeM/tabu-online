@@ -18,6 +18,6 @@ if (process.env.NODE_ENV === 'development') {
 
   socket.onAny((eventName, ...args) => {
     console.log(`Event: ${eventName} Args:`, args);
-    showNotification(toast, JSON.stringify(args), { title: eventName, duration: 3000 });
+    // showNotification(toast, JSON.stringify(args), { title: eventName, duration: 3000 });
   });
 }
