@@ -18,7 +18,7 @@ export const Game = () => {
   return (
     <Grid
       gap={[2, 4, 6]}
-      templateRows={'1fr 2fr auto'}
+      templateRows={'1fr 3fr auto'}
       h={'100%'}
       overflowY={'auto'}
     >

@@ -6,6 +6,8 @@ import { GameRoundTimer } from '@/components/Game/GameRoundTimer';
 import { GameState } from '@/types/game-state.enum';
 import { useAppSelector } from '@/hooks/reduxHooks';
 import { selectGame, selectGameState } from '@/features/game/game.slice';
+import { GameTeamStats } from '@/components/Game/GameTeamStats';
+import { Team } from '@/../../shared/enums/client';
 
 export const GameStats = () => {
   const [expireTime, setExpireTime] = useState<Date>();
@@ -13,7 +15,7 @@ export const GameStats = () => {
   const game = useAppSelector(selectGame);
   const gameState = useAppSelector(selectGameState);
 
-  const bgColor = useColorModeValue('gray.700', 'blackAlpha.600');
+  const bgColor = useColorModeValue('gray.700', 'blackAlpha.500');
 
   useEffect(() => {
     if (gameState !== GameState.WaitingForNextRound) {
@@ -30,9 +32,11 @@ export const GameStats = () => {
       roundedBottom={'xl'}
       bg={bgColor}
     >
-      <GamePointStat />
-      {/*<GameRoundTimer expireTime={expireTime} />*/}
-      <GameSkipStat />
+      <GameTeamStats team={Team.Red} justifyContent={'flex-start'} />
+      {/*<GamePointStat />*/}
+      <GameRoundTimer expireTime={expireTime} />
+      {/*<GameSkipStat />*/}
+      <GameTeamStats team={Team.Blue} justifyContent={'flex-end'} />
     </Grid>
   );
 };
