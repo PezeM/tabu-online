@@ -27,5 +27,10 @@ export const GlobalEventsListener = (): JSX.Element | null => {
     dispatch(setGameTeam(gameTeam));
   });
 
+  useListenServerEvent(SERVER_EVENT_NAME.GameRoundEnded, () => {
+    dispatch(setCurrentCard(undefined));
+    dispatch(setGameState(GameState.WaitingForNextRound));
+  });
+
   return null;
 };

@@ -60,7 +60,10 @@
     "cardsCount": "Cards count",
     "skipCardTooltip": "Skip current card",
     "validAnswerTooltip": "Valid answer",
-    "forbiddenWordUsed": "Forbidden word used"
+    "forbiddenWordUsed": "Forbidden word used",
+    "guessTheWord": "Guess the word!",
+    "startNewRound": "Start new round!",
+    "roundHasEnded": "Round has ended"
   },
   "lobby": {
     "alreadyInGame": "Lobby is already in game",

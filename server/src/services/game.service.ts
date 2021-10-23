@@ -35,6 +35,17 @@ export class GameService {
     const player = game.getPlayerBySocketId(socket.id);
     if (!player) return;
 
+    if (!game.isRoundStarted) {
+      return;
+    }
+
     game.newCardTurn();
+  }
+
+  public startNextRound(socket: ClientSocket, game: Game) {
+    const player = game.getPlayerBySocketId(socket.id);
+    if (!player) return;
+
+    game.tryStartNextRound();
   }
 }

@@ -8,11 +8,13 @@ import { BodyTextScale } from '@/components/BodyTextScale';
 import { LoadingSpinnerOverlay } from '@/components/LoadingSpinnerOverlay';
 import { Game, Home, Invite, Lobby, RouteNotFound } from '@/views';
 import { GlobalEventsListener } from '@/components/GlobalEventsListener';
+import { GameWaitingForNextRound } from '@/components/Game/GameWaitingForNextRound';
 
 export const App = () => (
   <ChakraProvider theme={theme}>
     <LoadingSpinnerOverlay />
     <GlobalEventsListener />
+    <GameWaitingForNextRound />
 
     <LayoutContainer>
       <BodyTextScale />

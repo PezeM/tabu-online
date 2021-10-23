@@ -60,7 +60,10 @@
     "cardsCount": "Liczba kart",
     "skipCardTooltip": "Weź następną kartę",
     "validAnswerTooltip": "Prawidłowa odpowiedź",
-    "forbiddenWordUsed": "Użyto zakazanego słowa"
+    "forbiddenWordUsed": "Użyto zakazanego słowa",
+    "guessTheWord": "Odgadnij słowo!",
+    "startNewRound": "Rozpocznij nową turę!",
+    "roundHasEnded": "Runda się zakończyła"
   },
   "lobby": {
     "alreadyInGame": "Lobby jest już w grze",

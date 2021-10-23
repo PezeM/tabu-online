@@ -19,6 +19,8 @@ export enum SERVER_EVENT_NAME {
   GameGuessingTeamPlayer = "gameGuessingTeamPlayer",
   GameEnemyTeamPlayer = "gameEnemyTeamPlayer",
   GameUpdateGameTeam = "gameUpdateGameTeam",
+  GameRoundEnded = "gameRoundEnded",
+  GameHasEnded = "gameHasEnded",
 }
 
 export enum CLIENT_EVENT_NAME {
@@ -33,4 +35,5 @@ export enum CLIENT_EVENT_NAME {
   GameSkipCard = "gameSkipCard",
   GameValidAnswer = "gameValidAnswer",
   GameForbiddenWordUsed = "gameForbiddenWordUsed",
+  GameStartNextRound = "gameStartNextRound",
 }

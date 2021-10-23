@@ -32,6 +32,14 @@ export class GameGateway {
     this._gameService.forbiddenWordUsed(socket, game, cardName);
   }
 
+  @OnEvent(CLIENT_EVENT_NAME.GameStartNextRound)
+  private onGameStartNextRound(socket: ClientSocket) {
+    const game = gameManager.getGameForSocketId(socket.id);
+    if (!game) return;
+
+    this._gameService.startNextRound(socket, game);
+  }
+
   @OnEvent(CLIENT_EVENT_NAME.Disconnect)
   protected onDisconnect(socket: ClientSocket) {
     const game = gameManager.getGameForSocketId(socket.id);

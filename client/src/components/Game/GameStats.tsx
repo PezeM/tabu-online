@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Grid, useColorModeValue } from '@chakra-ui/react';
-import { GamePointStat } from '@/components/Game/GamePointStat';
-import { GameSkipStat } from '@/components/Game/GameSkipStat';
 import { GameRoundTimer } from '@/components/Game/GameRoundTimer';
 import { GameState } from '@/types/game-state.enum';
 import { useAppSelector } from '@/hooks/reduxHooks';
@@ -33,9 +31,7 @@ export const GameStats = () => {
       bg={bgColor}
     >
       <GameTeamStats team={Team.Red} justifyContent={'flex-start'} />
-      {/*<GamePointStat />*/}
       <GameRoundTimer expireTime={expireTime} />
-      {/*<GameSkipStat />*/}
       <GameTeamStats team={Team.Blue} justifyContent={'flex-end'} />
     </Grid>
   );

@@ -18,18 +18,18 @@ export const GameRoundTimer = ({ expireTime }: Props) => {
     autoStart: false,
   });
 
-  // useEffect(() => {
-  //   if (gameState !== GameState.WaitingForNextRound && expireTime) {
-  //     restart(expireTime);
-  //     start();
-  //   }
-  // }, [start, restart, gameState]);
+  useEffect(() => {
+    if (gameState !== GameState.WaitingForNextRound && expireTime) {
+      restart(expireTime);
+      start();
+    }
+  }, [start, restart, gameState, expireTime]);
 
   return (
     <Box display="flex" alignSelf={'center'}>
       <ClockIcon mr={[1, 2, 3, 4]} w={8} h={8} color={useColorModeValue('gray.800', 'gray.300')} />
       <Heading size="lg">
-        {minutes}:{seconds}
+        {minutes.toString().padStart(2, '0')}:{seconds.toString().padStart(2, '0')}
       </Heading>
     </Box>
   );

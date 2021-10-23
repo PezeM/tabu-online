@@ -99,7 +99,7 @@ export class Lobby implements ClientPayload<LobbyCP> {
     }
   }
 
-  public setNewGame(game: Game) {
+  public setNewGame(game?: Game) {
     this._game = game;
   }
 
