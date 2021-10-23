@@ -81,6 +81,7 @@ export const Lobby = () => {
       templateRows={'auto 1fr auto'}
       h={'100%'}
       overflowY={'auto'}
+      p={4}
     >
       <TeamsContainer />
       <LobbySettingsTabs />

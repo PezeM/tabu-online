@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Grid } from '@chakra-ui/react';
-import { GamePointStat } from '@/components/Game/GamePointStat';
-import { GameSkipStat } from '@/components/Game/GameSkipStat';
+import { Grid, useColorModeValue } from '@chakra-ui/react';
 import { GameRoundTimer } from '@/components/Game/GameRoundTimer';
 import { GameState } from '@/types/game-state.enum';
 import { useAppSelector } from '@/hooks/reduxHooks';
 import { selectGame, selectGameState } from '@/features/game/game.slice';
+import { GameTeamStats } from '@/components/Game/GameTeamStats';
+import { Team } from '@/../../shared/enums/client';
 
 export const GameStats = () => {
   const [expireTime, setExpireTime] = useState<Date>();
 
   const game = useAppSelector(selectGame);
   const gameState = useAppSelector(selectGameState);
+
+  const bgColor = useColorModeValue('gray.700', 'blackAlpha.500');
 
   useEffect(() => {
     if (gameState !== GameState.WaitingForNextRound) {
@@ -23,13 +25,14 @@ export const GameStats = () => {
 
   return (
     <Grid
-      marginTop={['1vh', '2vh']}
       templateColumns={'repeat(3, 1fr)'}
       justifyItems={'center'}
+      roundedBottom={'xl'}
+      bg={bgColor}
     >
-      <GamePointStat />
+      <GameTeamStats team={Team.Red} justifyContent={'flex-start'} />
       <GameRoundTimer expireTime={expireTime} />
-      <GameSkipStat />
+      <GameTeamStats team={Team.Blue} justifyContent={'flex-end'} />
     </Grid>
   );
 };

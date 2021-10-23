@@ -21,7 +21,6 @@ export const LayoutContainer = ({ children }: Props) => {
         maxW="1250px"
         maxH={['95%', '93%', '90%']}
         my={[8, 10, 16, 24]}
-        p={4}
         width={'100%'}
         flex={'1 0 auto'}
         boxShadow={'xl'}

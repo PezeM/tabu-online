@@ -12,6 +12,8 @@ import { ClientPayload } from '@shared/interfaces';
 import { GameTeam } from '@models/game-team.model';
 import { GameCP, GameTeamCP } from '@shared/dto';
 import { getOppositeTeam } from '@shared/utils/team';
+import { app } from '@/server';
+import { gameManager } from '@/managers/game.manager';
 
 export class Game implements ClientPayload<GameCP> {
   public readonly id = generateRandomId();
@@ -22,8 +24,11 @@ export class Game implements ClientPayload<GameCP> {
   private _settings: GameSettings;
   private _teamMap: Map<Team, GameTeam>;
   private _started: boolean;
+  private _timeout: NodeJS.Timeout;
+  private _gameEnded: boolean;
+  private _roundStarted: boolean;
 
-  constructor(cards: Card[], lobby: Lobby) {
+  constructor(cards: Card[], private lobby: Lobby) {
     this._cards = cards;
     this._started = false;
     this._settings = pick(lobby.settings, ['roundTime', 'pointsToWin', 'maximumNumberOfSkips']);
@@ -56,6 +61,10 @@ export class Game implements ClientPayload<GameCP> {
 
   get maxCardIndex() {
     return this._cards.length - 1;
+  }
+
+  get isRoundStarted() {
+    return this._roundStarted;
   }
 
   public getPlayer(playerId: string): Player | undefined {
@@ -108,8 +117,14 @@ export class Game implements ClientPayload<GameCP> {
   public startRound() {
     this.selectNextPlayer();
     this.newCardTurn();
+    this.startTimeout();
+    this._roundStarted = true;
+  }
 
-    // Start the timer or so, the timer should end the round with screen to start the next round
+  public tryStartNextRound() {
+    if (this._roundStarted) return;
+
+    this.startRound();
   }
 
   public getCP(): GameCP {
@@ -140,7 +155,7 @@ export class Game implements ClientPayload<GameCP> {
   public checkIfCanSkipCurrentCard(player: Player) {
     if (this._settings.maximumNumberOfSkips === MAX_SKIPS_NUMBER) return true;
     const gameTeam = this._teamMap.get(player.team);
-    return gameTeam.numberOfSkips < this._settings.maximumNumberOfSkips;
+    return gameTeam.numberOfSkips < this._settings.maximumNumberOfSkips && this._roundStarted;
   }
 
   public skipCurrentCard(player: Player) {
@@ -150,6 +165,8 @@ export class Game implements ClientPayload<GameCP> {
   }
 
   public validAnswer(player: Player): boolean {
+    if (!this._roundStarted) return false;
+
     const gameTeam = this._teamMap.get(player.team);
     const newPointsCount = gameTeam.points + 1;
 
@@ -157,13 +174,7 @@ export class Game implements ClientPayload<GameCP> {
       newPointsCount >= this._settings.pointsToWin &&
       this._settings.pointsToWin !== MAX_POINTS_TO_WIN
     ) {
-      // Win condition
-      // Emit event to all players that game finished
-      // Calculate some statistics
-      // Remove the game from game manager
-      // Return to lobby
-      console.log('Should end the game');
-
+      this.endGame();
       return false;
     }
 
@@ -184,7 +195,8 @@ export class Game implements ClientPayload<GameCP> {
     const nextCard = this._cards[nextIndex];
 
     if (!nextCard || nextCard === this._currentCard) {
-      // End of the game
+      this.endGame();
+      return;
     }
 
     this._currentCard = nextCard;
@@ -192,7 +204,7 @@ export class Game implements ClientPayload<GameCP> {
 
   private getNextCardIndex(): number {
     const index = Math.min(++this._currentCardIndex, this.maxCardIndex);
-    this._currentPlayerIndex = index;
+    this._currentCardIndex = index;
     return index;
   }
 
@@ -212,6 +224,32 @@ export class Game implements ClientPayload<GameCP> {
     return newPlayerIndex;
   }
 
+  private startTimeout() {
+    clearTimeout(this._timeout);
+    this._timeout = setTimeout(this.onTimeEnd, this._settings.roundTime);
+  }
+
+  private onTimeEnd = () => {
+    if (this._gameEnded) return;
+    console.log('Time ended');
+    this._roundStarted = false;
+    app.ioServer().in(this.id).emit(SERVER_EVENT_NAME.GameRoundEnded);
+  };
+
+  private endGame() {
+    if (this._gameEnded) return;
+
+    const winnerTeamCP = this.findWinnerTeam().getCP();
+    gameManager.removeGame(this);
+    this.lobby.setNewGame(undefined);
+    this._gameEnded = true;
+    logger.info('Game has ended', logGame(this));
+
+    for (const player of this._players) {
+      player.socket.emit(SERVER_EVENT_NAME.GameHasEnded, winnerTeamCP, player.getStatsCP());
+    }
+  }
+
   private getTeamMapCP(): Record<Team, GameTeamCP> {
     const result = {};
 
@@ -220,5 +258,16 @@ export class Game implements ClientPayload<GameCP> {
     }
 
     return result as Record<Team, GameTeamCP>;
+  }
+
+  private findWinnerTeam() {
+    const redTeam = this._teamMap.get(Team.Red);
+    const blueTeam = this._teamMap.get(Team.Blue);
+
+    if (redTeam.points > blueTeam.points) {
+      return redTeam;
+    } else {
+      return blueTeam;
+    }
   }
 }

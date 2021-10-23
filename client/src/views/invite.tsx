@@ -43,7 +43,7 @@ export const Invite = () => {
   });
 
   return (
-    <Box>
+    <Box p={4}>
       <Text fontSize={['xl', '3xl', '4xl']}>{t('ui.joinLobby')}</Text>
       <LoginComponent onSubmit={onSubmit} isLoading={isLoading} />
     </Box>
