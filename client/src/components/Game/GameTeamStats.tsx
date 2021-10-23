@@ -1,8 +1,9 @@
 import React from 'react';
 import { Team } from '../../../../shared/enums';
-import { Box, Grid, GridProps } from '@chakra-ui/react';
+import { Box, Flex, Grid, GridProps, Heading } from '@chakra-ui/react';
 import { useAppSelector } from '@/hooks/reduxHooks';
-import { selectGameTeams } from '@/features/game/game.slice';
+import { selectGame, selectGameTeams } from '@/features/game/game.slice';
+import { RepeatIcon, StarIcon } from '@chakra-ui/icons';
 
 interface Props extends GridProps {
   team: Team;
@@ -20,11 +21,12 @@ const styles: Record<Team, GridProps> = {
     bg: 'blue.500',
     borderLeftRadius: '2xl',
     justifyContent: 'flex-end',
-  }
-}
+  },
+};
 
-export const GameTeamStats = ({team, ...rest}: Props) => {
+export const GameTeamStats = ({ team, ...rest }: Props) => {
   const gameTeams = useAppSelector(selectGameTeams);
+  const game = useAppSelector(selectGame);
 
   const gameTeam = gameTeams?.[team];
   const style = styles[team];
@@ -34,16 +36,27 @@ export const GameTeamStats = ({team, ...rest}: Props) => {
   }
 
   return (
-    <Box width={'100%'} height={'100%'} {...rest}>
-      <Grid templateRows={'repeat(2, 1fr)'} height={'100%'} {...style}>
-        <Box>
-          Name and points
+    <Flex width={'100%'} height={'100%'} {...rest}>
+      <Grid
+        templateRows={'repeat(2, 1fr)'}
+        height={'100%'}
+        width={['85%', '70%', '65%', '55%']}
+        {...style}
+      >
+        <Box alignSelf={'center'} display="flex" alignItems={'center'} px={[1, 2, 3]}>
+          <StarIcon mr={[1, 2, 3, 4]} w={[5, 6, 7, 8]} h={[5, 6, 7, 8]} color={'yellow.400'} />
+          <Heading fontSize={['md', 'lg', 'xl', '2xl']}>
+            {gameTeam.points} / {game?.pointsToWin ?? 0}
+          </Heading>
         </Box>
 
-        <Box>
-          Number of Skips
+        <Box alignSelf={'center'} display="flex" alignItems={'center'} px={[1, 2, 3]}>
+          <RepeatIcon mr={[1, 2, 3, 4]} w={[5, 6, 7, 8]} h={[5, 6, 7, 8]} color={'whiteAlpha.600'} />
+          <Heading fontSize={['md', 'lg', 'xl', '2xl']}>
+            {gameTeam.numberOfSkips} / {game?.maximumNumberOfSkips ?? 0}
+          </Heading>
         </Box>
       </Grid>
-    </Box>
-  )
-}
+    </Flex>
+  );
+};
