@@ -9,7 +9,7 @@ export const GameCardContainer = () => {
   const cardForbiddenWordsColor = useColorModeValue('gray.600', 'gray.400');
 
   return (
-    <Box display="flex" justifyContent="center">
+    <Box display="flex" justifyContent="center" alignItems='center'>
       <Box
         maxW={'250px'}
         w={'full'}
