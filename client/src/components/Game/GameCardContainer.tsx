@@ -13,7 +13,7 @@ export const GameCardContainer = () => {
       <Box
         maxW={'250px'}
         w={'full'}
-        bg={useColorModeValue('white', 'gray.700')}
+        bg={useColorModeValue('gray.100', 'gray.700')}
         boxShadow={'2xl'}
         rounded={'md'}
         overflow={'hidden'}
@@ -34,13 +34,13 @@ const GameCard = ({ card }: GameCardProps) => {
 
   return (
     <>
-      <Stack textAlign={'center'} p={3} align={'center'}>
+      <Stack textAlign={'center'} p={3} align={'center'} shadow={'lg'}>
         <Text
           fontSize={'xl'}
           fontWeight={700}
           p={2}
           px={4}
-          color={useColorModeValue('gray.800', 'gray.100')}
+          color={useColorModeValue('gray.700', 'gray.100')}
           letterSpacing={'1px'}
         >
           {card?.name.toUpperCase()}

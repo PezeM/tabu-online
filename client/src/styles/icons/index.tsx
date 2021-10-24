@@ -107,11 +107,56 @@ export const ClockIcon = createIcon({
     strokeLinecap: 'round',
     strokeLinejoin: 'round',
   },
+  path: [<path key={1} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />],
+});
+
+export const TeamIcon = createIcon({
+  displayName: 'teamIcon',
+  defaultProps: {
+    fill: 'currentColor',
+    stroke: 'currentColor',
+    strokeWidth: '1',
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+  },
   path: [
-    <path key={1} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />,
+    <path
+      key={1}
+      d="M9 9c0-1.7 1.3-3 3-3s3 1.3 3 3-1.3 3-3 3-3-1.3-3-3zm3 5c-4.6 0-6 3.3-6 3.3V19h12v-1.7S16.6 14 12 14z"
+    />,
+    <circle key={2} cx="18.5" cy="8.5" r="2.5" />,
+    <path
+      key={3}
+      d="M18.5 13c-1.2 0-2.1.3-2.8.8 2.3 1.1 3.2 3 3.2 3.2v.1H23v-1.3c0-.1-1.1-2.8-4.5-2.8z"
+    />,
+    <circle key={4} cx="18.5" cy="8.5" r="2.5" />,
+    <path
+      key={5}
+      d="M18.5 13c-1.2 0-2.1.3-2.8.8 2.3 1.1 3.2 3 3.2 3.2v.1H23v-1.3c0-.1-1.1-2.8-4.5-2.8z"
+    />,
+    <g key={6}>
+      <circle key={1} cx="5.5" cy="8.5" r="2.5" />
+      <path
+        key={2}
+        d="M5.5 13c1.2 0 2.1.3 2.8.8-2.3 1.1-3.2 3-3.2 3.2v.1H1v-1.3c0-.1 1.1-2.8 4.5-2.8z"
+      />
+    </g>,
   ],
 });
 
-// <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-//   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-// </svg>
+export const CardIcon = createIcon({
+  displayName: 'cardIcon',
+  defaultProps: {
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: '2',
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+  },
+  path: [
+    <path
+      key={1}
+      d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+    />,
+  ],
+});

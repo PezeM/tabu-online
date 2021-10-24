@@ -13,10 +13,10 @@ export const GameStats = () => {
   const game = useAppSelector(selectGame);
   const gameState = useAppSelector(selectGameState);
 
-  const bgColor = useColorModeValue('gray.700', 'blackAlpha.500');
+  const bgColor = useColorModeValue('gray.100', 'blackAlpha.500');
 
   useEffect(() => {
-    if (gameState !== GameState.WaitingForNextRound) {
+    if (gameState !== GameState.WaitingForNextRound && gameState !== GameState.GameEnded) {
       const now = new Date();
       now.setMilliseconds(now.getMilliseconds() + (game?.roundTime ?? 0));
       setExpireTime(now);
@@ -29,6 +29,7 @@ export const GameStats = () => {
       justifyItems={'center'}
       roundedBottom={'xl'}
       bg={bgColor}
+      boxShadow={'xl'}
     >
       <GameTeamStats team={Team.Red} justifyContent={'flex-start'} />
       <GameRoundTimer expireTime={expireTime} />

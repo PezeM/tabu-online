@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, IconButton, Tooltip } from '@chakra-ui/react';
+import { Box, IconButton, Tooltip, useColorModeValue } from '@chakra-ui/react';
 import { CheckIcon, CloseIcon } from '@chakra-ui/icons';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '@/hooks/reduxHooks';
@@ -13,6 +13,7 @@ export const GameButtons = () => {
   const { t } = useTranslation();
   const state = useAppSelector(selectGameState);
   const currentCard = useAppSelector(selectCurrentCard);
+  const skipIconColor = useColorModeValue('gray.500', 'gray.100');
 
   const skipCard = () => {
     if (!currentCard) return;
@@ -36,7 +37,7 @@ export const GameButtons = () => {
           <>
             <GameButton
               tooltip={t('ui.skipCardTooltip')}
-              icon={<RedoIcon color={'gray.100'} h={8} w={8} />}
+              icon={<RedoIcon color={skipIconColor} h={8} w={8} />}
               onClick={skipCard}
             />
             <GameButton

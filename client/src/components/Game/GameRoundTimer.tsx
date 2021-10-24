@@ -26,7 +26,7 @@ export const GameRoundTimer = ({ expireTime }: Props) => {
   }, [start, restart, gameState, expireTime]);
 
   return (
-    <Box display="flex" alignSelf={'center'}>
+    <Box display="flex" alignSelf={'center'} alignItems={'center'}>
       <ClockIcon mr={[1, 2, 3, 4]} w={8} h={8} color={useColorModeValue('gray.800', 'gray.300')} />
       <Heading size="lg">
         {minutes.toString().padStart(2, '0')}:{seconds.toString().padStart(2, '0')}

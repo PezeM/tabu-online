@@ -55,4 +55,12 @@ export class LobbyGateway {
 
     await this._lobbyService.startGame(socket.clientUser);
   }
+
+  @OnEvent(CLIENT_EVENT_NAME.LobbyKickClient)
+  @PerformanceLog()
+  protected async onKickClient(socket: ClientSocket, clientId: string) {
+    if (!socket.clientUser) return;
+
+    await this._lobbyService.kickClient(socket.clientUser, clientId);
+  }
 }

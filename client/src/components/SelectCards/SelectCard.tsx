@@ -20,8 +20,8 @@ export const SelectCard = ({ cardSet, isSelected, setIsSelected }: Props) => {
   return (
     <Box
       w={'full'}
-      bg={useColorModeValue('white', 'gray.900')}
-      boxShadow={'2xl'}
+      bg={useColorModeValue('whiteAlpha.600', 'gray.900')}
+      boxShadow={'xl'}
       rounded={'lg'}
       p={6}
       textAlign={'center'}

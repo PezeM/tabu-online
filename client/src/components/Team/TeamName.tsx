@@ -1,5 +1,5 @@
 import React from 'react';
-import { Team } from '../../../../shared/enums/client';
+import { Team } from '../../../../shared/enums';
 import { Box, Tag, TagLabel, Text } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { getTeamColor } from '@/utils/team';

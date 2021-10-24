@@ -63,7 +63,13 @@
     "forbiddenWordUsed": "Forbidden word used",
     "guessTheWord": "Guess the word!",
     "startNewRound": "Start new round!",
-    "roundHasEnded": "Round has ended"
+    "roundHasEnded": "Round has ended",
+    "gameFinish": "Game finished",
+    "returnToLobby": "Return to lobby",
+    "yourStats": "Your statistics",
+    "numberOfSkips": "Card skips",
+    "timesShowingCard": "Times showing card",
+    "kickClientTooltip": "Kick player"
   },
   "lobby": {
     "alreadyInGame": "Lobby is already in game",

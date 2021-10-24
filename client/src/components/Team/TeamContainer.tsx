@@ -5,7 +5,7 @@ import { TeamName } from '@/components/Team/TeamName';
 import { TeamMember } from '@/components/Team/TeamMember';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '@/hooks/reduxHooks';
-import { selectLobbyMembers } from '@/features/lobby/lobby.slice';
+import { selectIsLobbyOwner, selectLobbyMembers } from '@/features/lobby/lobby.slice';
 import { ClientCP } from '../../../../shared/dto';
 import { generateRandomId } from '../../../../shared/utils';
 import { generateRandomInt } from '../../../../shared/utils';
@@ -29,9 +29,10 @@ const generateRandomMembers = (team: Team, membersNumber = 5): ClientCP[] => {
 export const TeamContainer = React.memo(({ team }: Props) => {
   const [isButtonLoading, setIsButtonLoading] = useState(false);
   const client = useAppSelector(selectClient);
+  const isLobbyOwner = useAppSelector(selectIsLobbyOwner);
   const allMembers = useAppSelector(selectLobbyMembers)?.filter(m => m.team === team);
   const { t } = useTranslation();
-  const joinButtonBg = useColorModeValue('#151f21', 'gray.700');
+  const joinButtonBg = useColorModeValue('gray.700', 'gray.700');
 
   const showJoinTeamButton = client && client.team !== team;
   const members = [...generateRandomMembers(team), ...allMembers];
@@ -83,7 +84,7 @@ export const TeamContainer = React.memo(({ team }: Props) => {
         </Box>
 
         {members.map(member => (
-          <TeamMember key={member.id} member={member} />
+          <TeamMember key={member.id} member={member} isLobbyOwner={isLobbyOwner} />
         ))}
       </HStack>
     </Flex>

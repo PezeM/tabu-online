@@ -239,14 +239,14 @@ export class Game implements ClientPayload<GameCP> {
   private endGame() {
     if (this._gameEnded) return;
 
-    const winnerTeamCP = this.findWinnerTeam().getCP();
+    const teamMapCP = this.getTeamMapCP();
     gameManager.removeGame(this);
     this.lobby.setNewGame(undefined);
     this._gameEnded = true;
     logger.info('Game has ended', logGame(this));
 
     for (const player of this._players) {
-      player.socket.emit(SERVER_EVENT_NAME.GameHasEnded, winnerTeamCP, player.getStatsCP());
+      player.socket.emit(SERVER_EVENT_NAME.GameHasEnded, teamMapCP, player.getStatsCP());
     }
   }
 
@@ -258,16 +258,5 @@ export class Game implements ClientPayload<GameCP> {
     }
 
     return result as Record<Team, GameTeamCP>;
-  }
-
-  private findWinnerTeam() {
-    const redTeam = this._teamMap.get(Team.Red);
-    const blueTeam = this._teamMap.get(Team.Blue);
-
-    if (redTeam.points > blueTeam.points) {
-      return redTeam;
-    } else {
-      return blueTeam;
-    }
   }
 }

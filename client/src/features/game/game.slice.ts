@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CardDto, GameCP, GameTeamCP } from '../../../../shared/dto';
+import { CardDto, GameCP, GameTeamCP, PlayerStatsCP } from '../../../../shared/dto';
 import { RootState } from '@/store';
 import { GameState } from '@/types/game-state.enum';
 import { Team } from '../../../../shared/enums';
@@ -9,11 +9,12 @@ interface InitialState {
   currentCard?: CardDto;
   state: GameState;
   teams?: Record<Team, GameTeamCP>;
+  playerStats?: PlayerStatsCP;
 }
 
 const initialState: InitialState = {
   game: undefined,
-  state: GameState.GuessingTeam,
+  state: GameState.WaitingForNextRound,
 };
 
 export const gameSlice = createSlice({
@@ -41,19 +42,30 @@ export const gameSlice = createSlice({
 
       state.teams[team] = action.payload;
     },
+    setPlayerStats: (state, action: PayloadAction<PlayerStatsCP>) => {
+      state.playerStats = action.payload;
+    },
     resetGameState: state => {
       Object.assign(state, initialState);
     },
   },
 });
 
-export const { setGame, setCurrentCard, setGameState, resetGameState, setGameTeam, setGameTeams } =
-  gameSlice.actions;
+export const {
+  setGame,
+  setCurrentCard,
+  setGameState,
+  resetGameState,
+  setGameTeam,
+  setGameTeams,
+  setPlayerStats,
+} = gameSlice.actions;
 
 export const selectIsInGame = (state: RootState) => state.game.game !== undefined;
 export const selectGame = (state: RootState) => state.game.game;
 export const selectGameState = (state: RootState) => state.game.state;
 export const selectCurrentCard = (state: RootState) => state.game.currentCard;
 export const selectGameTeams = (state: RootState) => state.game.teams;
+export const selectPlayerStats = (state: RootState) => state.game.playerStats;
 
 export default gameSlice.reducer;
