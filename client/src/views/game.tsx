@@ -1,14 +1,6 @@
 import React from 'react';
 import {
-  Button,
   Grid,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
   useDisclosure,
 } from '@chakra-ui/react';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
