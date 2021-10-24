@@ -12,6 +12,9 @@ export const GameWaitingForNextRound = () => {
   const gameState = useAppSelector(selectGameState);
   const isInGame = useAppSelector(selectIsInGame);
   const bgColor = useColorModeValue('rgba(20, 20, 20, 0.1)', 'rgba(220, 220, 220, 0.1)');
+  const boxBgColor = useColorModeValue('gray.300', 'gray.900');
+  const textColor = useColorModeValue('gray.700', 'gray.900');
+
   const { t } = useTranslation();
 
   const startNewRound = () => {
@@ -63,9 +66,15 @@ export const GameWaitingForNextRound = () => {
           height={'50%'}
           direction={'column'}
         >
-          <Heading size={'xl'}>{t('ui.roundHasEnded')}</Heading>
-          <Box borderRadius={'xl'} p={[4, 8, 16]} bg={'gray.900'}>
-            <Button isLoading={isLoading} size={'lg'} colorScheme={'blue'} onClick={startNewRound}>
+          <Heading size={'xl'} color={textColor}>{t('ui.roundHasEnded')}</Heading>
+          <Box borderRadius={'xl'} p={[4, 8, 16]} bg={boxBgColor} boxShadow={'lg'}>
+            <Button
+              isLoading={isLoading}
+              size={'lg'}
+              colorScheme={'blue'}
+              boxShadow={'md'}
+              onClick={startNewRound}
+            >
               {t('ui.startNewRound')}
             </Button>
           </Box>

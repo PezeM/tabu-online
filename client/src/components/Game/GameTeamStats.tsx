@@ -1,6 +1,6 @@
 import React from 'react';
 import { Team } from '../../../../shared/enums';
-import { Box, Flex, Grid, GridProps, Heading } from '@chakra-ui/react';
+import { Box, Flex, Grid, GridProps, Heading, useColorModeValue } from '@chakra-ui/react';
 import { useAppSelector } from '@/hooks/reduxHooks';
 import { selectGame, selectGameTeams } from '@/features/game/game.slice';
 import { RepeatIcon, StarIcon } from '@chakra-ui/icons';
@@ -13,7 +13,7 @@ interface Props extends GridProps {
 
 const styles: Record<Team, GridProps> = {
   [Team.Red]: {
-    bg: 'red.700',
+    bg: 'red.500',
     borderRightRadius: '2xl',
     justifyContent: 'flex-start',
   },
@@ -27,6 +27,7 @@ const styles: Record<Team, GridProps> = {
 export const GameTeamStats = ({ team, ...rest }: Props) => {
   const gameTeams = useAppSelector(selectGameTeams);
   const game = useAppSelector(selectGame);
+  const color = useColorModeValue('gray.200', 'gray.800');
 
   const gameTeam = gameTeams?.[team];
   const style = styles[team];
@@ -41,6 +42,7 @@ export const GameTeamStats = ({ team, ...rest }: Props) => {
         templateRows={'repeat(2, 1fr)'}
         height={'100%'}
         width={['85%', '70%', '65%', '55%']}
+        color={color}
         {...style}
       >
         <Box alignSelf={'center'} display="flex" alignItems={'center'} px={[1, 2, 3]}>
@@ -51,7 +53,12 @@ export const GameTeamStats = ({ team, ...rest }: Props) => {
         </Box>
 
         <Box alignSelf={'center'} display="flex" alignItems={'center'} px={[1, 2, 3]}>
-          <RepeatIcon mr={[1, 2, 3, 4]} w={[5, 6, 7, 8]} h={[5, 6, 7, 8]} color={'whiteAlpha.600'} />
+          <RepeatIcon
+            mr={[1, 2, 3, 4]}
+            w={[5, 6, 7, 8]}
+            h={[5, 6, 7, 8]}
+            color={'whiteAlpha.700'}
+          />
           <Heading fontSize={['md', 'lg', 'xl', '2xl']}>
             {gameTeam.numberOfSkips} / {game?.maximumNumberOfSkips ?? 0}
           </Heading>

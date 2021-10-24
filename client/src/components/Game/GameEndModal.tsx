@@ -11,6 +11,7 @@ import {
   ModalHeader,
   ModalOverlay,
   Text,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '@/hooks/reduxHooks';
@@ -26,6 +27,9 @@ interface Props {
 export const GameEndModal = ({ isOpen, onClose }: Props) => {
   const { t } = useTranslation();
   const playerStats = useAppSelector(selectPlayerStats);
+  const headerColor = useColorModeValue('gray.700', 'gray.900');
+  const statsBg = useColorModeValue('gray.200', 'gray.800');
+  const statColor = useColorModeValue('gray.600', 'gray.300');
 
   if (!playerStats) {
     return null;
@@ -45,7 +49,7 @@ export const GameEndModal = ({ isOpen, onClose }: Props) => {
       <ModalContent>
         <ModalHeader>{t('ui.gameFinish')}</ModalHeader>
         <ModalBody display={'flex'} flexDirection={'column'}>
-          <Heading size={'md'} mb={[2, 3, 4]} textAlign={'center'}>
+          <Heading size={'md'} mb={[2, 3, 4]} textAlign={'center'} color={headerColor}>
             {t('ui.yourStats')}
           </Heading>
           <Grid
@@ -53,7 +57,7 @@ export const GameEndModal = ({ isOpen, onClose }: Props) => {
             templateRows={'repeat(3, 1fr)'}
             p={[2, 4, 6]}
             gridRowGap={2}
-            bg={'gray.800'}
+            bg={statsBg}
             borderRadius={'xl'}
             boxShadow={'xl'}
           >
@@ -64,7 +68,7 @@ export const GameEndModal = ({ isOpen, onClose }: Props) => {
               </Text>
             </Flex>
 
-            <Text color={'gray.300'}>{t(`ui.team.${playerStats.team}`)}</Text>
+            <Text color={statColor}>{t(`ui.team.${playerStats.team}`)}</Text>
 
             <Flex flexDirection={'row'} alignItems={'center'}>
               <RepeatIcon w={[4, 5]} h={[4, 5]} />
@@ -73,7 +77,7 @@ export const GameEndModal = ({ isOpen, onClose }: Props) => {
               </Text>
             </Flex>
 
-            <Text color={'gray.300'}>{playerStats.numberOfSkips}</Text>
+            <Text color={statColor}>{playerStats.numberOfSkips}</Text>
 
             <Flex flexDirection={'row'} alignItems={'center'}>
               <CardIcon w={[4, 5]} h={[4, 5]} />
@@ -82,7 +86,7 @@ export const GameEndModal = ({ isOpen, onClose }: Props) => {
               </Text>
             </Flex>
 
-            <Text color={'gray.300'}>{playerStats.timesShowingCard}</Text>
+            <Text color={statColor}>{playerStats.timesShowingCard}</Text>
           </Grid>
         </ModalBody>
 
