@@ -49,7 +49,6 @@ export const Game = () => {
   );
 
   const closeEndGameModal = () => {
-    // Go back to lobby
     dispatch(resetGameState());
     dispatch(resetPlayerState());
 

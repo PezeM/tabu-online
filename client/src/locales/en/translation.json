@@ -68,7 +68,8 @@
     "returnToLobby": "Return to lobby",
     "yourStats": "Your statistics",
     "numberOfSkips": "Card skips",
-    "timesShowingCard": "Times showing card"
+    "timesShowingCard": "Times showing card",
+    "kickClientTooltip": "Kick player"
   },
   "lobby": {
     "alreadyInGame": "Lobby is already in game",

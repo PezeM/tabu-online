@@ -7,6 +7,8 @@ import { lobbyManager } from '@/managers/lobby.manager';
 import { LobbySettings } from '@shared/interfaces/lobby';
 import { CardSetsCountDto } from '@shared/dto';
 import { Game } from '@models/game.model';
+import { LobbyKickException } from '@/exceptions';
+import { app } from '@/server';
 
 export class Lobby implements ClientPayload<LobbyCP> {
   public readonly id = generateRandomId();
@@ -65,7 +67,7 @@ export class Lobby implements ClientPayload<LobbyCP> {
     this.addNewMemberInternal(client);
   }
 
-  public remove(client: Client): boolean {
+  public remove(client: Client): void {
     // Select new owner if old one leaves
     if (client.id === this._ownerId) {
       const newOwner = this._members.find(c => c.id !== this._ownerId);
@@ -75,28 +77,26 @@ export class Lobby implements ClientPayload<LobbyCP> {
       }
     }
 
+    client.socket.leave(this.id);
     client.socket.emit(SERVER_EVENT_NAME.UserLeftRoom);
-    client.socket.to(this.id).emit(SERVER_EVENT_NAME.LobbyUserLeft, client.id, this._ownerId);
+    app.ioServer().to(this.id).emit(SERVER_EVENT_NAME.LobbyUserLeft, client.id, this._ownerId);
     this._members = this._members.filter(c => c !== client);
 
     // Remove lobby if all members left
     if (this.membersCount === 0) lobbyManager.removeLobby(this);
-
-    return true;
   }
 
   public kick(clientId: string): void {
-    if (this._ownerId === clientId) throw new Error('lobby.cantKickOwner');
+    if (this._ownerId === clientId) throw new LobbyKickException('lobby.cantKickOwner');
 
     const clientToRemove = this.getMember(clientId);
     if (!clientToRemove) {
-      throw new Error('lobby.userNotFound');
+      throw new LobbyKickException('lobby.userNotFound');
     }
 
-    if (this.remove(clientToRemove)) {
-      this._blacklist.push(clientToRemove);
-      clientToRemove.socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.kicked', 'info');
-    }
+    this.remove(clientToRemove);
+    this._blacklist.push(clientToRemove);
+    clientToRemove.socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.kicked', 'info');
   }
 
   public setNewGame(game?: Game) {

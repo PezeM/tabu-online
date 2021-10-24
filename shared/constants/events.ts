@@ -21,6 +21,8 @@ export enum SERVER_EVENT_NAME {
   GameUpdateGameTeam = "gameUpdateGameTeam",
   GameRoundEnded = "gameRoundEnded",
   GameHasEnded = "gameHasEnded",
+  LobbyKickedClient = "lobbyKickedClient",
+  LobbyFailedToKickClient = "lobbyFailedToKickClient",
 }
 
 export enum CLIENT_EVENT_NAME {
@@ -36,4 +38,5 @@ export enum CLIENT_EVENT_NAME {
   GameValidAnswer = "gameValidAnswer",
   GameForbiddenWordUsed = "gameForbiddenWordUsed",
   GameStartNextRound = "gameStartNextRound",
+  LobbyKickClient = "lobbyKickClient",
 }

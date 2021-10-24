@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { selectIsLobbyOwner, selectLobby, updateCardSets } from '@/features/lobby/lobby.slice';
 import { Tab, TabList, TabPanel, TabPanels, Tabs, useToast } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { PersonalSettingsTab } from '@/components/LobbySettings/PersonalSettingsTab';
 import { GameSettingsTab } from '@/components/LobbySettings/GameSettingsTab';
-import { useIsMobile } from '@/hooks/useIsMobile';
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
 import { SERVER_EVENT_NAME } from '../../../../shared/constants';
 import { setIsLoading } from '@/features/settings/settings.splice';
@@ -16,13 +15,8 @@ export const LobbySettingsTabs = () => {
   const lobbyData = useAppSelector(selectLobby);
   const isLobbyOwner = useAppSelector(selectIsLobbyOwner);
   const dispatch = useAppDispatch();
-  const isMobile = useIsMobile();
   const { t } = useTranslation();
   const toast = useToast();
-
-  useEffect(() => {
-    console.log('Is mobile', isMobile);
-  }, [isMobile]);
 
   useListenServerEvent(SERVER_EVENT_NAME.LobbySettingsUpdateFailed, (msg: string) => {
     dispatch(setIsLoading(false));

@@ -18,14 +18,17 @@ export const clientSlice = createSlice({
     setClient: (state, action: PayloadAction<ClientCP>) => {
       Object.assign(state, { client: action.payload });
     },
-    changeClientTeam(state, action: PayloadAction<Team>) {
+    changeClientTeam: (state, action: PayloadAction<Team>) => {
       if (!state.client) return;
       state.client.team = action.payload;
+    },
+    resetClientState: state => {
+      Object.assign(state, initialState);
     },
   },
 });
 
-export const { setClient, changeClientTeam } = clientSlice.actions;
+export const { setClient, changeClientTeam, resetClientState } = clientSlice.actions;
 
 export const selectIsLoggedIn = (state: RootState) => state.auth.client !== undefined;
 export const selectClient = (state: RootState) => state.auth.client;

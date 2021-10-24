@@ -45,4 +45,23 @@ export class LobbyService {
       logger.warn('Starting game failed.', logClient(client), logLobby(lobby), logError(e));
     }
   }
+
+  public async kickClient(owner: Client, clientId: string) {
+    const lobby = lobbyManager.getLobbyForClient(owner);
+    if (!lobby) return;
+
+    if (!lobby.isOwner(owner)) {
+      owner.socket.emit(SERVER_EVENT_NAME.LobbyFailedToKickClient, 'lobby.notAnOwner');
+      return;
+    }
+
+    try {
+      lobby.kick(clientId);
+      owner.socket.emit(SERVER_EVENT_NAME.LobbyKickedClient);
+    } catch (e) {
+      if (e instanceof InternalServerErrorException) {
+        owner.socket.emit(SERVER_EVENT_NAME.LobbyFailedToKickClient, e.message);
+      }
+    }
+  }
 }
