@@ -2,5 +2,6 @@ export enum GameState {
   WaitingForNextRound,
   Explainer,
   GuessingTeam,
-  EnemyTeam
+  EnemyTeam,
+  GameEnded
 }

@@ -63,7 +63,12 @@
     "forbiddenWordUsed": "Użyto zakazanego słowa",
     "guessTheWord": "Odgadnij słowo!",
     "startNewRound": "Rozpocznij nową turę!",
-    "roundHasEnded": "Runda się zakończyła"
+    "roundHasEnded": "Runda się zakończyła",
+    "gameFinish": "Koniec gry",
+    "returnToLobby": "Powrót do lobby",
+    "yourStats": "Twoje statystyki",
+    "numberOfSkips": "Pominięcia kart",
+    "timesShowingCard": "Pokazywanie kart"
   },
   "lobby": {
     "alreadyInGame": "Lobby jest już w grze",

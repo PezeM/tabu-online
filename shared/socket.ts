@@ -7,8 +7,9 @@ import {
   GameCP,
   GameTeamCP,
   LobbyCP,
-  PlayerCP, PlayerStatsCP
-} from './dto';
+  PlayerCP,
+  PlayerStatsCP,
+} from "./dto";
 import { Team } from "./enums";
 import { LobbySettings } from "./interfaces";
 
@@ -53,7 +54,10 @@ export interface EventsFromServer {
   [SERVER_EVENT_NAME.GameEnemyTeamPlayer]: (currentCard: CardDto) => void;
   [SERVER_EVENT_NAME.GameUpdateGameTeam]: (gameTeamCP: GameTeamCP) => void;
   [SERVER_EVENT_NAME.GameRoundEnded]: () => void;
-  [SERVER_EVENT_NAME.GameHasEnded]: (winnerTeamCP: GameTeamCP, playerStatsCP: PlayerStatsCP) => void;
+  [SERVER_EVENT_NAME.GameHasEnded]: (
+    teamMap: Record<Team, GameTeamCP>,
+    playerStatsCP: PlayerStatsCP
+  ) => void;
 }
 
 export interface EventsFromClient {

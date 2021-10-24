@@ -31,20 +31,16 @@ export const Lobby = () => {
   const dispatch = useAppDispatch();
 
   useListenServerEvent(SERVER_EVENT_NAME.UserJoinedLobby, (clientCP: ClientCP) => {
-    console.log(`User with id: ${clientCP.id} joined lobby`, clientCP);
     dispatch(addMember(clientCP));
   });
 
   useListenServerEvent(SERVER_EVENT_NAME.LobbyUserLeft, (clientId: string, newOwnerId: string) => {
-    console.log(`User with id: ${clientId} left lobby`, newOwnerId);
     dispatch(removeMember({ clientId, newOwnerId }));
   });
 
   useListenServerEvent(
     SERVER_EVENT_NAME.LobbyUserChangedTeam,
     (clientId: string, newTeam: Team) => {
-      console.log('User changed team', clientId, newTeam);
-
       dispatch(changeMemberTeam({ clientId, newTeam }));
 
       if (clientData?.id === clientId) {

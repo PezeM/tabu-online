@@ -31,7 +31,7 @@ export const TeamContainer = React.memo(({ team }: Props) => {
   const client = useAppSelector(selectClient);
   const allMembers = useAppSelector(selectLobbyMembers)?.filter(m => m.team === team);
   const { t } = useTranslation();
-  const joinButtonBg = useColorModeValue('#151f21', 'gray.700');
+  const joinButtonBg = useColorModeValue('gray.700', 'gray.700');
 
   const showJoinTeamButton = client && client.team !== team;
   const members = [...generateRandomMembers(team), ...allMembers];

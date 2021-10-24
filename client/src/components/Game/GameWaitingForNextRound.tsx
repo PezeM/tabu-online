@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '@/hooks/reduxHooks';
 import { Box, Button, Flex, Heading, useColorModeValue } from '@chakra-ui/react';
-import { selectGameState } from '@/features/game/game.slice';
+import { selectGameState, selectIsInGame } from '@/features/game/game.slice';
 import { GameState } from '@/types/game-state.enum';
 import { useTranslation } from 'react-i18next';
 import { socket } from '@/services/socket';
@@ -10,6 +10,7 @@ import { CLIENT_EVENT_NAME } from '../../../../shared/constants';
 export const GameWaitingForNextRound = () => {
   const [isLoading, setIsLoading] = useState(false);
   const gameState = useAppSelector(selectGameState);
+  const isInGame = useAppSelector(selectIsInGame);
   const bgColor = useColorModeValue('rgba(20, 20, 20, 0.1)', 'rgba(220, 220, 220, 0.1)');
   const { t } = useTranslation();
 
@@ -22,7 +23,7 @@ export const GameWaitingForNextRound = () => {
     setIsLoading(false);
   }, [gameState]);
 
-  if (gameState !== GameState.WaitingForNextRound) {
+  if (gameState !== GameState.WaitingForNextRound || !isInGame) {
     return null;
   }
 

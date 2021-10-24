@@ -6,7 +6,7 @@ interface Props {
 }
 
 export const SelectCardTag = ({ tag }: Props) => {
-  const tagBg = useColorModeValue('gray.50', 'gray.800');
+  const tagBg = useColorModeValue('blue.100', 'gray.800');
 
   return <Badge
     px={2}

@@ -16,7 +16,7 @@ export const GameStats = () => {
   const bgColor = useColorModeValue('gray.700', 'blackAlpha.500');
 
   useEffect(() => {
-    if (gameState !== GameState.WaitingForNextRound) {
+    if (gameState !== GameState.WaitingForNextRound && gameState !== GameState.GameEnded) {
       const now = new Date();
       now.setMilliseconds(now.getMilliseconds() + (game?.roundTime ?? 0));
       setExpireTime(now);
