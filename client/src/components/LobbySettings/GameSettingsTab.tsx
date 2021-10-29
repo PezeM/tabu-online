@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { LobbySettingsContainer } from '@/components/LobbySettings/LobbySettingsContainer';
 import { SettingsBox } from '@/components/LobbySettings/SettingsBox';
-import { CardsIcon, ClockIcon, GlobeIcon, GroupIcon, PizzaSliceIcon, TrophyIcon } from '@/styles/icons';
+import { CardsIcon, ClockIcon, GlobeIcon, GroupIcon, TrophyIcon } from '@/styles/icons';
 import { ChangeCardsLanguageSelect } from '@/components/LobbySettings/ChangeCardsLanguageSelect';
 import { ChangeMaxPlayersNumberSelect } from '@/components/LobbySettings/ChangeMaxPlayersNumberSelect';
 import { ChangePointsToWinSlider } from '@/components/LobbySettings/ChangePointsToWinSlider';
