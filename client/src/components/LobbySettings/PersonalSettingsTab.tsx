@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from '@chakra-ui/react';
 import { SettingsBox } from '@/components/LobbySettings/SettingsBox';
 import { LobbySettingsContainer } from '@/components/LobbySettings/LobbySettingsContainer';
-import { PizzaSliceIcon } from '@/styles/icons';
+import { ColorSwatchIcon, GlobeIcon, SoundIcon, TextIcon } from '@/styles/icons';
 import { useTranslation } from 'react-i18next';
 import { ChangeLanguageSelect } from '@/components/LobbySettings/ChangeLanguageSelect';
 import { ToggleColorModeButton } from '@/components/ToggleColorModeButton';
@@ -16,14 +16,14 @@ export const PersonalSettingsTab = React.memo(() => {
     <LobbySettingsContainer>
       <SettingsBox
         title={t('ui.changeUiLanguage')}
-        icon={<PizzaSliceIcon />}
+        icon={<GlobeIcon />}
         description={t('ui.changeUiLanguageDescription')}
       >
         <ChangeLanguageSelect />
       </SettingsBox>
       <SettingsBox
         title={t('ui.changeUiTheme')}
-        icon={<PizzaSliceIcon />}
+        icon={<ColorSwatchIcon />}
         description={t('ui.changeUiThemeDescription')}
       >
         <Box
@@ -38,7 +38,7 @@ export const PersonalSettingsTab = React.memo(() => {
       </SettingsBox>
       <SettingsBox
         title={t('ui.toggleSounds')}
-        icon={<PizzaSliceIcon />}
+        icon={<SoundIcon />}
         description={t('ui.toggleSoundsDescription')}
       >
         <Box
@@ -53,7 +53,7 @@ export const PersonalSettingsTab = React.memo(() => {
       </SettingsBox>
       <SettingsBox
         title={t('ui.changeTextScale')}
-        icon={<PizzaSliceIcon />}
+        icon={<TextIcon />}
         description={t('ui.changeTextScaleDescription')}
       >
         <ChangeFontScaleSelect />
