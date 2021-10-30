@@ -14,10 +14,6 @@ import { socket } from '@/services/socket';
 import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '../../../../shared/constants';
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
 
-interface Props {
-  team: Team;
-}
-
 const generateRandomMembers = (team: Team, membersNumber = 5): ClientCP[] => {
   return [...Array(membersNumber)].map(_ => ({
     team,
@@ -26,13 +22,17 @@ const generateRandomMembers = (team: Team, membersNumber = 5): ClientCP[] => {
   }));
 };
 
+interface Props {
+  team: Team;
+}
+
 export const TeamContainer = React.memo(({ team }: Props) => {
   const [isButtonLoading, setIsButtonLoading] = useState(false);
   const client = useAppSelector(selectClient);
   const isLobbyOwner = useAppSelector(selectIsLobbyOwner);
   const allMembers = useAppSelector(selectLobbyMembers)?.filter(m => m.team === team);
-  const { t } = useTranslation();
   const joinButtonBg = useColorModeValue('gray.700', 'gray.700');
+  const { t } = useTranslation();
 
   const showJoinTeamButton = client && client.team !== team;
   const members = [...generateRandomMembers(team), ...allMembers];
@@ -55,15 +55,19 @@ export const TeamContainer = React.memo(({ team }: Props) => {
       overflowX="auto"
       alignItems="flex-start"
       width="100%"
+      border={'1px'}
+      borderRadius={'1em'}
+      shadow={'lg'}
+      borderStyle={'double'}
     >
       <TeamName team={team} />
       <HStack
-        spacing={8}
+        spacing={[4, 5, 6]}
         alignItems="center"
         width="100%"
         overflowX="auto"
         display={'-webkit-box'}
-        pb={[2, 3]}
+        pb={2}
       >
         <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
           {showJoinTeamButton && (

@@ -13,9 +13,9 @@ export const TeamName = ({ team }: Props) => {
   const color = getTeamColor(team);
 
   return (
-    <Box pb={[3, 6]}>
+    <Box pb={[2, 3]}>
       <Text textAlign="center">
-        <Tag size="lg" variant="solid" colorScheme={color}>
+        <Tag size="lg" variant={'subtle'} colorScheme={color}>
           <TagLabel>{t('ui.team.name')}</TagLabel>
           <TagLabel>&nbsp;</TagLabel>
           <TagLabel>
