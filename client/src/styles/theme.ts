@@ -21,7 +21,7 @@ const fontWeights = {
 };
 
 const fonts = {
-  body: `Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"`,
+  body: "Lato",
 };
 
 export const mobileBreakpoints = { base: true, sm: true, md: false, lg: false, xl: false };
