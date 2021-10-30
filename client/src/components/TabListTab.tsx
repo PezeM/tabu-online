@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, chakra, TabProps, useStyles, useTab } from '@chakra-ui/react';
+import { Box, chakra, TabProps, Text, useStyles, useTab } from '@chakra-ui/react';
 
 // @ts-ignore
 const StyledTab = chakra('button', { themeKey: 'Tabs.Tab' });
@@ -17,7 +17,7 @@ export function CustomTab(props: Props) {
       <Box as={'span'} mr={[2, 3, 4]}>
         {props.icon}
       </Box>
-      {tabProps.children}
+      <Text fontWeight={'600'}>{tabProps.children}</Text>
     </StyledTab>
   );
 }

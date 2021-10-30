@@ -14,7 +14,6 @@ import {
 } from '@/features/game/game.slice';
 import { GameStats } from '@/components/Game/GameStats';
 import { GameButtons } from '@/components/Game/GameButtons';
-import { GameCardContainer } from '@/components/Game/GameCardContainer';
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
 import { SERVER_EVENT_NAME } from '../../../shared/constants';
 import { GameState } from '@/types/game-state.enum';
@@ -23,6 +22,7 @@ import { GameTeamCP, PlayerStatsCP } from '../../../shared/dto';
 import { GameEndModal } from '@/components/Game/GameEndModal';
 import { resetPlayerState } from '@/features/player/player.slice';
 import { useHistory } from 'react-router-dom';
+import { GameCardContainer } from '@/components/Game/Card/GameCardContainer';
 
 export const Game = () => {
   const isInGame = useAppSelector(selectIsInGame);

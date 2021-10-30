@@ -99,5 +99,9 @@
     "onlyOwnerCanStartTheGame": "Tylko założyciel lobby może wystartować grę!",
     "errorCreatingLobby": "Nieznany błąd wystąpił podczas tworzenia nowego lobby",
     "cantSkipMoreCard": "Nie możesz wziąć następnej karty. Wykorzystano limit!"
+  },
+  "cards": {
+    "emptyName": "Nazwa karty",
+    "forbiddenWord": "Zakazane słowa"
   }
 }

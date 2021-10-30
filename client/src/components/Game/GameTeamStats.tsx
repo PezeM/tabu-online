@@ -27,7 +27,7 @@ const styles: Record<Team, GridProps> = {
 export const GameTeamStats = ({ team, ...rest }: Props) => {
   const gameTeams = useAppSelector(selectGameTeams);
   const game = useAppSelector(selectGame);
-  const color = useColorModeValue('gray.200', 'gray.800');
+  const color = useColorModeValue('gray.200', 'gray.200');
 
   const gameTeam = gameTeams?.[team];
   const style = styles[team];

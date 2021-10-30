@@ -27,7 +27,7 @@ interface Props {
 export const GameEndModal = ({ isOpen, onClose }: Props) => {
   const { t } = useTranslation();
   const playerStats = useAppSelector(selectPlayerStats);
-  const headerColor = useColorModeValue('gray.700', 'gray.900');
+  const headerColor = useColorModeValue('gray.700', 'gray.300');
   const statsBg = useColorModeValue('gray.200', 'gray.800');
   const statColor = useColorModeValue('gray.600', 'gray.300');
 

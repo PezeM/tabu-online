@@ -8,6 +8,7 @@ import './styles/global.css';
 import './i18n';
 import { Provider } from 'react-redux';
 import { store } from './store';
+import "@fontsource/lato/400.css";
 
 ReactDOM.render(
   <React.StrictMode>

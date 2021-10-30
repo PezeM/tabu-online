@@ -13,7 +13,7 @@ export const GameWaitingForNextRound = () => {
   const isInGame = useAppSelector(selectIsInGame);
   const bgColor = useColorModeValue('rgba(20, 20, 20, 0.1)', 'rgba(220, 220, 220, 0.1)');
   const boxBgColor = useColorModeValue('gray.300', 'gray.900');
-  const textColor = useColorModeValue('gray.700', 'gray.900');
+  const textColor = useColorModeValue('gray.700', 'gray.300');
 
   const { t } = useTranslation();
 
@@ -40,6 +40,7 @@ export const GameWaitingForNextRound = () => {
       justifyContent={'space-between'}
       px={[2, 4, 8, 16, 32]}
       py={[1, 2]}
+      zIndex={'100'}
     >
       <Flex
         margin="0 auto"

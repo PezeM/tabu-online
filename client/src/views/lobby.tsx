@@ -92,8 +92,6 @@ export const Lobby = () => {
   return (
     <Grid
       gap={[2, 4, 6]}
-      templateColumns={'repeat(1, 1fr)'}
-      templateRows={'auto 1fr auto'}
       h={'100%'}
       overflowY={'auto'}
       p={4}

@@ -35,7 +35,7 @@ export const LobbySettingsTabs = () => {
   }
 
   return (
-    <Tabs variant={'enclosed'} colorScheme={'teal'} isFitted mb={'1em'}>
+    <Tabs variant={'enclosed'} colorScheme={'teal'} isFitted mb={'1em'} overflowY={'auto'}>
       <TabList>
         <CustomTab icon={<HomeIcon />}>{t('ui.personalSettings').toUpperCase()}</CustomTab>
         {isLobbyOwner && (
@@ -43,7 +43,7 @@ export const LobbySettingsTabs = () => {
         )}
       </TabList>
 
-      <TabPanels height={'100%'}>
+      <TabPanels>
         <TabPanel height={'100%'}>
           <PersonalSettingsTab />
         </TabPanel>
