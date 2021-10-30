@@ -40,6 +40,7 @@ export const GameWaitingForNextRound = () => {
       justifyContent={'space-between'}
       px={[2, 4, 8, 16, 32]}
       py={[1, 2]}
+      zIndex={'100'}
     >
       <Flex
         margin="0 auto"

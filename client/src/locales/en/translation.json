@@ -100,5 +100,9 @@
     "onlyOwnerCanStartTheGame": "Only lobby owner can start the game!",
     "errorCreatingLobby": "Unexpected error occurred while creating new lobby",
     "cantSkipMoreCard": "You can't skip more cards, limit exceeded!"
+  },
+  "cards": {
+    "emptyName": "Card name",
+    "forbiddenWord": "Forbidden word"
   }
 }
