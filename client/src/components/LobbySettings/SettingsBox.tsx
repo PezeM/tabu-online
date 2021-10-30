@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { Box, Flex, Grid, Heading, Text, Tooltip } from '@chakra-ui/react';
+import { Box, Flex, Grid, Text, Tooltip } from '@chakra-ui/react';
 import { useIsMobile } from '@/hooks/useIsMobile';
 
 interface Props {
@@ -30,7 +30,7 @@ export const SettingsBox = React.memo(({ title, description, tooltip, icon, chil
         {clonedIcon}
         <Flex flexDirection={'column'} flex={'1 1 0%'} marginLeft={[2, 4]}>
           <Tooltip isDisabled={!tooltip && !isMobile} label={tooltipText}>
-            <Heading size={'md'}>{title.toUpperCase()}</Heading>
+            <Text fontSize={['md', 'lg']}>{title.toUpperCase()}</Text>
           </Tooltip>
           {displayDescription && <Text variant={'accentAlternative'}>{description}</Text>}
         </Flex>
