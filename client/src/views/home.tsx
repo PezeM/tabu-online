@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
-import { Box, Text } from '@chakra-ui/react';
-import { LoginComponent } from '@/components/LoginComponents';
 import { socket } from '@/services/socket';
 import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '../../../shared/constants';
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
 import { getBrowserLanguage } from '@/utils/browser';
 import { CardSetsCountDto, ClientCP, LobbyCP } from '../../../shared/dto';
 import { useHistory } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from '@/hooks/reduxHooks';
 import { setLobby, updateCardSets } from '@/features/lobby/lobby.slice';
 import { setClient } from '@/features/client/client.splice';
+import { HomePage } from '@/components/HomePage';
 
 export const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const { t } = useTranslation();
   const history = useHistory();
   const dispatch = useAppDispatch();
 
@@ -43,10 +40,5 @@ export const Home = () => {
     },
   );
 
-  return (
-    <Box p={4}>
-      <Text fontSize={['xl', '3xl', '4xl']}>{t('ui.createLobby')}</Text>
-      <LoginComponent onSubmit={onSubmit} isLoading={isLoading} />
-    </Box>
-  );
+  return <HomePage onSubmit={onSubmit} isLoading={isLoading} />;
 };

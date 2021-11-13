@@ -2,7 +2,7 @@
   "ui": {
     "username": "Nazwa użytkownika",
     "loadingText": "Ładowanie",
-    "submit": "Wyślij",
+    "submit": "Rozpocznij",
     "goBack": "Wróć",
     "routeNotFound": "Nie znaleziono ścieżki dla lokalizacji",
     "createLobby": "Stwórz lobby",
@@ -68,7 +68,8 @@
     "returnToLobby": "Powrót do lobby",
     "yourStats": "Twoje statystyki",
     "numberOfSkips": "Pominięcia kart",
-    "timesShowingCard": "Pokazywanie kart"
+    "timesShowingCard": "Pokazywanie kart",
+    "howToPlay": "Jak grać"
   },
   "lobby": {
     "alreadyInGame": "Lobby jest już w grze",
@@ -103,5 +104,23 @@
   "cards": {
     "emptyName": "Nazwa karty",
     "forbiddenWord": "Zakazane słowa"
+  },
+  "instruction": {
+    "howToPlay": {
+      "header": "1. Najlepiej porozmawiać",
+      "description": "Zaproś swoich znajomych do rozmowy głosowej"
+    },
+    "settings": {
+      "header": "2. Wybierz ustawienia",
+      "description": "Ustaw odpowiednie ustawienia gry i wybierz karty"
+    },
+    "consultation": {
+      "header": "3. Graj ze znajomymi",
+      "description": "Podziel się na 2 drużyny i graj ze znajomymi"
+    },
+    "win": {
+      "header": "4. Ciesz sie z wygranej",
+      "description": "Zdobywaj punkty drużynowo i ciesz się z wygranej"
+    }
   }
 }

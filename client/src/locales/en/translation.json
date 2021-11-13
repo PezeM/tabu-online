@@ -2,7 +2,7 @@
   "ui": {
     "username": "Username",
     "loadingText": "Loading",
-    "submit": "Submit",
+    "submit": "Start",
     "goBack": "Go back",
     "routeNotFound": "Route not found for location",
     "createLobby": "Create lobby",
@@ -69,7 +69,8 @@
     "yourStats": "Your statistics",
     "numberOfSkips": "Card skips",
     "timesShowingCard": "Times showing card",
-    "kickClientTooltip": "Kick player"
+    "kickClientTooltip": "Kick player",
+    "howToPlay": "How to play"
   },
   "lobby": {
     "alreadyInGame": "Lobby is already in game",
@@ -104,5 +105,23 @@
   "cards": {
     "emptyName": "Card name",
     "forbiddenWord": "Forbidden word"
+  },
+  "instruction": {
+    "howToPlay": {
+      "header": "1. Calling is better",
+      "description": "Invite your friends to a voice chat"
+    },
+    "settings": {
+      "header": "2. Select settings",
+      "description": "Set appropriate game settings and select the cards"
+    },
+    "consultation": {
+      "header": "3. Play with friends",
+      "description": "Split into 2 teams and play with friends"
+    },
+    "win": {
+      "header": "4. Enjoy the win",
+      "description": "Score points as a team and enjoy the win"
+    }
   }
 }

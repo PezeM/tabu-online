@@ -24,6 +24,7 @@ export const LoginComponent = ({ onSubmit, isLoading }: Props) => {
           <FormControl id="username" isRequired>
             <FormLabel htmlFor="username">{t('ui.username')}</FormLabel>
             <Input
+              mt={4}
               type="text"
               id="username"
               placeholder={t('ui.username') + '...'}
@@ -32,7 +33,7 @@ export const LoginComponent = ({ onSubmit, isLoading }: Props) => {
 
             <Button
               leftIcon={<ArrowForwardIcon />}
-              mt={4}
+              mt={8}
               colorScheme="teal"
               width={'full'}
               type="submit"

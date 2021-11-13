@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import { Box, Text } from '@chakra-ui/react';
-import { LoginComponent } from '@/components/LoginComponents';
 import { useHistory, useParams } from 'react-router-dom';
 import { socket } from '@/services/socket';
 import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '../../../shared/constants';
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
-import { useTranslation } from 'react-i18next';
 import { setLobby } from '@/features/lobby/lobby.slice';
 import { useAppDispatch } from '@/hooks/reduxHooks';
 import { setClient } from '@/features/client/client.splice';
 import { ClientCP, LobbyCP } from '@/../../shared/dto';
+import { HomePage } from '@/components/HomePage';
 
 type ParamsType = {
   id: string;
@@ -17,7 +15,6 @@ type ParamsType = {
 
 export const Invite = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const { t } = useTranslation();
   const history = useHistory();
   const params = useParams<ParamsType>();
   const dispatch = useAppDispatch();
@@ -42,10 +39,5 @@ export const Invite = () => {
     history.push('/lobby');
   });
 
-  return (
-    <Box p={4}>
-      <Text fontSize={['xl', '3xl', '4xl']}>{t('ui.joinLobby')}</Text>
-      <LoginComponent onSubmit={onSubmit} isLoading={isLoading} />
-    </Box>
-  );
+  return <HomePage onSubmit={onSubmit} isLoading={isLoading} />;
 };

@@ -60,6 +60,7 @@ export const GameEndModal = ({ isOpen, onClose }: Props) => {
             bg={statsBg}
             borderRadius={'xl'}
             boxShadow={'xl'}
+            alignItems={'center'}
           >
             <Flex flexDirection={'row'} alignItems={'center'}>
               <TeamIcon w={[4, 5]} h={[4, 5]} />
