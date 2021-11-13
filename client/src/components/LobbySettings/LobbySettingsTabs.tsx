@@ -13,6 +13,7 @@ import { showErrorNotification } from '@/utils/notification';
 import { CustomTab } from '@/components/TabListTab';
 import { HomeIcon } from '@/styles/icons';
 import { SettingsIcon } from '@chakra-ui/icons';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export const LobbySettingsTabs = () => {
   const lobbyData = useAppSelector(selectLobby);
@@ -45,11 +46,31 @@ export const LobbySettingsTabs = () => {
 
       <TabPanels>
         <TabPanel height={'100%'}>
-          <PersonalSettingsTab />
+          <AnimatePresence exitBeforeEnter>
+            <motion.div
+              key={'personal-tab'}
+              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.15 }}
+            >
+              <PersonalSettingsTab />
+            </motion.div>
+          </AnimatePresence>
         </TabPanel>
         {isLobbyOwner && (
           <TabPanel height={'100%'}>
-            <GameSettingsTab />
+            <AnimatePresence exitBeforeEnter>
+              <motion.div
+                key={'game-tab'}
+                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.15 }}
+              >
+                <GameSettingsTab />
+              </motion.div>
+            </AnimatePresence>
           </TabPanel>
         )}
       </TabPanels>
