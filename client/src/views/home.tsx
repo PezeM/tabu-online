@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { socket } from '@/services/socket';
-import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '../../../shared/constants';
+import { socketService } from '@/services/socket';
+import { SERVER_EVENT_NAME } from '../../../shared/constants';
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
 import { getBrowserLanguage } from '@/utils/browser';
 import { CardSetsCountDto, ClientCP, LobbyCP } from '../../../shared/dto';
@@ -16,12 +16,13 @@ export const Home = () => {
   const dispatch = useAppDispatch();
 
   const onSubmit = (username: string) => {
+    const socket = socketService.socket;
     socket.auth = { username };
     socket.connect();
 
     setIsLoading(true);
 
-    socket.emit(CLIENT_EVENT_NAME.CreateLobby, username, getBrowserLanguage());
+    socketService.createLobby(username, getBrowserLanguage());
   };
 
   useListenServerEvent(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby, () => {

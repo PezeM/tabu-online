@@ -6,8 +6,7 @@ import { useAppSelector } from '@/hooks/reduxHooks';
 import { selectCurrentCard, selectGameState } from '@/features/game/game.slice';
 import { GameState } from '@/types/game-state.enum';
 import { RedoIcon } from '@/styles/icons';
-import { socket } from '@/services/socket';
-import { CLIENT_EVENT_NAME } from '../../../../shared/constants';
+import { socketService } from '@/services/socket';
 
 export const GameButtons = () => {
   const { t } = useTranslation();
@@ -17,17 +16,17 @@ export const GameButtons = () => {
 
   const skipCard = () => {
     if (!currentCard) return;
-    socket.emit(CLIENT_EVENT_NAME.GameSkipCard, currentCard.name);
+    socketService.gameSkipCard(currentCard.name);
   };
 
   const validAnswer = () => {
     if (!currentCard) return;
-    socket.emit(CLIENT_EVENT_NAME.GameValidAnswer, currentCard.name);
+    socketService.gameValidAnswer(currentCard.name);
   };
 
   const forbiddenWordUsed = () => {
     if (!currentCard) return;
-    socket.emit(CLIENT_EVENT_NAME.GameForbiddenWordUsed, currentCard.name);
+    socketService.gameForbiddenWordUsed(currentCard.name);
   };
 
   return (

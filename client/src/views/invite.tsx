@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { socket } from '@/services/socket';
-import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '../../../shared/constants';
+import { socketService } from '@/services/socket';
+import { SERVER_EVENT_NAME } from '../../../shared/constants';
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
 import { setLobby } from '@/features/lobby/lobby.slice';
 import { useAppDispatch } from '@/hooks/reduxHooks';
@@ -20,11 +20,13 @@ export const Invite = () => {
   const dispatch = useAppDispatch();
 
   const onSubmit = (username: string) => {
+    const socket = socketService.socket;
     socket.auth = { username };
     socket.connect();
 
     setIsLoading(true);
-    socket.emit(CLIENT_EVENT_NAME.JoinLobby, username, params.id);
+
+    socketService.joinLobby(username, params.id);
   };
 
   useListenServerEvent(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby, () => {

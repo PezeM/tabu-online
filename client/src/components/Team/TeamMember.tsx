@@ -9,7 +9,7 @@ import { CrownIcon, UserIcon } from '@/styles/icons';
 import { useTranslation } from 'react-i18next';
 import { CloseIcon } from '@chakra-ui/icons';
 import { setIsLoading } from '@/features/settings/settings.splice';
-import { socket } from '@/services/socket';
+import { socket, socketService } from '@/services/socket';
 import { CLIENT_EVENT_NAME } from '../../../../shared/constants';
 
 interface Props {
@@ -28,7 +28,7 @@ export const TeamMember = ({ member, isLobbyOwner }: Props) => {
   const canKick = isLobbyOwner && !isClient;
 
   const kickPlayer = () => {
-    socket.emit(CLIENT_EVENT_NAME.LobbyKickClient, member.id);
+    socketService.lobbyKickClient(member.id);
     dispatch(setIsLoading(true));
   };
 

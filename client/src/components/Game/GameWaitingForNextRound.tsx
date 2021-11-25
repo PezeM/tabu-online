@@ -4,8 +4,7 @@ import { Box, Button, Flex, Heading, useColorModeValue } from '@chakra-ui/react'
 import { selectGameState, selectIsInGame } from '@/features/game/game.slice';
 import { GameState } from '@/types/game-state.enum';
 import { useTranslation } from 'react-i18next';
-import { socket } from '@/services/socket';
-import { CLIENT_EVENT_NAME } from '../../../../shared/constants';
+import { socketService } from '@/services/socket';
 
 export const GameWaitingForNextRound = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -18,7 +17,7 @@ export const GameWaitingForNextRound = () => {
   const { t } = useTranslation();
 
   const startNewRound = () => {
-    socket.emit(CLIENT_EVENT_NAME.GameStartNextRound);
+    socketService.gameStartNextRound();
     setIsLoading(true);
   };
 

@@ -6,8 +6,8 @@ import { ArrowRightIcon, LinkIcon } from '@chakra-ui/icons';
 import { useClipboard } from '@/hooks/useClipboard';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { selectIsLobbyOwner, selectLobbyId } from '@/features/lobby/lobby.slice';
-import { socket } from '@/services/socket';
-import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '../../../shared/constants';
+import { socketService } from '@/services/socket';
+import { SERVER_EVENT_NAME } from '../../../shared/constants';
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
 import { setIsLoading } from '@/features/settings/settings.splice';
 import { showErrorNotification, showNotification } from '@/utils/notification';
@@ -28,7 +28,7 @@ export const LobbyFooter = React.memo(() => {
 
   const startGame = () => {
     dispatch(setIsLoading(true));
-    socket.emit(CLIENT_EVENT_NAME.TryStartGame);
+    socketService.tryStartGame();
   };
 
   const copyInviteLink = async () => {

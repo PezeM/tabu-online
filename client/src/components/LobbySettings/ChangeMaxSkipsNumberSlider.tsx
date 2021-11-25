@@ -3,8 +3,8 @@ import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { selectLobby } from '@/features/lobby/lobby.slice';
 import { useTranslation } from 'react-i18next';
 import { setIsLoading } from '@/features/settings/settings.splice';
-import { socket } from '@/services/socket';
-import { CLIENT_EVENT_NAME, MAX_SKIPS_NUMBER } from '../../../../shared/constants';
+import { socketService } from '@/services/socket';
+import { MAX_SKIPS_NUMBER } from '../../../../shared/constants';
 import { SettingsSlider } from '@/components/LobbySettings/SettingsSlider';
 
 export const ChangeMaxSkipsNumberSlider = () => {
@@ -13,7 +13,7 @@ export const ChangeMaxSkipsNumberSlider = () => {
   const { t } = useTranslation();
 
   const changeMaximumNumberOfSkips = (value: number) => {
-    socket.emit(CLIENT_EVENT_NAME.LobbyUpdateSettings, { maximumNumberOfSkips: value });
+    socketService.updateLobbySettings({ maximumNumberOfSkips: value });
     dispatch(setIsLoading(true));
   };
 
