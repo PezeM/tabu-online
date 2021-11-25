@@ -9,8 +9,7 @@ import { CrownIcon, UserIcon } from '@/styles/icons';
 import { useTranslation } from 'react-i18next';
 import { CloseIcon } from '@chakra-ui/icons';
 import { setIsLoading } from '@/features/settings/settings.splice';
-import { socket, socketService } from '@/services/socket';
-import { CLIENT_EVENT_NAME } from '../../../../shared/constants';
+import { socketService } from '@/services/socket';
 
 interface Props {
   member: ClientCP;
