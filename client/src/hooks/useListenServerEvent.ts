@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { socket } from '@/services/socket';
+import { socketService } from '@/services/socket';
 
-export const useListenServerEvent = (...[ev, listener]: Parameters<typeof socket.on>): void => {
+export const useListenServerEvent = (...[ev, listener]: Parameters<typeof socketService.socket.on>): void => {
   useEffect(() => {
-    socket.on(ev, listener);
-    return () => void socket.off(ev, listener);
+    socketService.socket.on(ev, listener);
+    return () => void socketService.socket.off(ev, listener);
   }, [ev, listener]);
 };

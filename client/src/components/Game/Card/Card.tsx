@@ -3,8 +3,7 @@ import { Box, BoxProps } from '@chakra-ui/react';
 import React, { Dispatch, SetStateAction } from 'react';
 import { GameCard } from './GameCard';
 import { CardDto } from '../../../../../shared/dto';
-import { socket } from '@/services/socket';
-import { CLIENT_EVENT_NAME } from '../../../../../shared/constants';
+import { socketService } from '@/services/socket';
 
 export const MotionBox = motion<BoxProps>(Box);
 
@@ -41,7 +40,7 @@ export const Card = ({
       setIndex?.((index ?? 0) + 1);
 
       if (!card) return;
-      socket.emit(CLIENT_EVENT_NAME.GameSkipCard, card.name);
+      socketService.gameSkipCard(card.name);
     }
 
     if (info.offset.x > 200) {
@@ -50,7 +49,7 @@ export const Card = ({
       setIndex?.((index ?? 0) + 1);
 
       if (!card) return;
-      socket.emit(CLIENT_EVENT_NAME.GameValidAnswer, card.name);
+      socketService.gameValidAnswer(card.name);
     }
   }
 

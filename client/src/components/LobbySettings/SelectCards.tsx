@@ -5,8 +5,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { selectLobby } from '@/features/lobby/lobby.slice';
 import { useTranslation } from 'react-i18next';
 import { SelectCardsContainer } from '@/components/SelectCards/SelectCardsContainer';
-import { socket } from '@/services/socket';
-import { CLIENT_EVENT_NAME } from '../../../../shared/constants';
+import { socketService } from '@/services/socket';
 import { setIsLoading } from '@/features/settings/settings.splice';
 
 export const SelectCards = () => {
@@ -30,19 +29,25 @@ export const SelectCards = () => {
   }, [cardSets, selectedCards]);
 
   const saveSelectedCards = (cards: string[]) => {
-    socket.emit(CLIENT_EVENT_NAME.LobbyUpdateSettings, { cardIds: cards });
+    socketService.updateLobbySettings({ cardIds: cards });
     dispatch(setIsLoading(true));
     onClose();
   };
 
   return (
     <Grid templateColumns={['10fr 7fr', '10fr 4fr', '10fr 7fr', '10fr 5fr', '10fr 4fr']}>
-      <RippledButton size={'sm'} onClick={onOpen}>{t('ui.selectCards')}</RippledButton>
+      <RippledButton size={'sm'} onClick={onOpen}>
+        {t('ui.selectCards')}
+      </RippledButton>
       <Text pl={[4, 6, 8]}>
         {selectedCardsCount} {t('ui.cards')}
       </Text>
 
-      <SelectCardsContainer isOpen={isOpen} onClose={onClose} saveSelectedCards={saveSelectedCards} />
+      <SelectCardsContainer
+        isOpen={isOpen}
+        onClose={onClose}
+        saveSelectedCards={saveSelectedCards}
+      />
     </Grid>
   );
 };

@@ -3,8 +3,8 @@ import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { selectLobby } from '@/features/lobby/lobby.slice';
 import { useTranslation } from 'react-i18next';
 import { setIsLoading } from '@/features/settings/settings.splice';
-import { socket } from '@/services/socket';
-import { CLIENT_EVENT_NAME, MAX_ROUND_TIME, MIN_ROUND_TIME } from '../../../../shared/constants';
+import { socketService } from '@/services/socket';
+import { MAX_ROUND_TIME, MIN_ROUND_TIME } from '../../../../shared/constants';
 import { SettingsSlider } from '@/components/LobbySettings/SettingsSlider';
 import { formatTimeToMmSsFormat } from '@/utils/time';
 
@@ -14,7 +14,7 @@ export const ChangeRoundTimeSlider = () => {
   const { t } = useTranslation();
 
   const changeMaximumNumberOfSkips = (value: number) => {
-    socket.emit(CLIENT_EVENT_NAME.LobbyUpdateSettings, { roundTime: value });
+    socketService.updateLobbySettings({ roundTime: value });
     dispatch(setIsLoading(true));
   };
 

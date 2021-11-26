@@ -10,8 +10,8 @@ import { ClientCP } from '../../../../shared/dto';
 import { generateRandomId } from '../../../../shared/utils';
 import { generateRandomInt } from '../../../../shared/utils';
 import { selectClient } from '@/features/client/client.splice';
-import { socket } from '@/services/socket';
-import { CLIENT_EVENT_NAME, SERVER_EVENT_NAME } from '../../../../shared/constants';
+import { socketService } from '@/services/socket';
+import { SERVER_EVENT_NAME } from '../../../../shared/constants';
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
 
 const generateRandomMembers = (team: Team, membersNumber = 5): ClientCP[] => {
@@ -45,7 +45,7 @@ export const TeamContainer = React.memo(({ team }: Props) => {
 
   const joinTeam = () => {
     setIsButtonLoading(true);
-    socket.emit(CLIENT_EVENT_NAME.ChangeTeam);
+    socketService.changeTeam();
   };
 
   return (

@@ -231,7 +231,6 @@ export class Game implements ClientPayload<GameCP> {
 
   private onTimeEnd = () => {
     if (this._gameEnded) return;
-    console.log('Time ended');
     this._roundStarted = false;
     app.ioServer().in(this.id).emit(SERVER_EVENT_NAME.GameRoundEnded);
   };

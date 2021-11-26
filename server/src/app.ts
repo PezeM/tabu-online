@@ -24,16 +24,16 @@ import { GameGateway } from '@/gateways/game.gateway';
 process.env['NODE_CONFIG_DIR'] = __dirname + '/configs';
 
 export class App {
-  public app: express.Application;
-  public httpServer: Server;
-  public port: string | number;
-  public env: string;
+  public readonly app: express.Application;
+  public readonly httpServer: Server;
+  public readonly port: number;
+  public readonly env: string;
   private _socketServer: ServerSocket;
 
   constructor(Controllers: Function[]) {
     this.app = express();
     this.httpServer = createServer(this.app);
-    this.port = process.env.PORT || 80;
+    this.port = parseInt(process.env.PORT) || 80;
     this.env = process.env.NODE_ENV || 'development';
 
     this.connectDatabase();

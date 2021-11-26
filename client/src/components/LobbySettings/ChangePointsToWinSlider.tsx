@@ -3,8 +3,8 @@ import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { selectLobby } from '@/features/lobby/lobby.slice';
 import { useTranslation } from 'react-i18next';
 import { setIsLoading } from '@/features/settings/settings.splice';
-import { socket } from '@/services/socket';
-import { CLIENT_EVENT_NAME, MAX_POINTS_TO_WIN } from '../../../../shared/constants';
+import { socketService } from '@/services/socket';
+import { MAX_POINTS_TO_WIN } from '../../../../shared/constants';
 import { SettingsSlider } from '@/components/LobbySettings/SettingsSlider';
 
 export const ChangePointsToWinSlider = () => {
@@ -13,7 +13,7 @@ export const ChangePointsToWinSlider = () => {
   const { t } = useTranslation();
 
   const changePointsToWin = (value: number) => {
-    socket.emit(CLIENT_EVENT_NAME.LobbyUpdateSettings, { pointsToWin: value });
+    socketService.updateLobbySettings({ pointsToWin: value });
     dispatch(setIsLoading(true));
   };
 

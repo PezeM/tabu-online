@@ -3,9 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { Select } from '@chakra-ui/react';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { selectLobby } from '@/features/lobby/lobby.slice';
-import { LobbyLanguage } from '../../../../shared/enums/lobby';
-import { socket } from '@/services/socket';
-import { CLIENT_EVENT_NAME } from '../../../../shared/constants/events';
+import { LobbyLanguage } from '../../../../shared/enums';
+import { socketService } from '@/services/socket';
 import { setIsLoading } from '@/features/settings/settings.splice';
 
 export const ChangeCardsLanguageSelect = () => {
@@ -17,7 +16,7 @@ export const ChangeCardsLanguageSelect = () => {
   const changeLanguage = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newLanguage = e.target.value as LobbyLanguage;
 
-    socket.emit(CLIENT_EVENT_NAME.LobbyUpdateSettings, { language: newLanguage });
+    socketService.updateLobbySettings({ language: newLanguage });
     dispatch(setIsLoading(true));
   };
 
