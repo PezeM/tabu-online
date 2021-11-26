@@ -1,6 +1,7 @@
 {
   "ui": {
     "username": "Username",
+    "password": "Password",
     "loadingText": "Loading",
     "submit": "Start",
     "goBack": "Go back",
@@ -77,6 +78,7 @@
     "invalidUsername": "Invalid username",
     "userAlreadyInLobby": "You are already in lobby or game",
     "doesntExist": "Lobby doesn't exist",
+    "incorrectPassword": "Incorrect lobby password",
     "alreadyInThisRoom": "You are already in this lobby",
     "userInBlacklist": "You are banned from this lobby",
     "cantKickOwner": "You can't kick lobby owner",

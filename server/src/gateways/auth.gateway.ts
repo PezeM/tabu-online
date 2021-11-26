@@ -24,7 +24,12 @@ export class AuthGateway {
 
   @OnEvent(CLIENT_EVENT_NAME.JoinLobby)
   @PerformanceLog()
-  protected onJoinLobby(socket: ClientSocket, username: string, lobbyId: string) {
+  protected onJoinLobby(
+    socket: ClientSocket,
+    username: string,
+    lobbyId: string,
+    password?: string,
+  ) {
     if (isEmpty(username)) {
       return AuthGateway.emitCouldntCreateLobby(socket, 'lobby.invalidUsername');
     }
@@ -34,18 +39,23 @@ export class AuthGateway {
     }
 
     const client = new Client(socket, username);
-    this._authService.joinLobby(client, lobbyId);
+    this._authService.joinLobby(client, lobbyId, password);
   }
 
   @OnEvent(CLIENT_EVENT_NAME.CreateLobby)
   @PerformanceLog()
-  protected async onCreateLobby(socket: ClientSocket, username: string, language: string) {
+  protected async onCreateLobby(
+    socket: ClientSocket,
+    username: string,
+    language: string,
+    password?: string,
+  ) {
     if (isEmpty(username)) {
       return AuthGateway.emitCouldntCreateLobby(socket, 'lobby.invalidUsername');
     }
 
     const client = new Client(socket, username);
-    await this._authService.createLobby(client, language);
+    await this._authService.createLobby(client, language, password);
   }
 
   @OnEvent(CLIENT_EVENT_NAME.Disconnect)

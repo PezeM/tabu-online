@@ -30,7 +30,7 @@ export class App {
   public readonly env: string;
   private _socketServer: ServerSocket;
 
-  constructor(Controllers: Function[]) {
+  constructor(controllers: Function[]) {
     this.app = express();
     this.httpServer = createServer(this.app);
     this.port = parseInt(process.env.PORT) || 80;
@@ -40,7 +40,7 @@ export class App {
     this.initializeMiddlewares();
     this.initializeSocketServer();
     this.initializeSocketMiddlewares();
-    this.initializeRoutes(Controllers);
+    this.initializeRoutes(controllers);
     this.initializeErrorHandling();
   }
 

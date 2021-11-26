@@ -7,9 +7,10 @@ import { HomePageContent } from '@/components/HomePageContent';
 interface Props {
   onSubmit: (username: string) => void;
   isLoading: boolean;
+  displayPasswordInput?: boolean;
 }
 
-export const HomePage = ({ onSubmit, isLoading }: Props) => {
+export const HomePage = ({ onSubmit, isLoading, displayPasswordInput = true }: Props) => {
   return (
     <Grid
       gridTemplateRows={'1fr auto 1fr'}
@@ -18,7 +19,11 @@ export const HomePage = ({ onSubmit, isLoading }: Props) => {
       height={'100%'}
     >
       <HomePageHeader />
-      <HomePageContent onSubmit={onSubmit} isLoading={isLoading} />
+      <HomePageContent
+        onSubmit={onSubmit}
+        isLoading={isLoading}
+        displayPasswordInput={displayPasswordInput}
+      />
       <HomePageFooter />
     </Grid>
   );
