@@ -31,12 +31,12 @@ class SocketService {
     this.socket.emit(CLIENT_EVENT_NAME.GameStartNextRound);
   }
 
-  public createLobby(username: string, browserLanguage: string) {
-    this.socket.emit(CLIENT_EVENT_NAME.CreateLobby, username, browserLanguage);
+  public createLobby(username: string, browserLanguage: string, password?: string) {
+    this.socket.emit(CLIENT_EVENT_NAME.CreateLobby, username, browserLanguage, password);
   }
 
-  public joinLobby(username: string, lobbyId: string) {
-    this.socket.emit(CLIENT_EVENT_NAME.JoinLobby, username, lobbyId);
+  public joinLobby(username: string, lobbyId: string, password?: string) {
+    this.socket.emit(CLIENT_EVENT_NAME.JoinLobby, username, lobbyId, password);
   }
 
   public tryStartGame() {

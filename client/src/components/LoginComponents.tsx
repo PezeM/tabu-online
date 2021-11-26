@@ -5,16 +5,18 @@ import { useTranslation } from 'react-i18next';
 
 interface Props {
   isLoading?: boolean;
-  onSubmit: (username: string) => void;
+  displayPasswordInput?: boolean;
+  onSubmit: (username: string, password?: string) => void;
 }
 
-export const LoginComponent = ({ onSubmit, isLoading }: Props) => {
+export const LoginComponent = ({ onSubmit, displayPasswordInput, isLoading }: Props) => {
   const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const { t } = useTranslation();
 
   const onFormSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    onSubmit(username);
+    onSubmit(username, password);
   };
 
   return (
@@ -30,6 +32,19 @@ export const LoginComponent = ({ onSubmit, isLoading }: Props) => {
               placeholder={t('ui.username') + '...'}
               onChange={e => setUsername(e.currentTarget.value)}
             />
+
+            {displayPasswordInput && (
+              <>
+                <FormLabel htmlFor="password" mt={4}>{t('ui.password')}</FormLabel>
+                <Input
+                  mt={4}
+                  type="password"
+                  id="password"
+                  placeholder={t('ui.password') + '...'}
+                  onChange={e => setPassword(e.currentTarget.value)}
+                />
+              </>
+            )}
 
             <Button
               leftIcon={<ArrowForwardIcon />}

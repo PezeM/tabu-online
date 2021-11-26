@@ -17,7 +17,7 @@ export class AuthService {
     clientManager.removeClient(client);
   }
 
-  public async createLobby(owner: Client, language: string) {
+  public async createLobby(owner: Client, language: string, password?: string) {
     if (lobbyManager.getLobbyForSocketId(owner.socketId)) {
       AuthService.emitActionError(owner, 'lobby.userAlreadyInLobby');
       return;
@@ -28,7 +28,7 @@ export class AuthService {
     let lobby: Lobby;
     try {
       const cardSets = await this.cardSetRepository.getCardSetsForLanguage(settings.language);
-      lobby = new Lobby(owner, settings, cardSets);
+      lobby = new Lobby(owner, settings, cardSets, password);
       lobbyManager.addLobby(lobby);
     } catch (e) {
       lobbyManager.removeLobby(lobby);
@@ -37,7 +37,7 @@ export class AuthService {
     }
   }
 
-  public joinLobby(client: Client, lobbyId: string) {
+  public joinLobby(client: Client, lobbyId: string, password?: string): void {
     const lobby = lobbyManager.getLobby(lobbyId);
 
     if (!lobby) {
@@ -45,7 +45,11 @@ export class AuthService {
       return;
     }
 
-    // Add client to lobby
+    if (lobby.password && lobby.password !== password) {
+      AuthService.emitActionError(client, 'lobby.incorrectPassword');
+      return;
+    }
+
     try {
       lobby.addClient(client);
     } catch (e) {

@@ -64,8 +64,8 @@ export interface EventsFromServer {
 
 export interface EventsFromClient {
   [CLIENT_EVENT_NAME.Test]: (msg: string) => void;
-  [CLIENT_EVENT_NAME.CreateLobby]: (username: string, language: string) => void;
-  [CLIENT_EVENT_NAME.JoinLobby]: (username: string, lobbyId: string) => void;
+  [CLIENT_EVENT_NAME.CreateLobby]: (username: string, language: string, password?: string) => void;
+  [CLIENT_EVENT_NAME.JoinLobby]: (username: string, lobbyId: string, password?: string) => void;
   [CLIENT_EVENT_NAME.Disconnect]: (reason: string) => void;
   [CLIENT_EVENT_NAME.Disconnecting]: (reason: string) => void;
   [CLIENT_EVENT_NAME.ChangeTeam]: () => void;

@@ -13,13 +13,20 @@ import { app } from '@/server';
 export class Lobby implements ClientPayload<LobbyCP> {
   public readonly id = generateRandomId();
 
+  public readonly password?: string;
   private _blacklist: Client[] = [];
   private _ownerId: string;
   private _game?: Game;
 
-  constructor(owner: Client, public settings: LobbySettings, cardSets: CardSetsCountDto[]) {
+  constructor(
+    owner: Client,
+    public settings: LobbySettings,
+    cardSets: CardSetsCountDto[],
+    password?: string,
+  ) {
     this._ownerId = owner.id;
     this._cardSets = cardSets;
+    this.password = password;
 
     this.addNewMemberInternal(owner);
   }

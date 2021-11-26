@@ -8,6 +8,8 @@ import { useAppDispatch } from '@/hooks/reduxHooks';
 import { setClient } from '@/features/client/client.splice';
 import { ClientCP, LobbyCP } from '@/../../shared/dto';
 import { HomePage } from '@/components/HomePage';
+import { useFetch } from '@/hooks/useFetch';
+import { ApiService } from '@/services/api';
 
 type ParamsType = {
   id: string;
@@ -17,16 +19,17 @@ export const Invite = () => {
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
   const params = useParams<ParamsType>();
+  const { data } = useFetch<boolean>(new ApiService().isLobbyProtected(params.id));
   const dispatch = useAppDispatch();
 
-  const onSubmit = (username: string) => {
+  const onSubmit = (username: string, password?: string) => {
     const socket = socketService.socket;
     socket.auth = { username };
     socket.connect();
 
     setIsLoading(true);
 
-    socketService.joinLobby(username, params.id);
+    socketService.joinLobby(username, params.id, password);
   };
 
   useListenServerEvent(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby, () => {
@@ -41,5 +44,7 @@ export const Invite = () => {
     history.push('/lobby');
   });
 
-  return <HomePage onSubmit={onSubmit} isLoading={isLoading} />;
+  console.log('invite data', data);
+
+  return <HomePage onSubmit={onSubmit} isLoading={isLoading} displayPasswordInput={data} />;
 };

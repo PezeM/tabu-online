@@ -15,14 +15,14 @@ export const Home = () => {
   const history = useHistory();
   const dispatch = useAppDispatch();
 
-  const onSubmit = (username: string) => {
+  const onSubmit = (username: string, password?: string) => {
     const socket = socketService.socket;
     socket.auth = { username };
     socket.connect();
 
     setIsLoading(true);
 
-    socketService.createLobby(username, getBrowserLanguage());
+    socketService.createLobby(username, getBrowserLanguage(), password);
   };
 
   useListenServerEvent(SERVER_EVENT_NAME.CouldntCreateOrJoinLobby, () => {
