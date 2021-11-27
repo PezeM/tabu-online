@@ -7,7 +7,7 @@ import { lobbyManager } from '@/managers/lobby.manager';
 import { LobbySettings } from '@shared/interfaces/lobby';
 import { CardSetsCountDto } from '@shared/dto';
 import { Game } from '@models/game.model';
-import { LobbyKickException } from '@/exceptions';
+import { LobbyAddClientException, LobbyKickException } from '@/exceptions';
 import { app } from '@/server';
 
 export class Lobby implements ClientPayload<LobbyCP> {
@@ -66,10 +66,13 @@ export class Lobby implements ClientPayload<LobbyCP> {
   }
 
   public addClient(client: Client): void {
-    if (this.isGameStarted) throw new Error('lobby.alreadyInGame');
-    if (this._members.length >= this.settings.maxPlayers) throw new Error('lobby.roomIsFull');
-    if (this._members.includes(client)) throw new Error('lobby.alreadyInThisRoom');
-    if (this._blacklist.includes(client)) throw new Error('lobby.userInBlacklist');
+    if (this.isGameStarted) throw new LobbyAddClientException('lobby.alreadyInGame');
+    if (this._members.length >= this.settings.maxPlayers)
+      throw new LobbyAddClientException('lobby.roomIsFull');
+    if (this._members.includes(client))
+      throw new LobbyAddClientException('lobby.alreadyInThisRoom');
+    if (this._blacklist.includes(client))
+      throw new LobbyAddClientException('lobby.userInBlacklist');
 
     this.addNewMemberInternal(client);
   }

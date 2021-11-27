@@ -16,6 +16,7 @@ import { socketLogMiddleware } from '@middlewares/socket-log.middleware';
 import { authMiddleware } from '@middlewares/auth.middleware';
 import { ClientSocket, ServerSocket } from '@interfaces/socket.interface';
 import { socketClientMiddleware } from '@middlewares/client.middleware';
+import * as Mongoose from 'mongoose';
 import { connect, set } from 'mongoose';
 import { databaseConnection } from '@/database';
 import { GatewayHandlers } from '@/gateways/gateway.handlers';
@@ -29,6 +30,7 @@ export class App {
   public readonly port: number;
   public readonly env: string;
   private _socketServer: ServerSocket;
+  private _databaseConnection: typeof Mongoose;
 
   constructor(controllers: Function[]) {
     this.app = express();
@@ -61,13 +63,20 @@ export class App {
     return this._socketServer;
   }
 
+  public databaseConnection() {
+    return this._databaseConnection;
+  }
+
   private connectDatabase() {
     if (this.env !== 'production') {
       set('debug', true);
     }
 
     connect(databaseConnection.url, databaseConnection.options)
-      .then(() => logger.info('Connected to database'))
+      .then(db => {
+        this._databaseConnection = db;
+        logger.info('Connected to database');
+      })
       .catch(() => logger.error('Error connecting to database'));
   }
 
