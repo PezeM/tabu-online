@@ -15,8 +15,8 @@ export class LobbySettingsValidator {
       throw new LobbySettingsValidatorException('error.noCardSelected');
     }
 
-    // if (lobby.membersCount < 2) {
-    //   throw new LobbySettingsValidatorException('error.minimumNumberOfPlayers');
-    // }
+    if (lobby.membersCount < 2) {
+      throw new LobbySettingsValidatorException('error.minimumNumberOfPlayers');
+    }
   }
 }
