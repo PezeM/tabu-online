@@ -9,14 +9,14 @@ import hpp from 'hpp';
 import morgan from 'morgan';
 import { useExpressServer } from 'routing-controllers';
 import errorMiddleware from '@middlewares/error.middleware';
-import { logger, stream } from '@utils/logger';
+import { logError, logger, stream } from '@utils/logger';
 import { Server as SocketServer } from 'socket.io';
 import { AuthGateway } from '@/gateways/auth.gateway';
 import { socketLogMiddleware } from '@middlewares/socket-log.middleware';
 import { authMiddleware } from '@middlewares/auth.middleware';
 import { ClientSocket, ServerSocket } from '@interfaces/socket.interface';
 import { socketClientMiddleware } from '@middlewares/client.middleware';
-import { connect, set } from 'mongoose';
+import { connect, Mongoose, set } from 'mongoose';
 import { databaseConnection } from '@/database';
 import { GatewayHandlers } from '@/gateways/gateway.handlers';
 import { GameGateway } from '@/gateways/game.gateway';
@@ -29,6 +29,7 @@ export class App {
   public readonly port: number;
   public readonly env: string;
   private _socketServer: ServerSocket;
+  private _databaseConnection: Mongoose;
 
   constructor(controllers: Function[]) {
     this.app = express();
@@ -61,14 +62,21 @@ export class App {
     return this._socketServer;
   }
 
+  public databaseConnection() {
+    return this._databaseConnection;
+  }
+
   private connectDatabase() {
     if (this.env !== 'production') {
       set('debug', true);
     }
 
-    connect(databaseConnection.url, databaseConnection.options)
-      .then(() => logger.info('Connected to database'))
-      .catch(() => logger.error('Error connecting to database'));
+    connect(databaseConnection.url)
+      .then(db => {
+        this._databaseConnection = db;
+        logger.info('Connected to database');
+      })
+      .catch(e => logger.error('Error connecting to database', logError(e)));
   }
 
   private initializeMiddlewares() {

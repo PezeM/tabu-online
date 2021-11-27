@@ -8,7 +8,7 @@ import { ModelType } from '@typegoose/typegoose/lib/types';
   options: { allowMixed: Severity.ALLOW },
   schemaOptions: {
     collection: 'card-sets',
-    timestamps: true,
+    timestamps: false,
     toJSON: {
       virtuals: true,
       getters: true,
@@ -34,14 +34,7 @@ export class CardSet extends BaseModel {
   @prop({ required: false, type: () => [String], _id: false })
   public tags?: string[];
 
-  @prop({ default: new Date(), type: Date })
-  createdAt: Date; // provided by schemaOptions.timestamps
-  @prop({ default: new Date(), type: Date })
-  updatedAt: Date; // provided by schemaOptions.timestamps
-
   static get model(): ModelType<CardSet> {
     return getModelForClass(CardSet);
   }
 }
-
-export const CardSetModel = getModelForClass(CardSet);

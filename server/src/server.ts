@@ -4,9 +4,9 @@ import 'dotenv/config';
 import 'reflect-metadata';
 import { App } from '@/app';
 import validateEnv from '@utils/validate-env';
-import { IndexController, LobbyController } from '@/controllers';
+import { HealthzController, IndexController, LobbyController } from '@/controllers';
 
 validateEnv();
 
-export const app = new App([IndexController, LobbyController]);
+export const app = new App([IndexController, LobbyController, HealthzController]);
 app.listen();
