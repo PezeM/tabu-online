@@ -15,5 +15,3 @@ dev:
 
 full:
 	init dev
-
-cleanup:
