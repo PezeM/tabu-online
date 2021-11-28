@@ -66,7 +66,7 @@ export class AuthGateway {
 
     const lobby = lobbyManager.getLobbyForClient(client);
     if (lobby) {
-      lobby.remove(client);
+      lobby.removeClient(client);
     }
 
     clientManager.removeClient(client);

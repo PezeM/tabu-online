@@ -15,8 +15,8 @@ export class GameService {
     }
 
     game.skipCurrentCard(player);
-    game.newCardTurn();
-    game.emitGameTeam(player);
+    game.startNewCardTurn();
+    game.emitToPlayerTeam(player);
   }
 
   @IsCurrentCard()
@@ -24,9 +24,9 @@ export class GameService {
     const player = game.getPlayerBySocketId(socket.id);
     if (!player) return;
 
-    if (game.validAnswer(player)) {
-      game.newCardTurn();
-      game.emitGameTeam(player);
+    if (game.handleValidAnswer(player)) {
+      game.startNewCardTurn();
+      game.emitToPlayerTeam(player);
     }
   }
 
@@ -39,7 +39,7 @@ export class GameService {
       return;
     }
 
-    game.newCardTurn();
+    game.startNewCardTurn();
   }
 
   public startNextRound(socket: ClientSocket, game: Game) {

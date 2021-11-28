@@ -4,20 +4,15 @@ import { Team } from '@shared/enums/client';
 import { app } from '@/server';
 import { SERVER_EVENT_NAME } from '@shared/constants/events';
 import { lobbyManager } from '@/managers/lobby.manager';
-import { LobbySettingsValidator } from '@services/validators/lobby-settings.validator';
 import { InternalServerErrorException } from '@/exceptions';
 import { logClient, logError, logger, logLobby } from '@utils/logger';
 import { GameCreateService } from '@services/game-create.service';
+import { LobbySettingsValidator, LobbyValidator } from '@services/validators';
 
 export class LobbyService {
   private _lobbySettingsValidator = new LobbySettingsValidator();
+  private _lobbyValidator = new LobbyValidator();
   private _gameCreateService = new GameCreateService();
-
-  private static validateOwnership(lobby: Lobby, client: Client) {
-    if (!lobby.isOwner(client)) {
-      throw new InternalServerErrorException('error.onlyOwnerCanStartTheGame');
-    }
-  }
 
   changeTeam(client: Client, lobby: Lobby) {
     client.team = client.team === Team.Blue ? Team.Red : Team.Blue;
@@ -35,7 +30,7 @@ export class LobbyService {
 
     try {
       this._lobbySettingsValidator.validateLobbySettings(lobby);
-      LobbyService.validateOwnership(lobby, client);
+      this._lobbyValidator.validateOwnership(lobby, client);
       await this._gameCreateService.createNewGame(lobby, client);
     } catch (e) {
       if (e instanceof InternalServerErrorException) {
@@ -56,7 +51,7 @@ export class LobbyService {
     }
 
     try {
-      lobby.kick(clientId);
+      lobby.kickClient(clientId);
       owner.socket.emit(SERVER_EVENT_NAME.LobbyKickedClient);
     } catch (e) {
       if (e instanceof InternalServerErrorException) {

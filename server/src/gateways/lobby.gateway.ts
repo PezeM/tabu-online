@@ -27,7 +27,7 @@ export class LobbyGateway {
     const lobby = lobbyManager.getLobbyForSocketId(socket.id);
     if (!lobby) return;
 
-    lobby.remove(client);
+    lobby.removeClient(client);
   }
 
   @OnEvent(CLIENT_EVENT_NAME.ChangeTeam)
