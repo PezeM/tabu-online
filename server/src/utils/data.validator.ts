@@ -1,6 +1,6 @@
 import { ClientSocket } from '@interfaces/socket.interface';
 import { validateOrReject, ValidatorOptions } from 'class-validator';
-import { plainToClass } from 'class-transformer';
+import { plainToInstance } from 'class-transformer';
 import { SERVER_EVENT_NAME } from '@shared/constants/events';
 import { ClassConstructor } from '@shared/types';
 
@@ -18,8 +18,9 @@ export const validateRequestData = async <T extends Object, V>(
   const validatorOptions = { ...defaultValidatorOptions, ...options };
 
   try {
-    const object = plainToClass(cls, data);
+    const object = plainToInstance(cls, data);
     await validateOrReject(object, validatorOptions);
+
     return true;
   } catch (e) {
     if (e instanceof Array) {

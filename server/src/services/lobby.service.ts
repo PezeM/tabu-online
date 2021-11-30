@@ -57,6 +57,8 @@ export class LobbyService {
       if (e instanceof InternalServerErrorException) {
         owner.socket.emit(SERVER_EVENT_NAME.LobbyFailedToKickClient, e.message);
       }
+
+      logger.error('Kicking client failed.', logClient(owner), logLobby(lobby), logError(e));
     }
   }
 }
