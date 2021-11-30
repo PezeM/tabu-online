@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import lobbyReducer from './features/lobby/lobby.slice';
 import clientReducer from './features/client/client.splice';
-import settingsReducer from './features/settings/settings.splice';
+import settingsReducer from './features/settings/settingsSlice';
 import gameReducer from './features/game/game.slice';
 import playerReducer from './features/player/player.slice';
 

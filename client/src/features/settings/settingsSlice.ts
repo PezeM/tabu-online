@@ -14,7 +14,7 @@ const initialState: InitialState = {
 
 const initialStateInLocalStorage = getLocalStorageValue('settings', initialState);
 
-export const settingsSplice = createSlice({
+export const settingsSlice = createSlice({
   name: 'settings',
   initialState: { ...initialState, ...initialStateInLocalStorage } as InitialState,
   reducers: {
@@ -28,9 +28,9 @@ export const settingsSplice = createSlice({
   },
 });
 
-export const { toggleIsSoundMuted, setIsLoading } = settingsSplice.actions;
+export const { toggleIsSoundMuted, setIsLoading } = settingsSlice.actions;
 
 export const selectIsSoundMuted = (state: RootState) => state.settings.isSoundMuted;
 export const selectIsLoading = (state: RootState) => state.settings.isLoading;
 
-export default settingsSplice.reducer;
+export default settingsSlice.reducer;

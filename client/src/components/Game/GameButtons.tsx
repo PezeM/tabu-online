@@ -6,7 +6,7 @@ import { useAppSelector } from '@/hooks/reduxHooks';
 import { selectCurrentCard, selectGameState } from '@/features/game/game.slice';
 import { GameState } from '@/types/game-state.enum';
 import { RedoIcon } from '@/styles/icons';
-import { socketService } from '@/services/socket';
+import { socketService } from '@/services/socket.service';
 
 export const GameButtons = () => {
   const { t } = useTranslation();

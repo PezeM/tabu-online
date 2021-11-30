@@ -6,10 +6,10 @@ import { ArrowRightIcon, LinkIcon } from '@chakra-ui/icons';
 import { useClipboard } from '@/hooks/useClipboard';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { selectIsLobbyOwner, selectLobbyId } from '@/features/lobby/lobby.slice';
-import { socketService } from '@/services/socket';
+import { socketService } from '@/services/socket.service';
 import { SERVER_EVENT_NAME } from '../../../shared/constants';
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
-import { setIsLoading } from '@/features/settings/settings.splice';
+import { setIsLoading } from '@/features/settings/settingsSlice';
 import { showErrorNotification, showNotification } from '@/utils/notification';
 
 export const LobbyFooter = React.memo(() => {
@@ -23,7 +23,7 @@ export const LobbyFooter = React.memo(() => {
 
   const gridTemplateColumns = [
     '1fr',
-    isLobbyOwner ? 'repeat(2, minmax(20%, 200px))' : 'minmax(20%, 200px)'
+    isLobbyOwner ? 'repeat(2, minmax(20%, 200px))' : 'minmax(20%, 200px)',
   ];
 
   const startGame = () => {
@@ -38,10 +38,14 @@ export const LobbyFooter = React.memo(() => {
     if (await copyToClipboard(link)) {
       console.log(`Copied invite link ${link}`);
 
-      showNotification(toast, 'ui.inviteLinkCopiedSuccessfully', { title: t('ui.copyingToClipboard') });
+      showNotification(toast, 'ui.inviteLinkCopiedSuccessfully', {
+        title: t('ui.copyingToClipboard'),
+      });
     } else {
       console.error(`Error copying invite link ${link}`);
-      showErrorNotification(toast, 'error.copyingToClipboard', { title: t('ui.copyingToClipboard') });
+      showErrorNotification(toast, 'error.copyingToClipboard', {
+        title: t('ui.copyingToClipboard'),
+      });
     }
 
     setCopyLinkButtonLoading(false);
@@ -72,14 +76,16 @@ export const LobbyFooter = React.memo(() => {
       >
         {t('ui.lobbyCopyInviteLink')}
       </RippledButton>
-      {isLobbyOwner && <RippledButton
-        scheme={'blue'}
-        leftIcon={<ArrowRightIcon />}
-        onClick={() => startGame()}
-        loadingText={t('ui.lobbyStartGame')}
-      >
-        {t('ui.lobbyStartGame')}
-      </RippledButton>}
+      {isLobbyOwner && (
+        <RippledButton
+          scheme={'blue'}
+          leftIcon={<ArrowRightIcon />}
+          onClick={() => startGame()}
+          loadingText={t('ui.lobbyStartGame')}
+        >
+          {t('ui.lobbyStartGame')}
+        </RippledButton>
+      )}
     </Grid>
   );
 });

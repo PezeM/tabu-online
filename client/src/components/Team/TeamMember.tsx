@@ -8,8 +8,8 @@ import { MemberBadge } from '@/components/Team/MemberBadge';
 import { CrownIcon, UserIcon } from '@/styles/icons';
 import { useTranslation } from 'react-i18next';
 import { CloseIcon } from '@chakra-ui/icons';
-import { setIsLoading } from '@/features/settings/settings.splice';
-import { socketService } from '@/services/socket';
+import { setIsLoading } from '@/features/settings/settingsSlice';
+import { socketService } from '@/services/socket.service';
 
 interface Props {
   member: ClientCP;

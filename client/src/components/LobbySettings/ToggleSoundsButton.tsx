@@ -2,7 +2,7 @@ import React from 'react';
 import { IconButton, IconButtonProps, Tooltip } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
-import { selectIsSoundMuted, toggleIsSoundMuted } from '@/features/settings/settings.splice';
+import { selectIsSoundMuted, toggleIsSoundMuted } from '@/features/settings/settingsSlice';
 import { useSoundModeValue } from '@/hooks/useSoundModeValue';
 import { motion } from 'framer-motion';
 import { useSound } from '@/hooks/useSound';

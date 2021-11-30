@@ -8,8 +8,9 @@ import {
   addMember,
   changeLobbySettings,
   changeMemberTeam,
-  removeMember, resetLobbyState,
-  selectIsInLobby
+  removeMember,
+  resetLobbyState,
+  selectIsInLobby,
 } from '@/features/lobby/lobby.slice';
 import { LobbySkeleton } from '@/components/Skeletons/LobbySkeleton';
 import { Team } from '../../../shared/enums';
@@ -18,7 +19,7 @@ import { LobbySettingsTabs } from '@/components/LobbySettings/LobbySettingsTabs'
 import { LobbySettings } from '../../../shared/interfaces';
 import { TeamsContainer } from '@/components/Team/TeamsContainer';
 import { LobbyFooter } from '@/components/LobbyFooter';
-import { setIsLoading } from '@/features/settings/settings.splice';
+import { setIsLoading } from '@/features/settings/settingsSlice';
 import { useHistory } from 'react-router-dom';
 import { setGame, setGameTeams } from '@/features/game/game.slice';
 import { setPlayer } from '@/features/player/player.slice';
@@ -90,12 +91,7 @@ export const Lobby = () => {
   }
 
   return (
-    <Grid
-      gap={[2, 4, 6]}
-      h={'100%'}
-      overflowY={'auto'}
-      p={4}
-    >
+    <Grid gap={[2, 4, 6]} h={'100%'} overflowY={'auto'} p={4}>
       <TeamsContainer />
       <LobbySettingsTabs />
       <LobbyFooter />

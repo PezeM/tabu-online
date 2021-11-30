@@ -8,11 +8,9 @@ interface Props {
 export const SelectCardTag = ({ tag }: Props) => {
   const tagBg = useColorModeValue('blue.100', 'gray.800');
 
-  return <Badge
-    px={2}
-    py={1}
-    bg={tagBg}
-    fontWeight={'400'}>
-    {tag}
-  </Badge>;
+  return (
+    <Badge px={2} py={1} bg={tagBg} fontWeight={'400'}>
+      {tag}
+    </Badge>
+  );
 };

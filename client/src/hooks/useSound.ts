@@ -1,5 +1,5 @@
 import { useAppSelector } from '@/hooks/reduxHooks';
-import { selectIsSoundMuted } from '@/features/settings/settings.splice';
+import { selectIsSoundMuted } from '@/features/settings/settingsSlice';
 import useSoundHook from 'use-sound';
 
 type SpriteMap = {

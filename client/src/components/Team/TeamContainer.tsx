@@ -10,7 +10,7 @@ import { ClientCP } from '../../../../shared/dto';
 import { generateRandomId } from '../../../../shared/utils';
 import { generateRandomInt } from '../../../../shared/utils';
 import { selectClient } from '@/features/client/client.splice';
-import { socketService } from '@/services/socket';
+import { socketService } from '@/services/socket.service';
 import { SERVER_EVENT_NAME } from '../../../../shared/constants';
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
 

@@ -11,6 +11,14 @@ class SocketService {
     },
   );
 
+  constructor() {
+    if (!process.env.REACT_APP_SERVER_URL) {
+      const message = 'Environment variable REACT_APP_SERVER_URL not specified';
+      console.error(message);
+      throw new Error(message);
+    }
+  }
+
   public updateLobbySettings(settings: Partial<LobbySettings>) {
     this.socket.emit(CLIENT_EVENT_NAME.LobbyUpdateSettings, settings);
   }

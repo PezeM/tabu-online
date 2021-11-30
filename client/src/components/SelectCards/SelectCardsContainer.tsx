@@ -8,7 +8,7 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
-  ModalOverlay
+  ModalOverlay,
 } from '@chakra-ui/react';
 import { VoidFunction } from '../../../../shared/types';
 import { useTranslation } from 'react-i18next';
@@ -41,8 +41,14 @@ export const SelectCardsContainer = ({ isOpen, onClose, saveSelectedCards }: Pro
   };
 
   return (
-    <Modal onClose={onClose} isOpen={isOpen} isCentered motionPreset={'slideInBottom'} size={'5xl'}
-           scrollBehavior={'inside'}>
+    <Modal
+      onClose={onClose}
+      isOpen={isOpen}
+      isCentered
+      motionPreset={'slideInBottom'}
+      size={'5xl'}
+      scrollBehavior={'inside'}
+    >
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>{t('ui.selectCards')}</ModalHeader>
@@ -53,23 +59,27 @@ export const SelectCardsContainer = ({ isOpen, onClose, saveSelectedCards }: Pro
               base: 'repeat(1, 1fr)',
               sm: 'repeat(1, 1fr)',
               md: 'repeat(2, 1fr)',
-              lg: 'repeat(3, 1fr)'
+              lg: 'repeat(3, 1fr)',
             }}
             columnGap={'1em'}
-            rowGap={'1em'}>
-            {cardSets && cardSets.map(cardSet => <SelectCard cardSet={cardSet}
-                                                             key={cardSet._id}
-                                                             setIsSelected={setIsSelected}
-                                                             isSelected={selectedCards.some(s => s === cardSet._id)} />)}
+            rowGap={'1em'}
+          >
+            {cardSets &&
+              cardSets.map(cardSet => (
+                <SelectCard
+                  cardSet={cardSet}
+                  key={cardSet._id}
+                  setIsSelected={setIsSelected}
+                  isSelected={selectedCards.some(s => s === cardSet._id)}
+                />
+              ))}
           </Grid>
         </ModalBody>
         <ModalFooter>
           <Button colorScheme="blue" mr={3} onClick={() => saveSelectedCards(selectedCards)}>
             {t('ui.save')}
           </Button>
-          <Button onClick={onClose}>
-            {t('ui.cancel')}
-          </Button>
+          <Button onClick={onClose}>{t('ui.cancel')}</Button>
         </ModalFooter>
       </ModalContent>
     </Modal>

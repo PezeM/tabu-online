@@ -1,5 +1,5 @@
 import { useAppSelector } from '@/hooks/reduxHooks';
-import { selectIsSoundMuted } from '@/features/settings/settings.splice';
+import { selectIsSoundMuted } from '@/features/settings/settingsSlice';
 
 /**
  * Change value based on if sound is muted

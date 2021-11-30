@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { socketService } from '@/services/socket';
+import { socketService } from '@/services/socket.service';
 import { SERVER_EVENT_NAME } from '../../../shared/constants';
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
 import { getBrowserLanguage } from '@/utils/browser';

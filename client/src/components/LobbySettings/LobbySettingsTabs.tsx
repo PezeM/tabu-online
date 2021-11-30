@@ -7,7 +7,7 @@ import { PersonalSettingsTab } from '@/components/LobbySettings/PersonalSettings
 import { GameSettingsTab } from '@/components/LobbySettings/GameSettingsTab';
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
 import { SERVER_EVENT_NAME } from '../../../../shared/constants';
-import { setIsLoading } from '@/features/settings/settings.splice';
+import { setIsLoading } from '@/features/settings/settingsSlice';
 import { CardSetsCountDto } from '../../../../shared/dto';
 import { showErrorNotification } from '@/utils/notification';
 import { CustomTab } from '@/components/TabListTab';
