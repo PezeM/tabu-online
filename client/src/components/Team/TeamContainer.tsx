@@ -7,20 +7,11 @@ import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '@/hooks/reduxHooks';
 import { selectIsLobbyOwner, selectLobbyMembers } from '@/features/lobby/lobby.slice';
 import { ClientCP } from '../../../../shared/dto';
-import { generateRandomId } from '../../../../shared/utils';
-import { generateRandomInt } from '../../../../shared/utils';
 import { selectClient } from '@/features/client/client.splice';
 import { socketService } from '@/services/socket.service';
 import { SERVER_EVENT_NAME } from '../../../../shared/constants';
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
-
-const generateRandomMembers = (team: Team, membersNumber = 5): ClientCP[] => {
-  return [...Array(membersNumber)].map(_ => ({
-    team,
-    id: generateRandomId(),
-    username: generateRandomInt(10000, 1000000000).toString(),
-  }));
-};
+import { generateRandomMembers } from '@/utils/members.helper';
 
 interface Props {
   team: Team;
@@ -35,7 +26,13 @@ export const TeamContainer = React.memo(({ team }: Props) => {
   const { t } = useTranslation();
 
   const showJoinTeamButton = client && client.team !== team;
-  const members = [...generateRandomMembers(team), ...allMembers];
+  let members: ClientCP[];
+
+  if (process.env.NODE_ENV !== 'production') {
+    members = [...generateRandomMembers(team), ...allMembers];
+  } else {
+    members = allMembers;
+  }
 
   useListenServerEvent(SERVER_EVENT_NAME.LobbyUserChangedTeam, (clientId: string) => {
     if (client?.id === clientId) {

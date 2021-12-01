@@ -9,6 +9,7 @@ import { CardSetsCountDto } from '@shared/dto';
 import { Game } from '@models/game.model';
 import { LobbyAddClientException, LobbyKickClientException } from '@/exceptions';
 import { app } from '@/server';
+import { isEmpty } from '@utils/util';
 
 export class Lobby implements ClientPayload<LobbyCP> {
   public readonly id = generateRandomId();
@@ -26,7 +27,7 @@ export class Lobby implements ClientPayload<LobbyCP> {
   ) {
     this._ownerId = owner.id;
     this._cardSets = cardSets;
-    this.password = password;
+    this.password = isEmpty(password) ? undefined : password;
 
     this.addNewMemberInternal(owner);
   }
