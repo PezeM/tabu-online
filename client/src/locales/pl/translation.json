@@ -47,7 +47,7 @@
     "cards": "Karty",
     "cardsTooltip": "Lista kart, które używane będą podczas gry",
     "roundTime": "Czas rundy",
-    "roundTimeTooltip": "Time of each round in the game",
+    "roundTimeTooltip": "Czas każdej rundy w rozgrywce",
     "maxNumberOfSkips": "Liczba pominięć",
     "maxNumberOfSkipsTooltip": "Maksymalna ilość pominięć kart dla każdej drużyny",
     "points": "Punktów",
@@ -70,7 +70,9 @@
     "yourStats": "Twoje statystyki",
     "numberOfSkips": "Pominięcia kart",
     "timesShowingCard": "Pokazywanie kart",
-    "howToPlay": "Jak grać"
+    "howToPlay": "Jak grać",
+    "show": "Pokaż",
+    "hide": "Ukryj"
   },
   "lobby": {
     "alreadyInGame": "Pokój jest już w grze",

@@ -41,5 +41,5 @@ export const Home = () => {
     },
   );
 
-  return <HomePage onSubmit={onSubmit} isLoading={isLoading} />;
+  return <HomePage onSubmit={onSubmit} isLoading={isLoading} isPasswordRequired={false} />;
 };

@@ -71,7 +71,9 @@
     "numberOfSkips": "Card skips",
     "timesShowingCard": "Times showing card",
     "kickClientTooltip": "Kick player",
-    "howToPlay": "How to play"
+    "howToPlay": "How to play",
+    "show": "Show",
+    "hide": "Hide"
   },
   "lobby": {
     "alreadyInGame": "Lobby is already in game",
