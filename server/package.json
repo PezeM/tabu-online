@@ -12,7 +12,9 @@
     "test": "jest --forceExit",
     "lint": "eslint --ignore-path .gitignore --ext .ts src/",
     "lint:fix": "npm run lint -- --fix",
-    "dbimport": "bash dbimport.sh"
+    "dbimport": "bash dbimport.sh",
+    "performance-test": "npx artillery run --output scripts/scenarios/report.json scripts/scenarios/performance-load.yml",
+    "performance-report": "npx artillery report --output scripts/scenarios/report.html scripts/scenarios/report.json"
   },
   "engines": {
     "node": ">=14.x"
@@ -69,6 +71,8 @@
     "@types/winston": "^2.4.4",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
+    "artillery": "^2.0.0-6",
+    "artillery-engine-socketio-v3": "^1.1.2",
     "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",

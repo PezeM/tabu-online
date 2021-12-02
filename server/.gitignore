@@ -20,3 +20,5 @@ yarn-error.log*
 
 src/configs/development.json
 src/configs/production.json
+
+scripts/scenarios/report*

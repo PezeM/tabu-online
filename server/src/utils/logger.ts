@@ -24,6 +24,7 @@ const formatter = winston.format.printf(info => {
 });
 
 const logger = winston.createLogger({
+  level: config.get('log.level'),
   format: winston.format.combine(
     winston.format.timestamp({
       format: 'DD-MM-YYYY HH:mm:ss',
@@ -33,7 +34,7 @@ const logger = winston.createLogger({
   transports: [
     // debug log setting
     new winstonDaily({
-      level: 'debug',
+      level: config.get('log.level'),
       datePattern: 'YYYY-MM-DD',
       dirname: logDir + '/debug',
       filename: `%DATE%.log`,
@@ -57,7 +58,7 @@ const logger = winston.createLogger({
 
 logger.add(
   new winston.transports.Console({
-    level: 'debug',
+    level: config.get('log.level'),
     format: winston.format.combine(
       winston.format.splat(),
       winston.format.colorize(),
