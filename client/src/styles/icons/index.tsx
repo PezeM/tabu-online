@@ -3,6 +3,7 @@ import { createIcon } from '@chakra-ui/react';
 export const UserIcon = createIcon({
   displayName: 'userIcon',
   defaultProps: {
+    fill: 'currentColor',
     strokeWidth: '2',
     strokeLinecap: 'round',
     strokeLinejoin: 'round',

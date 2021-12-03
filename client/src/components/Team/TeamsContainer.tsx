@@ -3,7 +3,7 @@ import { VStack } from '@chakra-ui/react';
 import { TeamContainer } from '@/components/Team/TeamContainer';
 import { Team } from '../../../../shared/enums';
 
-export const TeamsContainer = React.memo(() => {
+export const TeamsContainer = (() => {
   return (
     <VStack spacing={[2, 4]} overflowX="auto" height="fit-content">
       <TeamContainer team={Team.Red} />

@@ -6,10 +6,16 @@ import { HomePageCarousel } from '@/components/HomePageCarousel';
 interface Props {
   onSubmit: (username: string) => void;
   isLoading: boolean;
-  displayPasswordInput?: boolean;
+  displayPasswordInput: boolean;
+  isPasswordRequired: boolean;
 }
 
-export const HomePageContent = ({ onSubmit, isLoading, displayPasswordInput }: Props) => {
+export const HomePageContent = ({
+  onSubmit,
+  isLoading,
+  displayPasswordInput,
+  isPasswordRequired,
+}: Props) => {
   const [isLowerThan1000] = useMediaQuery('(max-width: 1000px)');
   const gridTemplateColumns = isLowerThan1000 ? '1fr' : '3fr 2fr';
 
@@ -19,6 +25,7 @@ export const HomePageContent = ({ onSubmit, isLoading, displayPasswordInput }: P
         onSubmit={onSubmit}
         isLoading={isLoading}
         displayPasswordInput={displayPasswordInput}
+        isPasswordRequired={isPasswordRequired}
       />
       {!isLowerThan1000 && <HomePageCarousel />}
     </Grid>

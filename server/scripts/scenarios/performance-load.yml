@@ -1,0 +1,45 @@
+config:
+  target: "http://localhost:3010"
+  socketio:
+    transports: [ "websocket" ]
+  phases:
+    - duration: 60
+      arrivalRate: 10
+      name: Warm up
+    - duration: 120
+      arrivalRate: 30
+      name: Ramp up load
+    - duration: 180
+      arrivalRate: 50
+      name: Sustained load
+  engines:
+    socketio-v3:
+      auth:
+        username: "username-{{ $randomString() }}"
+
+scenarios:
+  - name: Basic create lobby scenario
+    engine: socketio-v3
+    flow:
+      # create lobby
+      - emit: ["createLobby", "username-{{ $randomString() }}"]
+        response:
+          on: userJoinLobby
+
+  - name: Advanced create lobby scenario
+    engine: socketio-v3
+    flow:
+      # create lobby
+      - emit: [ "createLobby", "username-{{ $randomString() }}", "pl" ]
+        response:
+          on: userJoinLobby
+
+      # change team
+      - emit: ["changeTeam"]
+        response:
+          on: lobbyUserChangedTeam
+
+      # change lobby cards language (extra db call)
+      - emit: [ "lobbyUpdateSettings", { language: "en" } ]
+        response:
+          on: lobbySettingsChanged

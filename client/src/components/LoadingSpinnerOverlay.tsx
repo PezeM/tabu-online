@@ -1,5 +1,5 @@
 import { useAppSelector } from '@/hooks/reduxHooks';
-import { selectIsLoading } from '@/features/settings/settings.splice';
+import { selectIsLoading } from '@/features/settings/settingsSlice';
 import { Box, Spinner, useColorModeValue } from '@chakra-ui/react';
 import React from 'react';
 

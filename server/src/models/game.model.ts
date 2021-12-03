@@ -94,9 +94,13 @@ export class Game implements ClientPayload<GameCP> {
     player.socket.emit(SERVER_EVENT_NAME.PlayerLeftGame);
     player.socket.to(this.id).emit(SERVER_EVENT_NAME.GamePlayerLeft, player.id);
     logger.debug('Player left the game', logPlayer(player), logGame(this));
+
+    if (this._players.length <= 1) {
+      this.endGame();
+    }
   }
 
-  public newCardTurn() {
+  public startNewCardTurn() {
     this.selectNextCard();
 
     const guessingTeam = this._teamMap.get(this._currentPlayer.team);
@@ -114,9 +118,9 @@ export class Game implements ClientPayload<GameCP> {
     }
   }
 
-  public startRound() {
+  public startNextRound() {
     this.selectNextPlayer();
-    this.newCardTurn();
+    this.startNewCardTurn();
     this.startTimeout();
     this._roundStarted = true;
   }
@@ -124,7 +128,7 @@ export class Game implements ClientPayload<GameCP> {
   public tryStartNextRound() {
     if (this._roundStarted) return;
 
-    this.startRound();
+    this.startNextRound();
   }
 
   public getCP(): GameCP {
@@ -148,7 +152,7 @@ export class Game implements ClientPayload<GameCP> {
       player.socket.emit(SERVER_EVENT_NAME.GameStarted, this.getCP(), player.getCP(), teamMap);
     }
 
-    this.startRound();
+    this.startNextRound();
     this._started = true;
   }
 
@@ -164,7 +168,7 @@ export class Game implements ClientPayload<GameCP> {
     player.increaseNumberOfSkips();
   }
 
-  public validAnswer(player: Player): boolean {
+  public handleValidAnswer(player: Player): boolean {
     if (!this._roundStarted) return false;
 
     const gameTeam = this._teamMap.get(player.team);
@@ -182,7 +186,7 @@ export class Game implements ClientPayload<GameCP> {
     return true;
   }
 
-  public emitGameTeam(player: Player) {
+  public emitToPlayerTeam(player: Player) {
     const gameTeam = this._teamMap.get(player.team);
     if (!gameTeam) return;
     for (const p of this._players) {

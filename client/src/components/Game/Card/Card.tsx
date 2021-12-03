@@ -3,7 +3,7 @@ import { Box, BoxProps } from '@chakra-ui/react';
 import React, { Dispatch, SetStateAction } from 'react';
 import { GameCard } from './GameCard';
 import { CardDto } from '../../../../../shared/dto';
-import { socketService } from '@/services/socket';
+import { socketService } from '@/services/socket.service';
 
 export const MotionBox = motion<BoxProps>(Box);
 

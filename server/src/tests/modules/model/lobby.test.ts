@@ -27,13 +27,13 @@ describe('Lobby', () => {
 
   it('should remove client', () => {
     lobby.addClient(client);
-    lobby.remove(client);
+    lobby.removeClient(client);
 
     expect(lobby.membersCount).toBe(1);
   });
 
   it('should not remove client if not in lobby', () => {
-    lobby.remove(client);
+    lobby.removeClient(client);
 
     expect(lobby.membersCount).toBe(1);
   });

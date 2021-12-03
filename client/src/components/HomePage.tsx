@@ -8,9 +8,15 @@ interface Props {
   onSubmit: (username: string) => void;
   isLoading: boolean;
   displayPasswordInput?: boolean;
+  isPasswordRequired?: boolean;
 }
 
-export const HomePage = ({ onSubmit, isLoading, displayPasswordInput = true }: Props) => {
+export const HomePage = ({
+  onSubmit,
+  isLoading,
+  displayPasswordInput = true,
+  isPasswordRequired = true,
+}: Props) => {
   return (
     <Grid
       gridTemplateRows={'1fr auto 1fr'}
@@ -23,6 +29,7 @@ export const HomePage = ({ onSubmit, isLoading, displayPasswordInput = true }: P
         onSubmit={onSubmit}
         isLoading={isLoading}
         displayPasswordInput={displayPasswordInput}
+        isPasswordRequired={isPasswordRequired}
       />
       <HomePageFooter />
     </Grid>

@@ -15,7 +15,7 @@ export function Gateway<T extends { new (...args: any[]): {} }>(constr: T) {
       super(...args);
 
       const eventsHandler: EventHandler[] = this[_socketEvents];
-      if (eventsHandler && eventsHandler.length > 0) {
+      if (eventsHandler?.length > 0) {
         for (const eventHandler of eventsHandler) {
           GatewayHandlers.addHandler({ ...eventHandler, gatewayInstance: this });
         }

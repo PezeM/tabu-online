@@ -19,6 +19,7 @@
     "@types/react-dom": "^17.0.9",
     "@types/react-router-dom": "^5.1.8",
     "@types/react-slick": "^0.23.7",
+    "faker": "^5.5.3",
     "framer-motion": "^4.1.17",
     "i18next": "^20.6.0",
     "i18next-browser-languagedetector": "^6.1.2",
@@ -60,6 +61,7 @@
     ]
   },
   "devDependencies": {
+    "@types/faker": "^5.5.9",
     "customize-cra": "^1.0.0",
     "react-app-rewired": "^2.1.8"
   }

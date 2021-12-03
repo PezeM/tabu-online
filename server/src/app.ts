@@ -67,10 +67,6 @@ export class App {
   }
 
   private connectDatabase() {
-    if (this.env !== 'production') {
-      set('debug', true);
-    }
-
     connect(databaseConnection.url)
       .then(db => {
         this._databaseConnection = db;

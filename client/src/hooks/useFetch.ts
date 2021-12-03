@@ -1,6 +1,6 @@
 import { useEffect, useReducer, useRef } from 'react';
 import { useAppDispatch } from '@/hooks/reduxHooks';
-import { setIsLoading } from '@/features/settings/settings.splice';
+import { setIsLoading } from '@/features/settings/settingsSlice';
 
 interface State<T> {
   data?: T;

@@ -7,8 +7,9 @@ import { lobbyManager } from '@/managers/lobby.manager';
 import { LobbySettings } from '@shared/interfaces/lobby';
 import { CardSetsCountDto } from '@shared/dto';
 import { Game } from '@models/game.model';
-import { LobbyAddClientException, LobbyKickException } from '@/exceptions';
+import { LobbyAddClientException, LobbyKickClientException } from '@/exceptions';
 import { app } from '@/server';
+import { isEmpty } from '@utils/util';
 
 export class Lobby implements ClientPayload<LobbyCP> {
   public readonly id = generateRandomId();
@@ -26,7 +27,7 @@ export class Lobby implements ClientPayload<LobbyCP> {
   ) {
     this._ownerId = owner.id;
     this._cardSets = cardSets;
-    this.password = password;
+    this.password = isEmpty(password) ? undefined : password;
 
     this.addNewMemberInternal(owner);
   }
@@ -66,18 +67,18 @@ export class Lobby implements ClientPayload<LobbyCP> {
   }
 
   public addClient(client: Client): void {
-    if (this.isGameStarted) throw new LobbyAddClientException('lobby.alreadyInGame');
+    if (this.isGameStarted) throw new LobbyAddClientException(client.id, 'lobby.alreadyInGame');
     if (this._members.length >= this.settings.maxPlayers)
-      throw new LobbyAddClientException('lobby.roomIsFull');
+      throw new LobbyAddClientException(client.id, 'lobby.roomIsFull');
     if (this._members.includes(client))
-      throw new LobbyAddClientException('lobby.alreadyInThisRoom');
+      throw new LobbyAddClientException(client.id, 'lobby.alreadyInThisRoom');
     if (this._blacklist.includes(client))
-      throw new LobbyAddClientException('lobby.userInBlacklist');
+      throw new LobbyAddClientException(client.id, 'lobby.userInBlacklist');
 
     this.addNewMemberInternal(client);
   }
 
-  public remove(client: Client): void {
+  public removeClient(client: Client): void {
     // Select new owner if old one leaves
     if (client.id === this._ownerId) {
       const newOwner = this._members.find(c => c.id !== this._ownerId);
@@ -96,15 +97,15 @@ export class Lobby implements ClientPayload<LobbyCP> {
     if (this.membersCount === 0) lobbyManager.removeLobby(this);
   }
 
-  public kick(clientId: string): void {
-    if (this._ownerId === clientId) throw new LobbyKickException('lobby.cantKickOwner');
+  public kickClient(clientId: string): void {
+    if (this._ownerId === clientId) throw new LobbyKickClientException('lobby.cantKickOwner');
 
     const clientToRemove = this.getMember(clientId);
     if (!clientToRemove) {
-      throw new LobbyKickException('lobby.userNotFound');
+      throw new LobbyKickClientException('lobby.userNotFound');
     }
 
-    this.remove(clientToRemove);
+    this.removeClient(clientToRemove);
     this._blacklist.push(clientToRemove);
     clientToRemove.socket.emit(SERVER_EVENT_NAME.Notification, 'lobby.kicked', 'info');
   }

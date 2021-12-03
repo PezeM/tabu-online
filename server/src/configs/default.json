@@ -3,7 +3,8 @@
   "secretKey": "secretKey",
   "log": {
     "format": "dev",
-    "dir": "../../logs"
+    "dir": "../../logs",
+    "level": "verbose"
   },
   "cors": {
     "origin": true,

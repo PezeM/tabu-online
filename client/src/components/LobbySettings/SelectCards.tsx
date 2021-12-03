@@ -5,8 +5,8 @@ import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { selectLobby } from '@/features/lobby/lobby.slice';
 import { useTranslation } from 'react-i18next';
 import { SelectCardsContainer } from '@/components/SelectCards/SelectCardsContainer';
-import { socketService } from '@/services/socket';
-import { setIsLoading } from '@/features/settings/settings.splice';
+import { socketService } from '@/services/socket.service';
+import { setIsLoading } from '@/features/settings/settingsSlice';
 
 export const SelectCards = () => {
   const selectedCards = useAppSelector(selectLobby).settings.cardIds;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { socketService } from '@/services/socket';
+import { socketService } from '@/services/socket.service';
 import { SERVER_EVENT_NAME } from '../../../shared/constants';
 import { useListenServerEvent } from '@/hooks/useListenServerEvent';
 import { setLobby } from '@/features/lobby/lobby.slice';
@@ -9,7 +9,7 @@ import { setClient } from '@/features/client/client.splice';
 import { ClientCP, LobbyCP } from '@/../../shared/dto';
 import { HomePage } from '@/components/HomePage';
 import { useFetch } from '@/hooks/useFetch';
-import { ApiService } from '@/services/api';
+import { ApiService } from '@/services/api.service';
 
 type ParamsType = {
   id: string;
