@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { Grid } from '@chakra-ui/react';
 import { HomePageHeader } from '@/components/HomePageHeader';
-import { HomePageFooter } from '@/components/HomePageFooter';
-import { HomePageContent } from '@/components/HomePageContent';
+
+const HomePageContent = lazy(() =>
+  import('@/components/HomePageContent').then(module => ({ default: module.HomePageContent })),
+);
+
+const HomePageFooter = lazy(() =>
+  import('@/components/HomePageFooter').then(module => ({ default: module.HomePageFooter })),
+);
 
 interface Props {
   onSubmit: (username: string) => void;

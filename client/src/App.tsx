@@ -6,9 +6,29 @@ import { Route, Switch } from 'react-router-dom';
 import { NotificationContainer } from './components/NotificationContainer';
 import { BodyTextScale } from '@/components/BodyTextScale';
 import { LoadingSpinnerOverlay } from '@/components/LoadingSpinnerOverlay';
-import { Game, Home, Invite, Lobby, RouteNotFound } from '@/views';
 import { GlobalEventsListener } from '@/components/GlobalEventsListener';
 import { GameWaitingForNextRound } from '@/components/Game/GameWaitingForNextRound';
+import { lazy } from 'react';
+
+const Home = lazy(() =>
+  import('@/views/home').then(module => ({ default: module.Home })),
+);
+
+const Lobby = lazy(() =>
+  import('@/views/lobby').then(module => ({ default: module.Lobby })),
+);
+
+const Game = lazy(() =>
+  import('@/views/game').then(module => ({ default: module.Game })),
+);
+
+const Invite = lazy(() =>
+  import('@/views/invite').then(module => ({ default: module.Invite })),
+);
+
+const RouteNotFound = lazy(() =>
+  import('@/views/routeNotFound').then(module => ({ default: module.RouteNotFound })),
+);
 
 export const App = () => (
   <ChakraProvider theme={theme}>

@@ -87,7 +87,7 @@ export const Lobby = () => {
   });
 
   if (!isInLobby) {
-    return <LobbySkeleton delay={1000} page={'/'} />;
+    return <LobbySkeleton delay={0} page={'/'} />;
   }
 
   return (

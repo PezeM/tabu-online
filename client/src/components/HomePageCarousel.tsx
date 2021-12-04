@@ -1,22 +1,19 @@
 import React from 'react';
 import Slider from 'react-slick';
-import { Box, Flex, Heading, Image, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading, Text } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
-import videoConference from '../assets/webp/video-conference.webp';
-import tool from '../assets/webp/tool.webp';
-import consultation from '../assets/webp/consultation.webp';
-import win from '../assets/webp/win.webp';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 interface Props {
-  img: string;
+  src: string;
   description?: string;
   header?: string;
 }
 
-const SliderContent = ({ img, description, header }: Props) => {
+const SliderContent = ({ src, description, header }: Props) => {
   return (
     <Flex alignItems={'center'} flexDirection={'column'} pb={[2, 4, 6]}>
-      <Image src={img} />
+      <LazyLoadImage src={src} height={'250px'} width={'250px'} alt={'Helper gif'} />
       <Heading size={'md'} fontWeight={'700'}>
         {header?.toUpperCase()}
       </Heading>
@@ -33,7 +30,7 @@ export const HomePageCarousel = () => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 5000,
     slidesToShow: 1,
     slidesToScroll: 1,
     adaptiveHeight: true,
@@ -55,22 +52,22 @@ export const HomePageCarousel = () => {
       </Heading>
       <Slider {...settings}>
         <SliderContent
-          img={videoConference}
+          src={require('../assets/webp/video-conference.webp').default}
           header={t('instruction.howToPlay.header')}
           description={t('instruction.howToPlay.description')}
         />
         <SliderContent
-          img={tool}
+          src={require('../assets/webp/tool.webp').default}
           header={t('instruction.settings.header')}
           description={t('instruction.settings.description')}
         />
         <SliderContent
-          img={consultation}
+          src={require('../assets/webp/consultation.webp').default}
           header={t('instruction.consultation.header')}
           description={t('instruction.consultation.description')}
         />
         <SliderContent
-          img={win}
+          src={require('../assets/webp/win.webp').default}
           header={t('instruction.win.header')}
           description={t('instruction.win.description')}
         />
