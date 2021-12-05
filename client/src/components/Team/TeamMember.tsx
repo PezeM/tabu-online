@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { Avatar, Box, Text } from '@chakra-ui/react';
 import { ClientCP } from '../../../../shared/dto';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
@@ -16,20 +16,21 @@ interface Props {
   isLobbyOwner: boolean;
 }
 
-export const TeamMember = ({ member, isLobbyOwner }: Props) => {
+export const TeamMember = React.memo(({ member, isLobbyOwner }: Props) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
   const ownerId = useAppSelector(selectOwnerId);
   const clientId = useAppSelector(selectClientId);
-  const isOwner = member.id === ownerId;
-  const isClient = member.id === clientId;
-  const canKick = isLobbyOwner && !isClient;
 
-  const kickPlayer = () => {
-    socketService.lobbyKickClient(member.id);
+  const isOwner = useMemo(() => member.id === ownerId, [member.id, ownerId]);
+  const isClient = useMemo(() => member.id === clientId, [member.id, clientId]);
+  const canKick = useMemo(() => isLobbyOwner && !isClient, [isLobbyOwner, isClient]);
+
+  const kickPlayer = useCallback(() => {
     dispatch(setIsLoading(true));
-  };
+    socketService.lobbyKickClient(member.id);
+  }, [dispatch, member.id]);
 
   return (
     <Box
@@ -85,4 +86,4 @@ export const TeamMember = ({ member, isLobbyOwner }: Props) => {
       <Text>{member.username}</Text>
     </Box>
   );
-};
+});

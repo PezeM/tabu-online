@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useMemo } from 'react';
 import { Box, Flex, Grid, Text, Tooltip } from '@chakra-ui/react';
 import { useIsMobile } from '@/hooks/useIsMobile';
 
@@ -12,13 +12,19 @@ interface Props {
 
 export const SettingsBox = React.memo(({ title, description, tooltip, icon, children }: Props) => {
   const isMobile = useIsMobile();
-  const displayDescription = description && !isMobile;
-  const tooltipText = tooltip ? tooltip : description;
+  const displayDescription = useMemo(() => description && !isMobile, [description, isMobile]);
+  const tooltipText = useMemo(() => (tooltip ? tooltip : description), [description, tooltip]);
 
-  let clonedIcon;
-  if (icon) {
-    clonedIcon = React.cloneElement(icon as ReactElement, { w: [4, 6, 8], h: [4, 6, 8] });
-  }
+  const clonedIcon = useMemo(
+    () =>
+      icon
+        ? React.cloneElement(icon as ReactElement, {
+            w: [4, 6, 8],
+            h: [4, 6, 8],
+          })
+        : null,
+    [icon],
+  );
 
   return (
     <Grid

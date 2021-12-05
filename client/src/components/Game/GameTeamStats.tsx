@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Team } from '../../../../shared/enums';
 import { Box, Flex, Grid, GridProps, Heading, useColorModeValue } from '@chakra-ui/react';
 import { useAppSelector } from '@/hooks/reduxHooks';
@@ -24,13 +24,13 @@ const styles: Record<Team, GridProps> = {
   },
 };
 
-export const GameTeamStats = ({ team, ...rest }: Props) => {
+export const GameTeamStats = React.memo(({ team, ...rest }: Props) => {
   const gameTeams = useAppSelector(selectGameTeams);
   const game = useAppSelector(selectGame);
   const color = useColorModeValue('gray.200', 'gray.200');
 
-  const gameTeam = gameTeams?.[team];
-  const style = styles[team];
+  const gameTeam = useMemo(() => gameTeams?.[team], [team]);
+  const style = useMemo(() => styles[team], [team]);
 
   if (!gameTeam) {
     return null;
@@ -66,4 +66,4 @@ export const GameTeamStats = ({ team, ...rest }: Props) => {
       </Grid>
     </Flex>
   );
-};
+});

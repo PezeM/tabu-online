@@ -25,7 +25,7 @@ import { setGame, setGameTeams } from '@/features/game/game.slice';
 import { setPlayer } from '@/features/player/player.slice';
 import { showErrorNotification } from '@/utils/notification';
 
-export const Lobby = () => {
+export const Lobby = React.memo(() => {
   const isInLobby = useAppSelector(selectIsInLobby);
   const clientData = useAppSelector(selectClient);
   const history = useHistory();
@@ -97,4 +97,4 @@ export const Lobby = () => {
       <LobbyFooter />
     </Grid>
   );
-};
+});

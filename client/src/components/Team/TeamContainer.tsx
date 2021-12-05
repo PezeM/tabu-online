@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Box, Button, Flex, HStack, useColorModeValue } from '@chakra-ui/react';
 import { Team } from '../../../../shared/enums';
 import { TeamName } from '@/components/Team/TeamName';
@@ -25,14 +25,15 @@ export const TeamContainer = React.memo(({ team }: Props) => {
   const joinButtonBg = useColorModeValue('gray.700', 'gray.700');
   const { t } = useTranslation();
 
-  const showJoinTeamButton = client && client.team !== team;
-  let members: ClientCP[];
+  const showJoinTeamButton = useMemo(() => client && client.team !== team, [client, team]);
 
-  if (process.env.NODE_ENV !== 'production') {
-    members = [...generateRandomMembers(team), ...allMembers];
-  } else {
-    members = allMembers;
-  }
+  const members: ClientCP[] = useMemo(() => {
+    if (process.env.NODE_ENV !== 'production') {
+      return [...generateRandomMembers(team), ...allMembers];
+    } else {
+      return allMembers;
+    }
+  }, [allMembers, team]);
 
   useListenServerEvent(SERVER_EVENT_NAME.LobbyUserChangedTeam, (clientId: string) => {
     if (client?.id === clientId) {

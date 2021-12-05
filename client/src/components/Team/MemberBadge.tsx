@@ -13,7 +13,7 @@ interface Props {
   [x: string]: any;
 }
 
-export const MemberBadge = ({
+export const MemberBadge = React.memo(({
   bg = 'teal.400',
   bottom = '-15px',
   right = '2px',
@@ -40,4 +40,4 @@ export const MemberBadge = ({
       </chakra.span>
     </Tooltip>
   );
-};
+});

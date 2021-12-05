@@ -11,7 +11,7 @@ import { ChangeRoundTimeSlider } from '@/components/LobbySettings/ChangeRoundTim
 import { SelectCards } from '@/components/LobbySettings/SelectCards';
 import { RepeatIcon } from '@chakra-ui/icons';
 
-export const GameSettingsTab = () => {
+export const GameSettingsTab = React.memo(() => {
   const { t } = useTranslation();
 
   return (
@@ -56,4 +56,4 @@ export const GameSettingsTab = () => {
       </SettingsBox>
     </LobbySettingsContainer>
   );
-};
+});

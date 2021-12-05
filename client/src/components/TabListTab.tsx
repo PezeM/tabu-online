@@ -9,7 +9,7 @@ interface Props extends TabProps {
   icon: React.ReactElement;
 }
 
-export function CustomTab(props: Props) {
+export const CustomTab = React.memo((props: Props) => {
   const tabProps = useTab(props);
   const styles = useStyles();
   const isSelected = tabProps['aria-selected'];
@@ -26,4 +26,4 @@ export function CustomTab(props: Props) {
       <Text fontWeight={'600'}>{tabProps.children}</Text>
     </StyledTab>
   );
-}
+});

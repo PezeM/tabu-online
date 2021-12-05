@@ -8,7 +8,7 @@ import { SelectCardsContainer } from '@/components/SelectCards/SelectCardsContai
 import { socketService } from '@/services/socket.service';
 import { setIsLoading } from '@/features/settings/settingsSlice';
 
-export const SelectCards = () => {
+export const SelectCards = React.memo(() => {
   const selectedCards = useAppSelector(selectLobby).settings.cardIds;
   const cardSets = useAppSelector(selectLobby).cardSets;
   const { t } = useTranslation();
@@ -50,4 +50,4 @@ export const SelectCards = () => {
       />
     </Grid>
   );
-};
+});

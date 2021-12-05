@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Box, IconButton, Tooltip, useColorModeValue } from '@chakra-ui/react';
 import { CheckIcon, CloseIcon } from '@chakra-ui/icons';
 import { useTranslation } from 'react-i18next';
@@ -8,7 +8,7 @@ import { GameState } from '@/types/game-state.enum';
 import { RedoIcon } from '@/styles/icons';
 import { socketService } from '@/services/socket.service';
 
-export const GameButtons = () => {
+export const GameButtons = React.memo(() => {
   const { t } = useTranslation();
   const state = useAppSelector(selectGameState);
   const currentCard = useAppSelector(selectCurrentCard);
@@ -59,7 +59,7 @@ export const GameButtons = () => {
       </Box>
     </Box>
   );
-};
+});
 
 interface GameButtonProps {
   tooltip: string;
@@ -69,9 +69,9 @@ interface GameButtonProps {
   onClick: () => void;
 }
 
-const GameButton = ({ tooltip, maxW, width, icon, onClick }: GameButtonProps) => {
-  const maxWidth = maxW ? maxW : { lg: '120px' };
-  const minWidth = width ? width : ['23vw', '15vw', '12vw', '8vw'];
+const GameButton = React.memo(({ tooltip, maxW, width, icon, onClick }: GameButtonProps) => {
+  const maxWidth = useMemo(() => (maxW ? maxW : { lg: '120px' }), [maxW]);
+  const minWidth = useMemo(() => (width ? width : ['23vw', '15vw', '12vw', '8vw']), [width]);
 
   return (
     <IconButton
@@ -89,4 +89,4 @@ const GameButton = ({ tooltip, maxW, width, icon, onClick }: GameButtonProps) =>
       }
     />
   );
-};
+});

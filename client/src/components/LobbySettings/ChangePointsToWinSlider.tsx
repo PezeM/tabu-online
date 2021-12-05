@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { selectLobby } from '@/features/lobby/lobby.slice';
 import { useTranslation } from 'react-i18next';
@@ -7,7 +7,7 @@ import { socketService } from '@/services/socket.service';
 import { MAX_POINTS_TO_WIN } from '../../../../shared/constants';
 import { SettingsSlider } from '@/components/LobbySettings/SettingsSlider';
 
-export const ChangePointsToWinSlider = () => {
+export const ChangePointsToWinSlider = React.memo(() => {
   const currentPointsToWin = useAppSelector(selectLobby).settings.pointsToWin;
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
@@ -17,13 +17,16 @@ export const ChangePointsToWinSlider = () => {
     dispatch(setIsLoading(true));
   };
 
-  const textTransformer = (value: number) => {
-    if (value < MAX_POINTS_TO_WIN) {
-      return `${value} ${t('ui.points')}`;
-    }
+  const textTransformer = useCallback(
+    (value: number) => {
+      if (value < MAX_POINTS_TO_WIN) {
+        return `${value} ${t('ui.points')}`;
+      }
 
-    return t('ui.unlimited');
-  };
+      return t('ui.unlimited');
+    },
+    [t],
+  );
 
   return (
     <SettingsSlider
@@ -34,4 +37,4 @@ export const ChangePointsToWinSlider = () => {
       valueTextTransformer={textTransformer}
     />
   );
-};
+});

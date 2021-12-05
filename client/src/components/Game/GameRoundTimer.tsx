@@ -10,7 +10,7 @@ interface Props {
   expireTime?: Date;
 }
 
-export const GameRoundTimer = ({ expireTime }: Props) => {
+export const GameRoundTimer = React.memo(({ expireTime }: Props) => {
   const gameState = useAppSelector(selectGameState);
 
   const { seconds, minutes, start, restart } = useTimer({
@@ -33,4 +33,4 @@ export const GameRoundTimer = ({ expireTime }: Props) => {
       </Heading>
     </Box>
   );
-};
+});

@@ -55,7 +55,7 @@ const secondPath = {
 
 const MotionButton = motion<IconButtonProps>(IconButton);
 
-export const ToggleSoundsButton = () => {
+export const ToggleSoundsButton = React.memo(() => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const isSoundMuted = useAppSelector(selectIsSoundMuted);
@@ -129,4 +129,4 @@ export const ToggleSoundsButton = () => {
       </MotionButton>
     </Tooltip>
   );
-};
+});

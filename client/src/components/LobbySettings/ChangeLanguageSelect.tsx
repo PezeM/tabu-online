@@ -3,13 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { getLanguageCodeOnly } from '@/utils/browser';
 import { Select } from '@chakra-ui/react';
 
-export const ChangeLanguageSelect = () => {
+export const ChangeLanguageSelect = React.memo(() => {
   const { t, i18n } = useTranslation();
 
-  const currentLanguage = getLanguageCodeOnly(i18n.language);
+  const currentLanguage = useMemo(() => getLanguageCodeOnly(i18n.language), [i18n.language]);
 
   const languages = useMemo(() => {
-    console.log('Changing languages');
     return Array.from(
       new Set(
         i18n.languages
@@ -36,4 +35,4 @@ export const ChangeLanguageSelect = () => {
       })}
     </Select>
   );
-};
+});
