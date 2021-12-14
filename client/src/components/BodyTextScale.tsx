@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 
-export const BodyTextScale = () => {
+export const BodyTextScale = React.memo(() => {
   const [value] = useLocalStorage('text-scale', '100%');
 
   useEffect(() => {
@@ -9,4 +9,4 @@ export const BodyTextScale = () => {
   }, [value]);
 
   return null;
-};
+});

@@ -50,7 +50,7 @@ export const Game = () => {
   }
 
   if (!isInGame) {
-    return <LobbySkeleton delay={1000} page={'/'} />;
+    return <LobbySkeleton delay={0} page={'/'} />;
   }
 
   return (

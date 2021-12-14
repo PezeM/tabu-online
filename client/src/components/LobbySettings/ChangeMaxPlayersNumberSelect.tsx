@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 
 const AVAILABLE_PLAYERS_VALUES = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
-export const ChangeMaxPlayersNumberSelect = () => {
+export const ChangeMaxPlayersNumberSelect = React.memo(() => {
   const dispatch = useAppDispatch();
   const currentMaxPlayers = useAppSelector(selectLobby).settings.maxPlayers;
   const { t } = useTranslation();
@@ -33,4 +33,4 @@ export const ChangeMaxPlayersNumberSelect = () => {
       })}
     </Select>
   );
-};
+});

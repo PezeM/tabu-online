@@ -4,7 +4,7 @@ import { useLocalStorage } from '@/hooks/useLocalStorage';
 
 const fontScaleOptions = ['70%', '80%', '90%', '100%', '110%', '120%', '130%', '140%'];
 
-export const ChangeFontScaleSelect = () => {
+export const ChangeFontScaleSelect = React.memo(() => {
   const [value, setValue] = useLocalStorage('text-scale', '100%');
 
   const changeFontScale = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -22,4 +22,4 @@ export const ChangeFontScaleSelect = () => {
       })}
     </Select>
   );
-};
+});

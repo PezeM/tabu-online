@@ -5,7 +5,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export const LobbySettingsContainer = ({ children }: Props) => {
+export const LobbySettingsContainer = React.memo(({ children }: Props) => {
   return (
     <Flex
       flex={'1 1 0%'}
@@ -17,4 +17,4 @@ export const LobbySettingsContainer = ({ children }: Props) => {
       {children}
     </Flex>
   );
-};
+});

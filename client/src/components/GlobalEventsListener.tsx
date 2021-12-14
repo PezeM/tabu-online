@@ -4,8 +4,9 @@ import { useAppDispatch } from '@/hooks/reduxHooks';
 import { CardDto, GameTeamCP } from '../../../shared/dto';
 import { setCurrentCard, setGameState, setGameTeam } from '@/features/game/game.slice';
 import { GameState } from '@/types/game-state.enum';
+import React from 'react';
 
-export const GlobalEventsListener = (): JSX.Element | null => {
+export const GlobalEventsListener = React.memo((): JSX.Element | null => {
   const dispatch = useAppDispatch();
 
   useListenServerEvent(SERVER_EVENT_NAME.GameRoundExplainerPerson, (currentCard: CardDto) => {
@@ -33,4 +34,4 @@ export const GlobalEventsListener = (): JSX.Element | null => {
   });
 
   return null;
-};
+});

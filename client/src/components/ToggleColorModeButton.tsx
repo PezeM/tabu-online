@@ -7,7 +7,7 @@ import { useSound } from '@/hooks/useSound';
 
 // transformed from https://codepen.io/aaroniker/pen/KGpXZo
 
-export const ToggleColorModeButton = () => {
+export const ToggleColorModeButton = React.memo(() => {
   const { t } = useTranslation();
 
   const { colorMode, toggleColorMode } = useColorMode();
@@ -94,4 +94,4 @@ export const ToggleColorModeButton = () => {
       </Button>
     </Tooltip>
   );
-};
+});

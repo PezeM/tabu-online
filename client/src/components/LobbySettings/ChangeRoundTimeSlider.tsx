@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { selectLobby } from '@/features/lobby/lobby.slice';
 import { useTranslation } from 'react-i18next';
@@ -8,7 +8,7 @@ import { MAX_ROUND_TIME, MIN_ROUND_TIME } from '../../../../shared/constants';
 import { SettingsSlider } from '@/components/LobbySettings/SettingsSlider';
 import { formatTimeToMmSsFormat } from '@/utils/time';
 
-export const ChangeRoundTimeSlider = () => {
+export const ChangeRoundTimeSlider = React.memo(() => {
   const currentRoundTime = useAppSelector(selectLobby).settings.roundTime;
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
@@ -18,14 +18,17 @@ export const ChangeRoundTimeSlider = () => {
     dispatch(setIsLoading(true));
   };
 
-  const textTransformer = (value: number) => {
-    const seconds = value / 1000;
-    if (seconds <= 0) {
-      return t('ui.zero');
-    }
+  const textTransformer = useCallback(
+    (value: number) => {
+      const seconds = value / 1000;
+      if (seconds <= 0) {
+        return t('ui.zero');
+      }
 
-    return formatTimeToMmSsFormat(seconds);
-  };
+      return formatTimeToMmSsFormat(seconds);
+    },
+    [t],
+  );
 
   return (
     <SettingsSlider
@@ -37,4 +40,4 @@ export const ChangeRoundTimeSlider = () => {
       valueTextTransformer={textTransformer}
     />
   );
-};
+});

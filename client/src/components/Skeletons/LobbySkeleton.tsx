@@ -1,14 +1,14 @@
-import React from "react";
-import { Skeleton, Stack } from "@chakra-ui/react";
-import { useHistory } from "react-router-dom";
-import useTimeout from "../../hooks/useTimeout";
+import React from 'react';
+import { Skeleton, Stack } from '@chakra-ui/react';
+import { useHistory } from 'react-router-dom';
+import useTimeout from '../../hooks/useTimeout';
 
 interface Props {
   delay: number;
   page?: string;
 }
 
-export const LobbySkeleton = ({ delay, page }: Props) => {
+export const LobbySkeleton = React.memo(({ delay, page }: Props) => {
   const history = useHistory();
 
   const changePage = () => {
@@ -20,10 +20,10 @@ export const LobbySkeleton = ({ delay, page }: Props) => {
   useTimeout(changePage, delay);
 
   return (
-    <Stack height={"full"} spacing={4} align="stretch">
-      <Skeleton height={"full"} />
-      <Skeleton height={"full"} />
-      <Skeleton height={"full"} />
+    <Stack height={'full'} spacing={4} align="stretch">
+      <Skeleton height={'full'} />
+      <Skeleton height={'full'} />
+      <Skeleton height={'full'} />
     </Stack>
   );
-};
+});

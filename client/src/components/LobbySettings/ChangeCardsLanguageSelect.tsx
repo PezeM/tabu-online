@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Select } from '@chakra-ui/react';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
@@ -7,11 +7,11 @@ import { LobbyLanguage } from '../../../../shared/enums';
 import { socketService } from '@/services/socket.service';
 import { setIsLoading } from '@/features/settings/settingsSlice';
 
-export const ChangeCardsLanguageSelect = () => {
+export const ChangeCardsLanguageSelect = React.memo(() => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const currentLanguage = useAppSelector(selectLobby).settings.language;
-  const languages = Object.values(LobbyLanguage);
+  const languages = useMemo(() => Object.values(LobbyLanguage), []);
 
   const changeLanguage = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newLanguage = e.target.value as LobbyLanguage;
@@ -33,4 +33,4 @@ export const ChangeCardsLanguageSelect = () => {
       })}
     </Select>
   );
-};
+});

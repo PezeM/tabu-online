@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Grid, useMediaQuery } from '@chakra-ui/react';
-import { LoginComponent } from '@/components/LoginComponents';
-import { HomePageCarousel } from '@/components/HomePageCarousel';
+import { MainSkeleton } from '@/components/Skeletons/MainSkeleton';
+
+const HomePageCarousel = lazy(() =>
+  import('@/components/HomePageCarousel').then(module => ({ default: module.HomePageCarousel })),
+);
+
+const LoginComponent = lazy(() =>
+  import('@/components/LoginComponents').then(module => ({ default: module.LoginComponent })),
+);
 
 interface Props {
   onSubmit: (username: string) => void;
@@ -27,7 +34,11 @@ export const HomePageContent = ({
         displayPasswordInput={displayPasswordInput}
         isPasswordRequired={isPasswordRequired}
       />
-      {!isLowerThan1000 && <HomePageCarousel />}
+      {!isLowerThan1000 && (
+        <Suspense fallback={<MainSkeleton />}>
+          <HomePageCarousel />
+        </Suspense>
+      )}
     </Grid>
   );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { selectLobby } from '@/features/lobby/lobby.slice';
 import { useTranslation } from 'react-i18next';
@@ -7,7 +7,7 @@ import { socketService } from '@/services/socket.service';
 import { MAX_SKIPS_NUMBER } from '../../../../shared/constants';
 import { SettingsSlider } from '@/components/LobbySettings/SettingsSlider';
 
-export const ChangeMaxSkipsNumberSlider = () => {
+export const ChangeMaxSkipsNumberSlider = React.memo(() => {
   const currentMaxSkipsNumber = useAppSelector(selectLobby).settings.maximumNumberOfSkips;
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
@@ -17,17 +17,20 @@ export const ChangeMaxSkipsNumberSlider = () => {
     dispatch(setIsLoading(true));
   };
 
-  const textTransformer = (value: number) => {
-    if (value <= 0) {
-      return t('ui.zero');
-    }
+  const textTransformer = useCallback(
+    (value: number) => {
+      if (value <= 0) {
+        return t('ui.zero');
+      }
 
-    if (value < MAX_SKIPS_NUMBER) {
-      return `${value} ${t('ui.skips')}`;
-    }
+      if (value < MAX_SKIPS_NUMBER) {
+        return `${value} ${t('ui.skips')}`;
+      }
 
-    return t('ui.unlimited');
-  };
+      return t('ui.unlimited');
+    },
+    [t],
+  );
 
   return (
     <SettingsSlider
@@ -38,4 +41,4 @@ export const ChangeMaxSkipsNumberSlider = () => {
       valueTextTransformer={textTransformer}
     />
   );
-};
+});
