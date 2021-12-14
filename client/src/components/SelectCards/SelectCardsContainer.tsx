@@ -22,7 +22,7 @@ interface Props {
   saveSelectedCards: (cards: string[]) => void;
 }
 
-export const SelectCardsContainer = ({ isOpen, onClose, saveSelectedCards }: Props) => {
+export const SelectCardsContainer = React.memo(({ isOpen, onClose, saveSelectedCards }: Props) => {
   const serverSelectedCards = useAppSelector(selectLobby).settings.cardIds;
   const cardSets = useAppSelector(selectLobby).cardSets;
   const [selectedCards, setSelectedCards] = useState(serverSelectedCards || []);
@@ -84,4 +84,4 @@ export const SelectCardsContainer = ({ isOpen, onClose, saveSelectedCards }: Pro
       </ModalContent>
     </Modal>
   );
-};
+});

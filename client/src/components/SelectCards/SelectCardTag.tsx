@@ -5,7 +5,7 @@ interface Props {
   tag: string;
 }
 
-export const SelectCardTag = ({ tag }: Props) => {
+export const SelectCardTag = React.memo(({ tag }: Props) => {
   const tagBg = useColorModeValue('blue.100', 'gray.800');
 
   return (
@@ -13,4 +13,4 @@ export const SelectCardTag = ({ tag }: Props) => {
       {tag}
     </Badge>
   );
-};
+});

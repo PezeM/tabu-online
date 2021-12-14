@@ -30,7 +30,7 @@ export const GameTeamStats = React.memo(({ team, ...rest }: Props) => {
   const color = useColorModeValue('gray.200', 'gray.200');
 
   const gameTeam = useMemo(() => gameTeams?.[team], [team, gameTeams]);
-  const style = useMemo(() => styles[team], [team, styles]);
+  const style = useMemo(() => styles[team], [team]);
 
   if (!gameTeam) {
     return null;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Box, Heading, Stack, Text, useColorModeValue } from '@chakra-ui/react';
 import { CardSetsCountDto } from '../../../../shared/dto';
 import { useTranslation } from 'react-i18next';
@@ -11,11 +11,11 @@ interface Props {
   setIsSelected: (cardId: string) => void;
 }
 
-export const SelectCard = ({ cardSet, isSelected, setIsSelected }: Props) => {
+export const SelectCard = React.memo(({ cardSet, isSelected, setIsSelected }: Props) => {
   const { t } = useTranslation();
 
   const { tags, name, cardsCount, _id } = cardSet;
-  const className = `card ${isSelected ? 'selected' : ''}`;
+  const className = useMemo(() => `card ${isSelected ? 'selected' : ''}`, [isSelected]);
 
   return (
     <Box
@@ -28,7 +28,9 @@ export const SelectCard = ({ cardSet, isSelected, setIsSelected }: Props) => {
       className={className}
       onClick={() => setIsSelected(_id)}
     >
-      <div className="check"><span className="checkmark">✔</span></div>
+      <div className="check">
+        <span className="checkmark">✔</span>
+      </div>
 
       <Text fontWeight={600} color={'gray.500'}>
         {t('ui.name')}
@@ -51,4 +53,4 @@ export const SelectCard = ({ cardSet, isSelected, setIsSelected }: Props) => {
       </Stack>
     </Box>
   );
-};
+});

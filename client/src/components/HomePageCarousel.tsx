@@ -30,13 +30,13 @@ export const HomePageCarousel = () => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 5000,
+    speed: 400,
     slidesToShow: 1,
     slidesToScroll: 1,
     adaptiveHeight: true,
     arrows: false,
     autoplaySpeed: 3000,
-    autoplay: false,
+    autoplay: true,
   };
 
   return (
